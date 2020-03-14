@@ -142,7 +142,7 @@ public SkillSetsSqlLite_Table ( )
 		format ( squery, 4096, "%s%s", squery, "`skill55` SMALLINT DEFAULT '0', `skill56` SMALLINT DEFAULT '0', `skill57` SMALLINT DEFAULT '0', " );
 		format ( squery, 4096, "%s%s", squery, "`skill58` SMALLINT DEFAULT '0', `skill59` SMALLINT DEFAULT '0', `skill60` SMALLINT DEFAULT '0', " );
 		format ( squery, 4096, "%s%s", squery, "`skill61` SMALLINT DEFAULT '0', `skill62` SMALLINT DEFAULT '0', `skill63` SMALLINT DEFAULT '0', " );
-		format ( squery, 4096, "%s%s", squery, "`skill64` SMALLINT DEFAULT '0' );" );
+		format ( squery, 4096, "%s%s", squery, "`skill64` SMALLINT DEFAULT '0' ), PRIMARY KEY(`name`, `skillsetid`);" );
 
 		//Set the Query
 		Query = SQL_PrepareQuery ( SqlConnection, squery );
@@ -174,9 +174,6 @@ public SkillSetsSqlLite_Table ( )
 
 	return PLUGIN_CONTINUE;
 }
-
-
-
 
 public LoadXPSQLLite ( id )
 {
