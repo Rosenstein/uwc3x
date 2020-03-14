@@ -64,11 +64,11 @@ public LoadSQLVars ( )
 	//If save by = 2 (by name) primary key is the name
 	if( CVAR_SAVE_BY == 2 )
 	{
-		format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `name` VARCHAR ( 64 ) DEFAULT NULL, PRIMARY KEY ( `name` ) ) TYPE=MyISAM;" );
+		format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `name` VARCHAR ( 64 ) DEFAULT NULL, PRIMARY KEY ( `name` ) ) ENGINE=MyISAM;" );
 	}
 	else
 	{
-		format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `name` VARCHAR ( 64 ) DEFAULT NULL, PRIMARY KEY ( `steamid` ) ) TYPE=MyISAM;" );
+		format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `name` VARCHAR ( 64 ) DEFAULT NULL, PRIMARY KEY ( `steamid` ) ) ENGINE=MyISAM;" );
 	}
 	
 	//Set the Query
@@ -145,7 +145,7 @@ public SkillSetsMySQL_Table ( )
 		format ( squery, 5096, "%s%s", squery, "`skill55` SMALLINT DEFAULT '0', `skill56` SMALLINT DEFAULT '0', `skill57` SMALLINT DEFAULT '0', " );
 		format ( squery, 5096, "%s%s", squery, "`skill58` SMALLINT DEFAULT '0', `skill59` SMALLINT DEFAULT '0', `skill60` SMALLINT DEFAULT '0', " );
 		format ( squery, 5096, "%s%s", squery, "`skill61` SMALLINT DEFAULT '0', `skill62` SMALLINT DEFAULT '0', `skill63` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill64` SMALLINT DEFAULT '0' ) TYPE=MyISAM;" );
+		format ( squery, 5096, "%s%s", squery, "`skill64` SMALLINT DEFAULT '0' ) ENGINE=MyISAM;" );
 		
 		//Set the Query
 		Query = SQL_PrepareQuery ( SqlConnection, squery );
