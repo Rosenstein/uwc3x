@@ -704,35 +704,35 @@ public SaveSkillSetSQLLite( id, skillsetIDX )
 	{
 		new userName[63];
 		get_user_name ( id, userName, 63 );
-		format ( squery, 4096, "REPLACE INTO `%s_SkillSets` ('name', 'skillsetid', ", CVAR_MYSQL_TABLE)
+		format ( squery, 4096, "REPLACE INTO `%s_SkillSets` (name, skillsetid", CVAR_MYSQL_TABLE)
 	}
 	else
 	{
 		get_user_authid ( id, steamid, 34 );
-		format ( squery, 4096, "REPLACE INTO `%s_SkillSets` ('steamid', 'skillsetid', ", CVAR_MYSQL_TABLE)
+		format ( squery, 4096, "REPLACE INTO `%s_SkillSets` (steamid, skillsetid", CVAR_MYSQL_TABLE)
 	}
 
 	for ( new k = 1; k < (MAX_SKILLS); k++ )
 	{
-		format( squery, 4096, "%s skill%d, ", squery, k);
+		format( squery, 4096, "%s, skill%d", squery, k);
 	}
 
 	if( CVAR_SAVE_BY == 2 )
 	{
 		new userName[63];
 		get_user_name ( id, userName, 63 );
-		format ( squery, 4096, "%s) VALUES ('%s' , '%d' ,", squery, userName, skillsetIDX);
+		format ( squery, 4096, "%s) VALUES ('%s', '%d'", squery, userName, skillsetIDX);
 	}
 	else
 	{
 		get_user_authid ( id, steamid, 34 );
-		format ( squery, 4096, "%s) VALUES ('%s' , '%d' ,", squery, steamid, skillsetIDX);
+		format ( squery, 4096, "%s) VALUES ('%s', '%d'", squery, steamid, skillsetIDX);
 	}
 
 
 	for ( new k = 1; k < (MAX_SKILLS); k++ )
 	{
-		format( squery, 4096, "%s '%d', ", squery, squery,p_skills[id][k]);
+		format( squery, 4096, "%s, '%d'", squery, p_skills[id][k]);
 	}
 
 	format ( squery, 4096, "%s);", squery) ;

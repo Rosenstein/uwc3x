@@ -89,7 +89,6 @@ public LoadSkillSet( id, skillsetIDX )
 	{
 		//Load SQL Lite Stuff
 		LoadSkillSetSQLLite ( id, skillsetIDX );	
-		log_amx( "[UWC3X] ERROR:: Skill Sets not enabled for sqllite");
 	}
 	else
 	{
