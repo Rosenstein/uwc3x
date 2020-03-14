@@ -115,14 +115,7 @@ public SkillSetsMySQL_Table ( )
 		
 		log_amx( "[UWC3X] SQL :: Connected [OK]" );
 		
-		if( CVAR_SAVE_BY == 2 )
-		{
-			format ( squery, 5096, "CREATE TABLE IF NOT EXISTS `%s_SkillSets` ( `name` VARCHAR(64), `skillsetid` INTEGER , ", CVAR_MYSQL_TABLE );
-		}
-		else
-		{
-			format ( squery, 5096, "CREATE TABLE IF NOT EXISTS `%s_SkillSets` ( `steamid` VARCHAR(32), `skillsetid` INTEGER , ", CVAR_MYSQL_TABLE );
-		} 
+		format ( squery, 5096, "CREATE TABLE IF NOT EXISTS `%s_SkillSets` ( `name` VARCHAR(64), `steamid` VARCHAR(32), `skillsetid` INTEGER , ", CVAR_MYSQL_TABLE );
 		
 		format ( squery, 5096, "%s%s", squery, "`skill1` SMALLINT DEFAULT '0', `skill2` SMALLINT DEFAULT '0', `skill3` SMALLINT DEFAULT '0', " );
 		format ( squery, 5096, "%s%s", squery, "`skill4` SMALLINT DEFAULT '0', `skill5` SMALLINT DEFAULT '0', `skill6` SMALLINT DEFAULT '0', " );
@@ -1330,17 +1323,12 @@ public SaveSkillSetMySQL( id, skillsetIDX )
 		return PLUGIN_CONTINUE;
 	}
 	
-	if( CVAR_SAVE_BY == 2 )
-	{
-		new userName[63];
-		get_user_name ( id, userName, 63 );
-		format ( squery, 5096, "REPLACE INTO `%s_SkillSets` SET name='%s', skillsetid='%d',", CVAR_MYSQL_TABLE, userName, skillsetIDX );
-	}
-	else
-	{
-		get_user_authid ( id, steamid, 34 );
-		format ( squery, 5096, "REPLACE INTO `%s_SkillSets` SET steamid='%s', skillsetid='%d',", CVAR_MYSQL_TABLE, steamid, skillsetIDX );
-	}
+	new userName[63];
+	get_user_name ( id, userName, 63 );
+	new steamid[34];
+	get_user_authid ( id, steamid, 34 );
+	
+	format ( squery, 5096, "REPLACE INTO `%s_SkillSets` SET name='%s', steamid='%s', skillsetid='%d',", CVAR_MYSQL_TABLE, userName, steamid, skillsetIDX );
 	
 	format ( squery, 4096, "%s skill1='%d' , skill2='%d' ,", squery, p_skills[id][1], p_skills[id][2] ) ;
 	format ( squery, 4096, "%s skill3='%d' , skill4='%d' , skill5='%d' ,", squery,p_skills[id][3], p_skills[id][4], p_skills[id][5] );
@@ -1413,12 +1401,12 @@ public LoadSkillSetMySQL( id, skillsetIDX )
 	{
 		new userName[63];
 		get_user_name ( id, userName, 63 );
-		format ( squery, 4096, "%s FROM `%s_SkillSets` WHERE name = '%s' and skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, userName, skillsetIDX );
+		format ( squery, 4096, "%s FROM `%s_SkillSets` WHERE name = '%s' AND skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, userName, skillsetIDX );
 	}
 	else
 	{
 		get_user_authid ( id, steamid, 34 );
-		format ( squery, 4096, "%s FROM `%s_SkillSets` WHERE steamid = '%s' and skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, steamid, skillsetIDX );
+		format ( squery, 4096, "%s FROM `%s_SkillSets` WHERE steamid = '%s' AND skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, steamid, skillsetIDX );
 	}
 	
 	player_id = id;
