@@ -54,7 +54,7 @@ public Initialize_Tasks ( )
 	// set_task calls for functions needed by init or to run continuously
 	set_task ( 10.0,		"Check_UWC3X",		TASK_CHECK_UWC3X,	"",		0,	"b"		 );
 	set_task ( 1.0,			"Check_UWC3X",		TASK_CHECK_UWC3X_AGAIN		 );
-	set_task ( 3.0,			"XP_SetChoice",		TASK_SET_XP_CHOICES			 );
+	//set_task ( 3.0,			"XP_SetChoice",		TASK_SET_XP_CHOICES			 );
 	set_task ( 0.6,			"set_variables",	TASK_SET_VARIABLES			 );
 	
 	// TASK_Check_Duck used by decoy ultimate

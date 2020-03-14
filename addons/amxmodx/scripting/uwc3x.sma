@@ -258,6 +258,8 @@ public set_variables ( )
 
 	//See if the redirection system by level is enabled, and set the base values
 	Check_Redirection_Level_System ( );
+	
+	XP_SetChoice();
 
 	return PLUGIN_CONTINUE;
 }
