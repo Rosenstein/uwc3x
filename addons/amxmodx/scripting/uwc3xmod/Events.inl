@@ -353,6 +353,13 @@ public new_round ( id )
 		saveskillset[id] = false;
 		displaylevel ( id, 3 );
 	}
+	
+	if (deleteskillset[id])
+	{
+		DeleteSkillSet(id, s_deleteskillset[id]);
+		deleteskillset[id] = false;
+		displaylevel(id, 3);
+	}
 
 	p_PlayerShieldedBy[id] = 0; // Are not shielding anyone
 	HasTeamShield[id] = false; //Does not have a shield on them

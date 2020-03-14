@@ -647,12 +647,12 @@ public DeleteSkillSetSQLLite ( id, skillsetIDX )
 	{
 		new userName[63];
 		get_user_name ( id, userName, 63 );
-		format ( squery, 4096, "Delete from `%s_SkillSets` where name='%s' and skillsetid='%d',", CVAR_MYSQL_TABLE, userName, skillsetIDX );
+		format ( squery, 4096, "DELETE FROM `%s_SkillSets` WHERE name='%s' AND skillsetid='%d';", CVAR_MYSQL_TABLE, userName, skillsetIDX );
 	}
 	else
 	{
 		get_user_authid ( id, steamid, 34 );
-		format ( squery, 4096, "Delete from `%s_SkillSets` where steamid='%s' and skillsetid='%d',", CVAR_MYSQL_TABLE, steamid, skillsetIDX );
+		format ( squery, 4096, "DELETE FROM `%s_SkillSets` WHERE steamid='%s' AND skillsetid='%d';", CVAR_MYSQL_TABLE, steamid, skillsetIDX );
 	}
 
 	player_id = id;
@@ -805,12 +805,12 @@ public LoadSkillSetSQLLite( id, skillsetIDX )
 	{
 		new userName[63];
 		get_user_name ( id, userName, 63 );
-		format ( squery, 4096, "%s FROM %s_SkillSets WHERE name = '%s' and skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, userName, skillsetIDX );
+		format ( squery, 4096, "%s FROM `%s_SkillSets` WHERE name = '%s' and skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, userName, skillsetIDX );
 	}
 	else
 	{
 		get_user_authid ( id, steamid, 34 );
-		format ( squery, 4096, "%s FROM %s_SkillSets WHERE steamid = '%s' and skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, steamid, skillsetIDX );
+		format ( squery, 4096, "%s FROM `%s_SkillSets` WHERE steamid = '%s' and skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, steamid, skillsetIDX );
 	}
 	
 	player_id = id;
