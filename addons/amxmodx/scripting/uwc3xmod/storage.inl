@@ -29,6 +29,7 @@ public LoadXPConfig()
 
 	if ( GetStorageType() == 1 )
 	{
+		log_amx("[UWC3X] Initializing MySQL for storage.");
 		SQL_SetAffinity("mysql")
 		LoadSQLVars();
 		SkillSetsMySQL_Table();
@@ -36,6 +37,7 @@ public LoadXPConfig()
 	}
 	else if ( GetStorageType() == 2 )
 	{
+		log_amx("[UWC3X] Initializing SQLite for storage.");
 		SQL_SetAffinity("sqlite")
 		LoadSQLLiteConfig();	
 		SkillSetsSqlLite_Table();	

@@ -111,7 +111,7 @@ public SkillSetsSqlLite_Table ( )
 	{
 		log_amx( "[UWC3X] SQLite :: Using Saved Skill Sets [OK]" );
 		//Create handle and then the connection
-		g_SqlTuple = SQL_MakeDbTuple ( CVAR_MYSQL_HOSTNAME, CVAR_MYSQL_USERNAME, CVAR_MYSQL_PASSWORD, CVAR_MYSQL_DATABASE );
+		g_SqlTuple = SQL_MakeDbTuple ( "", "", "", CVAR_MYSQL_DATABASE );
 
 		//Try and connect
 		SqlConnection = SQL_Connect ( g_SqlTuple, ErrorCode, g_Error, 511 );
@@ -251,7 +251,7 @@ public LoadXPSQLLite ( id )
 	player_id = id;
 
 	//Create handle and then the connection
-	g_SqlTuple = SQL_MakeDbTuple ( CVAR_MYSQL_HOSTNAME, CVAR_MYSQL_USERNAME, CVAR_MYSQL_PASSWORD, CVAR_MYSQL_DATABASE );
+	g_SqlTuple = SQL_MakeDbTuple ( "", "", "", CVAR_MYSQL_DATABASE );
 
 	//Try and connect
 	SqlConnection = SQL_Connect ( g_SqlTuple, ErrorCode, g_Error, 511 );
@@ -567,46 +567,44 @@ public SaveXPSQLLite ( id )
 	}
 
 	get_time ( "%d/%m/%Y %H:%M:%S", mtimet, 31 );
-	format ( squery, 4096, "REPLACE INTO `%s` ('steamid', 'xp', 'mtime', ", CVAR_MYSQL_TABLE)
+	format ( squery, 4096, "REPLACE INTO `%s` (steamid, xp, mtime, ", CVAR_MYSQL_TABLE)
 	for ( new k = 1; k < (MAX_SKILLS); k++ )
 	{
-		format( squery, 4096, "%s skill%d, ", squery, k);
+		format( squery, 4096, "%s skill%d,", squery, k);
 	}
-
+	
 	for (  new k = 1; k < (MAX_ATTRIBS); k++ )
 	{
-		format( squery, 4096, "%s 'att%d', ", squery, squery, k);
+		format( squery, 4096, "%s att%d,", squery, k);
 	}
-
+	
 	for (  new k = 1; k < (MAX_RESISTS); k++ )
 	{
-		format( squery, 4096, "%s 'res%d', ", squery, squery, k);
+		format( squery, 4096, "%s res%d,", squery, k);
 	}
 
-	format ( squery, 4096, "%s 'name') VALUES ('%s' , '%d' , '%s' ,", squery, steamid, playerxp[id], mtimet);
+	format ( squery, 4096, "%s name) VALUES ('%s' , '%d' , '%s' ,", squery, steamid, playerxp[id], mtimet);
 
 	for ( new k = 1; k < (MAX_SKILLS); k++ )
 	{
-		format( squery, 4096, "%s '%d', ", squery, squery,p_skills[id][k]);
+		format( squery, 4096, "%s '%d',", squery, p_skills[id][k]);
 	}
-
-	for ( new k = 1; k < (MAX_SKILLS); k++ )
-	{
-		format( squery, 4096, "%s '%d', ", squery, squery,p_skills[id][k]);
-	}
-
+	
 	for (  new k = 1; k < (MAX_ATTRIBS); k++ )
 	{
-		format( squery, 4096, "%s '%d', ", squery, squery, p_attribs[id][k]);
+		format( squery, 4096, "%s '%d',", squery, p_attribs[id][k]);
 	}
-
+	
 	for (  new k = 1; k < (MAX_RESISTS); k++ )
 	{
-		format( squery, 4096, "%s '%d', ", squery, squery, p_attribs[id][k]);
-	}
+		format( squery, 4096, "%s '%d',", squery, p_resists[id][k]);
+	}	
 
 	format ( squery, 4096, "%s '%s');", squery, tempVar) ;
 	player_id = id;
+	
+	//Try and connect
+	SqlConnection = SQL_Connect ( g_SqlTuple, ErrorCode, g_Error, 511 );
 
 	//Set the Query
 	Query = SQL_PrepareQuery ( SqlConnection, squery );
@@ -626,7 +624,6 @@ public SaveXPSQLLite ( id )
 		SQL_FreeHandle ( Query );
 		SQL_FreeHandle ( SqlConnection );
 	}
-
 
 	return PLUGIN_CONTINUE;
 }
@@ -664,6 +661,9 @@ public DeleteSkillSetSQLLite ( id, skillsetIDX )
 	{
 		log_amx( "[UWC3X] DEBUG: SQLIte->DeleteSkillSetSQLLite" );
 	}
+	
+	//Try and connect
+	SqlConnection = SQL_Connect ( g_SqlTuple, ErrorCode, g_Error, 511 );
 
 	//Set the Query
 	Query = SQL_PrepareQuery ( SqlConnection, squery );
@@ -742,6 +742,9 @@ public SaveSkillSetSQLLite( id, skillsetIDX )
 	{
 		log_amx( "[UWC3X] DEBUG: SQLLite->SaveSkillSetSQLLite: Set SQL_ThreadQuery" );
 	}
+	
+	//Try and connect
+	SqlConnection = SQL_Connect ( g_SqlTuple, ErrorCode, g_Error, 511 );
 
 	//Set the Query
 	Query = SQL_PrepareQuery ( SqlConnection, squery );
@@ -819,6 +822,9 @@ public LoadSkillSetSQLLite( id, skillsetIDX )
 	{
 		log_amx( "[UWC3X] DEBUG: SQLLite->LoadSkillSetSQLLite: Set SQL_ThreadQuery" );
 	}
+	
+	//Try and connect
+	SqlConnection = SQL_Connect ( g_SqlTuple, ErrorCode, g_Error, 511 );
 
 	//Set the Query
 	Query = SQL_PrepareQuery ( SqlConnection, squery );
