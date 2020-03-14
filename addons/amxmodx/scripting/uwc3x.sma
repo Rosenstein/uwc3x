@@ -117,14 +117,15 @@ public plugin_modules ( )
 
 public CheckUserName( id )
 {
-	new szUsername[33];
-	get_user_info(id , "name" , szUsername , 32);
+	new username[33];
+	get_user_info(id , "name" , username , 32);
 
-	if( (strlen( szUsername )-1) < 4 )
+	if ((strlen(username)) < 4 )
 	{
-		new randID = random_num( 1, 999);
-		client_cmd(id, "name ^"Uwc3x|Yaur player%i^"", randID );
-		ShowUsername_Message( id );
+		new randID = random_num(1, 999);
+		format(username, 32, "Uwc3x|Yaur player%i", randID)
+		set_user_info(id, "name", username);
+		ShowUsername_Message(id);
 	}
 
 	return PLUGIN_CONTINUE;

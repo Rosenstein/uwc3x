@@ -2192,4 +2192,15 @@ public UTIL_Kill(attacker,id,weapon[])
 	
 }
 
+public GetSafeUserName(index, name[], len)
+{
+	get_user_name(index, name, len);
+	MakeSafeTextForQuery(name, len);
+}
+
+public MakeSafeTextForQuery(text[], len)
+{
+	replace_all(text, len, "'", "''");
+}
+
 /* ==================================================================================================== */
