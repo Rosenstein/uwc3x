@@ -44,44 +44,36 @@ public LoadSQLLiteVars ( )
 		bDBConn = true;
 	}
 
-	format ( squery, 5096, "CREATE TABLE IF NOT EXISTS `%s` ( `steamid` VARCHAR ( 32 ) NOT NULL, `xp` INT, `ip` ", CVAR_MYSQL_TABLE );
-	format ( squery, 5096, "%s%s", squery, "VARCHAR ( 32 ), `mtime` VARCHAR ( 32 ), `skill1` SMALLINT DEFAULT '0', `skill2` SMALLINT " );
-	format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `skill3` SMALLINT DEFAULT '0', `skill4` SMALLINT DEFAULT '0', `skill5` " );
-	format ( squery, 5096, "%s%s", squery, "SMALLINT DEFAULT '0', `skill6` SMALLINT DEFAULT '0', `skill7` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill8` SMALLINT DEFAULT '0', `skill9` SMALLINT DEFAULT '0', `skill10` SMALLINT " );
-	format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `skill11` SMALLINT DEFAULT '0', `skill12` SMALLINT DEFAULT '0', `skill13` " );
-	format ( squery, 5096, "%s%s", squery, "SMALLINT DEFAULT '0', `skill14` SMALLINT DEFAULT '0', `skill15` SMALLINT DEFAULT '0', " ) ;
-	format ( squery, 5096, "%s%s", squery, "`skill16` SMALLINT DEFAULT '0', `skill17` SMALLINT DEFAULT '0', `skill18` SMALLINT " );
-	format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `skill19` SMALLINT DEFAULT '0', `skill20` SMALLINT DEFAULT '0', `skill21` " );
-	format ( squery, 5096, "%s%s", squery, "SMALLINT DEFAULT '0', `skill22` SMALLINT DEFAULT '0', `skill23` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill24` SMALLINT DEFAULT '0', `skill25` SMALLINT DEFAULT '0', `skill26` SMALLINT " ) ;
-	format ( squery, 5096, "%s%s", squery, "DEFAULT '0' , `skill27` SMALLINT DEFAULT '0', `skill28` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill29` SMALLINT DEFAULT '0', `skill30` SMALLINT DEFAULT '0', `skill31` SMALLINT " );
-	format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `skill32` SMALLINT DEFAULT '0', `skill33` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill34` SMALLINT DEFAULT '0', `skill35` SMALLINT DEFAULT '0', `skill36` SMALLINT " );
-	format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `skill37` SMALLINT DEFAULT '0', `skill38` SMALLINT DEFAULT '0', " ) ;
-	format ( squery, 5096, "%s%s", squery, "`skill39` SMALLINT DEFAULT '0', `skill40` SMALLINT DEFAULT '0', `skill41` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill42` SMALLINT DEFAULT '0', `skill43` SMALLINT DEFAULT '0', `skill44` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill45` SMALLINT DEFAULT '0', `skill46` SMALLINT DEFAULT '0', `skill47` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill48` SMALLINT DEFAULT '0', `skill49` SMALLINT DEFAULT '0', `skill50` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill51` SMALLINT DEFAULT '0', `skill52` SMALLINT DEFAULT '0', `skill53` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill54` SMALLINT DEFAULT '0', `skill55` SMALLINT DEFAULT '0', `skill56` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill57` SMALLINT DEFAULT '0', `skill58` SMALLINT DEFAULT '0', `skill59` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill60` SMALLINT DEFAULT '0', `skill61` SMALLINT DEFAULT '0', `skill62` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`skill63` SMALLINT DEFAULT '0', `skill64` SMALLINT DEFAULT '0', " );
-	format ( squery, 5096, "%s%s", squery, "`att1` SMALLINT DEFAULT '0', `att2` SMALLINT DEFAULT '0', `att3` SMALLINT DEFAULT '0', `att4` SMALLINT " );
-	format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `att5` SMALLINT DEFAULT '0', `att6` SMALLINT DEFAULT '0', `res1` SMALLINT DEFAULT '0', `res2` SMALLINT " );
-	format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `res3` SMALLINT DEFAULT '0', `res4` SMALLINT DEFAULT '0', `res5` SMALLINT DEFAULT '0', `res6` SMALLINT DEFAULT '0', `res7` SMALLINT " );
+	format ( squery, 4096, "CREATE TABLE IF NOT EXISTS `%s` ( `steamid` VARCHAR ( 32 ) NOT NULL, `xp` INT, `ip` ", CVAR_MYSQL_TABLE );
+	format ( squery, 4096, "%s%s", squery, "VARCHAR ( 32 ), `mtime` VARCHAR ( 32 ), `skill1` SMALLINT DEFAULT '0', `skill2` SMALLINT " );
+	format ( squery, 4096, "%s%s", squery, "DEFAULT '0', `skill3` SMALLINT DEFAULT '0', `skill4` SMALLINT DEFAULT '0', `skill5` " );
+	format ( squery, 4096, "%s%s", squery, "SMALLINT DEFAULT '0', `skill6` SMALLINT DEFAULT '0', `skill7` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill8` SMALLINT DEFAULT '0', `skill9` SMALLINT DEFAULT '0', `skill10` SMALLINT " );
+	format ( squery, 4096, "%s%s", squery, "DEFAULT '0', `skill11` SMALLINT DEFAULT '0', `skill12` SMALLINT DEFAULT '0', `skill13` " );
+	format ( squery, 4096, "%s%s", squery, "SMALLINT DEFAULT '0', `skill14` SMALLINT DEFAULT '0', `skill15` SMALLINT DEFAULT '0', " ) ;
+	format ( squery, 4096, "%s%s", squery, "`skill16` SMALLINT DEFAULT '0', `skill17` SMALLINT DEFAULT '0', `skill18` SMALLINT " );
+	format ( squery, 4096, "%s%s", squery, "DEFAULT '0', `skill19` SMALLINT DEFAULT '0', `skill20` SMALLINT DEFAULT '0', `skill21` " );
+	format ( squery, 4096, "%s%s", squery, "SMALLINT DEFAULT '0', `skill22` SMALLINT DEFAULT '0', `skill23` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill24` SMALLINT DEFAULT '0', `skill25` SMALLINT DEFAULT '0', `skill26` SMALLINT " ) ;
+	format ( squery, 4096, "%s%s", squery, "DEFAULT '0' , `skill27` SMALLINT DEFAULT '0', `skill28` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill29` SMALLINT DEFAULT '0', `skill30` SMALLINT DEFAULT '0', `skill31` SMALLINT " );
+	format ( squery, 4096, "%s%s", squery, "DEFAULT '0', `skill32` SMALLINT DEFAULT '0', `skill33` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill34` SMALLINT DEFAULT '0', `skill35` SMALLINT DEFAULT '0', `skill36` SMALLINT " );
+	format ( squery, 4096, "%s%s", squery, "DEFAULT '0', `skill37` SMALLINT DEFAULT '0', `skill38` SMALLINT DEFAULT '0', " ) ;
+	format ( squery, 4096, "%s%s", squery, "`skill39` SMALLINT DEFAULT '0', `skill40` SMALLINT DEFAULT '0', `skill41` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill42` SMALLINT DEFAULT '0', `skill43` SMALLINT DEFAULT '0', `skill44` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill45` SMALLINT DEFAULT '0', `skill46` SMALLINT DEFAULT '0', `skill47` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill48` SMALLINT DEFAULT '0', `skill49` SMALLINT DEFAULT '0', `skill50` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill51` SMALLINT DEFAULT '0', `skill52` SMALLINT DEFAULT '0', `skill53` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill54` SMALLINT DEFAULT '0', `skill55` SMALLINT DEFAULT '0', `skill56` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill57` SMALLINT DEFAULT '0', `skill58` SMALLINT DEFAULT '0', `skill59` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill60` SMALLINT DEFAULT '0', `skill61` SMALLINT DEFAULT '0', `skill62` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`skill63` SMALLINT DEFAULT '0', `skill64` SMALLINT DEFAULT '0', " );
+	format ( squery, 4096, "%s%s", squery, "`att1` SMALLINT DEFAULT '0', `att2` SMALLINT DEFAULT '0', `att3` SMALLINT DEFAULT '0', `att4` SMALLINT " );
+	format ( squery, 4096, "%s%s", squery, "DEFAULT '0', `att5` SMALLINT DEFAULT '0', `att6` SMALLINT DEFAULT '0', `res1` SMALLINT DEFAULT '0', `res2` SMALLINT " );
+	format ( squery, 4096, "%s%s", squery, "DEFAULT '0', `res3` SMALLINT DEFAULT '0', `res4` SMALLINT DEFAULT '0', `res5` SMALLINT DEFAULT '0', `res6` SMALLINT DEFAULT '0', `res7` SMALLINT " );
 
-	//If save by = 2 (by name) primary key is the name
-	if( CVAR_SAVE_BY == 2 )
-	{
-		format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `name` VARCHAR ( 64 ) DEFAULT NULL, PRIMARY KEY ( `name` ));" );
-	}
-	else
-	{
-		format ( squery, 5096, "%s%s", squery, "DEFAULT '0', `name` VARCHAR ( 64 ) DEFAULT NULL, PRIMARY KEY ( `steamid`));" );
-	}
+	format ( squery, 4096, "%s%s", squery, "DEFAULT '0', `name` VARCHAR ( 64 ) DEFAULT NULL, PRIMARY KEY ( `name` ));" );
 
 	//Set the Query
 	Query = SQL_PrepareQuery ( SqlConnection, squery );
@@ -127,30 +119,30 @@ public SkillSetsSqlLite_Table ( )
 
 		log_amx( "[UWC3X] SQLite :: Connected [OK]" );
 
-		format ( squery, 5096, "CREATE TABLE IF NOT EXISTS `%s_SkillSets` ( `name` VARCHAR(64), `steamid` VARCHAR(32), `skillsetid` INTEGER , ", CVAR_MYSQL_TABLE );
+		format ( squery, 4096, "CREATE TABLE IF NOT EXISTS `%s_SkillSets` ( `name` VARCHAR(64), `steamid` VARCHAR(32), `skillsetid` INTEGER , ", CVAR_MYSQL_TABLE );
 
-		format ( squery, 5096, "%s%s", squery, "`skill1` SMALLINT DEFAULT '0', `skill2` SMALLINT DEFAULT '0', `skill3` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill4` SMALLINT DEFAULT '0', `skill5` SMALLINT DEFAULT '0', `skill6` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill7` SMALLINT DEFAULT '0', `skill8` SMALLINT DEFAULT '0', `skill9` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill10` SMALLINT DEFAULT '0', `skill11` SMALLINT DEFAULT '0', `skill12` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill13` SMALLINT DEFAULT '0', `skill14` SMALLINT DEFAULT '0', `skill15` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill16` SMALLINT DEFAULT '0', `skill17` SMALLINT DEFAULT '0', `skill18` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill19` SMALLINT DEFAULT '0', `skill20` SMALLINT DEFAULT '0', `skill21` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill22` SMALLINT DEFAULT '0', `skill23` SMALLINT DEFAULT '0', `skill24` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill25` SMALLINT DEFAULT '0', `skill26` SMALLINT DEFAULT '0', `skill27` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill28` SMALLINT DEFAULT '0', `skill29` SMALLINT DEFAULT '0', `skill30` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill31` SMALLINT DEFAULT '0', `skill32` SMALLINT DEFAULT '0', `skill33` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill34` SMALLINT DEFAULT '0', `skill35` SMALLINT DEFAULT '0', `skill36` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill37` SMALLINT DEFAULT '0', `skill38` SMALLINT DEFAULT '0', `skill39` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill40` SMALLINT DEFAULT '0', `skill41` SMALLINT DEFAULT '0', `skill42` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill43` SMALLINT DEFAULT '0', `skill44` SMALLINT DEFAULT '0', `skill45` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill46` SMALLINT DEFAULT '0', `skill47` SMALLINT DEFAULT '0', `skill48` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill49` SMALLINT DEFAULT '0', `skill50` SMALLINT DEFAULT '0', `skill51` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill52` SMALLINT DEFAULT '0', `skill53` SMALLINT DEFAULT '0', `skill54` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill55` SMALLINT DEFAULT '0', `skill56` SMALLINT DEFAULT '0', `skill57` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill58` SMALLINT DEFAULT '0', `skill59` SMALLINT DEFAULT '0', `skill60` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill61` SMALLINT DEFAULT '0', `skill62` SMALLINT DEFAULT '0', `skill63` SMALLINT DEFAULT '0', " );
-		format ( squery, 5096, "%s%s", squery, "`skill64` SMALLINT DEFAULT '0' );" );
+		format ( squery, 4096, "%s%s", squery, "`skill1` SMALLINT DEFAULT '0', `skill2` SMALLINT DEFAULT '0', `skill3` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill4` SMALLINT DEFAULT '0', `skill5` SMALLINT DEFAULT '0', `skill6` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill7` SMALLINT DEFAULT '0', `skill8` SMALLINT DEFAULT '0', `skill9` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill10` SMALLINT DEFAULT '0', `skill11` SMALLINT DEFAULT '0', `skill12` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill13` SMALLINT DEFAULT '0', `skill14` SMALLINT DEFAULT '0', `skill15` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill16` SMALLINT DEFAULT '0', `skill17` SMALLINT DEFAULT '0', `skill18` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill19` SMALLINT DEFAULT '0', `skill20` SMALLINT DEFAULT '0', `skill21` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill22` SMALLINT DEFAULT '0', `skill23` SMALLINT DEFAULT '0', `skill24` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill25` SMALLINT DEFAULT '0', `skill26` SMALLINT DEFAULT '0', `skill27` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill28` SMALLINT DEFAULT '0', `skill29` SMALLINT DEFAULT '0', `skill30` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill31` SMALLINT DEFAULT '0', `skill32` SMALLINT DEFAULT '0', `skill33` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill34` SMALLINT DEFAULT '0', `skill35` SMALLINT DEFAULT '0', `skill36` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill37` SMALLINT DEFAULT '0', `skill38` SMALLINT DEFAULT '0', `skill39` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill40` SMALLINT DEFAULT '0', `skill41` SMALLINT DEFAULT '0', `skill42` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill43` SMALLINT DEFAULT '0', `skill44` SMALLINT DEFAULT '0', `skill45` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill46` SMALLINT DEFAULT '0', `skill47` SMALLINT DEFAULT '0', `skill48` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill49` SMALLINT DEFAULT '0', `skill50` SMALLINT DEFAULT '0', `skill51` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill52` SMALLINT DEFAULT '0', `skill53` SMALLINT DEFAULT '0', `skill54` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill55` SMALLINT DEFAULT '0', `skill56` SMALLINT DEFAULT '0', `skill57` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill58` SMALLINT DEFAULT '0', `skill59` SMALLINT DEFAULT '0', `skill60` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill61` SMALLINT DEFAULT '0', `skill62` SMALLINT DEFAULT '0', `skill63` SMALLINT DEFAULT '0', " );
+		format ( squery, 4096, "%s%s", squery, "`skill64` SMALLINT DEFAULT '0' );" );
 
 		//Set the Query
 		Query = SQL_PrepareQuery ( SqlConnection, squery );
