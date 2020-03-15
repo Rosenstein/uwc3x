@@ -256,10 +256,20 @@ public LoadXPSQLLite ( id )
 		//errors so that it will continue to retry
 		NumResults = SQL_NumResults(Query);
 		
+		if (CVAR_DEBUG_MODE)
+		{
+			log_amx( "[UWC3X] DEBUG: SQLite :: LoadXPSQLLite: NumResults = '%d'", NumResults);
+		}
+		
 		// if we have more than one result that means we're saving by steamid and there are multiple names with this steam id
 		// we're going to take 
 		if (NumResults > 1)
 		{
+			if (CVAR_DEBUG_MODE)
+			{
+				log_amx("[UWC3X] DEBUG: SQLite :: NumResults > 1 :: '%s', '%s', '%s'", tempVar, tempVar2, userName");
+			}
+		
 			new userName[64];
 			GetSafeUserName ( id, userName, 63 );
 			
@@ -820,10 +830,20 @@ public LoadSkillSetSQLLite( id, skillsetIDX )
 		//errors so that it will continue to retry
 		NumResults = SQL_NumResults(Query);
 		
+		if (CVAR_DEBUG_MODE)
+		{
+			log_amx( "[UWC3X] DEBUG: SQLite :: LoadSkillSetSQLLite: NumResults = '%d'", NumResults);
+		}
+		
 		// if we have more than one result that means we're saving by steamid and there are multiple names with this steam id
 		// we're going to take 
 		if (NumResults > 1)
 		{
+			if (CVAR_DEBUG_MODE)
+			{
+				log_amx("[UWC3X] DEBUG: SQLite :: NumResults > 1 :: '%s', '%s', '%s'", userName, steamid, skillsetIDX");
+			}
+			
 			new userName[64];
 			GetSafeUserName ( id, userName, 63 );
 			format ( fullquery, 8192, "%s WHERE name = '%s' AND steamid = '%s' AND skillsetid = '%d';", squery, userName, steamid, skillsetIDX );

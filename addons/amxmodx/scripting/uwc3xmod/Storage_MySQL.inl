@@ -189,277 +189,6 @@ public RunQuerry ( FailState, Handle:Query, Error[], Errcode, Data[], DataSize )
 	return PLUGIN_CONTINUE;
 }
 
-public _LoadXP ( FailState, Handle:Query, Error[], Errcode, Data[], DataSize )
-{
-	new id = player_id;
-	new ip[32];
-	new xp = 0;
-	new pid[32];
-	new skills[MAX_SKILLS] = 0;
-	new att[MAX_ATTRIBS] = 0;
-	new res[MAX_RESISTS] = 0;
-	new tempVar[64];
-	
-	new tempVar44[64], tempVar55[64];
-	get_user_name ( id, tempVar44, 63 );
-	get_user_authid ( id, tempVar55, 63 );
-	
-	//if ( CVAR_DEBUG_MODE )
-	//{
-	log_amx( "[UWC3X] DEBUG: MySQL->_LoadXP: Attempting to load XP " );
-	//}
-	
-	// error checking
-	if(FailState == TQUERY_CONNECT_FAILED)
-	{
-		log_amx( "[UWC3X] Error: Could not connect to SQL database in LoadXPHandle.");
-		
-		if( Util_Should_Msg_Client(id) )
-		{
-			//client_print(id, print_chat, "%L", id, "LOAD_XP_FAILURE" );
-			hudchat_show(id, "%L", id, "LOAD_XP_FAILURE");
-			hudchat_update(id);
-		}
-		log_amx( "[UWC3X] DEBUG :: MySQL LoadXPMySQL -> :: [END]^n" );
-		return PLUGIN_HANDLED;
-	}
-	else if(FailState == TQUERY_QUERY_FAILED)
-	{
-		log_amx( "[UWC3X] SQL :: Error in LoadXPHandle");
-		SQL_QueryError(Query,g_Error,511);
-		log_amx( "[UWC3X] ERROR %s",g_Error);
-		
-		if( Util_Should_Msg_Client(id) )
-		{
-			//client_print(id, print_chat, "%L", id, "LOAD_XP_FAILURE" );
-			hudchat_show(id, "%L", id, "LOAD_XP_FAILURE");
-			hudchat_update(id);
-		}
-		
-		log_amx( "[UWC3X] DEBUG :: MySQL LoadXPMySQL -> :: [END]^n" );
-		return PLUGIN_HANDLED;
-	}
-	
-	if(Errcode)
-	{
-		log_amx( "[UWC3X] Error:_LoadXP - %d", Errcode);
-		log_amx( "[UWC3X] DEBUG :: MySQL LoadXPMySQL -> :: [END]^n" );
-		return PLUGIN_HANDLED;
-	}
-	
-	//if ( CVAR_DEBUG_MODE )
-	//{
-	get_user_name ( id, tempVar, 63 );
-	log_amx( "[UWC3X] Debug :: _LoadXP : No error, attepting to load XP and skills for %s", tempVar );
-	//}
-	
-	//Now that we have no errors, I will reset the xp loading var, this is in case there are
-	//errors so that it will continue to retry
-	NumResults = SQL_NumResults(Query);
-	
-	if ( CVAR_DEBUG_MODE )
-	{
-		log_amx( "[UWC3X] DEBUG :: MySQL->_LoadXP: NumResults=%d", NumResults);
-	}
-	
-	if ( !NumResults || NumResults == 0 || is_user_bot( id ) )
-	{
-		//no data exists
-		if( Util_Should_Msg_Client(id) )
-		{
-			//client_print ( id, print_chat, "%L", id, "LOAD_XP_NO_DATA", MOD );
-			hudchat_show(id, "%L", id, "LOAD_XP_NO_DATA");
-			hudchat_update(id);
-		}
-		
-		if ( CVAR_DEBUG_MODE && is_user_bot( id ) )
-		{
-			log_amx( "[UWC3X] DEBUG: MySQL->_LoadXP: Player is a bot");
-		}
-		
-		if ( CVAR_ENABLE_STARTING_SYSTEM )
-		{
-			if( CVAR_STARTING_METHOD == 1 )
-			{
-				if ( CVAR_DEBUG_MODE )
-				{
-					log_amx( "[UWC3X] DEBUG: MySQL->_LoadXP: No Records, client %s given %d starting XP ", tempVar, CVAR_STARTING_XP);
-				}
-				
-				if( Util_Should_Msg_Client(id) )
-				{
-					//client_print(id, print_chat, "%L", id, "LOAD_XP_STARTING_XP", MOD, CVAR_STARTING_XP );
-					hudchat_show(id, "%L", id, "LOAD_XP_STARTING_XP", CVAR_STARTING_XP);
-					hudchat_update(id);
-				}
-				
-				playerxp[id] = CVAR_STARTING_XP;
-			}
-			else
-			{
-				
-				//Override default level if its a bot and use the bot level cvar
-				if( is_user_bot(id) )
-				{
-					if ( CVAR_DEBUG_MODE )
-					{
-						log_amx( "[UWC3X] DEBUG: MySQL->_LoadXP: Player is BOT - > BOT %s set to level %d", tempVar, CVAR_BOT_LEVEL);
-					}
-					
-					playerxp[id] = xplevel_lev[CVAR_BOT_LEVEL];
-				}
-				else
-				{
-					if ( CVAR_DEBUG_MODE )
-					{
-						log_amx( "[UWC3X] DEBUG: MySQL->_LoadXP: No Records, client %s set to level %d", tempVar, CVAR_STARTING_LEVEL);
-					}
-					
-					if( Util_Should_Msg_Client(id) )
-					{
-						//client_print(id, print_chat, "%L", id, "LOAD_XP_STARTING_LEVEL", MOD, CVAR_STARTING_LEVEL );
-						hudchat_show(id, "%L", id, "LOAD_XP_STARTING_LEVEL", CVAR_STARTING_LEVEL);
-						hudchat_update(id);
-					}
-					
-					playerxp[id] = xplevel_lev[CVAR_STARTING_LEVEL];
-				}
-			}
-		}
-		
-		Set_Ult_Count( id );
-		xpreadytoload[id] = 0;
-		log_amx( "[UWC3X] DEBUG :: MySQL LoadXPMySQL -> name %s auth %s :: [END]^n", tempVar44, tempVar55 );
-		return PLUGIN_CONTINUE;
-		
-	}
-	else
-	{
-		new sName[64];
-		
-		//They have data, lets load it
-		//Set the PlayerID, XP, IP, and Last time
-		SQL_ReadResult ( Query, 0, pid, 31 );
-		xp = SQL_ReadResult ( Query, 1 );
-		SQL_ReadResult ( Query, 2, ip, 31 );
-		SQL_ReadResult ( Query, 3, mtimet, 31 );
-		SQL_ReadResult ( Query, 72, sName, 63 );
-		
-		//Now loading based on field name, and not on position
-		new temp[32], sqlField;
-		
-		//Start setting the skills
-		for ( new k = 1; k < (MAX_SKILLS); k++ )
-		{
-			format( temp, 31, "skill%d", k);
-			sqlField = SQL_FieldNameToNum(Query, temp)
-			skills[k] = SQL_ReadResult ( Query, sqlField );
-		}
-		
-		//Set the attributes
-		for ( new k = 1; k < (MAX_ATTRIBS); k++ )
-		{
-			format( temp, 31, "att%d", k);
-			sqlField = SQL_FieldNameToNum(Query, temp)
-			att[k] = SQL_ReadResult ( Query, sqlField );
-			
-			//If the attrib is less then the base, or greater then max, reset to base
-			if( ( ATTRIB_MAX_VALUE < att[k] ) || ( att[k] < ATTRIB_BASE ) )
-				att[k] = ATTRIB_BASE;
-		}
-		
-		//Set the resistances
-		for ( new k = 1; k < (MAX_RESISTS); k++ )
-		{
-			format( temp, 31, "res%d", k);
-			sqlField = SQL_FieldNameToNum(Query, temp)
-			res[k] = SQL_ReadResult ( Query, sqlField );
-		}
-		
-		//If starting XP is enabled, do the check
-		if ( CVAR_ENABLE_STARTING_SYSTEM )
-		{
-			if( CVAR_STARTING_METHOD == 1 )
-			{
-				//It is enabled and its set to XP based, so check to see if the starting XP is higher then what they have now
-				if ( xp < CVAR_STARTING_XP )
-				{
-					//it must be, so lets set their XP and let them know
-					xp = CVAR_STARTING_XP;
-					
-					if( Util_Should_Msg_Client(id) )
-					{
-						//client_print ( id, print_chat, "[%s] %L", id, MOD, "STARTING_XP_MESSAGE", CVAR_STARTING_XP );
-						hudchat_show(id, "%L", id, "STARTING_XP_MESSAGE", CVAR_STARTING_XP);
-						hudchat_update(id);
-					}
-				}
-			}
-			else
-			{
-				//Override default level if its a bot and use the bot level cvar
-				if( is_user_bot(id))
-				{
-					xp = xplevel_lev[CVAR_BOT_LEVEL];
-				}
-				else
-				{
-					//It is enabled and its set to XP based, so check to see if the starting XP is higher then what they have now
-					if ( xp < xplevel_lev[CVAR_STARTING_LEVEL] )
-					{
-						//it must be, so lets set their XP and let them know
-						xp = xplevel_lev[CVAR_STARTING_LEVEL];
-						if( Util_Should_Msg_Client(id) )
-						{
-							//client_print ( id, print_chat, "[%s] %L", id, MOD, "STARTING_LEVEL_MESSAGE", xp );
-							hudchat_show(id, "%L", id, "STARTING_LEVEL_MESSAGE", xp);
-							hudchat_update(id);
-						}
-					}
-				}
-			}
-		}
-		
-		playerxp[id] = xp;
-		displaylevel ( id, 0 );
-		p_attribs[id] = att;
-		p_resists[id] = res;
-	}
-	
-	p_skills[id] = skills;
-	
-	//Check for admin only skills, if they have any, dont add them to the users skill array
-	for ( new i = 1; i < MAX_SKILLS; i++ )
-	{
-		if ( CVAR_ENABLE_ADMIN_ONLY_SKILLS )
-		{
-			if ( !admin_only[p_skills[id][i]] || (get_user_flags(id) & CVAR_ADMIN_SKILL_FLAG ) )
-			{
-				skills[i] = p_skills[id][i];
-			}
-		}
-		
-		if ( ( p_skills[id][i] >= 1 ) && ( skill_ultimates[i][0] ) && ( !admin_only[p_skills[id][i]] || (get_user_flags(id) & CVAR_ADMIN_SKILL_FLAG ) ) )
-		{
-			
-			if( Util_Should_Msg_Client(id) )
-			{
-				client_print ( id, print_console, "%L", id, "ULTIMATE_RETRIEVED", MOD, skill_ultimates[i][0] );
-			}
-			
-			ultlearned[id]++;
-			Set_Ult_Count( id );
-		}
-	}
-	
-	Set_Ult_Count( id );
-	p_skills[id] = skills;
-	xpreadytoload[id] = 0;
-	log_amx( "[UWC3X] DEBUG :: MySQL LoadXPMySQL -> name %s auth %s :: [END]^n", tempVar44, tempVar55 );
-	
-	return PLUGIN_CONTINUE;
-}
-
 public _SaveXP ( FailState, Handle:Query, Error[], Errcode, Data[], DataSize )
 {
 	// error checking
@@ -545,7 +274,8 @@ public LoadXPMySQL2( id )
 	format ( squery, 8192, "%s skill53, skill54, skill55, skill56, skill57, skill58, skill59,", squery );
 	format ( squery, 8192, "%s skill60, skill61, skill62, skill63, skill64,", squery );
 	format ( squery, 8192, "%s att1, att2, att3, att4, att5, att6, res1, res2,", squery );
-	format ( squery, 8192, "%s res3, res4, res5, res6, res7, name FROM %s WHERE %s = '%s';", squery, CVAR_MYSQL_TABLE, tempVar, tempVar2 );
+	format ( squery, 8192, "%s res3, res4, res5, res6, res7, name FROM %s", squery, CVAR_MYSQL_TABLE );
+	format ( fullquery, 8192, "%s WHERE %s = '%s';", squery, tempVar, tempVar2 );
 	
 	player_id = id;
 	
@@ -564,7 +294,7 @@ public LoadXPMySQL2( id )
 	}
 	
 	//Set the Query
-	Query = SQL_PrepareQuery ( SqlConnection, squery );
+	Query = SQL_PrepareQuery ( SqlConnection, fullquery );
 	
 	// run the query
 	if ( !Query || !SQL_Execute ( Query ) )
@@ -573,7 +303,7 @@ public LoadXPMySQL2( id )
 		SQL_QueryError ( Query, g_Error, 511 );
 		log_amx( "[UWC3X] SQL :: Error Loading players XP" );
 		log_amx( "[UWC3X] Error:: %s", g_Error );
-		log_amx( "[UWC3X] Query:: %s", squery );
+		log_amx( "[UWC3X] Query:: %s", fullquery );
 	}
 	else
 	{
@@ -589,11 +319,45 @@ public LoadXPMySQL2( id )
 		//errors so that it will continue to retry
 		NumResults = SQL_NumResults(Query);
 		
-		if ( CVAR_DEBUG_MODE && is_user_bot( id ) )
+		if (CVAR_DEBUG_MODE)
 		{
-			log_amx( "[UWC3X] DEBUG: MySQL->_LoadXP: NumResults=%d", NumResults);
+			log_amx( "[UWC3X] DEBUG: MySQL :: LoadXPMySQL2: NumResults = '%d'", NumResults);
 		}
 		
+		// if we have more than one result that means we're saving by steamid and there are multiple names with this steam id
+		// we're going to take 
+		if (NumResults > 1)
+		{
+			if (CVAR_DEBUG_MODE)
+			{
+				log_amx("[UWC3X] DEBUG: SQLite :: NumResults > 1 :: '%s', '%s', '%s'", tempVar, tempVar2, userName");
+			}
+		
+			new userName[64];
+			GetSafeUserName ( id, userName, 63 );
+			
+			format ( fullquery, 8192, "%s WHERE %s = '%s' AND name = '%s';", squery, tempVar, tempVar2, userName );
+			Query2 = SQL_PrepareQuery ( SqlConnection, fullquery );
+			if ( !Query2 || !SQL_Execute ( Query2 ) )
+			{
+				// if there were any problems
+				SQL_QueryError ( Query2, g_Error, 511 );
+				log_amx( "[UWC3X] SQLLite :: Error Loading players XP" );
+				log_amx( "[UWC3X] Error:: %s", g_Error );
+				log_amx( "[UWC3X] Query2:: %s", fullquery );
+			}
+			else
+			{
+				NumResults2 = SQL_NumResults(Query2);
+				
+				if (NumResults2 && NumResults2 > 0)
+				{
+					SQL_FreeHandle(Query);
+					Query = Query2;
+					NumResults = NumResults2;
+				}
+			}
+		}
 		
 		if ( !NumResults || NumResults == 0 || is_user_bot( id ) )
 		{
@@ -808,54 +572,6 @@ public LoadXPMySQL2( id )
 	
 }
 
-public LoadXPMySQL ( id )
-{
-	
-	if ( CVAR_ENABLE_UWC3X != 1 )
-	{
-		return PLUGIN_HANDLED;
-	}
-	
-	if ( CVAR_SAVE_XP != 1 )
-	{
-		return PLUGIN_CONTINUE;
-	}
-	
-	new tempVar[64], tempVar2[64];
-	GetSafeUserName ( id, tempVar, 63 );
-	get_user_authid ( id, tempVar2, 63 );
-	log_amx( "[UWC3X] DEBUG :: MySQL LoadXPMySQL -> name %s auth %s :: [Start]", tempVar, tempVar2 );
-	
-	if( CVAR_SAVE_BY == 2 )
-	{
-		copy( tempVar, 32, "name");
-		GetSafeUserName ( id, tempVar2, 63 );
-		
-	}
-	else
-	{
-		copy( tempVar, 32, "steamid");
-		get_user_authid ( id, tempVar2, 63 );
-	}
-	
-	format ( squery, 8192, "SELECT steamid, xp, ip, mtime, skill1, skill2, skill3," );
-	format ( squery, 8192, "%s skill4, skill5, skill6, skill7, skill8, skill9, skill10, ", squery );
-	format ( squery, 8192, "%s skill11, skill12, skill13, skill14, skill15, skill16, skill17,", squery );
-	format ( squery, 8192, "%s skill18, skill19, skill20, skill21, skill22, skill23, skill24,", squery );
-	format ( squery, 8192, "%s skill25, skill26, skill27, skill28, skill29, skill30, skill31,", squery );
-	format ( squery, 8192, "%s skill32, skill33, skill34, skill35, skill36, skill37, skill38,", squery );
-	format ( squery, 8192, "%s skill39, skill40, skill41, skill42, skill43, skill44, skill45,", squery );
-	format ( squery, 8192, "%s skill46, skill47, skill48, skill49, skill50, skill51, skill52,", squery );
-	format ( squery, 8192, "%s skill53, skill54, skill55, skill56, skill57, skill58, skill59,", squery );
-	format ( squery, 8192, "%s skill60, skill61, skill62, skill63, skill64,", squery );
-	format ( squery, 8192, "%s att1, att2, att3, att4, att5, att6, res1, res2,", squery );
-	format ( squery, 8192, "%s res3, res4, res5, res6, res7, name FROM %s WHERE %s = '%s';", squery, CVAR_MYSQL_TABLE, tempVar, tempVar2 );
-	
-	player_id = id;
-	SQL_ThreadQuery ( g_SqlTuple, "_LoadXP", squery );
-	return PLUGIN_CONTINUE;
-	
-}
 public SaveXPMySQL ( id )
 {
 	if ( CVAR_ENABLE_UWC3X != 1 )
