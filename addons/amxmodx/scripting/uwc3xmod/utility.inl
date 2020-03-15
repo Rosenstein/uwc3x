@@ -408,8 +408,63 @@ public PreCache_Sounds ( )
 	if ( file_exists ( "sound/uwc3x/ultimateerror.wav" ) )
 	{
 		precache_sound( "uwc3x/ultimateerror.wav" );
-	}	
+	}
 
+	// shopmenu
+	if (file_exists("sound/uwc3x/shopmenu/sm_pickupitem.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm_pickupitem.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm1_gtome.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm1_gtome.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm1_tome.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm1_tome.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm3_cure.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm3_cure.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm3_dehex.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm3_dehex.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm3_fire.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm3_fire.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm3_gate.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm3_gate.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm3_heal.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm3_heal.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm3_inv.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm3_inv.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm3_inv_done.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm3_inv_done.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm3_invul.wav" ))
+	{
+		precache_sound("uwc3x/shopmenu/sm3_invul.wav");
+	}
 }
 
 public Check_UWC3X ( )
