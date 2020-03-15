@@ -328,15 +328,15 @@ public LoadXPMySQL2( id )
 		// we're going to take 
 		if (NumResults > 1)
 		{
-			if (CVAR_DEBUG_MODE)
-			{
-				log_amx("[UWC3X] DEBUG: SQLite :: NumResults > 1 :: '%s', '%s', '%s'", tempVar, tempVar2, userName");
-			}
-		
 			new userName[64];
 			GetSafeUserName ( id, userName, 63 );
 			
-			format ( fullquery, 8192, "%s WHERE %s = '%s' AND name = '%s';", squery, tempVar, tempVar2, userName );
+			if (CVAR_DEBUG_MODE)
+			{
+				log_amx("[UWC3X] DEBUG: SQLite :: NumResults > 1 :: '%s', '%s', '%s'", tempVar, tempVar2, userName);
+			}
+			
+			format (fullquery, 8192, "%s WHERE %s = '%s' AND name = '%s';", squery, tempVar, tempVar2, userName);
 			Query2 = SQL_PrepareQuery ( SqlConnection, fullquery );
 			if ( !Query2 || !SQL_Execute ( Query2 ) )
 			{
