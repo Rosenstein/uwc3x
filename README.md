@@ -9,7 +9,9 @@ crx_nonamechange.amxx
 
 ## Notes
 Right now it needs more testing, but hopefully none of the changes from the original will break anything.
+
 It is recommended to save XP per name, steamid saving still needs testing.
+
 The additional addon that doesn't let you change your name while inside the server fixes possible exploits that can copy others XP/data, they should only happen if XP is saved per name.
 
 ## License
