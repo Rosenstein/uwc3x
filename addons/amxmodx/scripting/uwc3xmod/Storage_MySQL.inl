@@ -275,7 +275,7 @@ public LoadXPMySQL2( id )
 	format ( squery, 8192, "%s skill60, skill61, skill62, skill63, skill64,", squery );
 	format ( squery, 8192, "%s att1, att2, att3, att4, att5, att6, res1, res2,", squery );
 	format ( squery, 8192, "%s res3, res4, res5, res6, res7, name FROM %s", squery, CVAR_MYSQL_TABLE );
-	format ( fullquery, 8192, "%s WHERE %s = '%s';", squery, tempVar, tempVar2 );
+	format ( fullquery, 8192, "%s WHERE LOWER(%s) = LOWER('%s');", squery, tempVar, tempVar2 );
 	
 	player_id = id;
 	
@@ -336,7 +336,7 @@ public LoadXPMySQL2( id )
 				log_amx("[UWC3X] DEBUG: SQLite :: NumResults > 1 :: '%s', '%s', '%s'", tempVar, tempVar2, userName);
 			}
 			
-			format (fullquery, 8192, "%s WHERE %s = '%s' AND name = '%s';", squery, tempVar, tempVar2, userName);
+			format (fullquery, 8192, "%s WHERE LOWER(%s) = LOWER('%s') AND LOWER(name) = LOWER('%s');", squery, tempVar, tempVar2, userName);
 			Query2 = SQL_PrepareQuery ( SqlConnection, fullquery );
 			if ( !Query2 || !SQL_Execute ( Query2 ) )
 			{
@@ -972,12 +972,12 @@ public DeleteSkillSetMySQL ( id, skillsetIDX )
 	{
 		new userName[63];
 		GetSafeUserName ( id, userName, 63 );
-		format ( squery, 8192, "DELETE FROM `%s_SkillSets` WHERE name='%s' AND skillsetid='%d';", CVAR_MYSQL_TABLE, userName, skillsetIDX );
+		format ( squery, 8192, "DELETE FROM `%s_SkillSets` WHERE LOWER(name) = LOWER('%s') AND skillsetid = '%d';", CVAR_MYSQL_TABLE, userName, skillsetIDX );
 	}
 	else
 	{
 		get_user_authid ( id, steamid, 34 );
-		format ( squery, 8192, "DELETE FROM `%s_SkillSets` WHERE steamid='%s' AND skillsetid='%d';", CVAR_MYSQL_TABLE, steamid, skillsetIDX );
+		format ( squery, 8192, "DELETE FROM `%s_SkillSets` WHERE LOWER(steamid) = LOWER('%s') AND skillsetid = '%d';", CVAR_MYSQL_TABLE, steamid, skillsetIDX );
 	}
 	
 	player_id = id;
@@ -1082,12 +1082,12 @@ public LoadSkillSetMySQL( id, skillsetIDX )
 	{
 		new userName[63];
 		GetSafeUserName ( id, userName, 63 );
-		format ( squery, 8192, "%s FROM `%s_SkillSets` WHERE name = '%s' AND skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, userName, skillsetIDX );
+		format ( squery, 8192, "%s FROM `%s_SkillSets` WHERE LOWER(name) = LOWER('%s') AND skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, userName, skillsetIDX );
 	}
 	else
 	{
 		get_user_authid ( id, steamid, 34 );
-		format ( squery, 8192, "%s FROM `%s_SkillSets` WHERE steamid = '%s' AND skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, steamid, skillsetIDX );
+		format ( squery, 8192, "%s FROM `%s_SkillSets` WHERE LOWER(steamid) = LOWER('%s') AND skillsetid = '%d';", squery, CVAR_MYSQL_TABLE, steamid, skillsetIDX );
 	}
 	
 	player_id = id;

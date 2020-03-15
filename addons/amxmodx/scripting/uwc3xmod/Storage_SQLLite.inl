@@ -73,7 +73,7 @@ public LoadSQLLiteVars ( )
 	format ( squery, 8192, "%s%s", squery, "DEFAULT '0', `att5` SMALLINT DEFAULT '0', `att6` SMALLINT DEFAULT '0', `res1` SMALLINT DEFAULT '0', `res2` SMALLINT " );
 	format ( squery, 8192, "%s%s", squery, "DEFAULT '0', `res3` SMALLINT DEFAULT '0', `res4` SMALLINT DEFAULT '0', `res5` SMALLINT DEFAULT '0', `res6` SMALLINT DEFAULT '0', `res7` SMALLINT " );
 
-	format ( squery, 8192, "%s%s", squery, "DEFAULT '0', `name` VARCHAR ( 64 ) DEFAULT NULL, PRIMARY KEY ( `name` ));" );
+	format ( squery, 8192, "%s%s", squery, "DEFAULT '0', `name` VARCHAR ( 64 ) DEFAULT NULL, PRIMARY KEY(`name` COLLATE NOCASE));" );
 
 	//Set the Query
 	Query = SQL_PrepareQuery ( SqlConnection, squery );
@@ -142,7 +142,7 @@ public SkillSetsSqlLite_Table ( )
 		format ( squery, 8192, "%s%s", squery, "`skill55` SMALLINT DEFAULT '0', `skill56` SMALLINT DEFAULT '0', `skill57` SMALLINT DEFAULT '0', " );
 		format ( squery, 8192, "%s%s", squery, "`skill58` SMALLINT DEFAULT '0', `skill59` SMALLINT DEFAULT '0', `skill60` SMALLINT DEFAULT '0', " );
 		format ( squery, 8192, "%s%s", squery, "`skill61` SMALLINT DEFAULT '0', `skill62` SMALLINT DEFAULT '0', `skill63` SMALLINT DEFAULT '0', " );
-		format ( squery, 8192, "%s%s", squery, "`skill64` SMALLINT DEFAULT '0', PRIMARY KEY(`name`, `skillsetid`));" );
+		format ( squery, 8192, "%s%s", squery, "`skill64` SMALLINT DEFAULT '0', PRIMARY KEY(`name` COLLATE NOCASE, `skillsetid` COLLATE NOCASE));" );
 
 		//Set the Query
 		Query = SQL_PrepareQuery ( SqlConnection, squery );
@@ -212,7 +212,7 @@ public LoadXPSQLLite ( id )
 	format ( squery, 8192, "%s skill60, skill61, skill62, skill63, skill64,", squery );
 	format ( squery, 8192, "%s att1, att2, att3, att4, att5, att6, res1, res2,", squery );
 	format ( squery, 8192, "%s res3, res4, res5, res6, res7, name FROM %s", squery, CVAR_MYSQL_TABLE );
-	format ( fullquery, 8192, "%s WHERE %s = '%s';", squery, tempVar, tempVar2 );
+	format ( fullquery, 8192, "%s WHERE LOWER(%s) = LOWER('%s');", squery, tempVar, tempVar2 );
 
 	player_id = id;
 
@@ -273,7 +273,7 @@ public LoadXPSQLLite ( id )
 				log_amx("[UWC3X] DEBUG: SQLite :: NumResults > 1 :: '%s', '%s', '%s'", tempVar, tempVar2, userName);
 			}
 			
-			format (fullquery, 8192, "%s WHERE %s = '%s' AND name = '%s';", squery, tempVar, tempVar2, userName);
+			format (fullquery, 8192, "%s WHERE LOWER(%s) = LOWER('%s') AND LOWER(name) = LOWER('%s');", squery, tempVar, tempVar2, userName);
 			Query2 = SQL_PrepareQuery ( SqlConnection, fullquery );
 			if ( !Query2 || !SQL_Execute ( Query2 ) )
 			{
@@ -647,12 +647,12 @@ public DeleteSkillSetSQLLite ( id, skillsetIDX )
 	{
 		new userName[63];
 		GetSafeUserName ( id, userName, 63 );
-		format ( squery, 8192, "DELETE FROM `%s_SkillSets` WHERE name='%s' AND skillsetid='%d';", CVAR_MYSQL_TABLE, userName, skillsetIDX );
+		format ( squery, 8192, "DELETE FROM `%s_SkillSets` WHERE LOWER(name) = LOWER('%s') AND skillsetid = '%d';", CVAR_MYSQL_TABLE, userName, skillsetIDX );
 	}
 	else
 	{
 		get_user_authid ( id, steamid, 34 );
-		format ( squery, 8192, "DELETE FROM `%s_SkillSets` WHERE steamid='%s' AND skillsetid='%d';", CVAR_MYSQL_TABLE, steamid, skillsetIDX );
+		format ( squery, 8192, "DELETE FROM `%s_SkillSets` WHERE LOWER(steamid) = LOWER('%s') AND skillsetid = '%d';", CVAR_MYSQL_TABLE, steamid, skillsetIDX );
 	}
 
 	player_id = id;
@@ -792,11 +792,11 @@ public LoadSkillSetSQLLite( id, skillsetIDX )
 	
 	if( CVAR_SAVE_BY == 2 )
 	{
-		format ( fullquery, 8192, "%s WHERE name = '%s' AND skillsetid = '%d';", squery, userName, skillsetIDX );
+		format ( fullquery, 8192, "%s WHERE LOWER(name) = LOWER('%s') AND skillsetid = '%d';", squery, userName, skillsetIDX );
 	}
 	else
 	{
-		format ( fullquery, 8192, "%s WHERE steamid = '%s' AND skillsetid = '%d';", squery, steamid, skillsetIDX );
+		format ( fullquery, 8192, "%s WHERE LOWER(steamid) = LOWER('%s') AND skillsetid = '%d';", squery, steamid, skillsetIDX );
 	}
 	
 	player_id = id;
@@ -844,7 +844,7 @@ public LoadSkillSetSQLLite( id, skillsetIDX )
 				log_amx("[UWC3X] DEBUG: SQLite :: NumResults > 1 :: '%s', '%s', '%s'", userName, steamid, skillsetIDX);
 			}
 			
-			format (fullquery, 8192, "%s WHERE name = '%s' AND steamid = '%s' AND skillsetid = '%d';", squery, userName, steamid, skillsetIDX);
+			format (fullquery, 8192, "%s WHERE LOWER(name) = LOWER('%s') AND LOWER(steamid) = LOWER('%s') AND skillsetid = '%d';", squery, userName, steamid, skillsetIDX);
 			Query2 = SQL_PrepareQuery ( SqlConnection, fullquery );
 			if ( !Query2 || !SQL_Execute ( Query2 ) )
 			{
