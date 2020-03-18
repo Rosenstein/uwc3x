@@ -535,27 +535,27 @@ public LoadXPMySQL2( id )
 		//Check for admin only skills, if they have any, dont add them to the users skill array
 		for ( new i = 1; i < MAX_SKILLS; i++ )
 		{
-			if ( CVAR_ENABLE_ADMIN_ONLY_SKILLS )
+			if (CVAR_ENABLE_ADMIN_ONLY_SKILLS && admin_only[i] && !(get_user_flags(id) & CVAR_ADMIN_SKILL_FLAG))
 			{
-				if ( !admin_only[p_skills[id][i]] )
-				{
-					skills[i] = p_skills[id][i];
-				}
+				skills[i] = 0;
+				continue;
 			}
 			
-			if ( ( p_skills[id][i] >= 1 ) && ( skill_ultimates[i][0] ) && ( !admin_only[p_skills[id][i]] ) )
+			skills[i] = p_skills[id][i];
+
+			if (p_skills[id][i] > 0 && skill_ultimates[i][0])
 			{
-				if( Util_Should_Msg_Client(id) )
+				if (Util_Should_Msg_Client(id))
 				{
-					client_print ( id, print_console, "%L", id, "ULTIMATE_RETRIEVED", MOD, skill_ultimates[i][0] );
+					client_print(id, print_console, "%L", id, "ULTIMATE_RETRIEVED", MOD, skill_ultimates[i][0]);
 				}
 			}
 		}
 		
-		Set_Ult_Count( id );
-		
 		p_skills[id] = skills;
 		xpreadytoload[id] = 0;
+		
+		Set_Ult_Count( id );
 		
 		if( CVAR_DEBUG_MODE )
 		{
@@ -865,40 +865,36 @@ public _LoadSkillSet( FailState, Handle:Query, Error[], Errcode, Data[], DataSiz
 			p_skills[player_id][j]=0;
 		}
 		
-		ultlearned[player_id] = 0;
-		
-		if( p_attribs[player_id][ATTRIBIDX_WIS] >= 18 )
-		{
-			p_maxultimates[player_id] = MAX_ULTIMATES + 1;
-		}
-		else
-		{
-			p_maxultimates[player_id] = MAX_ULTIMATES;
-		}
+		Set_Wisdom_Bonuses(player_id);
 		
 		new temp[32], sqlField;
 		//Start setting the skills
 		for ( new k = 1; k < (MAX_SKILLS); k++ )
 		{
-			format( temp, 31, "skill%d", k);
-			sqlField = SQL_FieldNameToNum(Query, temp)
-			skills[k] = SQL_ReadResult ( Query, sqlField );
-			
-			if( skill_ultimates[k][0] && ( ultlearned[player_id] < p_maxultimates[player_id] ) )
+			if (CVAR_ENABLE_ADMIN_ONLY_SKILLS && admin_only[k] && !(get_user_flags(player_id) & CVAR_ADMIN_SKILL_FLAG))
 			{
-				if( Util_Should_Msg_Client(player_id) )
+				skills[k] = 0;
+				continue;
+			}
+			
+			format(temp, 31, "skill%d", k);
+			sqlField = SQL_FieldNameToNum(Query, temp)
+			skills[k] = SQL_ReadResult(Query, sqlField);
+			
+			if (skill_ultimates[k][0] && skills[k] > 0)
+			{
+				if (Util_Should_Msg_Client(player_id))
 				{
-					client_print ( player_id, print_console, "%L", player_id, "ULTIMATE_RETRIEVED", MOD, skill_ultimates[k][0] );
+					client_print(player_id, print_console, "%L", player_id, "ULTIMATE_RETRIEVED", MOD, skill_ultimates[k][0]);
 				}
-				
-				ultlearned[player_id]++;
-				Set_Ult_Count(player_id);
 			}
 		}
 	}
 	
 	p_skills[player_id] = skills;
 	xpreadytoload[player_id] = 0;
+		
+	Set_Ult_Count(player_id);
 	
 	if( Util_Should_Msg_Client(player_id) )
 	{
