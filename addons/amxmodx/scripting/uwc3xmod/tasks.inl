@@ -767,8 +767,12 @@ public Task_FlameStrike_Spray ( args[] )
 	return PLUGIN_CONTINUE;
 }
 
-public TASK_Burn_Victim ( id, killer, tk )
+public TASK_Burn_Victim ( id, killer, ff )
 {
+	if (ff == 0 && Util_IsSame_Team(id, killer))
+	{
+		return PLUGIN_CONTINUE;
+	}
 	
 	if ( isburning[id] == 1 || Util_IsPlayer_Immune ( id , 5 ) )
 	{
@@ -847,7 +851,6 @@ public TASK_Burn_Victim ( id, killer, tk )
 	{
 		args[0] = id;
 		args[1] = killer;
-		args[2] = tk;
 		
 		isburning[id] = 1;
 		SetTaskUnique(1.5, "EVENT_Set_On_Fire", TASK_ON_FIRE + id, args, 4, "b");
@@ -912,18 +915,8 @@ public TASK_Check_BurnZone ( id, vec[3], aimvec[3], speed1, speed2, radius )
 		if ( !Util_Is_Valid_Player( idx ) )
 			continue;
 		
-		new tempff = 0;
-		
-		if ( ff == 1 )
-		{
-			if ( Util_IsSame_Team( idx, id) )
-			{
-				tempff = 1;
-			}
-		}
-		
 		get_user_origin ( idx, origin );
-		FS_Should_Burn_Victim ( origin, burnvec1, burnvec2, radius, idx, id, tempff );
+		FS_Should_Burn_Victim ( origin, burnvec1, burnvec2, radius, idx, id, ff );
 	}
 	
 	return PLUGIN_CONTINUE;
