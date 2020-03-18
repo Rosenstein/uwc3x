@@ -68,6 +68,7 @@ new const UWC3XVERSION[]	=	"1.0.82"
 #include <cstrike>
 #include <dbi>
 #include <sqlx>
+#include <string>
  
 //Inline Code files
 #include "uwc3xmod/defines.inl"

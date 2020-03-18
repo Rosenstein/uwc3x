@@ -3165,8 +3165,6 @@ public burn_victim_napalm( id, killer, tk )
 	if ( playeritem[id] == IMMUNITY || hasblink[id] )
 		return PLUGIN_CONTINUE;
 
-	isnburning[id] = 1;
-
 	new hp, args[4];
 	hp = get_user_health( id );
 
@@ -3217,7 +3215,9 @@ public burn_victim_napalm( id, killer, tk )
 		args[0] = id;
 		args[1] = killer;
 		args[2] = tk;
-		set_task( ftimer, "on_fire_napalm", TASK_ON_FIRE_NAPALM, args, 4, "b" );
+		
+		isnburning[id] = 1;
+		set_task( ftimer, "on_fire_napalm", TASK_ON_FIRE_NAPALM + id, args, 4, "b" );
 	}
 	else
 	{

@@ -489,6 +489,16 @@ public new_round ( id )
 		// Remove jumpkick cooldown check
 		remove_task ( id + TASK_JUMPKICK );
 	}
+	
+	if (task_exists(id + TASK_ON_FIRE_NAPALM))
+	{
+		remove_task(id + TASK_ON_FIRE_NAPALM);
+	}
+	
+	if (task_exists(id + TASK_ON_FIRE))
+	{
+		remove_task(id + TASK_ON_FIRE);
+	}
 
 	//RESET SHOPMENU3 TASKS
 	if( task_exists( SHOPMENU3_RESET + id ) )

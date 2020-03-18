@@ -1030,24 +1030,17 @@ public Do_FlameThrower ( id )
 	TASK_Check_BurnZone ( id, vec, aimvec, speed1, speed2, radius );
 }
 
-public FS_Is_Player_On_Fire ( id )
-{
-	new bool:tmp_Burning = false;
-
-	if ( isburning[id] == 1 || isnburning[id] )
-	{
-		tmp_Burning = true;
-	}
-
-	return tmp_Burning;
-}
-
 public FS_Should_Burn_Victim ( origin[3], burnvec1[3], burnvec2[3], radius, i, id, ff )
 {
 	if ( ( is_user_alive ( i ) ) && (i != id ) )
 	{
 		if ( ( get_distance ( origin, burnvec1 ) < radius ) || ( get_distance ( origin, burnvec2 ) < radius ) )
 		{
+			if (CVAR_DEBUG_MODE)
+			{
+				log_amx("[UWC3X] FS_Should_Burn_Victim :: isburning - %d", isburning[id]);
+			}
+			
 			TASK_Burn_Victim ( i, id, ff );
 		}
 	}

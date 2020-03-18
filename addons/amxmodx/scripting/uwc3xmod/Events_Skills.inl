@@ -313,12 +313,16 @@ public regenerate( parm[] )
 /* Napalm Grenade burn */
 public on_fire_napalm( args[] )
 {
-
 	new rx, ry, rz, forigin[3];
 	new id = args[0];
 
 	new killer = args[1];
 
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx("[UWC3X] on_fire_napalm :: isnburning - %d", isnburning[id]);
+	}
+	
 	//client_print( 0, print_console,
 	// "In on_fire_napalm( ) id=( %d ) killer=( %d ) isnburning=( %d )", id, killer, isnburning[id] )
 

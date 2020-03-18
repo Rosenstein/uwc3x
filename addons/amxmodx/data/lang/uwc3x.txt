@@ -553,16 +553,16 @@ DISPELL_MAX_DISPELLS = You have already performed the maximum number of dispells
 MENDWOUNDS_UNTRAINED = You do not know the Mend Wounds ability yet
 MENDWOUNDS_MAX_HEALS = You have already mended the maximum number of wounds for this round
 MENDWOUNDS_NOT_HURT = %s does not have wounds to be mended at this time
-MENDWOUNDS_CURED_ALL = You have provided medical care to %s : tended burns, cured poison, cured disease <%d XP>
-MENDWOUNDS_CURED_ALL_MESSAGE = %s has provided the following medical care : tended burns, cured poison, cured disease
-MENDWOUNDS_CURED_TWO1 = You have provided medical care to %s : tended burns, cured poison ( or ) disease <%d XP>
-MENDWOUNDS_CURED_TWO_MESSAGE1 = %s has provided the following medical care : tended burns, cured poison ( or ) disease
-MENDWOUNDS_CURED_TWO2 = You have provided medical care to %s : cured poison and disease <%d XP>
-MENDWOUNDS_CURED_TWO_MESSAGE2 = %s has provided the following medical care : cured poison and disease
-MENDWOUNDS_CURED_ONE = You have provided medical care to %s : cured poison ( or ) disease <%d XP>
-MENDWOUNDS_CURED_ONE_MESSAGE = %s has provided the following medical care : cured poison ( or ) disease
 MENDWOUNDS_CURED = You have provided basic medical care to %s <%d XP>
-MENDWOUNDS_CURED_MESSAGE = %s has provided basic medical care to you
+MENDWOUNDS_CURED_TARGET = %s has provided basic medical care to you
+MENDWOUNDS_CURED_AILMENTS = You have provided medical care to %s : %s <%d XP>
+MENDWOUNDS_CURED_AILMENTS_TARGET = %s has provided extra medical care to you : %s
+
+MENDWOUNDS_CURE_POISON = cured poison
+MENDWOUNDS_CURE_DISEASE = cured disease
+MENDWOUNDS_CURE_ROT = cured rot
+MENDWOUNDS_CURE_BURN = tended burn
+MENDWOUNDS_CURE_NBURN = tended napalm burn
 
 SHHH_DEAD_MESSAGE = Shhhh, you are dead, act like it.
 RESISTANCE_ENDED = [%s] Your magic resistance to %s has ended

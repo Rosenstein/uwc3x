@@ -246,8 +246,13 @@ public EVENT_Set_On_Fire ( args[] )
 	new rx, ry, rz, forigin[3];
 	new id = args[0];
 	new killer = args[1];
+	
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx("[UWC3X] EVENT_Set_On_Fire :: isburning - %d", isburning[id]);
+	}
 
-	if ( !is_user_alive ( id ) || ( isburning[id] == 1 ) )
+	if ( !is_user_alive ( id ) || ( isburning[id] == 0 ) )
 	{
 		return PLUGIN_CONTINUE;
 	}
@@ -309,7 +314,7 @@ public EVENT_Set_On_Fire ( args[] )
 			log_amx( "[UWC3X] DEBUG :: Wisdom modified damage - NEW damage=( %d )", damage );
 		}
 	}
-
+	
 	do_damage ( id, killer, damage, 13, 1, 0, 0, 0 );
 	return PLUGIN_CONTINUE;
 }

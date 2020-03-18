@@ -770,7 +770,7 @@ public Task_FlameStrike_Spray ( args[] )
 public TASK_Burn_Victim ( id, killer, tk )
 {
 	
-	if ( FS_Is_Player_On_Fire ( id ) || Util_IsPlayer_Immune ( id , 5 ) )
+	if ( isburning[id] == 1 || Util_IsPlayer_Immune ( id , 5 ) )
 	{
 		return PLUGIN_CONTINUE;
 	}
@@ -785,6 +785,11 @@ public TASK_Burn_Victim ( id, killer, tk )
 	
 	// [08-06-04] - Added Fire Resistance Checks - K2mia
 	//new Float:ftimer = 1.5;
+	
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx("[UWC3X] TASK_Burn_Victim :: isburning = %d", isburning[id]);
+	}
 	
 	if ( USE_ENH && p_resists[id][RESISTIDX_FIRE] )
 	{
@@ -821,7 +826,14 @@ public TASK_Burn_Victim ( id, killer, tk )
 			args[0] = id;
 			args[1] = killer;
 			args[2] = tk;
-			set_task ( 3.5, "EVENT_Set_On_Fire", TASK_ON_FIRE_NAPALM, args, 4, "a", ( hp / 10 ) );
+			
+			if (CVAR_DEBUG_MODE)
+			{
+				log_amx("[UWC3X] TASK_Burn_Victim :: has res");
+			}
+			
+			isburning[id] = 1;
+			set_task ( 1.5, "EVENT_Set_On_Fire", TASK_ON_FIRE + id, args, 4, "b" );
 			return PLUGIN_CONTINUE;
 		}
 	}
@@ -831,7 +843,14 @@ public TASK_Burn_Victim ( id, killer, tk )
 		args[0] = id;
 		args[1] = killer;
 		args[2] = tk;
-		set_task ( 3.5, "EVENT_Set_On_Fire", TASK_ON_FIRE_NAPALM, args, 4, "a", ( hp / 10 ) );
+		
+		if (CVAR_DEBUG_MODE)
+		{
+			log_amx("[UWC3X] TASK_Burn_Victim :: no res");
+		}
+		
+		isburning[id] = 1;
+		set_task ( 1.5, "EVENT_Set_On_Fire", TASK_ON_FIRE + id, args, 4, "b" );
 	}
 	
 	return PLUGIN_CONTINUE;

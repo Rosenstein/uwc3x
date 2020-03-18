@@ -454,3 +454,40 @@ stock Float:Find_Angle(Core,Target,Float:dist)
 	
 	return 0.0	
 }
+
+
+/**
+ * Joins an array of strings into one string, with a "join" string inserted in
+ * between each given string.  This function complements ExplodeString.
+ *
+ * @param strings       An array of strings.
+ * @param numStrings    Number of strings in the array.
+ * @param join          The join string to insert between each string.
+ * @param buffer        Output buffer to write the joined string to.
+ * @param maxLength     Maximum length of the output buffer.
+ * @return              Number of bytes written to the output buffer.
+ */
+stock implode_strings(const strings[][], numStrings, const join[], buffer[], maxLength)
+{
+	new total, length, part_length;
+	new join_length = strlen(join);
+	for (new i=0; i<numStrings; i++)
+	{
+		length = copy(buffer[total], maxLength-total, strings[i]);
+		total += length;
+		if (length < part_length)
+		{
+			break;
+		}
+		if (i != numStrings - 1)
+		{
+			length = copy(buffer[total], maxLength-total, join);
+			total += length;
+			if (length < join_length)
+			{
+				break;
+			}
+		}
+	}
+	return total;
+}

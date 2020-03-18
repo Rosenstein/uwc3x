@@ -350,7 +350,6 @@
 #define TASK_MONITOR_PLAYERS 358
 #define TASK_RESET_CRIPPLE_ID 334
 #define TASK_CHECK_USER_SPEED_NOID 367
-#define TASK_ON_FIRE_NAPALM 451 //NO ID
 #define TASK_CHECK_UWC3X 456
 #define TASK_CHECK_UWC3X_AGAIN 457
 #define TASK_SET_XP_CHOICES 458
@@ -387,7 +386,7 @@
 #define TASK_ULTIMATE_DEPOWER_SEARCH 11233 //PLUS ID
 #define TASK_ULTIMATE_SHIELD_SEARCH 11266 //PLUS ID
 #define TASK_ULTIMATE_CHAIN_SEARCH 11300 //PLUS ID
-#define TASK_ON_FIRE_NAPALM_ID 11333 //PLUS ID
+#define TASK_ON_FIRE_NAPALM 11333 //PLUS ID
 #define TASK_RESET_AMMO_ID 11366 // PLUS ID
 #define TASK_RESET_BADAIM_ID 11433 // PLUS ID
 #define TASK_REMOVE_CHILL	11466 // PLUS ID
@@ -395,10 +394,10 @@
 #define TASK_HOOK 11566 //PLUS ID
 #define TASK_GRAB_COOLDOWN 11633 //plus id
 //#define TASK_ROPE_COOLDOWN 11666 //plus id
+#define TASK_ON_FIRE 11733 // PLUS ID
 // **************************************************************************
 // END Backwards-Compatible Defs from War3 and War3FT
 // **************************************************************************
-
 
 #define _hudchat_included
 #define __HUDCHAT_MAXLINES		5

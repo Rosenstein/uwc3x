@@ -930,10 +930,11 @@ public ability_wcmend ( id )
 			set_user_health ( friendID, maxhealth[friendID] );
 		}
 		
-		new cured_burns = 0;
 		new cured_poison = 0;
 		new cured_disease = 0;
 		new cured_rot = 0;
+		new cured_burn = 0;
+		new cured_nburn = 0;
 		
 		//Stuff that can occur if they have 2 or more points in heal
 		if ( p_skills[id][SKILLIDX_MEND] >= 2 )
@@ -956,14 +957,21 @@ public ability_wcmend ( id )
 		//Stuff that can occur if they have 3 or more points in heal
 		if ( p_skills[id][SKILLIDX_MEND] >= 3 )
 		{
-			if ( isburning[friendID] || isnburning[friendID] )
+			if (isburning[friendID])
 			{
-				// 3rd tier cures flamethrower and napalm burns
+				// 3rd tier cures flamethrower burn
 				isburning[friendID] = 0;
-				isnburning[friendID] = 0;
-				cured_burns = 1;
+				cured_burn = 1;
 			}
-			if ( bIsRotting[friendID] )
+			
+			if (isnburning[friendID])
+			{
+				// 3rd tier cures napalm burn
+				isnburning[friendID] = 0;
+				cured_nburn = 1;
+			}
+			
+			if (bIsRotting[friendID])
 			{
 				// 3rd tier cures Rot
 				bIsRotting[friendID] = false;
@@ -972,91 +980,90 @@ public ability_wcmend ( id )
 		}
 		
 		// Handle extra XP bonuses and messages for burns, poison, disease, rot, etc
-		if ( cured_burns && cured_poison && cured_disease && cured_rot )
+		if (cured_poison || cured_disease || cured_rot || cured_burn || cured_nburn)
 		{
-			xpbonus += xplevel_lev[p_level[id]];
-			if( Util_Should_Msg_Client(id) )
+			const outerSize = 4;
+			const innerSize = 32;
+			new tempAilments[outerSize][innerSize];
+			new len = 0;
+			
+			if (cured_poison)
 			{
-				//client_print ( id, print_chat, "%L", id, "MENDWOUNDS_CURED_ALL", MOD, friend_name, xpbonus );
-				hudchat_show(id, "%L", id, "MENDWOUNDS_CURED_ALL", friend_name, xpbonus);
+				new temp[innerSize];
+				format(temp, sizeof(temp), "%L", id, "MENDWOUNDS_CURE_POISON");
+				tempAilments[len++] = temp;
+				
+				xpbonus += floatround(MENDXP * p_level[id] * 0.5);
+			}
+			
+			if (cured_disease)
+			{
+				new temp[innerSize];
+				format(temp, sizeof(temp), "%L", id, "MENDWOUNDS_CURE_DISEASE");
+				tempAilments[len++] = temp;
+				
+				xpbonus += floatround(MENDXP * p_level[id] * 0.5);
+			}
+			
+			if (cured_rot)
+			{
+				new temp[innerSize];
+				format(temp, sizeof(temp), "%L", id, "MENDWOUNDS_CURE_ROT");
+				tempAilments[len++] = temp;
+				
+				xpbonus += floatround(MENDXP * p_level[id] * 0.5);
+			}
+			
+			if (cured_burn)
+			{
+				new temp[innerSize];
+				format(temp, sizeof(temp), "%L", id, "MENDWOUNDS_CURE_BURN");
+				tempAilments[len++] = temp;
+				
+				xpbonus += floatround(MENDXP * p_level[id] * 0.5);
+			}
+			
+			if (cured_nburn)
+			{
+				new temp[innerSize];
+				format(temp, sizeof(temp), "%L", id, "MENDWOUNDS_CURE_NBURN");
+				tempAilments[len++] = temp;
+				
+				xpbonus += floatround(MENDXP * p_level[id] * 0.5);
+			}
+			
+			new ailments[outerSize * innerSize];
+			implode_strings(tempAilments, len, ", ", ailments, sizeof(ailments));
+			
+			if (CVAR_DEBUG_MODE)
+			{
+				log_amx("[UWC3X] MENDWOUNDS_AILMENTS :: xpbonus = %d; ailments[%d] = %s", xpbonus, len, ailments);
+			}
+			
+			if(Util_Should_Msg_Client(id))
+			{
+				hudchat_show(id, "%L", id, "MENDWOUNDS_CURED_AILMENTS", friend_name, ailments, xpbonus);
 				hudchat_update(id);
 			}
 			
-			if( is_user_connected( friendID ) && !is_user_bot(friendID) )
+			if(Util_Should_Msg_Client(friendID))
 			{
-				//client_print ( friendID, print_chat, "%L", friendID, "MENDWOUNDS_CURED_ALL_MESSAGE", MOD, name );
-				hudchat_show(friendID, "%L", friendID, "MENDWOUNDS_CURED_ALL_MESSAGE", name);
-				hudchat_update(friendID);
-			}
-		}
-		else if ( cured_burns && ( cured_poison || cured_disease || cured_rot ) )
-		{
-			xpbonus += ( 2 * MENDXP );
-			
-			if( Util_Should_Msg_Client(id) )
-			{
-				//client_print ( id, print_chat, "%L", id, "MENDWOUNDS_CURED_TWO", MOD, friend_name, xpbonus );
-				hudchat_show(id, "%L", id, "MENDWOUNDS_CURED_TWO", friend_name, xpbonus);
-				hudchat_update(id);
-			}
-			
-			if( is_user_connected( friendID ) && !is_user_bot(friendID) )
-			{
-				//client_print ( friendID, print_chat, "%L", friendID, "MENDWOUNDS_CURED_TWO_MESSAGE", MOD, name );
-				hudchat_show(friendID, "%L", friendID, "MENDWOUNDS_CURED_TWO_MESSAGE", name);
-				hudchat_update(friendID);
-			}
-		}
-		else if ( cured_poison && (cured_disease || cured_rot))
-		{
-			xpbonus += floatround ( 1.5 * MENDXP );
-			
-			if( Util_Should_Msg_Client(id) )
-			{
-				//client_print ( id, print_chat, "%L", id, "MENDWOUNDS_CURED_TWO2", MOD, friend_name, xpbonus );
-				hudchat_show(id, "%L", id, "MENDWOUNDS_CURED_TWO2", friend_name, xpbonus);
-				hudchat_update(id);
-			}
-			
-			if( Util_Should_Msg_Client(friendID) )
-			{
-				//client_print ( friendID, print_chat, "%L", friendID, "MENDWOUNDS_CURED_TWO_MESSAGE2", MOD, name );
-				hudchat_show(friendID, "%L", friendID, "MENDWOUNDS_CURED_TWO_MESSAGE2", name);
-				hudchat_update(friendID);
-			}
-		}
-		else if ( cured_poison || cured_disease || cured_rot)
-		{
-			xpbonus += MENDXP;
-			
-			if( Util_Should_Msg_Client(id) )
-			{
-				//client_print ( id, print_chat, "%L", id, "MENDWOUNDS_CURED_ONE", MOD, friend_name, xpbonus );
-				hudchat_show(id, "%L", id, "MENDWOUNDS_CURED_ONE", friend_name, xpbonus);
-				hudchat_update(id);
-			}
-			
-			if( Util_Should_Msg_Client(friendID) )
-			{
-				//client_print ( friendID, print_chat, "%L", friendID, "MENDWOUNDS_CURED_ONE_MESSAGE", MOD, name );
-				hudchat_show(friendID, "%L", friendID, "MENDWOUNDS_CURED_ONE_MESSAGE", name);
+				hudchat_show(friendID, "%L", friendID, "MENDWOUNDS_CURED_AILMENTS_TARGET", name, ailments);
 				hudchat_update(friendID);
 			}
 		}
 		else
 		{
-			if( Util_Should_Msg_Client(id) )
+			if(Util_Should_Msg_Client(id))
 			{
 				hudchat_show(id, "%L", id, "MENDWOUNDS_CURED", friend_name, xpbonus);
 				hudchat_update(id);
-				//client_print ( id, print_chat, "%L", id, "MENDWOUNDS_CURED", MOD, friend_name, xpbonus );
 			}
 			
-			if( is_user_connected( friendID ) && !is_user_bot(friendID) )
+			if(Util_Should_Msg_Client(friendID))
 			{
-				hudchat_show(friendID, "%L", friendID, "MENDWOUNDS_CURED_MESSAGE", name);
+				hudchat_show(friendID, "%L", friendID, "MENDWOUNDS_CURED_TARGET", name);
 				hudchat_update(friendID);
-				//client_print ( friendID, print_chat, "%L", friendID, "MENDWOUNDS_CURED_MESSAGE", MOD, name );
 			}
 		}
 		
