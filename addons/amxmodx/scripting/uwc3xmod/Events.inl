@@ -490,15 +490,11 @@ public new_round ( id )
 		remove_task ( id + TASK_JUMPKICK );
 	}
 	
-	if (task_exists(id + TASK_ON_FIRE_NAPALM))
-	{
-		remove_task(id + TASK_ON_FIRE_NAPALM);
-	}
-	
-	if (task_exists(id + TASK_ON_FIRE))
-	{
-		remove_task(id + TASK_ON_FIRE);
-	}
+	RemoveTaskIfExists(TASK_ON_FIRE_NAPALM + id);
+	RemoveTaskIfExists(TASK_ON_FIRE + id);
+	RemoveTaskIfExists(TASK_ON_SSPOISON + id);
+	RemoveTaskIfExists(TASK_ON_CBDISEASE + id);
+	RemoveTaskIfExists(TASK_ON_ROT + id);
 
 	//RESET SHOPMENU3 TASKS
 	if( task_exists( SHOPMENU3_RESET + id ) )

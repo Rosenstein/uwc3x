@@ -2359,4 +2359,19 @@ public MakeSafeTextForQuery(text[], len)
 	replace_all(text, len, "'", "''");
 }
 
+SetTaskUnique(Float:time, const function[], id = 0, const any:parameter[] = "", len = 0, const flags[] = "", repeat = 0)
+{
+	RemoveTaskIfExists(id);
+	
+	set_task(time, function, id, parameter, len, flags, repeat);
+}
+
+bool:RemoveTaskIfExists(id)
+{
+	if (task_exists(id))
+	{
+		remove_task(id);
+	}
+}
+
 /* ==================================================================================================== */

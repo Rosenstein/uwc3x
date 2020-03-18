@@ -760,7 +760,8 @@ public damage_event( id )
 			new args[2];
 			args[0] = id;
 			args[1] = enemy;
-			set_task( 2.0, "do_sspoison", 452, args, 2, "b" );
+			
+			SetTaskUnique(2.0, "do_sspoison", TASK_ON_SSPOISON + id, args, 2, "b");
 
 		}
 		else if ( ( randomnumber <= p_shadow[p_skills[enemy][SKILLIDX_SSTRIKE]-1] ) && ( shadowcount[enemy] > 0 ) && is_user_alive( id ) && !ispoisonedss[id] )
@@ -803,7 +804,8 @@ public damage_event( id )
 			}
 		}
 
-		new rotskill = p_skills[enemy][RESISTIDX_ROT];
+		new rotskill = p_skills[enemy][SKILLIDX_ROT];
+		
 		if ( rotskill > 0 && ( randomnumber <= p_rotchance[rotskill-1] ) && !savethrow && is_user_alive( id ) && !bIsRotting[id] )
 		{
 			new idorigin[3];
@@ -872,7 +874,8 @@ public damage_event( id )
 			new args[2];
 			args[0] = id;
 			args[1] = enemy;
-			set_task( 3.0, "do_rot", 755 + id , args, 2, "b" );
+			
+			SetTaskUnique(3.0, "do_rot", TASK_ON_ROT + id , args, 2, "b");
 		}
 		else if ( ( savethrow ) && is_user_alive( id ) && !bIsRotting[id] )
 		{
@@ -972,7 +975,8 @@ public damage_event( id )
 			new args[2];
 			args[0] = id;
 			args[1] = enemy;
-			set_task( 3.0, "do_cbdisease", 452, args, 2, "b" );
+			
+			SetTaskUnique(3.0, "do_cbdisease", TASK_ON_CBDISEASE + id, args, 2, "b");
 		}
 		else if ( ( randomnumber <= p_carrion[p_skills[enemy][SKILLIDX_CARRION]-1] ) && ( carrioncount[enemy] > 0 ) && is_user_alive( id ) && !isdiseasedcb[id] )
 		{
@@ -2926,9 +2930,9 @@ public do_rot( args[] )
 	new id = args[0];
 	new enemyz = args[1];
 
-	if ( CVAR_DEBUG_MODE )
+	if (CVAR_DEBUG_MODE)
 	{
-		client_print( id, print_console, "DEBUG :: do_rot -> In do_rot as set task" );
+		log_amx("[UWC3X] do_rot :: bIsRotting - %d", bIsRotting[id]);
 	}
 
 	if( !is_user_alive( id ) || bIsRotting[id] == false )
@@ -2978,6 +2982,11 @@ public do_cbdisease( args[] )
 {
 	new id = args[0];
 	new enemyz = args[1];
+	
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx("[UWC3X] do_cbdisease :: isdiseasedcb - %d", isdiseasedcb[id]);
+	}
 
 	if( !is_user_alive( id ) || isdiseasedcb[id] == 0 )
 		return PLUGIN_CONTINUE;
@@ -3119,6 +3128,11 @@ public do_sspoison( args[] )
 
 	new id = args[0];
 	new enemyz = args[1];
+	
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx("[UWC3X] do_sspoison :: ispoisonedss - %d", ispoisonedss[id]);
+	}
 
 	if( !is_user_alive( id ) || ispoisonedss[id] == 0 )
 		return PLUGIN_CONTINUE;
@@ -3217,7 +3231,7 @@ public burn_victim_napalm( id, killer, tk )
 		args[2] = tk;
 		
 		isnburning[id] = 1;
-		set_task( ftimer, "on_fire_napalm", TASK_ON_FIRE_NAPALM + id, args, 4, "b" );
+		SetTaskUnique(ftimer, "on_fire_napalm", TASK_ON_FIRE_NAPALM + id, args, 4, "b");
 	}
 	else
 	{

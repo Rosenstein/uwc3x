@@ -785,6 +785,7 @@ public TASK_Burn_Victim ( id, killer, tk )
 	
 	// [08-06-04] - Added Fire Resistance Checks - K2mia
 	//new Float:ftimer = 1.5;
+	new bool:shouldBurn = false;
 	
 	if (CVAR_DEBUG_MODE)
 	{
@@ -823,34 +824,37 @@ public TASK_Burn_Victim ( id, killer, tk )
 				client_print ( killer, print_chat, "%L", killer, "ULTIMATE_FLAME_FAILED", MOD );
 			}
 			
-			args[0] = id;
-			args[1] = killer;
-			args[2] = tk;
-			
 			if (CVAR_DEBUG_MODE)
 			{
 				log_amx("[UWC3X] TASK_Burn_Victim :: has res");
 			}
 			
-			isburning[id] = 1;
-			set_task ( 1.5, "EVENT_Set_On_Fire", TASK_ON_FIRE + id, args, 4, "b" );
-			return PLUGIN_CONTINUE;
+			shouldBurn = true;
 		}
 	}
 	//Added this check for the Fire
 	else
 	{
-		args[0] = id;
-		args[1] = killer;
-		args[2] = tk;
-		
 		if (CVAR_DEBUG_MODE)
 		{
 			log_amx("[UWC3X] TASK_Burn_Victim :: no res");
 		}
 		
+		shouldBurn = true;
+	}
+	
+	if (shouldBurn)
+	{
+		args[0] = id;
+		args[1] = killer;
+		args[2] = tk;
+		
 		isburning[id] = 1;
-		set_task ( 1.5, "EVENT_Set_On_Fire", TASK_ON_FIRE + id, args, 4, "b" );
+		SetTaskUnique(1.5, "EVENT_Set_On_Fire", TASK_ON_FIRE + id, args, 4, "b");
+	}
+	else
+	{
+		isburning[id] = 0;
 	}
 	
 	return PLUGIN_CONTINUE;

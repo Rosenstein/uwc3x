@@ -395,6 +395,9 @@
 #define TASK_GRAB_COOLDOWN 11633 //plus id
 //#define TASK_ROPE_COOLDOWN 11666 //plus id
 #define TASK_ON_FIRE 11733 // PLUS ID
+#define TASK_ON_SSPOISON 11766 // PLUS ID
+#define TASK_ON_CBDISEASE 11833 // PLUS ID
+#define TASK_ON_ROT 11866 // PLUS ID
 // **************************************************************************
 // END Backwards-Compatible Defs from War3 and War3FT
 // **************************************************************************
