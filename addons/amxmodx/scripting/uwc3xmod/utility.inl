@@ -179,291 +179,392 @@ public PreCache_Sounds ( )
 	precache_sound ( "weapons/electro5.wav" );
 	precache_sound ( "weapons/cbar_hitbod3.wav" );
 
-	if ( file_exists ( "sound/uwc3x/explode3.wav" ) )
+	// sounds that can be replaced by others
+	if (file_exists("sound/uwc3x/levelupcaster.wav"))
 	{
-		precache_sound( "uwc3x/explode3.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/frostnova.wav" ) )
-	{
-		precache_sound( "uwc3x/frostnova.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/hex_infect.wav" ) )
-	{
-		precache_sound ( "uwc3x/hex_infect.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/banishcaster.wav" ) )
-	{
-		precache_sound ( "uwc3x/banishcaster.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/antend.wav" ) )
-	{
-		precache_sound ( "uwc3x/antend.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/tomes.wav" ) )
-	{
-		precache_sound ( "uwc3x/tomes.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/locustswarmloopwav.wav" ) )
-	{
-		precache_sound ( "uwc3x/locustswarmloopwav.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/impalelaunch1.wav" ) )
-	{
-		precache_sound ( "uwc3x/impalelaunch1.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/shadowstrikemissile1.wav" ) )
-	{
-		precache_sound ( "uwc3x/shadowstrikemissile1.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/locustswarmloop.wav" ) )
-	{
-		precache_sound ( "uwc3x/locustswarmloop.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/reincarnation.wav" ) )
-	{
-		precache_sound ( "uwc3x/reincarnation.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/shadowstrikebirth1.wav" ) )
-	{
-		precache_sound ( "uwc3x/shadowstrikebirth1.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/carrionswarmdamage1.wav" ) )
-	{
-		precache_sound ( "uwc3x/carrionswarmdamage1.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/carrionswarmlaunch1.wav" ) )
-	{
-		precache_sound ( "uwc3x/carrionswarmlaunch1.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/impalehit.wav" ) )
-	{
-		precache_sound ( "uwc3x/impalehit.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/divineshield.wav" ) )
-	{
-		precache_sound ( "uwc3x/divineshield.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/flamestriketargetwavenonloop1.wav" ) )
-	{
-		precache_sound ( "uwc3x/flamestriketargetwavenonloop1.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/entanglingrootstarget1.wav" ) )
-	{
-		precache_sound ( "uwc3x/entanglingrootstarget1.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/levelupcaster.wav" ) )
-	{
-		precache_sound ( "uwc3x/levelupcaster.wav" );
+		precache_sound("uwc3x/levelupcaster.wav");
 	}
 	else
 	{
-		precache_sound ( "plats/elevbell1.wav" );
+		precache_sound("plats/elevbell1.wav");
 	}
 
-	if ( file_exists ( "sound/uwc3x/lightningbolt.wav" ) )
+	if (file_exists("sound/uwc3x/lightningbolt.wav"))
 	{
-		precache_sound ( "uwc3x/lightningbolt.wav" );
+		precache_sound("uwc3x/lightningbolt.wav");
 	}
 	else
 	{
-		precache_sound ( "weapons/gauss2.wav" );
-	}
-	
-	if ( file_exists ( "sound/uwc3x/helmsplitter.wav" ) )
-	{
-		precache_sound ( "uwc3x/helmsplitter.wav" );
+		precache_sound("weapons/gauss2.wav");
 	}
 
-	if ( file_exists ( "sound/uwc3x/massteleporttarget.wav" ) )
+	if (file_exists("sound/uwc3x/massteleporttarget.wav"))
 	{
-		precache_sound ( "uwc3x/massteleporttarget.wav" );
+		precache_sound("uwc3x/massteleporttarget.wav");
 	}
 	else
 	{
-		precache_sound ( "x/x_shoot1.wav" );
+		precache_sound("x/x_shoot1.wav");
 	}
 
-	if ( file_exists ( "sound/uwc3x/blinkarrival.wav" ) )
+	if (file_exists("sound/uwc3x/blinkarrival.wav"))
 	{
-		precache_sound ( "uwc3x/blinkarrival.wav" );
+		precache_sound("uwc3x/blinkarrival.wav");
 	}
 	else
 	{
-		precache_sound ( "x/x_shoot1.wav" );
+		precache_sound("x/x_shoot1.wav");
 	}
 
-	if ( file_exists ( "sound/uwc3x/pickupitem.wav" ) )
+	// rest
+	if (file_exists("sound/uwc3x/antend.wav"))
 	{
-		precache_sound ( "uwc3x/pickupitem.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/depowered.wav" ) )
-	{
-		precache_sound ( "uwc3x/depowered.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/bond.wav" ) )
-	{
-		precache_sound ( "uwc3x/bond.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/meanswar.wav" ) )
-	{
-		precache_sound ( "uwc3x/meanswar.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/dohgodoh.wav" ) )
-	{
-		precache_sound ( "uwc3x/dohgodoh.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/ninja.wav" ) )
-	{
-		precache_sound ( "uwc3x/ninja.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/ninja-vanish.wav" ) )
-	{
-		precache_sound ( "uwc3x/ninja-vanish.wav" );
-	}
-
-	if ( file_exists ( "sound/weapons/xbow_hit2.wav" ) )
-	{
-		precache_sound ( "weapons/xbow_hit2.wav" );
-	}
-
-	if ( file_exists ( "sound/weapons/xbow_fire1.wav" ) )
-	{
-		precache_sound ( "weapons/xbow_fire1.wav" );
+		precache_sound("uwc3x/antend.wav");
 	}
 	
-	if ( file_exists ( "sound/uwc3x/potion.wav" ) )
-    {
-        precache_sound ( "uwc3x/potion.wav" );
-    }
-
-	if ( file_exists ( "sound/uwc3x/invul.wav" ) )
+	if (file_exists("sound/uwc3x/banishcaster.wav"))
 	{
-		precache_sound ( "uwc3x/invul.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/sm3_cure.wav" ) )
-	{
-		precache_sound ( "uwc3x/sm3_cure.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/dehex.wav" ) )
-	{
-		precache_sound ( "uwc3x/dehex.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/dispell_hex.wav" ) )
-	{
-		precache_sound ( "uwc3x/dispell_hex.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/disorient-casted.wav" ) )
-	{
-		precache_sound ( "uwc3x/disorient-casted.wav" );
-	}	
-
-	if ( file_exists ( "sound/uwc3x/critical_hit_02.wav" ) )
-	{
-		precache_sound ( "uwc3x/critical_hit_02.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/bless.wav" ) )
-	{
-		precache_sound ( "uwc3x/bless.wav" );
+		precache_sound("uwc3x/banishcaster.wav");
 	}
 	
-	if ( file_exists ( "sound/uwc3x/suicide_charging.wav" ) )
+	if (file_exists("sound/uwc3x/bless.wav"))
 	{
-		precache_sound( "uwc3x/suicide_charging.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/error.wav" ) )
-	{
-		precache_sound( "uwc3x/error.wav" );
-	}
-
-	if ( file_exists ( "sound/uwc3x/ultimateerror.wav" ) )
-	{
-		precache_sound( "uwc3x/ultimateerror.wav" );
-	}
-
-	// shopmenu
-	if (file_exists("sound/uwc3x/shopmenu/sm_pickupitem.wav" ))
-	{
-		precache_sound("uwc3x/shopmenu/sm_pickupitem.wav");
+		precache_sound("uwc3x/bless.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm1_gtome.wav" ))
+	if (file_exists("sound/uwc3x/bond.wav"))
+	{
+		precache_sound("uwc3x/bond.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/carrionswarmdamage.wav"))
+	{
+		precache_sound("uwc3x/carrionswarmdamage.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/carrionswarmdamage1.wav"))
+	{
+		precache_sound("uwc3x/carrionswarmdamage1.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/carrionswarmlaunch.wav"))
+	{
+		precache_sound("uwc3x/carrionswarmlaunch.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/carrionswarmlaunch1.wav"))
+	{
+		precache_sound("uwc3x/carrionswarmlaunch1.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/critical_strike.wav"))
+	{
+		precache_sound("uwc3x/critical_strike.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/dehex.wav"))
+	{
+		precache_sound("uwc3x/dehex.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/depowered.wav"))
+	{
+		precache_sound("uwc3x/depowered.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/disorient-casted.wav"))
+	{
+		precache_sound("uwc3x/disorient-casted.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/disoriented.wav"))
+	{
+		precache_sound("uwc3x/disoriented.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/dispell_hex.wav"))
+	{
+		precache_sound("uwc3x/dispell_hex.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/divineshield.wav"))
+	{
+		precache_sound("uwc3x/divineshield.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/dohgodoh.wav"))
+	{
+		precache_sound("uwc3x/dohgodoh.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/earthquake_hit.wav"))
+	{
+		precache_sound("uwc3x/earthquake_hit.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/earthquake_launch.wav"))
+	{
+		precache_sound("uwc3x/earthquake_launch.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/entanglingroots.wav"))
+	{
+		precache_sound("uwc3x/entanglingroots.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/entanglingrootstarget1.wav"))
+	{
+		precache_sound("uwc3x/entanglingrootstarget1.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/error.wav"))
+	{
+		precache_sound("uwc3x/error.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/fatal_strike.wav"))
+	{
+		precache_sound("uwc3x/fatal_strike.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/flamestrike.wav"))
+	{
+		precache_sound("uwc3x/flamestrike.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/flamestriketargetwavenonloop1.wav"))
+	{
+		precache_sound("uwc3x/flamestriketargetwavenonloop1.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/frostnova.wav"))
+	{
+		precache_sound("uwc3x/frostnova.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/helmsplitter.wav"))
+	{
+		precache_sound("uwc3x/helmsplitter.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/helmsplitter2.wav"))
+	{
+		precache_sound("uwc3x/helmsplitter2.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/hex_infect.wav"))
+	{
+		precache_sound("uwc3x/hex_infect.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/impalehit.wav"))
+	{
+		precache_sound("uwc3x/impalehit.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/impalelaunch1.wav"))
+	{
+		precache_sound("uwc3x/impalelaunch1.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/impale_hit.wav"))
+	{
+		precache_sound("uwc3x/impale_hit.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/impale_launch.wav"))
+	{
+		precache_sound("uwc3x/impale_launch.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/infect_hex.wav"))
+	{
+		precache_sound("uwc3x/infect_hex.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/invul.wav"))
+	{
+		precache_sound("uwc3x/invul.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/levelup.wav"))
+	{
+		precache_sound("uwc3x/levelup.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/locustswarmloop.wav"))
+	{
+		precache_sound("uwc3x/locustswarmloop.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/meanswar.wav"))
+	{
+		precache_sound("uwc3x/meanswar.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/ninja-vanish.wav"))
+	{
+		precache_sound("uwc3x/ninja-vanish.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/ninja.wav"))
+	{
+		precache_sound("uwc3x/ninja.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/pickupitem.wav"))
+	{
+		precache_sound("uwc3x/pickupitem.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/potion.wav"))
+	{
+		precache_sound("uwc3x/potion.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/reincarnation.wav"))
+	{
+		precache_sound("uwc3x/reincarnation.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/rot_hit.wav"))
+	{
+		precache_sound("uwc3x/rot_hit.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/rot_launch.wav"))
+	{
+		precache_sound("uwc3x/rot_launch.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shadowstrikebirth.wav"))
+	{
+		precache_sound("uwc3x/shadowstrikebirth.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shadowstrikebirth1.wav"))
+	{
+		precache_sound("uwc3x/shadowstrikebirth1.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shadowstrikemissile.wav"))
+	{
+		precache_sound("uwc3x/shadowstrikemissile.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shadowstrikemissile1.wav"))
+	{
+		precache_sound("uwc3x/shadowstrikemissile1.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shield.wav"))
+	{
+		precache_sound("uwc3x/shield.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/sm3_cure.wav"))
+	{
+		precache_sound("uwc3x/sm3_cure.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/smokin.wav"))
+	{
+		precache_sound("uwc3x/smokin.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/suicide_charging.wav"))
+	{
+		precache_sound("uwc3x/suicide_charging.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/teleport.wav"))
+	{
+		precache_sound("uwc3x/teleport.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/tomes.wav"))
+	{
+		precache_sound("uwc3x/tomes.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/ultimateerror.wav"))
+	{
+		precache_sound("uwc3x/ultimateerror.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/ultimate_stopped.wav"))
+	{
+		precache_sound("uwc3x/ultimate_stopped.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/xbow_fire1.wav"))
+	{
+		precache_sound("uwc3x/xbow_fire1.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/xbow_hit2.wav"))
+	{
+		precache_sound("uwc3x/xbow_hit2.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/yarr.wav"))
+	{
+		precache_sound("uwc3x/yarr.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm1_gtome.wav"))
 	{
 		precache_sound("uwc3x/shopmenu/sm1_gtome.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm1_tome.wav" ))
+	if (file_exists("sound/uwc3x/shopmenu/sm1_tome.wav"))
 	{
 		precache_sound("uwc3x/shopmenu/sm1_tome.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm3_cure.wav" ))
+	if (file_exists("sound/uwc3x/shopmenu/sm3_cure.wav"))
 	{
 		precache_sound("uwc3x/shopmenu/sm3_cure.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm3_dehex.wav" ))
+	if (file_exists("sound/uwc3x/shopmenu/sm3_dehex.wav"))
 	{
 		precache_sound("uwc3x/shopmenu/sm3_dehex.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm3_fire.wav" ))
+	if (file_exists("sound/uwc3x/shopmenu/sm3_fire.wav"))
 	{
 		precache_sound("uwc3x/shopmenu/sm3_fire.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm3_gate.wav" ))
+	if (file_exists("sound/uwc3x/shopmenu/sm3_gate.wav"))
 	{
 		precache_sound("uwc3x/shopmenu/sm3_gate.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm3_heal.wav" ))
+	if (file_exists("sound/uwc3x/shopmenu/sm3_heal.wav"))
 	{
 		precache_sound("uwc3x/shopmenu/sm3_heal.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm3_inv.wav" ))
+	if (file_exists("sound/uwc3x/shopmenu/sm3_inv.wav"))
 	{
 		precache_sound("uwc3x/shopmenu/sm3_inv.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm3_inv_done.wav" ))
+	if (file_exists("sound/uwc3x/shopmenu/sm3_invul.wav"))
+	{
+		precache_sound("uwc3x/shopmenu/sm3_invul.wav");
+	}
+	
+	if (file_exists("sound/uwc3x/shopmenu/sm3_inv_done.wav"))
 	{
 		precache_sound("uwc3x/shopmenu/sm3_inv_done.wav");
 	}
 	
-	if (file_exists("sound/uwc3x/shopmenu/sm3_invul.wav" ))
+	if (file_exists("sound/uwc3x/shopmenu/sm_pickupitem.wav"))
 	{
-		precache_sound("uwc3x/shopmenu/sm3_invul.wav");
+		precache_sound("uwc3x/shopmenu/sm_pickupitem.wav");
 	}
 }
 
