@@ -2647,7 +2647,12 @@ public Bot_Pick_Skills( id )
 		new skill_idx = sortedskills[sorted_idx];
 		//new allowed_pts = ( p_level[id] - skill_minlev[skill_idx] + 1);
 		
-		if ( p_skills[id][skill_idx] == skill_limits[skill_idx] )
+		if (p_level[id] < skill_minlev[skill_idx])
+		{
+			continue;
+		}
+		
+		if (p_skills[id][skill_idx] >= skill_limits[skill_idx])
 		{
 			continue;
 		}
@@ -2655,7 +2660,7 @@ public Bot_Pick_Skills( id )
 		//Changed to look at the limits of the skill in points, and compare to how many they already have
 		//This should stop more skill points being spent in an item then there are to spend
 		//new allowed_pts = ( skill_limits[skill_idx] );
-		new allowed_pts = ( skill_limits[skill_idx] - p_skills[id][skill_idx] );
+		new allowed_pts = (p_level[id] - skill_minlev[skill_idx] + 1);
 
 		if ( p_skills[id][skill_idx] >= allowed_pts )
 		{
