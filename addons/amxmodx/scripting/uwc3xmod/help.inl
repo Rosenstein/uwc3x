@@ -929,133 +929,13 @@ public uwc3x_resistances( id )
 
 public character_sheet( id )
 {
-	new name[32], j = 0;
-	new message[4096] = "", temp[1024] = "", stemp[1024] = "", temp2[64] = "", sname[64] = "";
-	new bool:bHasASkill = false;
-	get_user_name(id, name, 31);
-
-	// Calculate how many attrib/resist points can be spent
-	new extra_xp = (playerxp[id] - xplevel_lev[enh_minlevel]);
-
-	if (extra_xp < 0)
-		extra_xp = 0;
-
-	new exp = (extra_xp / 10);
-
-	add( message, 4096, "<body bgcolor=#000000><font color=#33CCFF>" );
-	format( stemp, 1024, "<center><b>Character Sheet: %s</b></center><p>", name );
-	add( message, 4096, stemp );
-	add( message, 4096, "<center><table width=565 border=1 cellpadding=4 cellspacing=4>" );
-	add( message, 4096, "<tr><td width=50%><font color=#FFB000>" );
-	format( stemp, 1024, "Name: %s<br>", name );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Level: %d<br>", p_level[id] );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Ultimates: %d/%d<br>", ultlearned[id], p_maxultimates[id] );
-	add( message, 4096, stemp );
-	add( message, 4096, "</td><td width=50%><font color=#FFB000>" );
-	
-	if (p_level[id] == (MAX_LEVEL-1))
-	{
-		//format( stemp, 1024, "XP: %d<br>", playerxp[pid] );
-	}
-	else
-	{
-		format( stemp, 1024, "XP: %d / %d<br>",
-		playerxp[id], xplevel_lev[p_level[id]+1] );
-	}
-
-	add( message, 4096, stemp );
-	if (p_level[id] == (MAX_LEVEL-1))
-	{
-		//add( message, 4096, "XP Needed: NA<br>" );
-	}
-	else
-	{
-		format( stemp, 1024, "XP Needed: %d <br>", (xplevel_lev[p_level[id]+1] - playerxp[id]) );
-		add( message, 4096, stemp );
-	}
-
-	format( stemp, 1024, "Enhancement XP: %d <br>", exp );
-	add( message, 4096, stemp );
-	add( message, 4096, "</td></tr><tr><td><font color=#FFB000>" );
-	add( message, 4096, "<b>Attributes:</b><p>" );
-	format( stemp, 1024, "Strength: %d/%d <br>", p_attribs[id][ATTRIBIDX_STR], ATTRIB_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Intellect: %d/%d <br>", p_attribs[id][ATTRIBIDX_INT], ATTRIB_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Dexterity: %d/%d <br>", p_attribs[id][ATTRIBIDX_DEX], ATTRIB_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Agility: %d/%d <br>", p_attribs[id][ATTRIBIDX_AGI], ATTRIB_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Constitution: %d/%d <br>", p_attribs[id][ATTRIBIDX_CON], ATTRIB_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Wisdom: %d/%d <br>", p_attribs[id][ATTRIBIDX_WIS], ATTRIB_MAX_VALUE );
-	add( message, 4096, stemp );
-	add( message, 4096, "</td><td><font color=#FFB000>" );
-	add( message, 4096, "<b>Resistances:</b><p>" );
-	format( stemp, 1024, "Poison: %d/%d <br>", p_resists[id][RESISTIDX_POISON], RESIST_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Disease: %d/%d <br>", p_resists[id][RESISTIDX_DISEASE], RESIST_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Electricity: %d/%d <br>", p_resists[id][RESISTIDX_ELECTRIC], RESIST_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Fire: %d/%d <br>", p_resists[id][RESISTIDX_FIRE], RESIST_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Magic: %d/%d <br>", p_resists[id][RESISTIDX_MAGIC], RESIST_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Rot: %d/%d <br>", p_resists[id][RESISTIDX_ROT], RESIST_MAX_VALUE );
-	add( message, 4096, stemp );
-	format( stemp, 1024, "Ice: %d/%d <br>", p_resists[id][RESISTIDX_ICE], RESIST_MAX_VALUE );
-	add( message, 4096, stemp );
-	add( message, 2047, "</td></tr><tr><td colspan=2><font color=#FFB000>" );
-	add( message, 2047, "<b>Skills</b><p>" );
-
-	for (j=1; j<MAX_SKILLS;j++)
-	{
-		//counter++;
-		if (j <= 8)
-			copy(sname, 31, skillset1[j]);
-		else if (j <= 16)
-			copy(sname, 31, skillset2[j-8]);
-		else if (j <= 24)
-			copy(sname, 31, skillset3[j-16]);
-		else if (j <= 32)
-			copy(sname, 31, skillset4[j-24]);
-		else if (j <= 40)
-			copy(sname, 31, skillset5[j-32]);
-		else if (j <= 48)
-			copy(sname, 31, skillset6[j-40]);
-		else if (j <= 56)
-			copy(sname, 31, skillset7[j-48]);
-		else if (j <= 64)
-			copy(sname, 31, skillset8[j-56]);
-		if (p_skills[id][j])
-		{
-			bHasASkill = true;
-			format(temp2,64,"%s [%d/%d]<br>", sname, p_skills[id][j], skill_limits[j] );
-			add(temp,1024,temp2);
-		}
-	}
-	
-	if (!bHasASkill)
-	{
-		add(temp,1024, "No skills trained");
-	}
-	
-	add( message, 2048, temp );
-	add( message, 2048, "</td></tr>" );
-	add( message,2048,"</table></center>" );
-	show_motd( id, message, "Your Character Sheet");
+	show_motd(id, BuildCharsheet(id), "Your Character Sheet");
 }
 
 
 
 public cmd_whois( id, arg[] )
 {
-	new name[32], j = 0;
-	new message[4096] = "", temp[1024] = "", stemp[1024] = "", temp2[64] = "", sname[64] = "";
-	new bool:bHasASkill = false;
 	new pid = cmd_target(id, arg, 0);
 
 	if (!pid)
@@ -1064,11 +944,27 @@ public cmd_whois( id, arg[] )
 		hudchat_update(id);
 		return PLUGIN_HANDLED;
 	}
+	
+	new mtitle[64];
+	new name[32];
+	get_user_name(pid, name, 31);
+	format(mtitle, 64, "Character Sheet of %s", name);
+    
+	show_motd(id, BuildCharsheet(pid), mtitle);
+	return PLUGIN_HANDLED;
+}  
 
+
+BuildCharsheet(pid)
+{
+	new name[32], j = 0;
+	new message[4096] = "", temp[1024] = "", stemp[1024] = "", temp2[64] = "", sname[64] = "";
+	new bool:bHasASkill = false;
+	
 	get_user_name(pid, name, 31);
 
 	// Calculate how many attrib/resist points can be spent
-	new extra_xp = (playerxp[id] - xplevel_lev[enh_minlevel]);
+	new extra_xp = (playerxp[pid] - xplevel_lev[enh_minlevel]);
 
 	if (extra_xp < 0)
 		extra_xp = 0;
@@ -1084,7 +980,7 @@ public cmd_whois( id, arg[] )
 	add( message, 4096, stemp );
 	format( stemp, 1024, "Level: %d<br>", p_level[pid] );
 	add( message, 4096, stemp );
-	format( stemp, 1024, "Ultimates: %d/%d<br>", ultlearned[id], p_maxultimates[id] );
+	format( stemp, 1024, "Ultimates: %d/%d<br>", ultlearned[pid], p_maxultimates[pid] );
 	add( message, 4096, stemp );
 	add( message, 4096, "</td><td width=50%><font color=#FFB000>" );
 	
@@ -1180,14 +1076,8 @@ public cmd_whois( id, arg[] )
 	add( message, 2048, "</td></tr>" );
     	add( message,2048,"</table></center><br /><br />^n^n" );
     
-	new mtitle[64];
-	format( mtitle, 64, "Character Sheet for %s", name );
-    
-	show_motd( id, message, mtitle );
-	return PLUGIN_HANDLED;
-}  
-
-
+	return message;
+}
 
 
 public set_rankstring( id )
