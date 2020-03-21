@@ -224,14 +224,14 @@ public Set_Skill_Base ( )
 		
 		if( i <= 6 )
 		{
-			p_fatal_chance[i]		= 0.12 - ( 0.02 * i);  // .10, .08, .06, etc - % chance to hit
+			p_fatal_chance[i]		= 0.12 - ( 0.02 * i);  // 12%, 10%, 8%, 6%, 4% - chance to hit
 		}
 		else
 		{
 			p_fatal_chance[i]		= 0.00;		
 		}
 		
-		p_fatal_damage[i]		= 1 + (0.2 * i);  // 1.2, 1.4, 1.6, etc - damage multiplier
+		p_fatal_damage[i]		= 1 + (0.2 * i);  // 100%, 120%, 140%, 160%, 180% - bonus damage multiplier
 		
 		if( i > 0 )
 		{

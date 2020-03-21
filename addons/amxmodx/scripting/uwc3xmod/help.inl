@@ -24,49 +24,49 @@ public skills_info( id, tier )
 		switch (j)
 		{
 			case SKILLIDX_VAMPIRIC:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "VAMPIRIC_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "VAMPIRIC_DESC", MakeValuesMinMaxFloat(p_vampiric, skill_limits[j]) );
 			case SKILLIDX_LEVITATION:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "LEVITATION_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "LEVITATION_DESC", MakeValuesMinMaxFloat(p_levitation, skill_limits[j]) );
 			case SKILLIDX_DEVOTION:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "DEVOTION_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "DEVOTION_DESC", MakeValuesMinMax(p_devotion, skill_limits[j], "%d to %d") );
 			case SKILLIDX_EQREINC:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "REINCARNATION_DESC", floatround( p_ankh[0] * 100 ), floatround( p_ankh[1] * 100 ), floatround( p_ankh[2] * 100) );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "REINCARNATION_DESC", ImplodeSkillValuesFloat(p_ankh, skill_limits[j]) );
 			case SKILLIDX_HEALWAVE:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "HEALINGWAVE_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "HEALINGWAVE_DESC", MakeValuesMinMaxFloat(p_heal, skill_limits[j], "%.2f sec to %.2f sec", 1.0) );
 			case SKILLIDX_SIPHON:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SIPHONMANA_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SIPHONMANA_DESC", MakeValuesMinMaxFloat(p_mana, skill_limits[j]) );
 			case SKILLIDX_IMPALE:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "IMPALE_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "IMPALE_DESC", MakeValuesMinMaxFloat(p_impale, skill_limits[j]) );
 			case SKILLIDX_LSKIN:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "LEATHERSKIN_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "LEATHERSKIN_DESC", MakeValuesMinMaxFloat(p_lskin, skill_limits[j], "%.2f sec to %.2f sec", 1.0) );
 			case SKILLIDX_UNHOLY:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "UNHOLY_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "UNHOLY_DESC", MakeValuesMinMaxFloat(p_unholy, skill_limits[j], "%.0f to %.0f", 1.0) );
 			case SKILLIDX_BASH:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "BASH_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "BASH_DESC", MakeValuesMinMaxFloat(p_bash, skill_limits[j]) );
 			case SKILLIDX_CRITSTRIKE:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "CRITSTRIKE_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "CRITSTRIKE_DESC", MakeValuesMinMaxFloat(p_critical, skill_limits[j]) );
 			case SKILLIDX_REPAIR:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "REPAIRARMOR_DESC" );
 			case SKILLIDX_BANISH:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "BANISH_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "BANISH_DESC", MakeValuesMinMaxFloat(p_banish, skill_limits[j]) );
 			case SKILLIDX_HEX:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "HEX_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "HEX_DESC", MakeValuesMinMaxFloat(p_hex, skill_limits[j]) );
 			case SKILLIDX_SAMMO:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SIPHONAMMO_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SIPHONAMMO_DESC", MakeValuesMinMaxFloat(p_ammo, skill_limits[j]) );
 			case SKILLIDX_CARAPACE:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SPIKEDCARAPACE_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SPIKEDCARAPACE_DESC", MakeValuesMinMaxFloat(p_spiked, skill_limits[j]) );
 			case SKILLIDX_MEND:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "MENDWOUNDS_DESC" );
 			case SKILLIDX_EVASION:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "EVASION_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "EVASION_DESC", MakeValuesMinMaxFloat(p_evasion, skill_limits[j]), DEX_EVADE_BONUS * 100 );
 			case SKILLIDX_TRUESHOT:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "TRUESHOT_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "TRUESHOT_DESC", MakeValuesMinMaxFloat(p_trueshot, skill_limits[j]) );
 			case SKILLIDX_SSKIN:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "STEELSKIN_DESC" );
 			case SKILLIDX_CARRION:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "CARRIONBEETLES_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "CARRIONBEETLES_DESC", MakeValuesMinMaxFloat(p_carrion, skill_limits[j]) );
 			case SKILLIDX_SSTRIKE:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SHADOWSTRIKE_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SHADOWSTRIKE_DESC", MakeValuesMinMaxFloat(p_shadow, skill_limits[j]) );
 			case SKILLIDX_ENTANGLE:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "ENTANGLEROOTS_DESC" );
 			case SKILLIDX_FSTRIKE:
@@ -74,11 +74,11 @@ public skills_info( id, tier )
 			case SKILLIDX_DISHEX:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "DISPELLHEX_DESC" );
 			case SKILLIDX_CRITGREN:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "CRITICALGRENADE_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "CRITICALGRENADE_DESC", MakeValuesMinMaxFloat(p_grenade, skill_limits[j]) );
 			case SKILLIDX_SERPWARD:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SEPENTWARD_DESC", p_serpent[0], p_serpent[1], p_serpent[2] );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SEPENTWARD_DESC", ImplodeSkillValues(p_serpent, skill_limits[j]) );
 			case SKILLIDX_THORNS:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "THORNSAURA_DESC" ) ;
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "THORNSAURA_DESC", MakeValuesMinMaxFloat(p_thorns, skill_limits[j]) ) ;
 			case SKILLIDX_INVIS:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "INVISIBILITY_DESC" );
 			case SKILLIDX_TELEPORT:
@@ -86,13 +86,13 @@ public skills_info( id, tier )
 			case SKILLIDX_VOODOO:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "BIGBADVOODOO_DESC" );
 			case SKILLIDX_FAN:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "FANOFKNIVES_DESC", floatround( p_fan[0]*100 ), floatround( p_fan[1] * 100 ), floatround( p_fan[2] * 100 ) );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "FANOFKNIVES_DESC", ImplodeSkillValuesFloat(p_fan, skill_limits[j]) );
 			case SKILLIDX_VENGEANCE:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "VENGANCE_DESC" );
 			case SKILLIDX_BLINK:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "BLINK_DESC" ) ;
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "BLINK_DESC", ImplodeSkillValuesFloat(p_blink, skill_limits[j]) ) ;
 			case SKILLIDX_PHOENIX:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "PHEONIX_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "PHEONIX_DESC", ImplodeSkillValuesFloat(p_phoenix, skill_limits[j]) );
 			case SKILLIDX_NAPALM:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "NAPALMGRENADE_DESC" );
 			case SKILLIDX_SUICIDE:
@@ -102,7 +102,7 @@ public skills_info( id, tier )
 			case SKILLIDX_DECOY:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "DECOY_DESC" );
 			case SKILLIDX_TEAMSHIELD:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SIV_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "SIV_DESC", MakeValuesMinMax(p_ShieldMaxDamage, skill_limits[j]) );
 			case SKILLIDX_JUMPKICK:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "JKICK_DESC" );
 			case SKILLIDX_MULTIJUMP:
@@ -110,7 +110,7 @@ public skills_info( id, tier )
 			case SKILLIDX_CAT:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "CAT_DESC" );
 			case SKILLIDX_ROT:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "ROT_DESC" );
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "ROT_DESC", MakeValuesMinMaxFloat(p_rotchance, skill_limits[j]) );
 			case SKILLIDX_DEPOWER:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "DEPOWER_DESC" );
 			case SKILLIDX_CLOAK:
@@ -142,10 +142,9 @@ public skills_info( id, tier )
 			case SKILLIDX_ROPE:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "ROPE_DESC" );
 			case SKILLIDX_FATAL:
-				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "FATAL_DESC" );	
+				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "FATAL_DESC", MakeValuesMinMaxFloat(p_fatal_chance, skill_limits[j]), MakeValuesMinMaxFloat(p_fatal_damage, skill_limits[j]), CVAR_FATAL_CHANCE * 100 );	
 			case SKILLIDX_BLESS:
-                		pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "BLESS_DESC" );
-				
+                pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "BLESS_DESC" );
 			case SKILLIDX_MINE:
 				pos+= format( temp[pos], 4096-pos, "<li>%L<p>", id, "MINE_DESC" );
 			case SKILLIDX_NEWSKILL16:
@@ -173,6 +172,59 @@ public skills_info( id, tier )
 	return PLUGIN_HANDLED;
 }
 
+MakeValuesMinMax(values[], len, formatStr[] = "%d to %d")
+{
+	const size = 32;
+	new result[size];
+	
+	format(result, size, formatStr, values[0], values[len - 1]);
+	
+	return result;
+}
+
+MakeValuesMinMaxFloat(Float:values[], len, formatStr[] = "%.0f%% to %.0f%%", Float:modifier = 100.0)
+{
+	const size = 32;
+	new result[size];
+	
+	format(result, size, formatStr, values[0] * modifier, values[len - 1] * modifier);
+	
+	return result;
+}
+
+ImplodeSkillValues(values[], len, formatStr[] = "%d")
+{
+	const outerSize = 64;
+	const innerSize = 8;
+	new result[outerSize * innerSize];
+	new pValues[outerSize][innerSize];
+	
+	for (new i = 0; i < len; i++)
+	{
+		format(pValues[i], innerSize, formatStr, values[i]);
+	}
+	
+	implode_strings(pValues, len, ", ", result, sizeof(result));
+	
+	return result;
+}
+
+ImplodeSkillValuesFloat(Float:values[], len, formatStr[] = "%.0f%%", Float:modifier = 100.0)
+{
+	const outerSize = 64;
+	const innerSize = 8;
+	new result[outerSize * innerSize];
+	new pValues[outerSize][innerSize];
+	
+	for (new i = 0; i < len; i++)
+	{
+		format(pValues[i], innerSize, formatStr, values[i] * modifier);
+	}
+	
+	implode_strings(pValues, len, ", ", result, sizeof(result));
+	
+	return result;
+}
 
 
 //public show_news( id )
