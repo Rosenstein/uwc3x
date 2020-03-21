@@ -400,7 +400,7 @@ SHOPMENU1_NECKLACE = Necklace of Immunity: You will be immune to enemy ultimates
 SHOPMENU1_ORB = Orb of Frost: Slows your enemy down when you hit him
 SHOPMENU1_PERIPHAT = Periapt of Health: Receive extra health
 SHOPMENU1_TOME = Tome of Experience: Purchasing a tome increases your experience by a fixed amount, the tome is consumed when bought
-SHOPMENU1_TOME2 = [%s]You have gained %d XP from purchasing Tomb of experience
+SHOPMENU1_TOME2 = You have gained %d XP from purchasing Tomb of experience
 TOO_MANY_TOMES = You have already purchased more then the allowed amount of Tomes for this round
 
 SHOPMENU2_HEADER = The following items are available for purchase at the shop (say shopmenu2)
