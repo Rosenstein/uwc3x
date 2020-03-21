@@ -453,11 +453,11 @@ public Task_Blink_Controller ( parm[2] )
 				
 				if ( USE_ENH && ( p_attribs[id][ATTRIBIDX_INT] >= INT_TELEPORT_LEVEL ) )
 				{
-					tele_cool = INT_TELEPORT_COOL;
-				}
-				else
-				{
-					tele_cool = CVAR_TELEPORT_COOLDOWN;
+					tele_cool -= INT_TELEPORT_COOL;
+					if (tele_cool < 1.0)
+					{
+						tele_cool = 1.0;
+					}
 				}
 				
 				set_task ( tele_cool, "cooldown", TASK_COOLDOWN_RESET + id, coolparm, 1 );

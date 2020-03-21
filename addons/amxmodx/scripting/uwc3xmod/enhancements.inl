@@ -80,7 +80,7 @@ public Set_Wisdom_Bonuses( id )
 
 	if( p_attribs[id][ATTRIBIDX_WIS] >= 18 )
 	{
-		p_maxultimates[id] = MAX_ULTIMATES + 1;
+		p_maxultimates[id] = MAX_ULTIMATES + WIS_ULTIMATEBONUS;
 	}
 
 	if( p_attribs[id][ATTRIBIDX_WIS] >= 17 )

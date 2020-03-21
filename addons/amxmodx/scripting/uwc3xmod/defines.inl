@@ -83,17 +83,20 @@
 #define INT_SERPENT_LEVEL 17 // Intellect level needed for Serpent Ward bonus
 #define INT_SERPENT_BONUS 2 // Intellect bonus # of serpent wards
 #define INT_TELEPORT_LEVEL 17 // Intellect level needed for Teleport bonus
-#define INT_TELEPORT_COOL 25.0 // Intellect bonus Teleport improved cooldown
+#define INT_TELEPORT_COOL 10.0 // Intellect bonus Teleport improved cooldown
 #define INT_MASTER_LEVEL 18 // Intellect level to be considered Master
+#define INT_VOODOO_LEVEL 18 // Intellect level for Voodoo bonus
+#define INT_VOODOO_BONUS 2.0 // Intellect bonus for Voodoo improved duration
 #define DEX_JUMPKICK_LEVEL 18 //Dexterity needed for Jumpkick Bonus
 
-#define WIS_FIREDAMAGEBONUS 0.15
-#define WIS_BASHBONUS 0.15
-#define WIS_BANISHBONUS 0.15
-#define WIS_JUMPKICKRESIST 0.33
-#define WIS_IMPALERESIST 0.15
 #define WIS_HEXRESIST 0.15
+#define WIS_IMPALERESIST 0.15
+#define WIS_FIREDAMAGEBONUS 0.15
 #define WIS_LIGHTNINGDAMAGEBONUS 0.15
+#define WIS_JUMPKICKRESIST 0.33
+#define WIS_BANISHBONUS 0.15
+#define WIS_BASHBONUS 0.15
+#define WIS_ULTIMATEBONUS 1
 
 #define DEX_JUMPKICK_KNOCKBACK_BONUS 5
 #define JUMPKICK_KNOCKBACK 20

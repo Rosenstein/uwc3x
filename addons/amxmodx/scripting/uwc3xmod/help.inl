@@ -560,11 +560,9 @@ public uwc3x_commands( id )
 
 	pos += format(temp[pos], 4096-pos, "<body bgcolor=#000000><font color=#FFB000>");
 	pos += format(temp[pos], 4096-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td><font color=#FFB000>");
-	pos += format(temp[pos], 4096-pos, "<center><b>Ultimate Warcraft3 Expansion</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>" );
+	pos += format(temp[pos], 4096-pos, "<center><b>Ultimate Warcraft3 Expansion</center><p>" );
 	pos += format(temp[pos], 4096-pos, "<center><b>%L</b></center><p>", id, "COMMANDS_HEADER" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HEADER2" );
-	//pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP1" );
-	//pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP2" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP3" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP4" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP5" );
@@ -575,19 +573,16 @@ public uwc3x_commands( id )
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP10" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP11" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP25" );
-	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP12" );
-	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP13" );
-	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP14" );
-	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP15" );
-	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP16" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP17" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP18" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP21" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP22" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP23" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP24" );
-	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP20" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP19" );
+	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP20" );
+	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP13" );
+	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP12" );
 	pos += format(temp[pos], 4096-pos, "</font></td></tr></table></center>" );
 
 	if( CVAR_WRITE_HTML )
@@ -861,15 +856,18 @@ public uwc3x_attributes( id )
 
 	new temp[8096], pos = 0;
 	pos += format(temp[pos], 8096-pos, "<body bgcolor=#000000><font color=#FFB000>");
-	pos += format(temp[pos], 8096-pos, "<b>%L</b><p>", id, "ATTRIB_MENU1" );
-	pos += format(temp[pos], 8096-pos, "<p>%L</p><ol>", id, "ATTRIB_MENU2" );
+	pos += format(temp[pos], 8096-pos, "<p><b>%L</b></p>", id, "ATTRIB_MENU1" );
+	//pos += format(temp[pos], 8096-pos, "<p>%L</p>", id, "ATTRIB_MENU2" );
+	pos += format(temp[pos], 8096-pos, "<ol>" );
 	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_STR" );
-	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_INT" );
+	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_INT", INT_IMPALE_BONUS * 100, INT_SIPHON_BONUS * 100, INT_BANISH_BONUS * 100 );
+	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_INT2", INT_HEX_BONUS * 100, INT_BASH_BONUS * 100, INT_TRUESHOT_BONUS * 100, INT_SERPENT_BONUS, INT_TELEPORT_COOL, INT_VOODOO_BONUS );
 	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_DEX" );
 	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_AGI" );
 	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_CON" );
-	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_WIS" );
-	pos += format(temp[pos], 8096-pos, "</ol>" );
+	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_WIS", WIS_HEXRESIST * 100, WIS_IMPALERESIST * 100, WIS_FIREDAMAGEBONUS * 100 );
+	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_WIS2", WIS_LIGHTNINGDAMAGEBONUS * 100, WIS_JUMPKICKRESIST * 100, WIS_BANISHBONUS * 100, WIS_BASHBONUS * 100, WIS_ULTIMATEBONUS );
+	pos += format(temp[pos], 8096-pos, "</ol></font></body>" );
 
 	if( CVAR_WRITE_HTML )
 	{

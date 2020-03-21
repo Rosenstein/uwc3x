@@ -1426,18 +1426,13 @@ public Ult_VooDoo ( id )
 
 		set_user_health_log ( id, get_user_health ( id ) + 2048 );
 
-		new Float:fTime = 5.0;
-		new iByte = 4;
+		new Float:fTime = 3.0;
+		new iByte = 2;
 
-		if ( USE_ENH && ( p_attribs[id][ATTRIBIDX_INT] >= INT_MASTER_LEVEL ) )
+		if ( USE_ENH && ( p_attribs[id][ATTRIBIDX_INT] >= INT_VOODOO_LEVEL ) )
 		{
-			iByte = 4;
-			fTime = 5.0;
-		}
-		else
-		{
-			fTime = 3.0;
-			iByte = 2;
+			iByte += floatround(INT_VOODOO_BONUS);
+			fTime += INT_VOODOO_BONUS;
 		}
 
 		set_task ( fTime, "Task_Reset_Godmode", TASK_RESET_GODMODE + id, parm, 2 );
