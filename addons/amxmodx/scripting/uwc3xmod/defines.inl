@@ -67,7 +67,7 @@
 
 #define STR_HEALTH_BONUS 5 // Bonus health for each str enhancement
 #define CON_HEAL_INTERVAL 5.0 // Task interval for Constitution health regen
-#define DEX_EVADE_BONUS 0.02 // Dexterity bonus to Evasion skill
+#define DEX_EVADE_BONUS 0.01 // Dexterity bonus to Evasion skill
 #define INT_IMPALE_LEVEL 11 // Intellect level needed for Impale bonus
 #define INT_IMPALE_BONUS 0.03 // Intellect bonus to hit for Impale
 #define INT_SIPHON_LEVEL 12 // Intellect level needed for Siphon Mana bonus

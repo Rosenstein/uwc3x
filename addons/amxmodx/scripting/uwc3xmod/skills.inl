@@ -192,7 +192,6 @@ public Set_Skill_Base ( )
 	{
 		//These have been tweaked as per Left Nut
 		p_vampiric[i]			= 0.07 + ( i * 0.03 );
-		p_evasion[i]			= 0.07 + ( i * 0.01 );
 		p_trueshot[i]			= 0.06 + ( i * 0.01 );
 		p_critical[i]			= 0.06 + ( i * 0.01 );
 		p_thorns[i]				= 0.07 + ( i * 0.03 );
@@ -245,25 +244,6 @@ public Set_Skill_Base ( )
 		
 		p_grabchance[i]			= CVAR_GRAB_CHANCE + ( 0.05 * i );
 		p_ropes[i]				= i;
-
-		if( i >= 5)
-		{
-			p_phoenix[i]			= 1.0;
-		}
-		else
-		{
-			p_phoenix[i]			= 0.25 + ( i * 0.25 );
-		}
-
-		if( i >= 6)
-		{
-			p_blink[i]				= 1.0;
-		}
-		else
-		{
-			p_blink[i]				= i * 0.15;
-		}
-
 	}
 }
 
@@ -1865,8 +1845,14 @@ public Set_Blink( id )
 	if ( p_skills[id][SKILLIDX_BLINK] )
 	{
 		new Float:randomnumber = random_float( 0.0, 1.0 );
+		new Float:blink_chance = p_blink[p_skills[id][SKILLIDX_BLINK]-1];
 
-		if ( randomnumber <= p_blink[p_skills[id][SKILLIDX_BLINK]-1] )
+		if ( CVAR_DEBUG_MODE )
+		{
+			log_amx( "[UWC3X] Debug ->Set_Blink :: id=%d randomnumber=%f chance=%f",id , randomnumber, blink_chance);
+		}
+		
+		if ( randomnumber <= blink_chance )
 		{
 			hasblink[id] = true;
 		}
@@ -1955,18 +1941,18 @@ public Set_Phoenix_Count( id )
 
 		if ( CVAR_DEBUG_MODE )
 		{
-			log_amx( "[UWC3X] Debug ->Set_Phoenix_Count :: randomnumber=%f teamnumber=%d chance=%f", randomnumber, teamnumber, pheonix_chance);
+			log_amx( "[UWC3X] Debug ->Set_Phoenix_Count :: id=%d randomnumber=%f teamnumber=%d chance=%f pheonixexistsT=%d pheonixexistsCT=%d",id , randomnumber, teamnumber, pheonix_chance, pheonixexistsT, pheonixexistsCT);
 		}
 		
 		if ( randomnumber <= pheonix_chance )
 		{
 			phoenix[id] = true;
 
-			if ( get_user_team( id ) == TEAM_T)
+			if ( teamnumber == TEAM_T)
 			{
 				pheonixexistsT++;
 			}
-			else if ( get_user_team( id ) == TEAM_CT)
+			else if ( teamnumber == TEAM_CT)
 			{
 				pheonixexistsCT++;
 			}

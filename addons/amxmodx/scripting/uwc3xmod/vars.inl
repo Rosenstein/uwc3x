@@ -83,27 +83,16 @@ new Float:p_ankh[MAX_SKILL_LEVEL3] = {0.333,0.666,1.0}; // Equipment reincarnati
 new Float:p_fan[MAX_SKILL_LEVEL3] = {0.05,0.10,0.15}; // Fan of Knives
 new p_serpent[MAX_SKILL_LEVEL3] = {1,2,3}; // Serpent Ward
 
-
-// All 10-lvl skills defined next - skill values defined in set_skill_limits ( )
-
-	/* Redoing these as 10 level skills, and then setting the indexes in the skills.ini file
-	// All 5-lvl skills defined below
-	new Float:p_blink[MAX_SKILL_LEVEL5] = {0.20, 0.40, 0.60, 0.80, 1.00};// Blink
-	new Float:p_phoenix[MAX_SKILL_LEVEL5] = {0.20, 0.40, 0.60, 0.80, 1.00}; // Pheonix
-	new Float:p_evasion[MAX_SKILL_LEVEL5] = {0.03, 0.05, 0.07, 0.09, 0.11}; // Evasion
-	*/
+	// Maybe we should redo these as 10 level skills, and then setting the indexes in the skills.ini file
+	new Float:p_blink  [MAX_SKILL_LEVEL6] = { 0.10, 0.25, 0.40, 0.55, 0.75, 1.00 }; // Blink
+	new Float:p_phoenix[MAX_SKILL_LEVEL5] = { 0.15, 0.35, 0.55, 0.75, 1.00 }; // Pheonix
+	new Float:p_evasion[MAX_SKILL_LEVEL7] = { 0.02, 0.03, 0.05, 0.07, 0.11, 0.14, 0.18 }; // Evasion
 	
 	new bool:blessed[MAX_PLAYERS] = false; // Is player blessed	
 
+	// All 10-lvl skills defined next - skill values defined in set_skill_limits ( )
 	// amulet of cat skill
 	//new Float:p_cat[MAX_SKILL_LEVEL1];
-
-	// Blink
-	new Float:p_blink[MAX_SKILL_LEVEL10];
-	// Pheonix
-	new Float:p_phoenix[MAX_SKILL_LEVEL10];
-	// Evasion
-	new Float:p_evasion[MAX_SKILL_LEVEL10];
 
 	//jumpkick
 	new p_jumpkick_damage[MAX_SKILL_LEVEL10];
