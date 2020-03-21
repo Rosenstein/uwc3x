@@ -157,6 +157,11 @@ public new_round ( id )
 			CTspawnpts[i] = { 0, 0, 0 };
 		}
 	}
+	
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx("[UWC3X] new_round :: EVENT START :: id=%d", id);
+	}
 
 	//Reset the amount of tombs the player has purchased
 	playertombs[id] = 0;
@@ -415,6 +420,11 @@ public new_round ( id )
 		displaylevel ( id, 3 );
 		return PLUGIN_CONTINUE;
 	}
+	
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx("[UWC3X] new_round :: actual new round :: id=%d", id);
+	}
 
 	if ( hasmole[id] && playeritem2[id] != MOLE )
 	{
@@ -564,6 +574,9 @@ public new_round ( id )
 
 	// Check skill affects, set user health
 	Skills_Check ( id, true );
+
+	// Count phoenixes for each team
+	Set_Phoenix_Count( id );
 
 	// Chec for Fan of Knives
 	Task_Check_Fan ( id );
@@ -899,6 +912,10 @@ public new_round ( id )
 
 	}
 
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx( "[UWC3X] new_round :: vengeance_used -> 0 :: id=%d; vengeance_used=%d", id, vengeance_used[id]);
+	}
 	vengeance_used[id] = 0;
 
 	new acount = get_attribcount ( id );

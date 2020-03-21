@@ -619,6 +619,11 @@ public restart_round_command(time)
 
 public Initialize_PlayerData ( id, limited )
 {
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx( "[UWC3X] Initialize_PlayerData :: id=%d; limited=%d", id, limited);
+	}
+	
 	//clear the hud chats
 	hudchat_clear(id);
 

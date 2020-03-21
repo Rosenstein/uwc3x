@@ -161,10 +161,10 @@ public check_for_reviving ( victim_id )
 
 	if ( get_user_team ( victim_id ) == TEAM_T && pheonixexistsT > 0 )
 	{
-		//if ( CVAR_DEBUG_MODE )
-		//{
-		//	log_amx( "[UWC3X] Debug:: In TEAM_T pheonix respawn check");
-		//}
+		if ( CVAR_DEBUG_MODE )
+		{
+			log_amx( "[UWC3X] Debug:: In TEAM_T pheonix respawn check");
+		}
 
 		for ( y = 0; y < numberofplayers; ++y )
 		{
@@ -172,18 +172,18 @@ public check_for_reviving ( victim_id )
 			new name[32];
 			get_user_name ( id, name, 31 );
 
-			//if ( CVAR_DEBUG_MODE )
-			//{
-			//	new name2[32];
-			//	get_user_name ( victim_id, name2, 31 );
-			//	log_amx( "[UWC3X] Debug:: %s - get_availskillpts(id)=%d", name, get_availskillpts(id) );
-			//	log_amx( "[UWC3X] Debug:: %s - phoenix(id)=%d", name, phoenix[id] );
-			//	log_amx( "[UWC3X] Debug:: %s - to_be_revived(victim_id)=%s", name, name2 );
-			//	log_amx( "[UWC3X] Debug:: %s - endround=%d", name, endround );
-			//	log_amx( "[UWC3X] Debug:: %s - is_user_alive(id)=%d", name, is_user_alive(id) );
-			//}
+			if ( CVAR_DEBUG_MODE )
+			{
+				new name2[32];
+				get_user_name ( victim_id, name2, 31 );
+				log_amx( "[UWC3X] Debug:: %s - get_availskillpts(id)=%d", name, get_availskillpts(id) );
+				log_amx( "[UWC3X] Debug:: %s - phoenix(id)=%d", name, phoenix[id] );
+				log_amx( "[UWC3X] Debug:: %s - to_be_revived(victim_id)=%s", name, name2 );
+				log_amx( "[UWC3X] Debug:: %s - endround=%d", name, endround );
+				log_amx( "[UWC3X] Debug:: %s - is_user_alive(id)=%d", name, is_user_alive(id) );
+			}
 
-			if ( !get_availskillpts ( id ) && phoenix[id] && !to_be_revived[victim_id] && !endround && id!=victim_id && !changingteam[victim_id] && is_user_alive ( id ) && ( get_user_team ( id )==get_user_team ( victim_id ) ) && !is_user_alive ( victim_id ) && get_user_team ( victim_id )!=SPEC )
+			if (phoenix[id] && !to_be_revived[victim_id] && !endround && id!=victim_id && !changingteam[victim_id] && is_user_alive ( id ) && ( get_user_team ( id )==get_user_team ( victim_id ) ) && !is_user_alive ( victim_id ) && get_user_team ( victim_id )!=SPEC )
 			{
 				if ( CVAR_DEBUG_MODE )
 				{
@@ -191,7 +191,7 @@ public check_for_reviving ( victim_id )
 				}
 
 				phoenix[id] = false;
-				phoenix[victim_id]=false;
+				//phoenix[victim_id]=false;
 				new parm[2];
 				parm[0] = victim_id;
 
@@ -235,33 +235,34 @@ public check_for_reviving ( victim_id )
 	}
 	else if ( get_user_team ( victim_id )== TEAM_CT && pheonixexistsCT > 0 )
 	{
-		//if ( CVAR_DEBUG_MODE )
-		//{
-		//	log_amx( "[UWC3X] Debug:: In TEAM_CT pheonix respawn check");
-		//}
+		if ( CVAR_DEBUG_MODE )
+		{
+			log_amx( "[UWC3X] Debug:: In TEAM_CT pheonix respawn check");
+		}
+		
 		for ( y = 0; y < numberofplayers; ++y )
 		{
 			new id = players[y];
 
-			//if ( CVAR_DEBUG_MODE )
-			//{
-			//	log_amx( "[UWC3X] Debug:: get_availskillpts(id)=%d", get_availskillpts(id) );
-			//	log_amx( "[UWC3X] Debug:: phoenix(id)=%d", phoenix[id] );
-			//	log_amx( "[UWC3X] Debug:: to_be_revived(victim_id)=%d", to_be_revived[victim_id] );
-			//	log_amx( "[UWC3X] Debug:: endround=%d", endround );
-			//	log_amx( "[UWC3X] Debug:: changingteam[victim_id]=%d", changingteam[victim_id] );
-			//	log_amx( "[UWC3X] Debug:: is_user_alive(id)=%d", is_user_alive(id) );
-			//}
-
-			if (!get_availskillpts(id) && phoenix[id] && !to_be_revived[victim_id] && !endround && id!=victim_id && !changingteam[victim_id] && is_user_alive(id) && get_user_team(id)==get_user_team(victim_id) && !is_user_alive(victim_id) && get_user_team(victim_id)!=SPEC)
+			if ( CVAR_DEBUG_MODE )
 			{
-				//if ( CVAR_DEBUG_MODE )
-				//{
-				//	log_amx( "[UWC3X] Debug:: In TEAM_CT player is respawned!");
-				//}
+				log_amx( "[UWC3X] Debug:: get_availskillpts(id)=%d", get_availskillpts(id) );
+				log_amx( "[UWC3X] Debug:: phoenix(id)=%d", phoenix[id] );
+				log_amx( "[UWC3X] Debug:: to_be_revived(victim_id)=%d", to_be_revived[victim_id] );
+				log_amx( "[UWC3X] Debug:: endround=%d", endround );
+				log_amx( "[UWC3X] Debug:: changingteam[victim_id]=%d", changingteam[victim_id] );
+				log_amx( "[UWC3X] Debug:: is_user_alive(id)=%d", is_user_alive(id) );
+			}
+
+			if (phoenix[id] && !to_be_revived[victim_id] && !endround && id!=victim_id && !changingteam[victim_id] && is_user_alive(id) && get_user_team(id)==get_user_team(victim_id) && !is_user_alive(victim_id) && get_user_team(victim_id)!=SPEC)
+			{
+				if ( CVAR_DEBUG_MODE )
+				{
+					log_amx( "[UWC3X] Debug:: In TEAM_CT player is respawned!");
+				}
 
 				phoenix[id] = false;
-				phoenix[victim_id]=false;
+				//phoenix[victim_id]=false;
 				new parm[2], name[32];
 				parm[0] = victim_id;
 

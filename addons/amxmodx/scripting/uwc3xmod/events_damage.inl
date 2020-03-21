@@ -2508,6 +2508,11 @@ public death( )
 
 	changingteam[victim_id] = false;
 	diedlastround[victim_id] = true;
+	
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx("[UWC3X] death :: VENGEANCE :: CHECK :: id=%d; vengeance_used=%d; vengeance_state=%d;", victim_id, vengeance_used[victim_id], vengeance_state[victim_id])
+	}
 
 	// Player either has ultimate Vengeance OR Suicide Bomber
 	if ( p_skills[victim_id][SKILLIDX_VENGEANCE] && ( !hasblink[killer_id] || killer_id == victim_id ) && !u_delay )
@@ -2520,6 +2525,11 @@ public death( )
 		// [07-14-04] Vengeance check within ultimate timer - K2mia
 		if ( CVAR_FORCE_VENGANCE_DELAY )
 		{
+			if (CVAR_DEBUG_MODE)
+			{
+				log_amx("[UWC3X] death :: VENGEANCE :: FREE :: id=%d; vengeance_used=%d; vengeance_state=%d;", victim_id, vengeance_used[victim_id], vengeance_state[victim_id])
+			}
+		
 			// Only check for end of round
 			if( !endround && !vengeance_used[victim_id] )
 			{
@@ -2531,6 +2541,11 @@ public death( )
 		}
 		else
 		{
+			if (CVAR_DEBUG_MODE)
+			{
+				log_amx("[UWC3X] death :: VENGEANCE :: RESTRICT :: id=%d; vengeance_used=%d; vengeance_state=%d;", victim_id, vengeance_used[victim_id], vengeance_state[victim_id])
+			}
+			
 			// Restrict Vengeance if another ultimate was recently used
 			if( !endround && !ultimateused[victim_id] && !vengeance_used[victim_id] )
 			{

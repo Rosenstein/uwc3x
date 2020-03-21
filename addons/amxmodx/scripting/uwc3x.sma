@@ -302,6 +302,11 @@ public client_connect ( id )
 
 public client_disconnect ( id )
 {
+	if (CVAR_DEBUG_MODE)
+	{
+		log_amx( "[UWC3X] client_disconnect :: id=%d", id);
+	}
+	
 	hudchat_clear(id);
 	PlayerAuthed[id]	= false;	// Reset teh Authorized Steam Setting
 	g_specMode[id]		= false;	// Reset spectator status for player

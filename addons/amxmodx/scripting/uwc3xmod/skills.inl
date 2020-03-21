@@ -2106,9 +2106,6 @@ public Skills_Check( id, sethealth )
 	//Set mine count
 	Set_Mine_Count( id );
 
-	// Count phoenixes for each team
-	Set_Phoenix_Count( id );
-
 	//Set the hook count for a user
 	Set_Hook_Count( id );
 
@@ -2612,6 +2609,14 @@ public Bot_Pick_Skills( id )
 	// Calculate how many skill points can be spent
 	//new skillpts = get_availskillpts( id );
 	new skillptamount = CVAR_SKILLPOINTS_PER_LEVEL * p_level[id];
+	
+	if (CVAR_DEBUG_MODE)
+	{
+		if (get_availskillpts( id ) > 10 && p_level[id] > 40)
+		{
+			p_skills[id][SKILLIDX_PHOENIX] = skill_limits[SKILLIDX_PHOENIX] - 1;
+		}
+	}
 	
 	//while( skillpts > 0 )
 	while( get_availskillpts( id ) > 0 )
