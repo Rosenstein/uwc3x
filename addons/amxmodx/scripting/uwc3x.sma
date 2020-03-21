@@ -48,8 +48,8 @@
 *************************************************************************************/
 
 new const UWC3XNAME[]		=	"Ultimate Warcraft3 Expansion"
-new const UWC3XAUTHOR[]		=	"-=[Yaur]=-"
-new const UWC3XVERSION[]	=	"1.0.82"
+new const UWC3XAUTHOR[]		=	"-=[Yaur]=- modified by https://github.com/Miyuyami/uwc3x"
+new const UWC3XVERSION[]	=	"1.0.83"
 
 #pragma reqclass	xstats
 #pragma reqlib		engine

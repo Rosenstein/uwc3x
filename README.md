@@ -8,6 +8,8 @@ crx_nonamechange.amxx
 ```
 
 ## Notes
+Changes are listed in commits messages/descriptions and in [CHANGELOG.md](https://github.com/Miyuyami/uwc3x/blob/master/CHANGELOG.md).
+
 Right now it needs more testing, but hopefully none of the changes from the original will break anything.
 
 It is recommended to save XP per name, steamid saving still needs testing.
