@@ -1860,7 +1860,7 @@ public damage_event( id )
 			{
 				damage = read_data( 2 );
 				// Changed to only do double damage
-				damage = floatround( float( damage ) * 2 )
+				damage = floatround( float( damage ) * 1 )
 
 				new idname[32], ename[32];
 				get_user_name( id, idname, 31 );
