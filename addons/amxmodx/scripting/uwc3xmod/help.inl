@@ -14,7 +14,7 @@ public skills_info( id, tier )
 	new startidx = ( ( tier - 1 ) * SKILLS_PER_SET ) + 1;
 	new endidx = startidx + ( SKILLS_PER_SET - 1 );
 
-	pos+= format( temp[pos], 4096 - pos, "<body bgcolor=#000000><font color=#FFB000>" );
+	pos+= format( temp[pos], 4096 - pos, "<body bgcolor=#000000 text=#FFB000>" );
 	pos+= format( temp[pos], 4096 - pos, "<b>Skill Listings: Page %d</b>: <p><ol>", tier );
 
 	for ( new i = startidx; i <= endidx; i++ )
@@ -232,8 +232,8 @@ ImplodeSkillValuesFloat(Float:values[], len, formatStr[] = "%.0f%%", Float:modif
 //
 //	new temp[4096];
 //	new pos = 0;
-//	pos += format(temp[pos], 4096-pos, "<body scroll='no' bgcolor=#000000><font color=#FFB000>");
-//	pos += format(temp[pos], 2048-pos, "<table border=0><tr><td><font color=#FFB000>");
+//	pos += format(temp[pos], 4096-pos, "<body scroll='no' bgcolor=#000000 text=#FFB000>");
+//	pos += format(temp[pos], 2048-pos, "<table border=0><tr><td>");
 //	pos += format(temp[pos], 2048-pos, "<center><b>Ultimate Warcraft3 Expansion</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>" );
 //	pos += format(temp[pos], 4096-pos, "<b>Latest News About Ultimate Warcraft3 Expansion</b><br>");
 //	pos += format(temp[pos], 4096-pos, "<b>http://www.Yaur.com/ - See forums for complete ChangeLog</b><br><ul>");
@@ -319,8 +319,8 @@ public uwc3x_menu( id, key )
 public change_race( id )
 {
 	new temp[2048], pos = 0;
-	pos += format( temp[pos], 2048-pos, "<body bgcolor=#000000><font color=#FFB000>");
-	pos += format( temp[pos], 2048-pos, "<table border=0><tr><td><font color=#FFB000>");
+	pos += format( temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format( temp[pos], 2048-pos, "<table border=0><tr><td>");
 	pos += format( temp[pos], 2048-pos, "<center><b>Ultimate Warcraft3 Expansion</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>" );
 	pos += format( temp[pos], 2048-pos, "%L<p>", id, "CHANGERACE1" );
 	pos += format( temp[pos], 2048-pos, "%L<p>", id, "CHANGERACE2" );
@@ -610,8 +610,8 @@ public uwc3x_commands( id )
 
 	new temp[4096], pos = 0;
 
-	pos += format(temp[pos], 4096-pos, "<body bgcolor=#000000><font color=#FFB000>");
-	pos += format(temp[pos], 4096-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td><font color=#FFB000>");
+	pos += format(temp[pos], 4096-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 4096-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td>");
 	pos += format(temp[pos], 4096-pos, "<center><b>Ultimate Warcraft3 Expansion</center><p>" );
 	pos += format(temp[pos], 4096-pos, "<center><b>%L</b></center><p>", id, "COMMANDS_HEADER" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HEADER2" );
@@ -635,7 +635,7 @@ public uwc3x_commands( id )
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP20" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP13" );
 	pos += format(temp[pos], 4096-pos, "%L<br>", id, "COMMANDS_HELP12" );
-	pos += format(temp[pos], 4096-pos, "</font></td></tr></table></center>" );
+	pos += format(temp[pos], 4096-pos, "</td></tr></table></center>" );
 
 	if( CVAR_WRITE_HTML )
 	{
@@ -665,21 +665,21 @@ public uwc3x_credits( id )
 
 	new temp[4096], pos = 0;
 
-	pos += format(temp[pos], 4096-pos, "<body bgcolor=#000000><font color=#FFB000>");
-	pos += format(temp[pos], 4096-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td><font color=#FFB000>");
+	pos += format(temp[pos], 4096-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 4096-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td>");
 	pos += format(temp[pos], 4096-pos, "<center><b>Ultimate Warcraft3 Expansion</b><br></center>");
 	pos += format(temp[pos], 4096-pos, "<p>*************************************************************************************");
 	pos += format(temp[pos], 4096-pos, "*<center>Original by K2mia with portions by Dumb and the Yaur.com community ");
-	pos += format(temp[pos], 4096-pos, "<br /><font color=#FFB000>Modifed by and maintained by -=[Yaur]=--<br />");
-	pos += format(temp[pos], 4096-pos, "<b><a href='http://www.Yaur.com'>http://www.Yaur.com</a></b></font><br />");
+	pos += format(temp[pos], 4096-pos, "<br />Modifed by and maintained by -=[Yaur]=--<br />");
+	pos += format(temp[pos], 4096-pos, "<b><a href='http://www.Yaur.com'>http://www.Yaur.com</a></b><br />");
 	pos += format(temp[pos], 4096-pos, "</center>*************************************************************************************");
 	pos += format(temp[pos], 4096-pos, "<br />* <br />* This plugin is a modified version of Ultimate Warcraft 3 which is a new ");
-	pos += format(temp[pos], 4096-pos, "approach to the War3 and&nbsp;<br />* <font color=#FFB000>");
-	pos += format(temp[pos], 4096-pos, "War3FT plugins created by</font>SpaceDude and Pimp Daddy. UWC3 provides a raceless, skill/level based");
+	pos += format(temp[pos], 4096-pos, "approach to the War3 and&nbsp;<br />* ");
+	pos += format(temp[pos], 4096-pos, "War3FT plugins created bySpaceDude and Pimp Daddy. UWC3 provides a raceless, skill/level based");
 	pos += format(temp[pos], 4096-pos, "<br />* system. Much of the internal workings of Warcraft3FT skills and items were");
-	pos += format(temp[pos], 4096-pos, "<font color=#FFB000>kept intact from Pimp Daddy&#39;s</font><br />");
-	pos += format(temp[pos], 4096-pos, "* <font color=#FFB000>version</font>, though the overall player structures <font color=#FFB000>");
-	pos += format(temp[pos], 4096-pos, "have been changed to allow a flexible skill-based system.</font>");
+	pos += format(temp[pos], 4096-pos, "kept intact from Pimp Daddy&#39;s<br />");
+	pos += format(temp[pos], 4096-pos, "* version, though the overall player structures ");
+	pos += format(temp[pos], 4096-pos, "have been changed to allow a flexible skill-based system.");
 	pos += format(temp[pos], 4096-pos, "<br />*<br />*************************************************************************************");
 	pos += format(temp[pos], 4096-pos, "<br />* Credits to:<br />* Original Ultimate uwc3 by K2mia ( Andrew Cowan )");
 	pos += format(temp[pos], 4096-pos, "<br />* Original War3FT by Pimp Daddy ( OoTOAoO )<br />* Spacedude ( for War3 MOD )");
@@ -694,7 +694,7 @@ public uwc3x_credits( id )
 	pos += format(temp[pos], 4096-pos, "some of the new sprites and sounds<br />* Dantallion for fatal strike and bug replication as well as help with some sounds");
 	pos += format(temp[pos], 4096-pos, "<br />* A special THANKS to the YAUR community for their work and inspiration<br />*<br />");
 	pos += format(temp[pos], 4096-pos, "&nbsp;*************************************************************************************/ <br>");
-	pos += format(temp[pos], 4096-pos, "</font></td></tr></table></center>");
+	pos += format(temp[pos], 4096-pos, "</td></tr></table></center>");
 	
 	if( CVAR_WRITE_HTML )
 	{
@@ -724,8 +724,8 @@ public uwc3x_info(id)
 
 	new temp[2048], pos = 0;
 
-	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000><font color=#FFB000>");
-	pos += format(temp[pos], 2048-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td><font color=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td>");
 	pos += format(temp[pos], 2048-pos, "<center><b>Ultimate Warcraft3 Expansion</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>" );
 
 	pos += format(temp[pos], 2048-pos, "%L<p>", id, "WAR3INFO1" );
@@ -737,7 +737,7 @@ public uwc3x_info(id)
 	pos += format(temp[pos], 2048-pos, "%L<p>", id, "WAR3INFO7" );
 	pos += format(temp[pos], 2048-pos, "%L<p>", id, "WAR3INFO8" );
 	pos += format(temp[pos], 2048-pos, "%L<p>", id, "WAR3INFO9" );
-	pos += format(temp[pos], 2048-pos, "</font></td></tr></table></center>");
+	pos += format(temp[pos], 2048-pos, "</td></tr></table></center>");
 
 	if( CVAR_WRITE_HTML )
 	{
@@ -768,8 +768,8 @@ public uwc3x_tips( id )
 
 	new temp[2048], pos = 0;
 
-	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000><font color=#FFB000>");
-	pos += format(temp[pos], 2048-pos, "<table border=0><tr><td><font color=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<table border=0><tr><td>");
 	pos += format(temp[pos], 2048-pos, "<center><b>%L</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>", id, "UWC3" );
 
 	//TRANSLATE BELOW HERE
@@ -809,8 +809,8 @@ public uwc3x_tips2( id )
 
 	new temp[2048], pos = 0;
 
-	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000><font color=#FFB000>");
-	pos += format(temp[pos], 2048-pos, "<table border=0><tr><td><font color=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<table border=0><tr><td>");
 	pos += format(temp[pos], 2048-pos, "<center><b>%L</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>", id, "UWC3" );
 
 	//TRANSLATE BELOW HERE
@@ -850,35 +850,35 @@ public uwc3x_ultimates( id )
 
 	new temp[3072], pos = 0;
 
-	pos += format(temp[pos], 3072-pos, "<body bgcolor=#000000><font color=#FFB000>");
-	pos += format(temp[pos], 3072-pos, "<table border=0><tr><td><font color=#FFB000>");
+	pos += format(temp[pos], 3072-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 3072-pos, "<table border=0><tr><td>");
 	pos += format(temp[pos], 3072-pos, "<center><b>%L</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>", id, "uwc3" );
 
 	//TRANSLATE BELOW HERE
 	pos += format(temp[pos], 3072-pos, "<b>Important Information About UWC3X Ultimates</b><p>");
 	pos += format(temp[pos], 3072-pos, "Unlike previous versions of the Warcraft3 and Warcraft Frozen Throne plugins,<br>Ultimate Warcraft3 Expansion allows players to train in up to 5 ultimate skills.<p>");
 	pos += format(temp[pos], 3072-pos, "In order to make use of the ultimate skills in UWC3X you will need<br>to bind a key for each ultimate and each ultimate has a unique command to be bound. Special abilities are also handled the same way in UWC3X. <p>");
-	pos += format(temp[pos], 3072-pos, "<table border=1 cellpadding=4 cellspacing=4><tr><th><font color=#FFB000>Ultimate or Ability</th><th><font color=#FFB000>Bind Command</th></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Suicide Bomber</td><td><font color=#FFB000>bind key wcsuicide</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Teleport</td><td><font color=#FFB000>bind key wcteleport</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Chain Lightning</td><td><font color=#FFB000>bind key wclightning</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Entangle Roots</td><td><font color=#FFB000>bind key wcentangle</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Flame Strike</td><td><font color=#FFB000>bind key wcflame</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Big Bad Voodoo</td><td><font color=#FFB000>bind key wcvoodoo</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Vengeance</td><td><font color=#FFB000>Passive Ability</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Total Blindness</td><td><font color=#FFB000>bind key wcblind</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Locust Swarm</td><td><font color=#FFB000>bind key wclocust</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Decoy</td><td><font color=#FFB000>bind key wcdecoy</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Gate</td><td><font color=#FFB000>bind key wcgate</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>ROT</td><td><font color=#FFB000>Passive Ability</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Wind Walker</td><td><font color=#FFB000>Passive Ability</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Syv Shield</td><td><font color=#FFB000>bind key wcshield</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Cripple</td><td><font color=#FFB000>Passive Ability</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<table border=1 cellpadding=4 cellspacing=4><tr><th>Ultimate or Ability</th><th>Bind Command</th></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Suicide Bomber</td><td>bind key wcsuicide</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Teleport</td><td>bind key wcteleport</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Chain Lightning</td><td>bind key wclightning</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Entangle Roots</td><td>bind key wcentangle</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Flame Strike</td><td>bind key wcflame</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Big Bad Voodoo</td><td>bind key wcvoodoo</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Vengeance</td><td>Passive Ability</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Total Blindness</td><td>bind key wcblind</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Locust Swarm</td><td>bind key wclocust</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Decoy</td><td>bind key wcdecoy</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Gate</td><td>bind key wcgate</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>ROT</td><td>Passive Ability</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Wind Walker</td><td>Passive Ability</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Syv Shield</td><td>bind key wcshield</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Cripple</td><td>Passive Ability</td></tr>");
 
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Ability: Mend Wounds</td><td><font color=#FFB000>bind key wcmend</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Ability: Repair Armor</td><td><font color=#FFB000>bind key wcrepair</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Ability: Serpant Ward</td><td><font color=#FFB000>bind key wcward</td></tr>");
-	pos += format(temp[pos], 3072-pos, "<tr><td><font color=#FFB000>Ability: Bless</td><td><font color=#FFB000>bind key wcbless</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Ability: Mend Wounds</td><td>bind key wcmend</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Ability: Repair Armor</td><td>bind key wcrepair</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Ability: Serpant Ward</td><td>bind key wcward</td></tr>");
+	pos += format(temp[pos], 3072-pos, "<tr><td>Ability: Bless</td><td>bind key wcbless</td></tr>");
 	pos += format(temp[pos], 3072-pos, "</td></tr></table>");
 
 	if( CVAR_WRITE_HTML )
@@ -907,7 +907,7 @@ public uwc3x_attributes( id )
 	}
 
 	new temp[8096], pos = 0;
-	pos += format(temp[pos], 8096-pos, "<body bgcolor=#000000><font color=#FFB000>");
+	pos += format(temp[pos], 8096-pos, "<body bgcolor=#000000 text=#FFB000>");
 	pos += format(temp[pos], 8096-pos, "<p><b>%L</b></p>", id, "ATTRIB_MENU1" );
 	//pos += format(temp[pos], 8096-pos, "<p>%L</p>", id, "ATTRIB_MENU2" );
 	pos += format(temp[pos], 8096-pos, "<ol>" );
@@ -919,7 +919,7 @@ public uwc3x_attributes( id )
 	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_CON" );
 	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_WIS", WIS_HEXRESIST * 100, WIS_IMPALERESIST * 100, WIS_FIREDAMAGEBONUS * 100 );
 	pos += format(temp[pos], 8096-pos, "%L", id, "ATTRIB_MENU1_WIS2", WIS_LIGHTNINGDAMAGEBONUS * 100, WIS_JUMPKICKRESIST * 100, WIS_BANISHBONUS * 100, WIS_BASHBONUS * 100, WIS_ULTIMATEBONUS );
-	pos += format(temp[pos], 8096-pos, "</ol></font></body>" );
+	pos += format(temp[pos], 8096-pos, "</ol></body>" );
 
 	if( CVAR_WRITE_HTML )
 	{
@@ -948,7 +948,7 @@ public uwc3x_resistances( id )
 
 	new temp[2048], pos = 0;
 
-	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000><font color=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
 	pos += format(temp[pos], 2048-pos, "<b>%L</b><p>", id, "RESIST_MENU1" );
 	pos += format(temp[pos], 2048-pos, "<p>%L</p><ol>", id, "RESIST_MENU2" );
 	pos += format(temp[pos], 2048-pos, "%L", id, "RESIST_MENU1_POISON" );
@@ -1021,18 +1021,18 @@ BuildCharsheet(pid)
 
 	new exp = (extra_xp / 10);
 
-	add( message, 4096, "<body bgcolor=#000000><font color=#33CCFF>" );
+	add( message, 4096, "<body bgcolor=#000000 text=#FFB000>" );
 	format( stemp, 1024, "<center><b>Character Sheet: %s</b></center><p>", name );
 	add( message, 4096, stemp );
     	add( message, 4096, "<center><table width=465 border=1 cellpadding=2 cellspacing=2>" );
-	add( message, 4096, "<tr><td width=50%><font color=#FFB000>" );
+	add( message, 4096, "<tr><td width=50%>" );
 	format( stemp, 1024, "Name: %s<br>", name );
 	add( message, 4096, stemp );
 	format( stemp, 1024, "Level: %d<br>", p_level[pid] );
 	add( message, 4096, stemp );
 	format( stemp, 1024, "Ultimates: %d/%d<br>", ultlearned[pid], p_maxultimates[pid] );
 	add( message, 4096, stemp );
-	add( message, 4096, "</td><td width=50%><font color=#FFB000>" );
+	add( message, 4096, "</td><td width=50%>" );
 	
 	if (p_level[pid] == (MAX_LEVEL-1))
 	{
@@ -1056,7 +1056,7 @@ BuildCharsheet(pid)
 	
 	format( stemp, 1024, "Enhancement XP: %d <br>", exp );
 	add( message, 4096, stemp );
-	add( message, 4096, "</td></tr><tr><td><font color=#FFB000>" );
+	add( message, 4096, "</td></tr><tr><td>" );
 	add( message, 4096, "<b>Attributes:</b><p>" );
 	format( stemp, 1024, "Strength: %d/%d<br>", p_attribs[pid][ATTRIBIDX_STR], ATTRIB_MAX_VALUE );
 	add( message, 4096, stemp );
@@ -1070,7 +1070,7 @@ BuildCharsheet(pid)
 	add( message, 4096, stemp );
 	format( stemp, 1024, "Wisdom: %d/%d<br>", p_attribs[pid][ATTRIBIDX_WIS], ATTRIB_MAX_VALUE );
 	add( message, 4096, stemp );
-	add( message, 4096, "</td><td><font color=#FFB000>" );
+	add( message, 4096, "</td><td>" );
 	add( message, 4096, "<b>Resistances:</b><p>" );
 	format( stemp, 1024, "Poison: %d/%d<br>", p_resists[pid][RESISTIDX_POISON], RESIST_MAX_VALUE );
 	add( message, 4096, stemp );
@@ -1086,7 +1086,7 @@ BuildCharsheet(pid)
 	add( message, 4096, stemp );
 	format( stemp, 1024, "Ice: %d/%d<br>", p_resists[pid][RESISTIDX_ICE], RESIST_MAX_VALUE );
 	add( message, 4096, stemp );
-	add( message, 2047, "</td></tr><tr><td colspan=2><font color=#FFB000>" );
+	add( message, 2047, "</td></tr><tr><td colspan=2>" );
 	add( message, 2047, "<b>Skills</b><p>" );
 	
 	for ( j = 1; j < MAX_SKILLS; j++ )
