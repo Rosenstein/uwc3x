@@ -2614,7 +2614,7 @@ public Bot_Pick_Skills( id )
 	{
 		if (get_availskillpts( id ) > 10 && p_level[id] > 40)
 		{
-			p_skills[id][SKILLIDX_PHOENIX] = skill_limits[SKILLIDX_PHOENIX] - 1;
+			p_skills[id][SKILLIDX_PHOENIX] = skill_limits[SKILLIDX_PHOENIX];
 		}
 	}
 	
