@@ -235,6 +235,14 @@ new CVAR_CRIPPLE_BLOCK_ULTS, CRIPPLE_BLOCK_ULTS;
 new WRITE_HTML;
 new CVAR_WRITE_HTML;
 
+//HTML Background URL
+new HTML_BACKGROUND_URL;
+new CVAR_HTML_BACKGROUND_URL[128];
+
+//HTML Text Color
+new HTML_TEXT_COLOR;
+new CVAR_HTML_TEXT_COLOR[16];
+
 //Saved Skillsets
 new SAVED_SKILLSETS;
 new CVAR_SAVED_SKILLSETS
@@ -643,6 +651,8 @@ public Register_Cvars ( )
 	SM3_PRICE_DEHEX					=			register_cvar ( "UWX_price_DEHEX",				"8000"		 );
 
 	WRITE_HTML						=			register_cvar ( "UWX_write_html", 				"1" 		);
+	HTML_BACKGROUND_URL				=			register_cvar ( "UWX_html_bg_url",				""			);
+	HTML_TEXT_COLOR					=			register_cvar ( "UWX_html_text_color",			"FFB000"	);
 	SAVED_SKILLSETS					=			register_cvar ( "UWX_enable_savedskillsets", 	"1"			);
 	DEPOWER_COOLDOWN				=			register_cvar ( "UWX_depower_cooldown", 		"45.0" 		);
 	DEPOWER_CANT_DROP				=			register_cvar ( "UWX_depower_disallow_drop", 	"1" 		);
@@ -698,6 +708,8 @@ public Bind_Cvars ( )
 	//get_pcvar_string ( REDIRECT_BOTTOM_SERVER, CVAR_REDIRECT_BOTTOM_SERVER,	31 );
 	//get_pcvar_string ( REDIRECT_MIDDLE_SERVER, CVAR_REDIRECT_MIDDLE_SERVER,	31 );
 	//get_pcvar_string ( REDIRECT_TOP_SERVER, CVAR_REDIRECT_TOP_SERVER, 31 );
+	get_pcvar_string( HTML_BACKGROUND_URL, CVAR_HTML_BACKGROUND_URL, 127 );
+	get_pcvar_string( HTML_TEXT_COLOR, CVAR_HTML_TEXT_COLOR, 15 );
 
 	//Set Numbers
 	CVAR_ENABLE_UWC3X			=	get_pcvar_num ( ENABLE_UWC3X );

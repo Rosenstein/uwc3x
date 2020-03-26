@@ -14,7 +14,7 @@ public skills_info( id, tier )
 	new startidx = ( ( tier - 1 ) * SKILLS_PER_SET ) + 1;
 	new endidx = startidx + ( SKILLS_PER_SET - 1 );
 
-	pos+= format( temp[pos], 4096 - pos, "<body bgcolor=#000000 text=#FFB000>" );
+	pos+= format( temp[pos], 4096 - pos, "<body bgcolor=#000000 text=#%s>", CVAR_HTML_TEXT_COLOR );
 	pos+= format( temp[pos], 4096 - pos, "<b>Skill Listings: Page %d</b>: <p><ol>", tier );
 
 	for ( new i = startidx; i <= endidx; i++ )
@@ -232,7 +232,7 @@ ImplodeSkillValuesFloat(Float:values[], len, formatStr[] = "%.0f%%", Float:modif
 //
 //	new temp[4096];
 //	new pos = 0;
-//	pos += format(temp[pos], 4096-pos, "<body scroll='no' bgcolor=#000000 text=#FFB000>");
+//	pos += format(temp[pos], 4096-pos, "<body scroll='no' bgcolor=#000000 text=#%s>", CVAR_HTML_TEXT_COLOR);
 //	pos += format(temp[pos], 2048-pos, "<table border=0><tr><td>");
 //	pos += format(temp[pos], 2048-pos, "<center><b>Ultimate Warcraft3 Expansion</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>" );
 //	pos += format(temp[pos], 4096-pos, "<b>Latest News About Ultimate Warcraft3 Expansion</b><br>");
@@ -319,7 +319,7 @@ public uwc3x_menu( id, key )
 public change_race( id )
 {
 	new temp[2048], pos = 0;
-	pos += format( temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format( temp[pos], 2048-pos, "<body bgcolor=#000000 text=#%s background=^"%s^" style=^"background-size: 100%%^">", CVAR_HTML_TEXT_COLOR, CVAR_HTML_BACKGROUND_URL);
 	pos += format( temp[pos], 2048-pos, "<table border=0><tr><td>");
 	pos += format( temp[pos], 2048-pos, "<center><b>Ultimate Warcraft3 Expansion</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>" );
 	pos += format( temp[pos], 2048-pos, "%L<p>", id, "CHANGERACE1" );
@@ -610,7 +610,7 @@ public uwc3x_commands( id )
 
 	new temp[4096], pos = 0;
 
-	pos += format(temp[pos], 4096-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 4096-pos, "<body bgcolor=#000000 text=#%s>", CVAR_HTML_TEXT_COLOR);
 	pos += format(temp[pos], 4096-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td>");
 	pos += format(temp[pos], 4096-pos, "<center><b>Ultimate Warcraft3 Expansion</center><p>" );
 	pos += format(temp[pos], 4096-pos, "<center><b>%L</b></center><p>", id, "COMMANDS_HEADER" );
@@ -665,7 +665,7 @@ public uwc3x_credits( id )
 
 	new temp[4096], pos = 0;
 
-	pos += format(temp[pos], 4096-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 4096-pos, "<body bgcolor=#000000 text=#%s>", CVAR_HTML_TEXT_COLOR);
 	pos += format(temp[pos], 4096-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td>");
 	pos += format(temp[pos], 4096-pos, "<center><b>Ultimate Warcraft3 Expansion</b><br></center>");
 	pos += format(temp[pos], 4096-pos, "<p>*************************************************************************************");
@@ -724,7 +724,7 @@ public uwc3x_info(id)
 
 	new temp[2048], pos = 0;
 
-	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#%s>", CVAR_HTML_TEXT_COLOR);
 	pos += format(temp[pos], 2048-pos, "<center><table border=1 cellpadding=3 cellspacing=3><tr><td>");
 	pos += format(temp[pos], 2048-pos, "<center><b>Ultimate Warcraft3 Expansion</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>" );
 
@@ -768,7 +768,7 @@ public uwc3x_tips( id )
 
 	new temp[2048], pos = 0;
 
-	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#%s>", CVAR_HTML_TEXT_COLOR);
 	pos += format(temp[pos], 2048-pos, "<table border=0><tr><td>");
 	pos += format(temp[pos], 2048-pos, "<center><b>%L</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>", id, "UWC3" );
 
@@ -809,7 +809,7 @@ public uwc3x_tips2( id )
 
 	new temp[2048], pos = 0;
 
-	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#%s>", CVAR_HTML_TEXT_COLOR);
 	pos += format(temp[pos], 2048-pos, "<table border=0><tr><td>");
 	pos += format(temp[pos], 2048-pos, "<center><b>%L</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>", id, "UWC3" );
 
@@ -850,7 +850,7 @@ public uwc3x_ultimates( id )
 
 	new temp[3072], pos = 0;
 
-	pos += format(temp[pos], 3072-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 3072-pos, "<body bgcolor=#000000 text=#%s>", CVAR_HTML_TEXT_COLOR);
 	pos += format(temp[pos], 3072-pos, "<table border=0><tr><td>");
 	pos += format(temp[pos], 3072-pos, "<center><b>%L</b><br><a href='http://www.Yaur.com'><b>http://www.Yaur.com</b></a></center><p>", id, "uwc3" );
 
@@ -907,7 +907,7 @@ public uwc3x_attributes( id )
 	}
 
 	new temp[8096], pos = 0;
-	pos += format(temp[pos], 8096-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 8096-pos, "<body bgcolor=#000000 text=#%s>", CVAR_HTML_TEXT_COLOR);
 	pos += format(temp[pos], 8096-pos, "<p><b>%L</b></p>", id, "ATTRIB_MENU1" );
 	//pos += format(temp[pos], 8096-pos, "<p>%L</p>", id, "ATTRIB_MENU2" );
 	pos += format(temp[pos], 8096-pos, "<ol>" );
@@ -948,7 +948,7 @@ public uwc3x_resistances( id )
 
 	new temp[2048], pos = 0;
 
-	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#FFB000>");
+	pos += format(temp[pos], 2048-pos, "<body bgcolor=#000000 text=#%s background=^"%s^" style=^"background-size: 100%%^">", CVAR_HTML_TEXT_COLOR, CVAR_HTML_BACKGROUND_URL);
 	pos += format(temp[pos], 2048-pos, "<b>%L</b><p>", id, "RESIST_MENU1" );
 	pos += format(temp[pos], 2048-pos, "<p>%L</p><ol>", id, "RESIST_MENU2" );
 	pos += format(temp[pos], 2048-pos, "%L", id, "RESIST_MENU1_POISON" );
@@ -1021,10 +1021,11 @@ BuildCharsheet(pid)
 
 	new exp = (extra_xp / 10);
 
-	add( message, 4096, "<body bgcolor=#000000 text=#FFB000>" );
+	format( stemp, 4096, "<body bgcolor=#000000 text=#%s background=^"%s^" style=^"background-size: 100%%^">", CVAR_HTML_TEXT_COLOR, CVAR_HTML_BACKGROUND_URL );
+	add( message, 4096, stemp );
 	format( stemp, 1024, "<center><b>Character Sheet: %s</b></center><p>", name );
 	add( message, 4096, stemp );
-    	add( message, 4096, "<center><table width=465 border=1 cellpadding=2 cellspacing=2>" );
+	add( message, 4096, "<center><table width=465 border=1 cellpadding=2 cellspacing=2>" );
 	add( message, 4096, "<tr><td width=50%>" );
 	format( stemp, 1024, "Name: %s<br>", name );
 	add( message, 4096, stemp );
@@ -1471,7 +1472,7 @@ public cmd_who( id )
 	new message[4096] = "", pos = 0, name[32], team[32], players[32], numplayers, i, playerid;
 	get_players(players, numplayers);
 
-	pos += format( message[pos], 4096-pos, "<body bgcolor=#000000 text=#FFB000>^n" );
+	pos += format( message[pos], 4096-pos, "<body bgcolor=#000000 text=#%s background=^"%s^" style=^"background-size: 100%%^">^n", CVAR_HTML_TEXT_COLOR, CVAR_HTML_BACKGROUND_URL );
 	pos += format( message[pos], 4096-pos, "<center><b>The following players are online</b></center><p>^n" );
 	pos += format( message[pos], 4096-pos, "<center><table width=600 border=1 cellpadding=2 cellspacing=2>^n" );
 	pos += format( message[pos], 4096-pos, "<tr><td>Name</td><td>Team</td><td>Level</td></tr>^n" );
