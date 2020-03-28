@@ -1798,7 +1798,11 @@ public Set_Mine_Count( id )
 	}
 	else
 	{
-		log_amx( "[UWC3X] Setting Mine Count" );
+		if (CVAR_DEBUG_MODE)
+		{
+			log_amx( "[UWC3X] DEBUG :: Setting Mine Count" );
+		}
+		
 		if (p_skills[id][SKILLIDX_MINE])
 		{ 
 			player_b_mine[id] = p_mines[p_skills[id][SKILLIDX_MINE]-1];
@@ -1807,8 +1811,11 @@ public Set_Mine_Count( id )
 		{
 			player_b_mine[id] = 0;
 		}
-
-		log_amx( "[UWC3X] Mine Count = %d", player_b_mine[id] );
+		
+		if (CVAR_DEBUG_MODE)
+		{
+			log_amx( "[UWC3X] DEBUG :: Mine Count = %d", player_b_mine[id] );
+		}
 	}
 
 	return PLUGIN_CONTINUE;
@@ -2074,7 +2081,10 @@ public Skills_Check( id, sethealth )
 {
 	if( !is_user_bot( id ))
 	{
-		log_amx( "[UWC3X] Entering Skills_Check" );
+		if (CVAR_DEBUG_MODE)
+		{
+			log_amx( "[UWC3X] DEBUG :: Entering Skills_Check" );
+		}
 	}
 
 	new parm[2];
