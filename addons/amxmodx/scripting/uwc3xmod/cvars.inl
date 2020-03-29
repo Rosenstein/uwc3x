@@ -235,9 +235,11 @@ new CVAR_CRIPPLE_BLOCK_ULTS, CRIPPLE_BLOCK_ULTS;
 new WRITE_HTML;
 new CVAR_WRITE_HTML;
 
-//HTML Background URL
-new HTML_BACKGROUND_URL;
-new CVAR_HTML_BACKGROUND_URL[128];
+//HTML Background URLs
+new HTML_BACKGROUND_URL_WHO;
+new CVAR_HTML_BACKGROUND_URL_WHO[40];
+new HTML_BACKGROUND_URL_WHOIS;
+new CVAR_HTML_BACKGROUND_URL_WHOIS[40];
 
 //HTML Text Color
 new HTML_TEXT_COLOR;
@@ -651,7 +653,8 @@ public Register_Cvars ( )
 	SM3_PRICE_DEHEX					=			register_cvar ( "UWX_price_DEHEX",				"8000"		 );
 
 	WRITE_HTML						=			register_cvar ( "UWX_write_html", 				"1" 		);
-	HTML_BACKGROUND_URL				=			register_cvar ( "UWX_html_bg_url",				""			);
+	HTML_BACKGROUND_URL_WHO			=			register_cvar ( "UWX_html_bg_url_who",			""			);
+	HTML_BACKGROUND_URL_WHOIS		=			register_cvar ( "UWX_html_bg_url_whois",		""			);
 	HTML_TEXT_COLOR					=			register_cvar ( "UWX_html_text_color",			"FFB000"	);
 	SAVED_SKILLSETS					=			register_cvar ( "UWX_enable_savedskillsets", 	"1"			);
 	DEPOWER_COOLDOWN				=			register_cvar ( "UWX_depower_cooldown", 		"45.0" 		);
@@ -708,8 +711,9 @@ public Bind_Cvars ( )
 	//get_pcvar_string ( REDIRECT_BOTTOM_SERVER, CVAR_REDIRECT_BOTTOM_SERVER,	31 );
 	//get_pcvar_string ( REDIRECT_MIDDLE_SERVER, CVAR_REDIRECT_MIDDLE_SERVER,	31 );
 	//get_pcvar_string ( REDIRECT_TOP_SERVER, CVAR_REDIRECT_TOP_SERVER, 31 );
-	get_pcvar_string( HTML_BACKGROUND_URL, CVAR_HTML_BACKGROUND_URL, 127 );
-	get_pcvar_string( HTML_TEXT_COLOR, CVAR_HTML_TEXT_COLOR, 15 );
+	get_pcvar_string ( HTML_BACKGROUND_URL_WHO, CVAR_HTML_BACKGROUND_URL_WHO, 39 );
+	get_pcvar_string ( HTML_BACKGROUND_URL_WHOIS, CVAR_HTML_BACKGROUND_URL_WHOIS, 39 );
+	get_pcvar_string ( HTML_TEXT_COLOR, CVAR_HTML_TEXT_COLOR, 15 );
 
 	//Set Numbers
 	CVAR_ENABLE_UWC3X			=	get_pcvar_num ( ENABLE_UWC3X );
