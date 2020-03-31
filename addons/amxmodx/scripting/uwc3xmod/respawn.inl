@@ -147,7 +147,7 @@ public reset_respawngod ( args[] )
 
 	if( Util_Should_Msg_Client(id) && args[1] )
 	{
-		//client_print ( id, print_chat, "%L", id, "RESPAWN_GRACE_END", MOD );
+		//client_print_utility ( id, print_chat, "%L", id, "RESPAWN_GRACE_END", MOD );
 		hudchat_show(id, "%L", id, "RESPAWN_GRACE_END");
 		hudchat_update(id);
 	}
@@ -202,7 +202,7 @@ public check_for_reviving ( victim_id )
 				{
 					//set_hudmessage ( 200, 100, 0, -1.6, 0.1, 0, 1.0, 5.0, 0.1, 0.2, 2 );
 					//show_hudmessage ( victim_id, "%s has revived you", name );
-					//client_print ( victim_id, print_chat, "%L", victim_id, "PHEONIX_REVIVE4", MOD, name );
+					//client_print_utility ( victim_id, print_chat, "%L", victim_id, "PHEONIX_REVIVE4", MOD, name );
 					hudchat_show(victim_id, "%L", victim_id, "PHEONIX_REVIVE4", name);
 					hudchat_update(victim_id);
 				}
@@ -221,7 +221,7 @@ public check_for_reviving ( victim_id )
 
 				if( Util_Should_Msg_Client(id) )
 				{
-					//client_print ( id, print_chat, "%L", id,"PHEONIX_REVIVE2", MOD, name, xpbonus );
+					//client_print_utility ( id, print_chat, "%L", id,"PHEONIX_REVIVE2", MOD, name, xpbonus );
 					//show_hudmessage ( id, "%You have revived %s, way to go!", name );
 					hudchat_show(id, "%L", id, "PHEONIX_REVIVE2", name, xpbonus);
 					hudchat_update(id);
@@ -274,7 +274,7 @@ public check_for_reviving ( victim_id )
 				{
 					//set_hudmessage ( 200, 100, 0, -1.6, 0.1, 0, 1.0, 5.0, 0.1, 0.2, 2 );
 					//show_hudmessage ( victim_id, "%s has revived you", name );
-					//client_print ( victim_id, print_chat, "%L", victim_id, "PHEONIX_REVIVE4", MOD, name );
+					//client_print_utility ( victim_id, print_chat, "%L", victim_id, "PHEONIX_REVIVE4", MOD, name );
 					hudchat_show(victim_id, "%L", victim_id, "PHEONIX_REVIVE4", name);
 					hudchat_update(victim_id);
 				}
@@ -292,7 +292,7 @@ public check_for_reviving ( victim_id )
 
 				if( Util_Should_Msg_Client(id) )
 				{
-					//client_print ( id, print_chat, "%L", id,"PHEONIX_REVIVE2", MOD, name, xpbonus );
+					//client_print_utility ( id, print_chat, "%L", id,"PHEONIX_REVIVE2", MOD, name, xpbonus );
 					//show_hudmessage ( id, "%You have revived %s, way to go!", name );
 					hudchat_show(id, "%L", id, "PHEONIX_REVIVE2", name, xpbonus);
 					hudchat_update(id);

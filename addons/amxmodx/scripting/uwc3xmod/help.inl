@@ -377,7 +377,7 @@ public admin_menu( id )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility( id, print_console, "%L", id, "NO_ACCESS");
 			}
 
 			return PLUGIN_HANDLED;
@@ -388,7 +388,7 @@ public admin_menu( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_console, "%L", id, "ADMINMENU_OFF" );
+			client_print_utility( id, print_console, "%L", id, "ADMINMENU_OFF" );
 		}
 
 		return PLUGIN_HANDLED;
@@ -523,7 +523,7 @@ public do_playerxpmenu(id,key){
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(player, print_chat, "[%s] The admin just awarded you %d experience.",MOD,g_menuSettings[id]);
+				client_print_utility(player, print_chat, "[%s] The admin just awarded you %d experience.",MOD,g_menuSettings[id]);
 			}
 
 			playerxp[player]+=g_menuSettings[id];
@@ -1275,6 +1275,10 @@ public displaylevel( id, hide )
 
 	if( Util_Should_Msg_Client( id ) )
 	{
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::displaylevel:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgStatusText, id);
+		}
 		message_begin( MSG_ONE, gmsgStatusText, {0,0,0}, id);
 		write_byte(0);
 		write_string(xpstring);
@@ -1292,7 +1296,7 @@ public displaylevel( id, hide )
 				show_hudmessage(id, "Congratulations - You gained a level");
 			}
 
-			client_print(0, print_chat, "[%s] Announcement :: Congratulations %s for gaining a level", MOD, name );
+			client_print_utility(0, print_chat, "[%s] Announcement :: Congratulations %s for gaining a level", MOD, name );
 		}
 		else
 		{
@@ -1440,7 +1444,7 @@ public displaylevel( id, hide )
 		{
 			if (forwardontoserver[2][0])
 			{
-				client_print(id, print_console, "You are being re-directed to a new server. [%s]", forwardontoserver[2]);
+				client_print_utility(id, print_console, "You are being re-directed to a new server. [%s]", forwardontoserver[2]);
 				format(servergoto, 128, "disconnect; connect %s", forwardontoserver[2]);
 				client_cmd(id, servergoto);
 			}
@@ -1449,7 +1453,7 @@ public displaylevel( id, hide )
 		{
 			if (forwardontoserver[1][0])
 			{
-				client_print(id, print_console, "You are being re-directed to a new server. [%s]", forwardontoserver[1]);
+				client_print_utility(id, print_console, "You are being re-directed to a new server. [%s]", forwardontoserver[1]);
 				format(servergoto, 128, "disconnect; connect %s", forwardontoserver[1]);
 				client_cmd(id, servergoto);
 			}
@@ -1458,7 +1462,7 @@ public displaylevel( id, hide )
 		{
 			if (forwardontoserver[0][0])
 			{
-				client_print(id, print_console, "You are being re-directed to a new server. [%s]", forwardontoserver[0]);
+				client_print_utility(id, print_console, "You are being re-directed to a new server. [%s]", forwardontoserver[0]);
 				format(servergoto, 128, "disconnect; connect %s", forwardontoserver[0]);
 				client_cmd(id, servergoto);
 			}
@@ -1525,7 +1529,7 @@ public player_skills( id )
 	{
 		hudchat_show(id, "%L", id, "PLAYERSKILLS");
 		hudchat_update(id);
-		//client_print( id, print_chat, "%L", id, "PLAYERSKILLS", MOD);
+		//client_print_utility( id, print_chat, "%L", id, "PLAYERSKILLS", MOD);
 	}
 
 	return PLUGIN_CONTINUE;

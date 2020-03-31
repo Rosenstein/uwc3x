@@ -131,7 +131,7 @@ public Select_Attrib ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_center, "%L", id, "ENH_OFF" );
+			client_print_utility( id, print_center, "%L", id, "ENH_OFF" );
 		}
 	
 		return PLUGIN_HANDLED;
@@ -141,7 +141,7 @@ public Select_Attrib ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_center, "%L", id, "ENH_MIN_LEVEL", MOD, enh_minlevel );
+			client_print_utility( id, print_center, "%L", id, "ENH_MIN_LEVEL", MOD, enh_minlevel );
 		}
 		return PLUGIN_HANDLED;
 	}
@@ -192,7 +192,7 @@ public Attrib_Menu( id, key )
 			// Player has trained the maximum for this attribute
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "ENH_MAX_LEVEL", MOD );
+				client_print_utility( id, print_chat, "%L", id, "ENH_MAX_LEVEL", MOD );
 			}
 		
 			return PLUGIN_HANDLED;
@@ -214,7 +214,7 @@ public Attrib_Menu( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "ENH_NO_POINTS", MOD );
+					client_print_utility( id, print_chat, "%L", id, "ENH_NO_POINTS", MOD );
 				}
 			
 			}
@@ -222,7 +222,7 @@ public Attrib_Menu( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "ENH_LIMIT_REACHED", MOD );
+					client_print_utility( id, print_chat, "%L", id, "ENH_LIMIT_REACHED", MOD );
 				}
 			}
 
@@ -260,7 +260,7 @@ public Attrib_Menu( id, key )
 		
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_chat, "%L", id, "ENH_SPEND", MOD, aname );
+			client_print_utility( id, print_chat, "%L", id, "ENH_SPEND", MOD, aname );
 		}
 
 		// Determine if there are additional E-XP pts to spend
@@ -306,7 +306,7 @@ public Select_Resist ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_center, "%L", id, "ENH_OFF" );
+			client_print_utility( id, print_center, "%L", id, "ENH_OFF" );
 		}
 	
 		return PLUGIN_HANDLED;
@@ -316,7 +316,7 @@ public Select_Resist ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_center, "%L", id, "ENH_MIN_LEVEL", MOD, enh_minlevel );
+			client_print_utility( id, print_center, "%L", id, "ENH_MIN_LEVEL", MOD, enh_minlevel );
 		}
 	
 		return PLUGIN_HANDLED;
@@ -368,7 +368,7 @@ public Resist_Menu ( id, key )
 			// Player has trained the maximum for this resist
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "RESIST_MAX", MOD );
+				client_print_utility( id, print_chat, "%L", id, "RESIST_MAX", MOD );
 			}
 			
 			return PLUGIN_HANDLED;
@@ -392,14 +392,14 @@ public Resist_Menu ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "RESIST_NONE", MOD );
+					client_print_utility( id, print_chat, "%L", id, "RESIST_NONE", MOD );
 				}
 			}
 			else
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "RESIST_MAX_POINTS", MOD );
+					client_print_utility( id, print_chat, "%L", id, "RESIST_MAX_POINTS", MOD );
 				}
 			}
 
@@ -440,7 +440,7 @@ public Resist_Menu ( id, key )
 		
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_chat, "%L", id, "RESIST_SPEND", MOD, rname );
+			client_print_utility( id, print_chat, "%L", id, "RESIST_SPEND", MOD, rname );
 		}
 
 		// Determine if there are additional E-XP pts to spend
@@ -563,7 +563,7 @@ public Reset_Attribs ( id )
 		
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_center, "%L", id, "RESET_ATTRIB");
+			client_print_utility(id, print_center, "%L", id, "RESET_ATTRIB");
 		}
 	
 		resetattrib[id] = true;
@@ -572,7 +572,7 @@ public Reset_Attribs ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_center, "%L", id, "RESETATTRIBS_OFF");
+			client_print_utility(id, print_center, "%L", id, "RESETATTRIBS_OFF");
 		}
 		resetattrib[id] = false;
 	}
@@ -590,7 +590,7 @@ public Reset_Resists ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_center, "%L", id, "RESET_RESIST");
+			client_print_utility(id, print_center, "%L", id, "RESET_RESIST");
 		}
 		resetresist[id] = true;
 	}
@@ -598,7 +598,7 @@ public Reset_Resists ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_center, "%L", id, "RESETRESISTS_OFF");
+			client_print_utility(id, print_center, "%L", id, "RESETRESISTS_OFF");
 		}
 		resetresist[id] = false;
 	}

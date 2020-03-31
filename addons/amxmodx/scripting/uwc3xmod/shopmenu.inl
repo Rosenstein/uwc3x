@@ -169,7 +169,7 @@ public Buy_Item( id , key )
 			if ( file_exists( "sound/uwc3x/tomes.wav" ) == 1 )
 				emit_sound( id, CHAN_ITEM, "uwc3x/tomes.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
 
-			//client_print ( id, print_chat, "%L", id, "SHOPMENU1_TOME2", MOD, iXP );
+			//client_print_utility ( id, print_chat, "%L", id, "SHOPMENU1_TOME2", MOD, iXP );
 			hudchat_show(id, "%L", id, "SHOPMENU1_TOME2", iXP);
 			hudchat_update(id);
 		}

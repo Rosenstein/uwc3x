@@ -11,7 +11,7 @@ public ability_wcbless ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			//client_print ( id, print_chat, "%L", id, "BLESS_UNTRAINED" );
+			//client_print_utility ( id, print_chat, "%L", id, "BLESS_UNTRAINED" );
 			hudchat_show(id, "%L", id, "BLESS_UNTRAINED");
 			hudchat_update(id);
 		}
@@ -56,7 +56,7 @@ public ability_wcbless ( id )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				//client_print ( id, print_chat, "%L", id, "BLESS_MAX_BLESS", MOD );
+				//client_print_utility ( id, print_chat, "%L", id, "BLESS_MAX_BLESS", MOD );
 				hudchat_show(id, "%L", id, "BLESS_MAX_BLESS");
 				hudchat_update(id);
 			}
@@ -125,7 +125,7 @@ public ability_wcbless ( id )
 		{
 			hudchat_show(id, "%L", id, "BLESS_CAST", friend_name, xpbonus);
 			hudchat_update(id);
-			//client_print ( id, print_chat, "%L", id, "BLESS_CAST", MOD, friend_name, xpbonus );
+			//client_print_utility ( id, print_chat, "%L", id, "BLESS_CAST", MOD, friend_name, xpbonus );
 			if ( file_exists( "sound/uwc3x/bless.wav" ) == 1 ) 
 			{
 				emit_sound( id, CHAN_STATIC, "uwc3x/bless.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -137,7 +137,7 @@ public ability_wcbless ( id )
 			hudchat_show(friendID, "%L", friendID, "BLESS_GET", name);
 			hudchat_update(friendID);
 			
-			//client_print ( friendID, print_chat, "%L", friendID, "BLESS_GET", MOD, name );
+			//client_print_utility ( friendID, print_chat, "%L", friendID, "BLESS_GET", MOD, name );
 			if ( file_exists( "sound/uwc3x/bless.wav" ) == 1 ) 
 			{
 				emit_sound( friendID, CHAN_STATIC, "uwc3x/bless.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -146,7 +146,7 @@ public ability_wcbless ( id )
 	}
 	else if ( Util_Should_Msg_Client_Dead ( id ) )
 	{
-		//client_print ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
+		//client_print_utility ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
 		hudchat_show(id, "%L", id, "SHHH_DEAD_MESSAGE");
 		hudchat_update(id);
 	}
@@ -160,7 +160,7 @@ public ability_wcward ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			//client_print ( id, print_chat, "%L", id, "SERPENTWARD_UNTRAINED" );
+			//client_print_utility ( id, print_chat, "%L", id, "SERPENTWARD_UNTRAINED" );
 			hudchat_show(id, "%L", id, "SERPENTWARD_UNTRAINED");
 			hudchat_update(id);
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
@@ -234,6 +234,10 @@ public Draw_SerpentWard_Beam ( parm[6] )
 	origin[1] = parm[1];
 	origin[2] = parm[2];
 	
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Draw_SerpentWard_Beam:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte ( 0 );
 	write_coord ( origin[0] );
@@ -309,7 +313,7 @@ public Draw_SerpentWard_Beam ( parm[6] )
 					if( is_user_connected( targetid ) && !is_user_bot(targetid) )
 					{
 						hudchat_show(targetid, "%L", targetid, "SERPENTWARD_MAGICPROTECT");
-						//client_print ( targetid, print_chat, "%L", targetid, "SERPENTWARD_MAGICPROTECT", MOD );
+						//client_print_utility ( targetid, print_chat, "%L", targetid, "SERPENTWARD_MAGICPROTECT", MOD );
 						continue;
 					}
 				}
@@ -322,7 +326,11 @@ public Draw_SerpentWard_Beam ( parm[6] )
 				{
 					
 					client_cmd ( targetid, "spk ambience/thunder_clap.wav" );
-					message_begin ( MSG_ONE, gmsgFade,{ 0, 0, 0}, id );
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::Draw_SerpentWard_Beam:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+					}
+					message_begin ( MSG_ONE, gmsgFade, { 0, 0, 0}, id );
 					
 					// fade lasts this long duration
 					write_short ( 1<<10 );
@@ -368,6 +376,10 @@ public Draw_SerpentWard_Beam ( parm[6] )
 				if( Util_Should_Msg_Client( id ) )
 				{
 					
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::Draw_SerpentWard_Beam:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+					}
 					message_begin ( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 					
 					// fade lasts this long duration
@@ -418,7 +430,7 @@ public ability_wcrepair ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			//client_print ( id, print_chat, "%L", id, "REPAIR_ARMOR_UNTRAINED" );
+			//client_print_utility ( id, print_chat, "%L", id, "REPAIR_ARMOR_UNTRAINED" );
 			hudchat_show(id, "%L", id, "REPAIR_ARMOR_UNTRAINED");
 			hudchat_update(id);
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
@@ -483,7 +495,7 @@ public ability_wcrepair ( id )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				//client_print ( id, print_chat, "%L", id, "REPAIR_ARMOR_MAX_REPAIRS", MOD );
+				//client_print_utility ( id, print_chat, "%L", id, "REPAIR_ARMOR_MAX_REPAIRS", MOD );
 				hudchat_show(id, "%L", id, "REPAIR_ARMOR_MAX_REPAIRS");
 				hudchat_update(id);
 				return PLUGIN_HANDLED;
@@ -499,7 +511,7 @@ public ability_wcrepair ( id )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				//client_print ( id, print_chat, "%L", id, "REPAIR_ARMOR_UNNEEDED", MOD, friend_name );
+				//client_print_utility ( id, print_chat, "%L", id, "REPAIR_ARMOR_UNNEEDED", MOD, friend_name );
 				hudchat_show(id, "%L", id, "REPAIR_ARMOR_UNNEEDED", friend_name);
 				hudchat_update(id);
 				return PLUGIN_HANDLED;
@@ -560,7 +572,7 @@ public ability_wcrepair ( id )
 		
 		if( Util_Should_Msg_Client(friendID) )
 		{
-			//client_print ( friendID, print_chat, "%L", friendID, "REPAIR_ARMOR_MESSAGE", MOD, name );
+			//client_print_utility ( friendID, print_chat, "%L", friendID, "REPAIR_ARMOR_MESSAGE", MOD, name );
 			hudchat_show(friendID, "%L", friendID, "REPAIR_ARMOR_MESSAGE", name);
 			hudchat_update(friendID);
 			emit_sound(friendID, CHAN_ITEM, "items/suitchargeok1.wav", 1.0, ATTN_NORM, 0, PITCH_NORM);
@@ -568,7 +580,7 @@ public ability_wcrepair ( id )
 		
 		if( Util_Should_Msg_Client(id) )
 		{
-			//client_print ( id, print_chat, "%L", id, "REPAIR_ARMOR_XP_MESSAGE", MOD, xpbonus );
+			//client_print_utility ( id, print_chat, "%L", id, "REPAIR_ARMOR_XP_MESSAGE", MOD, xpbonus );
 			hudchat_show(id, "%L", id, "REPAIR_ARMOR_XP_MESSAGE", xpbonus);
 			hudchat_update(id);
 			emit_sound(id, CHAN_ITEM, "items/suitchargeok1.wav", 1.0, ATTN_NORM, 0, PITCH_NORM);
@@ -576,7 +588,7 @@ public ability_wcrepair ( id )
 	}
 	else if ( Util_Should_Msg_Client_Dead ( id ) )
 	{
-		//client_print ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
+		//client_print_utility ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
 		hudchat_show(id, "%L", id, "SHHH_DEAD_MESSAGE");
 		hudchat_update(id);
 	}
@@ -599,7 +611,7 @@ public ability_TeamShieldXP( id, PlayerShieldedBy )
 	
 	if( is_user_connected( PlayerShieldedBy ) && !is_user_bot(PlayerShieldedBy) )
 	{
-		//client_print ( PlayerShieldedBy, print_chat, "%L", PlayerShieldedBy, "ULTIMATE_SIV_XP",  xpbonus, name);
+		//client_print_utility ( PlayerShieldedBy, print_chat, "%L", PlayerShieldedBy, "ULTIMATE_SIV_XP",  xpbonus, name);
 		hudchat_show(PlayerShieldedBy, "%L", PlayerShieldedBy, "ULTIMATE_SIV_XP",  xpbonus, name);
 		hudchat_update(PlayerShieldedBy);
 	}
@@ -629,7 +641,7 @@ public ability_wcdispell ( id )
 			hudchat_show(id, "%L", id, "DISPELL_UNTRAINED");
 			hudchat_update(id);
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
-			//client_print ( id, print_chat, "%L", id, "DISPELL_UNTRAINED" );
+			//client_print_utility ( id, print_chat, "%L", id, "DISPELL_UNTRAINED" );
 		}
 		
 		return PLUGIN_HANDLED;
@@ -691,7 +703,7 @@ public ability_wcdispell ( id )
 			
 			if( Util_Should_Msg_Client(id) )
 			{
-				//client_print ( id, print_chat, "%L", id, "DISPELL_MAX_DISPELLS", MOD );
+				//client_print_utility ( id, print_chat, "%L", id, "DISPELL_MAX_DISPELLS", MOD );
 				hudchat_show(id, "%L", id, "DISPELL_MAX_DISPELLS");
 				hudchat_update(id);
 			}
@@ -707,7 +719,7 @@ public ability_wcdispell ( id )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				//client_print ( id, print_chat, "%L", id, "DISPELL_NOT_HEXED", MOD );
+				//client_print_utility ( id, print_chat, "%L", id, "DISPELL_NOT_HEXED", MOD );
 				hudchat_show(id, "%L", id, "DISPELL_NOT_HEXED");
 				hudchat_update(id);
 			}
@@ -750,7 +762,7 @@ public ability_wcdispell ( id )
 		
 		if( Util_Should_Msg_Client(id) )
 		{
-			//client_print ( id, print_chat, "%L", id, "DISPELL_XP_MESSAGE", MOD, xpbonus );
+			//client_print_utility ( id, print_chat, "%L", id, "DISPELL_XP_MESSAGE", MOD, xpbonus );
 			hudchat_show(id, "%L", id, "DISPELL_XP_MESSAGE", xpbonus);
 			hudchat_update(id);
 			if ( file_exists( "sound/uwc3x/dispell_hex.wav" ) == 1 )
@@ -761,7 +773,7 @@ public ability_wcdispell ( id )
 		
 		if( is_user_connected( friendID ) && !is_user_bot(friendID) && Util_Should_Msg_Client(friendID) )
 		{
-			//client_print ( friendID, print_chat, "%L", friendID, "DISPELL_MESSAGE", MOD, name );
+			//client_print_utility ( friendID, print_chat, "%L", friendID, "DISPELL_MESSAGE", MOD, name );
 			hudchat_show(friendID, "%L", friendID, "DISPELL_MESSAGE", name);
 			hudchat_update(friendID);
 			if ( file_exists( "sound/uwc3x/dispell_hex.wav" ) == 1 )
@@ -772,7 +784,7 @@ public ability_wcdispell ( id )
 	}
 	else if ( Util_Should_Msg_Client_Dead ( id ) )
 	{
-		//client_print ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
+		//client_print_utility ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
 		hudchat_show(id, "%L", id, "SHHH_DEAD_MESSAGE");
 		hudchat_update(id);
 	}
@@ -795,7 +807,7 @@ public ability_wcmend ( id )
 			hudchat_show(id, "%L", id, "MENDWOUNDS_UNTRAINED");
 			hudchat_update(id);
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
-			//client_print ( id, print_chat, "%L", id, "MENDWOUNDS_UNTRAINED" );
+			//client_print_utility ( id, print_chat, "%L", id, "MENDWOUNDS_UNTRAINED" );
 		}
 		
 		return PLUGIN_HANDLED;
@@ -857,7 +869,7 @@ public ability_wcmend ( id )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				//client_print ( id, print_chat, "%L", id, "MENDWOUNDS_MAX_HEALS", MOD );
+				//client_print_utility ( id, print_chat, "%L", id, "MENDWOUNDS_MAX_HEALS", MOD );
 				hudchat_show(id, "%L", id, "MENDWOUNDS_MAX_HEALS");
 				hudchat_update(id);
 			}
@@ -873,7 +885,7 @@ public ability_wcmend ( id )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				//client_print ( id, print_chat, "%L", id, "MENDWOUNDS_NOT_HURT", MOD, friend_name );
+				//client_print_utility ( id, print_chat, "%L", id, "MENDWOUNDS_NOT_HURT", MOD, friend_name );
 				hudchat_show(id, "%L", id, "MENDWOUNDS_NOT_HURT", friend_name);
 				hudchat_update(id);
 			}
@@ -1078,7 +1090,7 @@ public ability_wcmend ( id )
 	}
 	else if ( Util_Should_Msg_Client_Dead ( id ) )
 	{
-		//client_print ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
+		//client_print_utility ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
 		hudchat_show(id, "%L", id, "SHHH_DEAD_MESSAGE");
 		hudchat_update(id);
 	}
@@ -1141,7 +1153,7 @@ public Draw_Medic_Repair_Sprites ( )
 			
 			if ( ( idself != id ) && ( get_user_team ( idself ) == get_user_team ( id ) ) && is_user_alive ( id ) && ( ( get_user_health ( id ) < maxhealth[id] ) || ( get_user_armor ( id ) < maxarmor[id] ) ) )
 			{
-				//client_print ( idself, print_chat, "evaluating id= ( %d )", id )
+				//client_print_utility ( idself, print_chat, "evaluating id= ( %d )", id )
 				// Determine extent of injury ( health, armor or both )
 				new winjury = 0;
 				
@@ -1206,6 +1218,10 @@ public Draw_Medic_Repair_Sprites ( )
 				
 				get_user_origin ( id, origin );
 				
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::Draw_Medic_Repair_Sprites:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, SVC_TEMPENTITY, idself);
+				}
 				message_begin ( MSG_ONE, SVC_TEMPENTITY, { 0, 0, 0}, idself );
 				write_byte ( TE_PLAYERATTACHMENT );
 				write_byte ( id );

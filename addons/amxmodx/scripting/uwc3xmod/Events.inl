@@ -206,11 +206,11 @@ public new_round ( id )
 				{	
 					if( Ult_TooMany(id) )
 					{
-						client_print ( id, print_center, "%L", id, "ULT_TOO_MANY", MOD );
+						client_print_utility ( id, print_center, "%L", id, "ULT_TOO_MANY", MOD );
 					}
 					else
 					{
-						client_print ( id, print_center, "%L", id, "SKILL_TOO_MANY", MOD );
+						client_print_utility ( id, print_center, "%L", id, "SKILL_TOO_MANY", MOD );
 					}
 				}
 				
@@ -630,7 +630,7 @@ public new_round ( id )
 
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SKILL_ERROR1" );
+									client_print_utility ( id, print_console, "%L", id, "SKILL_ERROR1" );
 								}
 
 							}
@@ -641,7 +641,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SKILL_ERROR2" );
+									client_print_utility ( id, print_console, "%L", id, "SKILL_ERROR2" );
 								}
 							}
 
@@ -651,7 +651,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SKILL_ERROR3" );
+									client_print_utility ( id, print_console, "%L", id, "SKILL_ERROR3" );
 								}
 							}
 
@@ -661,7 +661,7 @@ public new_round ( id )
 								setskillLevel = skill_limits[setskillID];
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SKILL_ERROR4" );
+									client_print_utility ( id, print_console, "%L", id, "SKILL_ERROR4" );
 								}
 							}
 
@@ -672,7 +672,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SKILL_ERROR5" );
+									client_print_utility ( id, print_console, "%L", id, "SKILL_ERROR5" );
 								}
 							}
 
@@ -687,7 +687,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "STEAL_NOTICE2" );
+									client_print_utility ( id, print_console, "%L", id, "STEAL_NOTICE2" );
 								}
 							}
 
@@ -697,7 +697,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SYPHON_ERROR1" );
+									client_print_utility ( id, print_console, "%L", id, "SYPHON_ERROR1" );
 								}
 							}
 							else if ( ( setskillID == SKILLIDX_SAMMO ) && ( p_skills[id][SKILLIDX_SIPHON] ) )
@@ -705,7 +705,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SYPHON_ERROR2" );
+									client_print_utility ( id, print_console, "%L", id, "SYPHON_ERROR2" );
 								}
 							}
 
@@ -715,7 +715,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "DAMAGE_SKILL_ERROR1" );
+									client_print_utility ( id, print_console, "%L", id, "DAMAGE_SKILL_ERROR1" );
 								}
 							}
 							else if ( ( setskillID == SKILLIDX_THORNS ) && ( p_skills[id][SKILLIDX_CARAPACE] ) )
@@ -723,7 +723,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "DAMAGE_SKILL_ERROR2" );
+									client_print_utility ( id, print_console, "%L", id, "DAMAGE_SKILL_ERROR2" );
 								}
 							}
 
@@ -733,7 +733,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "CRIPPLE_ERROR1" );
+									client_print_utility ( id, print_console, "%L", id, "CRIPPLE_ERROR1" );
 								}
 							}
 
@@ -743,7 +743,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "POISON_DISEASE_ERROR1" );
+									client_print_utility ( id, print_console, "%L", id, "POISON_DISEASE_ERROR1" );
 								}
 
 							}
@@ -752,7 +752,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "POISON_DISEASE_ERROR2" );
+									client_print_utility ( id, print_console, "%L", id, "POISON_DISEASE_ERROR2" );
 								}
 							}
 							else if ( ( setskillID == SKILLIDX_ROT ) && ( p_skills[id][SKILLIDX_SSTRIKE] || p_skills[id][SKILLIDX_CARRION] || p_skills[id][SKILLIDX_CRIPPLE] ) )
@@ -760,7 +760,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "POISON_DISEASE_ERROR3" );
+									client_print_utility ( id, print_console, "%L", id, "POISON_DISEASE_ERROR3" );
 								}
 							}
 							else if ( ( setskillID == SKILLIDX_CRIPPLE ) && ( p_skills[id][SKILLIDX_SSTRIKE] || p_skills[id][SKILLIDX_ROT] || p_skills[id][SKILLIDX_CARRION] ) )
@@ -768,7 +768,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "POISON_DISEASE_ERROR4" );
+									client_print_utility ( id, print_console, "%L", id, "POISON_DISEASE_ERROR4" );
 								}
 							}
 
@@ -796,7 +796,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SKILL_ERROR6" );
+									client_print_utility ( id, print_console, "%L", id, "SKILL_ERROR6" );
 								}
 							}
 
@@ -806,7 +806,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SKILL_ERROR7" );
+									client_print_utility ( id, print_console, "%L", id, "SKILL_ERROR7" );
 								}
 							}
 
@@ -816,7 +816,7 @@ public new_round ( id )
 								canHaveSkill = false;
 								if( Util_Should_Msg_Client(id) )
 								{
-									client_print ( id, print_console, "%L", id, "SKILL_ERROR3" );
+									client_print_utility ( id, print_console, "%L", id, "SKILL_ERROR3" );
 								}
 							}
 
@@ -1182,7 +1182,7 @@ public Event_Team_Win( TEAM )
 
 				if( is_user_connected( players[a] ) && !is_user_bot( players[a] ) )
 				{
-					//client_print ( players[a], print_center, "%L", players[a], "WON_ROUND_XP", MOD, sName, temp );
+					//client_print_utility ( players[a], print_center, "%L", players[a], "WON_ROUND_XP", MOD, sName, temp );
 					hudchat_show(players[a], "%L", players[a], "WON_ROUND_XP",  sName, temp);
 					hudchat_update(players[a]);
 				}
@@ -1212,7 +1212,7 @@ public hethrowevent ( id )
 	//[31-12-2010] - Check for valid map for grenade use
 	if ( UWC3X_MapDisableCheck( "cgrenade.cfg" ) )
 	{
-		client_print ( id, print_chat, "%L", id, "CGRENADE_SKILL_DISABLED", MOD );
+		client_print_utility ( id, print_chat, "%L", id, "CGRENADE_SKILL_DISABLED", MOD );
 		emit_sound( id, CHAN_ITEM, "uwc3x/ultimateerror.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		return PLUGIN_HANDLED;
 	}
@@ -1244,6 +1244,10 @@ public hethrowevent ( id )
 		{
 			if ( ( playeritem2[id] == INFERNO && CVAR_GLOVE_ORC_DAMAGE ) || ( playeritem2[id] != INFERNO ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::hethrowevent:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+				}
 				message_begin ( MSG_BROADCAST, SVC_TEMPENTITY );
 				write_byte ( TE_BEAMFOLLOW );
 				write_short ( grenadeid ); // entity
@@ -1289,7 +1293,7 @@ public Event_Planted_Bomb( id )
 
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			//client_print ( id, print_center, "%L", id, "BOMB_PLANT_XP1", MOD, sName, temp );
+			//client_print_utility ( id, print_center, "%L", id, "BOMB_PLANT_XP1", MOD, sName, temp );
 			hudchat_show(id, "%L", id, "BOMB_PLANT_XP1",  sName, temp);
 			hudchat_update(id);
 		}
@@ -1315,7 +1319,7 @@ public Event_Planted_Bomb( id )
 
 				if( is_user_connected( targetid ) && !is_user_bot( targetid ) )
 				{
-					//client_print ( targetid, print_center, "%L", targetid, "BOMB_PLANT_XP2", MOD, sName, temp );
+					//client_print_utility ( targetid, print_center, "%L", targetid, "BOMB_PLANT_XP2", MOD, sName, temp );
 					hudchat_show(targetid, "%L", targetid, "BOMB_PLANT_XP2",  sName, temp);
 					hudchat_update(targetid);
 				}
@@ -1346,7 +1350,7 @@ public Event_Defused_Bomb( id )
 
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			//client_print ( id, print_center, "%L", id, "BOMB_DEFUSE_XP1", MOD, sName, temp );
+			//client_print_utility ( id, print_center, "%L", id, "BOMB_DEFUSE_XP1", MOD, sName, temp );
 			hudchat_show(id, "%L", id, "BOMB_DEFUSE_XP1",  sName, temp, temp);
 			hudchat_update(id);
 		}
@@ -1374,7 +1378,7 @@ public Event_Defused_Bomb( id )
 
 				if( Util_Should_Msg_Client_Alive( id ) )
 				{
-					//client_print ( targetid, print_center, "%L", targetid, "BOMB_DEFUSE_XP2", MOD, sName, temp );
+					//client_print_utility ( targetid, print_center, "%L", targetid, "BOMB_DEFUSE_XP2", MOD, sName, temp );
 					hudchat_show(targetid, "%L", targetid, "BOMB_DEFUSE_XP2",  sName, temp);
 					hudchat_update(targetid);
 				}
@@ -1400,7 +1404,7 @@ public Event_Defuse_Try( id, Kit )
 					temp = ( 1/6 * DEFUSEXP ) + xpgiven_lev[p_level[id]];
 					if( Util_Should_Msg_Client_Alive( id ) )
 					{
-						//client_print ( id, print_center, "%L", id, "BOMB_DEFUSE_XP3", MOD, sName, temp );
+						//client_print_utility ( id, print_center, "%L", id, "BOMB_DEFUSE_XP3", MOD, sName, temp );
 						hudchat_show(id, "%L", id, "BOMB_DEFUSE_XP3",  sName, temp );
 						hudchat_update(id);
 					}
@@ -1410,7 +1414,7 @@ public Event_Defuse_Try( id, Kit )
 					temp = xpgiven_lev[p_level[id]];
 					if( Util_Should_Msg_Client_Alive( id ) )
 					{
-						//client_print ( id, print_center, "%L", id, "BOMB_DEFUSE_XP4", MOD, id, temp );
+						//client_print_utility ( id, print_center, "%L", id, "BOMB_DEFUSE_XP4", MOD, id, temp );
 						hudchat_show(id, "%L", id, "BOMB_DEFUSE_XP4",  id, temp);
 						hudchat_update(id);
 					}
@@ -1437,7 +1441,7 @@ public Event_Spawn_Bomb( id )
 
 			if( Util_Should_Msg_Client_Alive( id ) )
 			{
-				//client_print ( id, print_center, "%L", id, "BOMB_SPAWN", MOD, sName, temp );
+				//client_print_utility ( id, print_center, "%L", id, "BOMB_SPAWN", MOD, sName, temp );
 				hudchat_show(id, "%L", id, "BOMB_SPAWN", sName, temp);
 				hudchat_update(id);
 			}
@@ -1460,7 +1464,7 @@ public Event_Bomb_Got( id, PickedUp )
 				// Picked up the bomb
 				if( Util_Should_Msg_Client_Alive( id ) )
 				{
-					//client_print ( id, print_center, "%L", id, "BOMB_PICKUP", MOD, sName, temp );
+					//client_print_utility ( id, print_center, "%L", id, "BOMB_PICKUP", MOD, sName, temp );
 					hudchat_show(id, "%L", id, "BOMB_PICKUP", sName, temp);
 					hudchat_update(id);
 				}
@@ -1475,7 +1479,7 @@ public Event_Bomb_Got( id, PickedUp )
 				// Dropped bomb
 				if( Util_Should_Msg_Client_Alive( id ) )
 				{
-					//client_print ( id, print_center, "%L", id, "BOMB_DROP", MOD, sName, temp );
+					//client_print_utility ( id, print_center, "%L", id, "BOMB_DROP", MOD, sName, temp );
 					hudchat_show(id, "%L", id, "BOMB_DROP", sName, temp);
 					hudchat_update(id);
 				}
@@ -1503,7 +1507,7 @@ public Event_Hostage( id, Touched, Rescued, Killed )
 
 		if( Util_Should_Msg_Client_Alive( id ))
 		{
-			//client_print ( id, print_center, "%L", id, "HOSTAGE_KILL", MOD,sName, ( temp ) );
+			//client_print_utility ( id, print_center, "%L", id, "HOSTAGE_KILL", MOD,sName, ( temp ) );
 			hudchat_show(id, "%L", id, "HOSTAGE_KILL",sName, ( temp ));
 			hudchat_update(id);
 		}
@@ -1515,7 +1519,7 @@ public Event_Hostage( id, Touched, Rescued, Killed )
 
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			//client_print ( id, print_center, "%L", id, "HOSTAGE_TOUCH", MOD, sName, temp );
+			//client_print_utility ( id, print_center, "%L", id, "HOSTAGE_TOUCH", MOD, sName, temp );
 			hudchat_show(id, "%L", id, "HOSTAGE_TOUCH", sName, temp);
 			hudchat_update(id);
 		}
@@ -1531,7 +1535,7 @@ public Event_Hostage( id, Touched, Rescued, Killed )
 
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			//client_print ( id, print_center, "%L", id, "HOSTAGE_RESCUE1", MOD, sName, temp );
+			//client_print_utility ( id, print_center, "%L", id, "HOSTAGE_RESCUE1", MOD, sName, temp );
 			hudchat_show(id, "%L", id, "HOSTAGE_RESCUE1", sName, temp);
 			hudchat_update(id);
 		}
@@ -1560,7 +1564,7 @@ public Event_Hostage( id, Touched, Rescued, Killed )
 
 				if( Util_Should_Msg_Client_Alive( id ) )
 				{
-					//client_print ( targetid, print_center, "%L", targetid, "HOSTAGE_RESCUE2", MOD, sName, temp );
+					//client_print_utility ( targetid, print_center, "%L", targetid, "HOSTAGE_RESCUE2", MOD, sName, temp );
 					hudchat_show(targetid, "%L", targetid, "HOSTAGE_RESCUE2", sName, temp);
 					hudchat_update(targetid);
 				}
@@ -1601,7 +1605,7 @@ public Event_VIP ( id, Spawned, Escaped, Killed )
 			temp = VIP_KILL_BONUS + xpgiven_lev[p_level[id]];
 			if( Util_Should_Msg_Client_Alive( id ) )
 			{
-				//client_print ( id, print_center, "%L", id, "VIP_KILL", MOD, sName, temp, sNameVIP );
+				//client_print_utility ( id, print_center, "%L", id, "VIP_KILL", MOD, sName, temp, sNameVIP );
 				hudchat_show(id, "%L", id, "VIP_KILL", sName, temp, sNameVIP);
 				hudchat_update(id);
 			}
@@ -1618,7 +1622,7 @@ public Event_VIP ( id, Spawned, Escaped, Killed )
 			temp = xpgiven_lev[p_level[id]];
 			if( Util_Should_Msg_Client_Alive( id ) )
 			{
-				//client_print ( id, print_center, "%L", id, "VIP_SPAWN", MOD, sName, temp );
+				//client_print_utility ( id, print_center, "%L", id, "VIP_SPAWN", MOD, sName, temp );
 				hudchat_show(id, "%L", id, "VIP_SPAWN",  sName, temp);
 				hudchat_update(id);
 			}
@@ -1636,7 +1640,7 @@ public Event_VIP ( id, Spawned, Escaped, Killed )
 
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			//client_print ( id, print_center, "%L", id, "VIP_ESCAPE1", MOD, sName, temp );
+			//client_print_utility ( id, print_center, "%L", id, "VIP_ESCAPE1", MOD, sName, temp );
 			hudchat_show(id, "%L", id, "VIP_ESCAPE1",  sName, temp);
 			hudchat_update(id);
 		}
@@ -1661,7 +1665,7 @@ public Event_VIP ( id, Spawned, Escaped, Killed )
 
 				if( Util_Should_Msg_Client_Alive( targetid ) )
 				{
-					//client_print ( targetid, print_center, "%L", targetid, "VIP_ESCAPE2", MOD, nName, temp, sName );
+					//client_print_utility ( targetid, print_center, "%L", targetid, "VIP_ESCAPE2", MOD, nName, temp, sName );
 					hudchat_show(targetid, "%L", targetid, "VIP_ESCAPE2",  nName, temp, sName);
 					hudchat_update(targetid);
 				}
@@ -1776,7 +1780,7 @@ public Event_Mine_createKill(id, attacker, weaponDescription[] )
 
 		if( Util_Should_Msg_Client_Alive( attacker ) )
 		{
-			client_print(attacker,print_center,"You killed a teammate");
+			client_print_utility(attacker,print_center,"You killed a teammate");
 		}
 
 		new money = cs_get_user_money(attacker);
@@ -1807,13 +1811,21 @@ public Event_Mine_createKill(id, attacker, weaponDescription[] )
 		set_user_frags(id,get_user_frags(id) + 1);
 	}
 
-	message_begin( MSG_ALL, gmsgDeathMsg,{0,0,0},0) 
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Event_Mine_createKill:: dest=%d; msg_type=%d;", MSG_ALL, gmsgDeathMsg);
+	}
+	message_begin(MSG_ALL, gmsgDeathMsg) 
 	write_byte(attacker) 
 	write_byte(id) 
 	write_byte(0) 
 	write_string(weaponDescription) 
 	message_end() 
 	
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Event_Mine_createKill:: dest=%d; msg_type=%d;", MSG_ALL, gmsgScoreInfo);
+	}
 	message_begin(MSG_ALL,gmsgScoreInfo) 
 	write_byte(attacker) 
 	write_short(get_user_frags(attacker)) 
@@ -1822,6 +1834,10 @@ public Event_Mine_createKill(id, attacker, weaponDescription[] )
 	write_short(get_user_team(attacker)) 
 	message_end() 
 	
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Event_Mine_createKill:: dest=%d; msg_type=%d;", MSG_ALL, gmsgScoreInfo);
+	}
 	message_begin(MSG_ALL,gmsgScoreInfo) 
 	write_byte(id) 
 	write_short(get_user_frags(id)) 
@@ -1842,7 +1858,7 @@ public Event_Jumpkick_createKill(id, attacker, weaponDescription[] )
 
 		if( Util_Should_Msg_Client_Alive( attacker ) )
 		{
-			client_print(attacker,print_center,"You killed a teammate");
+			client_print_utility(attacker,print_center,"You killed a teammate");
 		}
 
 		new money = cs_get_user_money(attacker);
@@ -1875,7 +1891,11 @@ public Event_Jumpkick_createKill(id, attacker, weaponDescription[] )
 	}
 
 	//Replaced HUD death message
-	message_begin(MSG_ALL,gmsgDeathMsg,{0,0,0},0);
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Event_Jumpkick_createKill:: dest=%d; msg_type=%d;", MSG_ALL, gmsgDeathMsg);
+	}
+	message_begin(MSG_ALL,gmsgDeathMsg);
 	write_byte(attacker);
 	write_byte(id);
 	write_byte(0);
@@ -1883,6 +1903,10 @@ public Event_Jumpkick_createKill(id, attacker, weaponDescription[] )
 	message_end();
 
 	//Update killers scorboard with new info
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Event_Jumpkick_createKill:: dest=%d; msg_type=%d;", MSG_ALL, gmsgDeathMsg);
+	}
 	message_begin(MSG_ALL,gmsgScoreInfo);
 	write_byte(attacker);
 	write_short(get_user_frags(attacker));
@@ -1892,6 +1916,10 @@ public Event_Jumpkick_createKill(id, attacker, weaponDescription[] )
 	message_end();
 
 	//Update victims scoreboard with correct info
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Event_Jumpkick_createKill:: dest=%d; msg_type=%d;", MSG_ALL, gmsgDeathMsg);
+	}
 	message_begin(MSG_ALL,gmsgScoreInfo);
 	write_byte(id);
 	write_short(get_user_frags(id));
@@ -1930,6 +1958,10 @@ public client_AddToFullPack(ent_state,e,edict_t_ent,edict_t_host,hostflags,playe
 
 public Explode_Origin(id,Float:origin[3],damage,dist)
 {
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Explode_Origin:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST, SVC_TEMPENTITY)
 	write_byte(3)
 	write_coord(floatround(origin[0]))
@@ -2018,6 +2050,10 @@ public fw_setmodel(ent,model[])
 		hasFrostNade[owner] = 0;
 		if( Util_Should_Msg_Client( owner ) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::fw_setmodel:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgStatusIcon, owner);
+			}
 			message_begin(MSG_ONE,gmsgStatusIcon,{0,0,0},owner);
 			write_byte(0); // status (0=hide, 1=show, 2=flash)
 			write_string("dmg_cold"); // sprite name
@@ -2069,6 +2105,10 @@ public grenade_explode(ent)
 	entity_get_vector(ent,EV_VEC_origin,originF);
 	FVecIVec(originF,origin);
 
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::grenade_explode:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(5); // TE_SMOKE
 	write_coord(origin[0]); // x
@@ -2139,14 +2179,14 @@ public grenade_explode(ent)
 						
 						if( Util_Should_Msg_Client_Alive( player ) )
 						{
-							//client_print ( player, print_center, "%L", player, "ULTIMATE_ICEBOMB_RESIST2", idname );
+							//client_print_utility ( player, print_center, "%L", player, "ULTIMATE_ICEBOMB_RESIST2", idname );
 							hudchat_show(player, "%L", player, "ULTIMATE_ICEBOMB_RESIST2", idname);
 							hudchat_update(player);
 						}
 						
 						if( Util_Should_Msg_Client_Alive( owner ) )
 						{
-							//client_print ( owner, print_center, "%L", owner, "ULTIMATE_ICEBOMB_RESIST4", ename );
+							//client_print_utility ( owner, print_center, "%L", owner, "ULTIMATE_ICEBOMB_RESIST4", ename );
 							hudchat_show(owner, "%L", owner, "ULTIMATE_ICEBOMB_RESIST4", ename);
 							hudchat_update(owner);
 						}

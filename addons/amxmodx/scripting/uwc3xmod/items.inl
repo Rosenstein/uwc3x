@@ -67,7 +67,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id , print_center , "%L" , id, "ITEM_DEAD" );
+				client_print_utility( id , print_center , "%L" , id, "ITEM_DEAD" );
 			}
 
 
@@ -77,7 +77,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id , print_center , "%L" , id, "ITEM_BUYTIME" , ( get_cvar_float( "mp_buytime" ) * 60.0 ) );
+				client_print_utility( id , print_center , "%L" , id, "ITEM_BUYTIME" , ( get_cvar_float( "mp_buytime" ) * 60.0 ) );
 			}
 			return false;
 		}
@@ -85,7 +85,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id , print_center , "%L" , id, "ITEM_BUYZONE" );
+				client_print_utility( id , print_center , "%L" , id, "ITEM_BUYZONE" );
 			}
 			return false;
 		}
@@ -109,7 +109,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id , print_center , "%L" , id, "ITEM_JOIN_TEAM" );
+					client_print_utility( id , print_center , "%L" , id, "ITEM_JOIN_TEAM" );
 				}
 				return false;
 			}
@@ -121,7 +121,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "ITEM_DEAD" );
+						client_print_utility( id , print_center , "%L" , id, "ITEM_DEAD" );
 					}
 					return false;
 				}
@@ -138,7 +138,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "ITEM_OWNS" );
+						client_print_utility( id , print_center , "%L" , id, "ITEM_OWNS" );
 					}
 					return false;
 				}
@@ -150,7 +150,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 					{
 						if( Util_Should_Msg_Client(id) )
 						{
-							client_print( id , print_center , "%L" , id, "TOO_MANY_TOMES" );
+							client_print_utility( id , print_center , "%L" , id, "TOO_MANY_TOMES" );
 						}
 						return false;
 					}
@@ -160,7 +160,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "ITEM_NO_MONEY" );
+						client_print_utility( id , print_center , "%L" , id, "ITEM_NO_MONEY" );
 					}
 					return false;
 				}
@@ -173,7 +173,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "ITEM_OWNS" );
+						client_print_utility( id , print_center , "%L" , id, "ITEM_OWNS" );
 					}
 					return false;
 				}
@@ -182,7 +182,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "ITEM_ROUND_OVER" );
+						client_print_utility( id , print_center , "%L" , id, "ITEM_ROUND_OVER" );
 					}
 					return false;
 				}
@@ -191,7 +191,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "ITEM_NO_MONEY" );
+						client_print_utility( id , print_center , "%L" , id, "ITEM_NO_MONEY" );
 					}
 					return false;
 				}
@@ -204,7 +204,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "SM3_WAIT", MOD );
+						client_print_utility( id , print_center , "%L" , id, "SM3_WAIT", MOD );
 					}
 					return false;
 				}
@@ -213,7 +213,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "ITEM_OWNS" );
+						client_print_utility( id , print_center , "%L" , id, "ITEM_OWNS" );
 					}
 					return false;
 				}
@@ -222,7 +222,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "ITEM_NO_MONEY" );
+						client_print_utility( id , print_center , "%L" , id, "ITEM_NO_MONEY" );
 					}
 					return false;
 				}
@@ -231,7 +231,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "ITEM_ROUND_OVER" );
+						client_print_utility( id , print_center , "%L" , id, "ITEM_ROUND_OVER" );
 					}
 					return false;
 				}
@@ -240,7 +240,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "SM3_NO_DISEASE" );
+						client_print_utility( id , print_center , "%L" , id, "SM3_NO_DISEASE" );
 					}
 					return false;
 				}
@@ -249,7 +249,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "SM3_NO_POISON" );
+						client_print_utility( id , print_center , "%L" , id, "SM3_NO_POISON" );
 					}
 					return false;
 				}
@@ -258,7 +258,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "SM3_NO_FIRE" );
+						client_print_utility( id , print_center , "%L" , id, "SM3_NO_FIRE" );
 					}
 					return false;
 				}
@@ -269,7 +269,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 					{
 						if( Util_Should_Msg_Client(id) )
 						{
-							client_print( id , print_center , "%L" , id, "ITEM_DEAD" );
+							client_print_utility( id , print_center , "%L" , id, "ITEM_DEAD" );
 						}
 
 						return false;
@@ -279,7 +279,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 					{
 						if( Util_Should_Msg_Client(id) )
 						{
-							client_print( id , print_center , "%L" , id, "SM3_MAXHEALTH" );
+							client_print_utility( id , print_center , "%L" , id, "SM3_MAXHEALTH" );
 						}
 						return false;
 					}
@@ -289,7 +289,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client( id ) )
 					{
-						client_print( id , print_center , "%L" , id, "SM3_NO_HEX" );
+						client_print_utility( id , print_center , "%L" , id, "SM3_NO_HEX" );
 					}
 
 					return false;
@@ -300,7 +300,7 @@ public Shopmenu_canBuy ( id , SHOPMENU , key )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id , print_center , "%L" , id, "SM3_NO_ROT" );
+						client_print_utility( id , print_center , "%L" , id, "SM3_NO_ROT" );
 					}
 					return false;
 				}
@@ -713,6 +713,10 @@ public weapon_controller( parm[2] )
 
 		if( Util_Should_Msg_Client( id ) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::weapon_controller:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+			}
 			message_begin( MSG_ONE , gmsgFade , {0 , 0 , 0} , id );
 			write_short( 1<<10 ); // fade lasts this long duration
 			write_short( 1<<10 ); // fade lasts this long hold time
@@ -1058,7 +1062,7 @@ public Buy_HE ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id , print_center , "%L", id, "ONE_NADE" );
+			client_print_utility( id , print_center , "%L", id, "ONE_NADE" );
 		}
 
 		return PLUGIN_HANDLED;
@@ -1167,6 +1171,10 @@ public check_weap( id )
 			if( Util_Should_Msg_Client( id ) )
 			{
 				// flash icon if frost grenade is out
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::check_weap:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgStatusIcon, id);
+				}
 				message_begin(MSG_ONE,gmsgStatusIcon,{0,0,0},id);
 				write_byte(2); // status (0=hide, 1=show, 2=flash)
 				write_string("dmg_cold"); // sprite name
@@ -1182,6 +1190,10 @@ public check_weap( id )
 
 			if( Util_Should_Msg_Client( id ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::check_weap:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgStatusIcon, id);
+				}
 				message_begin(MSG_ONE,gmsgStatusIcon,{0,0,0},id);
 				write_byte(1); // status (0=hide, 1=show, 2=flash)
 				write_string("dmg_cold"); // sprite name
@@ -1459,6 +1471,10 @@ public change_weapon( id )
 			{
 				if( Util_Should_Msg_Client( id ) )
 				{
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::change_weapon:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgStatusIcon, id);
+					}
 					message_begin(MSG_ONE,gmsgStatusIcon,{0,0,0},id);
 					write_byte(2); // status (0=hide, 1=show, 2=flash)
 					write_string("dmg_cold"); // sprite name
@@ -1473,6 +1489,10 @@ public change_weapon( id )
 		{
 			if( Util_Should_Msg_Client( id ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::change_weapon:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgStatusIcon, id);
+				}
 				message_begin(MSG_ONE,gmsgStatusIcon,{0,0,0},id);
 				write_byte(1); // status (0=hide, 1=show, 2=flash)
 				write_string("dmg_cold"); // sprite name

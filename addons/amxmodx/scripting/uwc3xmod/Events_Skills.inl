@@ -51,6 +51,10 @@ public Do_Leather_Skin( parm[2] )
 
 	if( playeritem[id]!=CLOAK && ( !p_skills[id][SKILLIDX_INVIS] ) )
 	{
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::Do_Leather_Skin:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		}
 		message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 		write_byte( TE_IMPLOSION );
 		write_coord(origin[0]); // initial position
@@ -199,6 +203,10 @@ public healingeffect( id, targetid, heal )
 
 		if( playeritem[targetid] != CLOAK && ( !p_skills[targetid][SKILLIDX_INVIS] ) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::healingeffect:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+			}
 			message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 			write_byte( TE_IMPLOSION );
 
@@ -235,7 +243,7 @@ public healingeffect( id, targetid, heal )
 			/// LET THE PLAYER KNOW THAT WE GAVE THEM XP AND HOW MUCH
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_console, "%L", id, "HEALING_WAVE_HEAL", MOD, xpbonus );
+				client_print_utility( id, print_console, "%L", id, "HEALING_WAVE_HEAL", MOD, xpbonus );
 			}
 		}
 	}
@@ -323,7 +331,7 @@ public on_fire_napalm( args[] )
 		log_amx("[UWC3X] on_fire_napalm :: isnburning - %d", isnburning[id]);
 	}
 	
-	//client_print( 0, print_console,
+	//client_print_utility( 0, print_console,
 	// "In on_fire_napalm( ) id=( %d ) killer=( %d ) isnburning=( %d )", id, killer, isnburning[id] )
 
 	if( !is_user_alive( id ) || ( isnburning[id] == 0 ) )
@@ -340,6 +348,10 @@ public on_fire_napalm( args[] )
 	}
 
 	// [09-05-04] Attach fireball sprite to player for 1 cycle
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::on_fire_napalm:: dest=%d; msg_type=%d;", MSG_ALL, SVC_TEMPENTITY);
+	}
 	message_begin( MSG_ALL, SVC_TEMPENTITY );
 	write_byte( TE_PLAYERATTACHMENT );
 	write_byte( id );
@@ -349,6 +361,10 @@ public on_fire_napalm( args[] )
 	message_end( );
 
 	//TE_SPRITE - additive sprite, plays 1 cycle
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::on_fire_napalm:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte( 17 );
 	write_coord( forigin[0]+rx ); // coord, coord, coord ( position )
@@ -360,6 +376,10 @@ public on_fire_napalm( args[] )
 	message_end( );
 
 	//Smoke
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::on_fire_napalm:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte( 5 );
 	write_coord( forigin[0]+( rx * 2 ) ); // coord, coord, coord ( position )
@@ -489,6 +509,10 @@ public pfn_touch( ptr, ptd )
 		}
 
 		//Paints the explosion
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::pfn_touch:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		}
 		message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 		write_byte( TE_EXPLOSION );
 		write_coord( floatround( origin[0] ) );
@@ -500,6 +524,10 @@ public pfn_touch( ptr, ptd )
 		write_byte( 0 );
 		message_end();
 
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::pfn_touch:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		}
 		message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 		write_byte( TE_EXPLOSION );
 		write_coord( floatround( origin[0] ) );
@@ -514,6 +542,10 @@ public pfn_touch( ptr, ptd )
 		//If the grenade hit the ground or a wall then this draws a land scar
 		if ( ptd == 0 )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::pfn_touch:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+			}
 			message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 			write_byte( TE_WORLDDECAL );
 			write_coord( floatround( origin[0] ) );
@@ -569,7 +601,7 @@ public grenade_explosion()
 		{
 			new idname[32];
 			get_user_name( owner , idname, 31 );
-			client_print( 0, print_console, "DEBUG :: grenade_explosion -> Player=%s CLUSTERS = %d ", idname, CLUSTERS );
+			client_print_utility( 0, print_console, "DEBUG :: grenade_explosion -> Player=%s CLUSTERS = %d ", idname, CLUSTERS );
 			log_amx( "DEBUG :: grenade_explosion -> Player=%s CLUSTERS = %d ", idname, CLUSTERS );
 		}
 
@@ -642,9 +674,9 @@ public grenade_explosion()
 }
 
 
- // apply the effects of being chilled
- public chill_player(id)
- {
+// apply the effects of being chilled
+public chill_player(id)
+{
 	// don't mess with their speed if they are frozen
 	if(isFrozen[id])
 		set_user_maxspeed(id,1.0); // 0.0 doesn't work
@@ -657,7 +689,12 @@ public grenade_explosion()
 	if( Util_Should_Msg_Client( id ) )
 	{
 		// add a blue tint to their screen
-		message_begin(MSG_ONE,get_user_msgid("ScreenFade"),{0,0,0},id);
+		new sf = get_user_msgid("ScreenFade");
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::chill_player:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, sf, id);
+		}
+		message_begin(MSG_ONE,sf,{0,0,0},id);
 		write_short(~0); // duration
 		write_short(~0); // hold time
 		write_short(0x0004); // flags: FFADE_STAYOUT, ignores the duration, stays faded out until new ScreenFade message received
@@ -674,11 +711,11 @@ public grenade_explosion()
 	// bug fix
 	if(!isFrozen[id])
 		set_beamfollow(id,30,8,FROST_R,FROST_G,FROST_B,100);
- }
+}
 
- // apply the effects of being frozen
- public freeze_player(id)
- {
+// apply the effects of being frozen
+public freeze_player(id)
+{
 	new Float:speed = get_user_maxspeed(id);
 
 	// remember their old speed for when they get unfrozen,
@@ -699,11 +736,11 @@ public grenade_explosion()
 	set_user_maxspeed(id,1.0); // 0.0 doesn't work
 	entity_set_vector(id,EV_VEC_velocity,Float:{0.0,0.0,0.0});
 	entity_set_float(id,EV_FL_gravity,0.000001); // 0.0 doesn't work
- }
+}
 
- // a player's chill runs out
- public remove_chill(taskid)
- {
+// a player's chill runs out
+public remove_chill(taskid)
+{
 	remove_task(taskid);
 	new id = taskid - TASK_REMOVE_CHILL;
 
@@ -717,7 +754,12 @@ public grenade_explosion()
 	if(Util_Should_Msg_Client(id))
 	{
 		// clear screen fade
-		message_begin(MSG_ONE,get_user_msgid("ScreenFade"),{0,0,0},id);
+		new sf = get_user_msgid("ScreenFade");
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::remove_chill:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, sf, id);
+		}
+		message_begin(MSG_ONE,sf,{0,0,0},id);
 		write_short(0); // duration
 		write_short(0); // hold time
 		write_short(0); // flags
@@ -728,6 +770,10 @@ public grenade_explosion()
 		message_end();
 
 		// kill their trail
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::remove_chill:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		}
 		message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 		write_byte(TE_KILLBEAM);
 		write_short(id);
@@ -739,11 +785,11 @@ public grenade_explosion()
 	set_user_maxspeed(id,float(speed));
 	set_user_rendering(id);
 
- }
+}
 
- // a player's freeze runs out
- public remove_freeze(taskid)
- {
+// a player's freeze runs out
+public remove_freeze(taskid)
+{
 	remove_task(taskid);
 	new id = taskid - TASK_REMOVE_FREEZE;
 
@@ -760,6 +806,10 @@ public grenade_explosion()
 		FVecIVec(originF,origin);
 
 		// add some tracers
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::remove_freeze:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		}
 		message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 		write_byte(14); // TE_IMPLOSION
 		write_coord(origin[0]); // x
@@ -771,6 +821,10 @@ public grenade_explosion()
 		message_end();
 
 		// add some sparks
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::remove_freeze:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		}
 		message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 		write_byte(9); // TE_SPARKS
 		write_coord(origin[0]); // x
@@ -779,6 +833,10 @@ public grenade_explosion()
 		message_end();
 
 		// add the shatter
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::remove_freeze:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		}
 		message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 		write_byte(108); // TE_BREAKMODEL
 		write_coord(origin[0]); // x
@@ -824,4 +882,4 @@ public grenade_explosion()
 	}
 
 	oldSpeed[id] = 0.0;
- }
+}

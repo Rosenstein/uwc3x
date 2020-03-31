@@ -173,7 +173,7 @@ public SaveSinglePlayerXP ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			//client_print ( id,print_chat,"%L", id, "SAVE_XP_DISABLED", MOD );
+			//client_print_utility ( id,print_chat,"%L", id, "SAVE_XP_DISABLED", MOD );
 			hudchat_show(id, "%L", id, "SAVE_XP_DISABLED");
 			hudchat_update(id);
 		}
@@ -183,7 +183,7 @@ public SaveSinglePlayerXP ( id )
 
 	if( Util_Should_Msg_Client(id) )
 	{
-		//client_print ( id,print_chat, "%L", id, "SAVING_XP_NOW", MOD );
+		//client_print_utility ( id,print_chat, "%L", id, "SAVING_XP_NOW", MOD );
 		hudchat_show(id, "%L", id, "SAVING_XP_NOW");
 		hudchat_update(id);
 	}
@@ -197,7 +197,7 @@ public ShowSaveText ( id )
 	{
 		//set_hudmessage ( 200, 100, 0, -1.0, 0.35, 0, 1.0, 7.0, 0.1, 0.2, 2 );
 		//show_hudmessage ( id, "Your XP, Skills, Attributes and Resistances will be saved when you disconnect, and on a map change." );
-		//client_print ( id, print_chat, "[%s] %L", id, MOD, "SAVEXP_CLIENT_MESSAGE" );
+		//client_print_utility ( id, print_chat, "[%s] %L", id, MOD, "SAVEXP_CLIENT_MESSAGE" );
 		hudchat_show(id, "%L", id, "SAVEXP_CLIENT_MESSAGE");
 		hudchat_update(id);
 	}

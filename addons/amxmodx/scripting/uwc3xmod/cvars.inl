@@ -48,6 +48,7 @@ new CVAR_RESIST_MAX_TRAINABLE;
 new CVAR_RESIST_MAX_POINTS;
 new CVAR_ATTRIBS_MAX_POINTS;
 new CVAR_DEBUG_MODE;
+new CVAR_DMESSAGES;
 new CVAR_USE_DEBUG_CASH;
 new Float:CVAR_SM1_ITEM_BOOT_SPEED;
 new Float:CVAR_SM1_ITEM_FROST_SPEED;
@@ -309,6 +310,7 @@ new RESIST_MAX_TRAINABLE;
 new RESIST_MAX_POINTS;
 new ATTRIBS_MAX_POINTS;
 new DEBUG_MODE;
+new DMESSAGES;
 new USE_DEBUG_CASH;
 new SM1_ITEM_BOOT_SPEED;
 new SM1_ITEM_FROST_SPEED;
@@ -504,6 +506,7 @@ public Register_Cvars ( )
 	RESIST_MAX_POINTS				=			register_cvar ( "UWX_max_resistpts",			"500"			 );
 	ATTRIBS_MAX_POINTS				=			register_cvar ( "UWX_max_attribpts",			"40"			 );
 	DEBUG_MODE						=			register_cvar ( "UWX_DEBUG",					"0"				 );
+	DMESSAGES						=			register_cvar ( "UWX_DMESSAGES",				"0"				 );
 	USE_DEBUG_CASH					=			register_cvar ( "UWX_USE_DEBUG_CASH",			"0"				 );
 	//Shopmenu items
 	SM1_ITEM_BOOT_SPEED				=			register_cvar ( "UWX_BOOTSPEED",				"275.0"			 );
@@ -757,6 +760,7 @@ public Bind_Cvars ( )
 	CVAR_RESIST_MAX_POINTS		=	get_pcvar_num ( RESIST_MAX_POINTS );
 	CVAR_ATTRIBS_MAX_POINTS		=	get_pcvar_num ( ATTRIBS_MAX_POINTS );
 	CVAR_DEBUG_MODE				=	get_pcvar_num ( DEBUG_MODE );
+	CVAR_DMESSAGES				=	get_pcvar_num ( DMESSAGES );
 	CVAR_USE_DEBUG_CASH			=	get_pcvar_num ( USE_DEBUG_CASH );
 
 	CVAR_SM1_ITEM_CLAWS_DAMAGE	=	get_pcvar_num ( SM1_ITEM_CLAWS_DAMAGE );
@@ -939,7 +943,7 @@ public Exec_User_CFG ( )
 
 	if ( file_exists( cfgfile ) )
 	{
-		log_amx( "[UWC3X] Startup :: Loading Configuration File [ UWC3X.cfg ]..." );
+		log_amx( "[UWC3X] Startup :: Loading Configuration File [ %s ]...", cfgfile );
 		server_cmd( "exec %s", cfgfile);
 		log_amx( "[UWC3X] Startup :: Configuration File Loaded [OK]" );
 		log_amx( "[UWC3X] User Config File Initialized [OK]");

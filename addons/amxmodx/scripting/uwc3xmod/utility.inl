@@ -593,7 +593,7 @@ public amx_restartround(id, level)
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS" );
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS" );
 			}
 
 			return PLUGIN_HANDLED;
@@ -834,7 +834,7 @@ public check_say ( id )
 		Reset_Resists ( id );
 	else if ( equali ( said,"^"/uwc3xversion^"" ) || equali ( said,"^"uwc3xversion^"" ) || equali ( said,"^"/modinfo^"" ) || equali ( said,"^"modinfo^"" ) )
 	{
-		//client_print( id, print_chat, "You are playing %s version %s by %s",UWC3XNAME,UWC3XVERSION,UWC3XAUTHOR );
+		//client_print_utility( id, print_chat, "You are playing %s version %s by %s",UWC3XNAME,UWC3XVERSION,UWC3XAUTHOR );
 		hudchat_show(id, "%L", id, "UWC3X_VERSION", UWC3XNAME,UWC3XVERSION,UWC3XAUTHOR);
 		hudchat_update(id);
 	}
@@ -1280,7 +1280,7 @@ public admin_loc ( id )
 	get_user_origin ( id,origin );
 	if( Util_Should_Msg_Client(id) )
 	{
-		client_print ( id, print_chat, "%L", id, "ADMIN_SHOW_LOCATION", MOD, origin[0], origin[1], origin[2] );
+		client_print_utility ( id, print_chat, "%L", id, "ADMIN_SHOW_LOCATION", MOD, origin[0], origin[1], origin[2] );
 	}
 	return PLUGIN_HANDLED;
 }
@@ -1300,7 +1300,7 @@ public toggle_lowres ( id )
 		{
 			hudchat_show(id, "%L", id, "LOW_RES_OFF");
 			hudchat_update(id);
-			//client_print ( id, print_chat, "%L", id, "LOW_RES_OFF", MOD );
+			//client_print_utility ( id, print_chat, "%L", id, "LOW_RES_OFF", MOD );
 		}
 	}
 	else
@@ -1310,7 +1310,7 @@ public toggle_lowres ( id )
 		{
 			hudchat_show(id, "%L", id, "LOW_RES_ON");
 			hudchat_update(id);
-			//client_print ( id, print_chat, "%L", id, "LOW_RES_ON", MOD );
+			//client_print_utility ( id, print_chat, "%L", id, "LOW_RES_ON", MOD );
 		}
 	}
 
@@ -1377,7 +1377,7 @@ public setSpecMode ( id )
 //	{
 //		if( Util_Should_Msg_Client_Alive( id ) )
 //		{
-//			client_print ( id, print_center, "%L", id, "SAME_TEAM" );
+//			client_print_utility ( id, print_center, "%L", id, "SAME_TEAM" );
 //			if ( file_exists ( "sound/uwc3x/antend.wav" ) ==1 )
 //			{
 //				emit_sound ( id,CHAN_ITEM, "uwc3x/antend.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -1628,7 +1628,7 @@ public Fwd_Touch(Ent, id)
 		{
 			hudchat_show(id, "%L", id, "ULTIMATE_DEPOWER_ENEMY2", MOD);
 			hudchat_update(id);
-			//client_print ( id, print_center, "%L", id, "ULTIMATE_DEPOWER_ENEMY2", MOD );
+			//client_print_utility ( id, print_center, "%L", id, "ULTIMATE_DEPOWER_ENEMY2", MOD );
 		}
 
 		return FMRES_SUPERCEDE;
@@ -1885,7 +1885,7 @@ public hookDrop(id)
 		{
 			hudchat_show(id, "%L", id, "ULTIMATE_DEPOWER_ENEMY2", MOD);
 			hudchat_update(id);
-			//client_print ( id, print_center, "%L", id, "ULTIMATE_DEPOWER_ENEMY2", MOD );
+			//client_print_utility ( id, print_center, "%L", id, "ULTIMATE_DEPOWER_ENEMY2", MOD );
 		}
 
 		return PLUGIN_HANDLED;
@@ -2008,6 +2008,10 @@ public Float:radius_calucation(Float:origin1[3],Float:origin2[3],Float:radius,Fl
 // displays x y z axis
 public show_xyz(origin[3],radius)
 {
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::show_xyz:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(0); // TE_BEAMPOINTS
 	write_coord(origin[0]); // start x
@@ -2029,6 +2033,10 @@ public show_xyz(origin[3],radius)
 	write_byte(0); // scroll speed
 	message_end();
 
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::show_xyz:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(0); // TE_BEAMPOINTS
 	write_coord(origin[0]); // start x
@@ -2050,6 +2058,10 @@ public show_xyz(origin[3],radius)
 	write_byte(0); // scroll speed
 	message_end();
 
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::show_xyz:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(0); // TE_BEAMPOINTS
 	write_coord(origin[0]); // start x
@@ -2075,6 +2087,10 @@ public show_xyz(origin[3],radius)
 // give an entity a trail
 public set_beamfollow(ent,life,width,r,g,b,brightness)
 {
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::set_beamfollow:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(22); // TE_BEAMFOLLOW
 	write_short(ent); // ball
@@ -2092,6 +2108,10 @@ public set_beamfollow(ent,life,width,r,g,b,brightness)
 public create_blast(origin[3], tempRadius)
 {
 	// smallest ring
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::create_blast:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(21); // TE_BEAMCYLINDER
 	write_coord(origin[0]); // start X
@@ -2114,6 +2134,10 @@ public create_blast(origin[3], tempRadius)
 	message_end();
 
 	// medium ring
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::create_blast:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(21); // TE_BEAMCYLINDER
 	write_coord(origin[0]); // start X
@@ -2136,6 +2160,10 @@ public create_blast(origin[3], tempRadius)
 	message_end();
 
 	// largest ring
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::create_blast:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(21); // TE_BEAMCYLINDER
 	write_coord(origin[0]); // start X
@@ -2158,6 +2186,10 @@ public create_blast(origin[3], tempRadius)
 	message_end();
 
 	// light effect
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::create_blast:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(27); // TE_DLIGHT
 	write_coord(origin[0]); // x
@@ -2182,6 +2214,10 @@ public create_eq_blast(origin[3], EQ_RADIUS)
 	EQ_B = 19;
 
 	// smallest ring
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::create_eq_blast:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(21); // TE_BEAMCYLINDER
 	write_coord(origin[0]); // start X
@@ -2204,6 +2240,10 @@ public create_eq_blast(origin[3], EQ_RADIUS)
 	message_end();
 
 	// medium ring
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::create_eq_blast:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(21); // TE_BEAMCYLINDER
 	write_coord(origin[0]); // start X
@@ -2226,6 +2266,10 @@ public create_eq_blast(origin[3], EQ_RADIUS)
 	message_end();
 
 	// largest ring
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::create_eq_blast:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(21); // TE_BEAMCYLINDER
 	write_coord(origin[0]); // start X
@@ -2248,6 +2292,10 @@ public create_eq_blast(origin[3], EQ_RADIUS)
 	message_end();
 
 	// light effect
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::create_eq_blast:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(27); // TE_DLIGHT
 	write_coord(origin[0]); // x
@@ -2336,12 +2384,12 @@ public UTIL_Kill(attacker,id,weapon[])
 
 		if( Util_Should_Msg_Client(attacker) )
 		{
-			client_print( attacker, print_center, "%L", attacker, "MINE2", name );
+			client_print_utility( attacker, print_center, "%L", attacker, "MINE2", name );
 		}
 
 		if( is_user_connected( id ) && !is_user_bot( id ) )
 		{
-			client_print( id, print_center, "%L", id, "MINE1", aname );
+			client_print_utility( id, print_center, "%L", id, "MINE1", aname );
 		}
 	}
 	else
@@ -2377,6 +2425,19 @@ bool:RemoveTaskIfExists(id)
 	{
 		remove_task(id);
 	}
+}
+
+new printBuffer[512];
+public client_print_utility(index, type, const message[], any:...)
+{	
+	vformat(printBuffer, 511, message, 4);
+	
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::client_print_utility:: index=%d; type=%d; message=%s; buffer=%s;", index, type, message, printBuffer);
+	}
+	
+	client_print(index, type, "%s", printBuffer);
 }
 
 /* ==================================================================================================== */

@@ -168,7 +168,7 @@ public do_damage ( id, enemy, damage, deathby, victim_or_enemy, weapon, bodypart
 			{
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_chat, "%L", enemy, "OBJECTIVES_XP", MOD, xpgiven, name, string );
+					client_print_utility( enemy, print_chat, "%L", enemy, "OBJECTIVES_XP", MOD, xpgiven, name, string );
 				}
 
 			}
@@ -210,7 +210,11 @@ public do_damage ( id, enemy, damage, deathby, victim_or_enemy, weapon, bodypart
 		if( !deathmessageshown[id] )
 		{
 			deathmessageshown[id] = true;
-			message_begin( MSG_ALL, gmsgDeathMsg, { 0, 0, 0 }, 0 );
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::do_damage:: dest=%d; msg_type=%d;", MSG_ALL, gmsgDeathMsg);
+			}
+			message_begin( MSG_ALL, gmsgDeathMsg );
 			write_byte( enemy );
 			write_byte( id );
 			write_byte( 0 );
@@ -255,7 +259,7 @@ public do_damage ( id, enemy, damage, deathby, victim_or_enemy, weapon, bodypart
 			{
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_console, "%L", enemy, "OBJECTIVES_XP", MOD, xpgiven, name, string );
+					client_print_utility( enemy, print_console, "%L", enemy, "OBJECTIVES_XP", MOD, xpgiven, name, string );
 				}
 				
 				if( headshot == 1 )
@@ -263,7 +267,7 @@ public do_damage ( id, enemy, damage, deathby, victim_or_enemy, weapon, bodypart
 					playerxp[enemy] += HEADSHOT_BONUS;
 					if( Util_Should_Msg_Client(enemy) )
 					{
-						client_print( enemy, print_console, "%L", enemy, "OBJECTIVES_XP_HS", MOD, HEADSHOT_BONUS, name, string );
+						client_print_utility( enemy, print_console, "%L", enemy, "OBJECTIVES_XP_HS", MOD, HEADSHOT_BONUS, name, string );
 					}
 				}
 				
@@ -276,7 +280,7 @@ public do_damage ( id, enemy, damage, deathby, victim_or_enemy, weapon, bodypart
 			{
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_console, "%L", enemy, "OBJECTIVES_XP",MOD, floatround( xpgiven * weaponxpmultiplier[weapon] ), name, string );
+					client_print_utility( enemy, print_console, "%L", enemy, "OBJECTIVES_XP",MOD, floatround( xpgiven * weaponxpmultiplier[weapon] ), name, string );
 				}
 				
 				if( headshot == 1 )
@@ -284,7 +288,7 @@ public do_damage ( id, enemy, damage, deathby, victim_or_enemy, weapon, bodypart
 					playerxp[enemy] += HEADSHOT_BONUS;
 					if( Util_Should_Msg_Client(enemy) )
 					{
-						client_print( enemy, print_console, "%L", enemy, "OBJECTIVES_XP_HS", MOD, HEADSHOT_BONUS, name, string );
+						client_print_utility( enemy, print_console, "%L", enemy, "OBJECTIVES_XP_HS", MOD, HEADSHOT_BONUS, name, string );
 					}
 				}
 				
@@ -299,7 +303,7 @@ public do_damage ( id, enemy, damage, deathby, victim_or_enemy, weapon, bodypart
 
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_console, "%L", enemy, "TK_XP", MOD, floatround( xpgiven * weaponxpmultiplier[weapon] ), name, string );
+					client_print_utility( enemy, print_console, "%L", enemy, "TK_XP", MOD, floatround( xpgiven * weaponxpmultiplier[weapon] ), name, string );
 				}
 			}
 		}
@@ -307,7 +311,11 @@ public do_damage ( id, enemy, damage, deathby, victim_or_enemy, weapon, bodypart
 		if( !deathmessageshown[id] )
 		{
 			deathmessageshown[id] = true;
-			message_begin( MSG_ALL, gmsgDeathMsg, { 0, 0, 0 }, 0 );
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::do_damage:: dest=%d; msg_type=%d;", MSG_ALL, gmsgDeathMsg);
+			}
+			message_begin( MSG_ALL, gmsgDeathMsg );
 			write_byte( enemy );
 			write_byte( id );
 			write_byte( headshot );
@@ -338,7 +346,7 @@ public damage_event( id )
 
 		if( Util_Should_Msg_Client(enemy) )
 		{
-			//client_print( enemy, print_chat, "%L", enemy, "IMPALE3", MOD, name1 );
+			//client_print_utility( enemy, print_chat, "%L", enemy, "IMPALE3", MOD, name1 );
 
 			//impale
 			if ( file_exists( "sound/uwc3x/impalehit.wav" ) == 1 )
@@ -349,6 +357,10 @@ public damage_event( id )
 
 		if( Util_Should_Msg_Client( enemy ) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgShake, enemy);
+			}
 			message_begin( MSG_ONE, gmsgShake, { 0, 0, 0 }, enemy );
 			write_short( 255<< 14 ); //ammount
 			write_short( 10 << 14 ); //lasts this long
@@ -375,23 +387,23 @@ public damage_event( id )
 			{
 				if ( ( p_skills[pid][SKILLIDX_MEND] == 3 ) && ( isburning[id] || isnburning[id] ) )
 				{
-					client_print( pid, print_chat, "%L", pid, "MEDIC1", MOD, name1 );
+					client_print_utility( pid, print_chat, "%L", pid, "MEDIC1", MOD, name1 );
 				}
 				else if ( ( p_skills[pid][SKILLIDX_MEND] == 3 ) && bIsRotting[id] )
 				{
-					client_print( pid, print_chat, "%L", pid, "MEDIC2", MOD, name1 );
+					client_print_utility( pid, print_chat, "%L", pid, "MEDIC2", MOD, name1 );
 				}
 				else if ( ( p_skills[pid][SKILLIDX_MEND] == 2 ) && ispoisonedss[id] )
 				{
-					client_print( pid, print_chat, "%L", pid, "MEDIC3", MOD, name1 );
+					client_print_utility( pid, print_chat, "%L", pid, "MEDIC3", MOD, name1 );
 				}
 				else if ( ( p_skills[pid][SKILLIDX_MEND] == 2 ) && isdiseasedcb[id] )
 				{
-					client_print( pid, print_chat, "%L", pid, "MEDIC4", MOD, name1 );
+					client_print_utility( pid, print_chat, "%L", pid, "MEDIC4", MOD, name1 );
 				}
 				else if ( p_skills[pid][SKILLIDX_MEND] )
 				{
-					client_print( pid, print_chat, "%L", pid, "MEDIC5", MOD, name1 );
+					client_print_utility( pid, print_chat, "%L", pid, "MEDIC5", MOD, name1 );
 				}
 			}
 		}
@@ -422,7 +434,7 @@ public damage_event( id )
 	//		// Mole Protectant
 	//		damage = read_data( 2 );
 	//		set_user_health_log( id, get_user_health( id ) + damage );
-	//		client_print( id, print_chat, "%L", id, "MOLE_DEFLECT", MOD );
+	//		client_print_utility( id, print_chat, "%L", id, "MOLE_DEFLECT", MOD );
 	//		return PLUGIN_HANDLED;
 	//	}
 	//}
@@ -437,7 +449,7 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "MOLE_DEFLECT", MOD );
+				client_print_utility( id, print_chat, "%L", id, "MOLE_DEFLECT", MOD );
 			}
 
 			return PLUGIN_HANDLED;
@@ -507,12 +519,12 @@ public damage_event( id )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id, print_chat, "%L", id, "TEAMSHIELD_ABSORB1", MOD, friend_name, temp_a );
+						client_print_utility( id, print_chat, "%L", id, "TEAMSHIELD_ABSORB1", MOD, friend_name, temp_a );
 					}
 
 					if( Util_Should_Msg_Client( PlayerShieldedBy ) )
 					{
-						client_print( PlayerShieldedBy, print_chat, "%L", PlayerShieldedBy, "TEAMSHIELD_ABSORB2", MOD, temp_a, name );
+						client_print_utility( PlayerShieldedBy, print_chat, "%L", PlayerShieldedBy, "TEAMSHIELD_ABSORB2", MOD, temp_a, name );
 					}
 
 					do_damage( PlayerShieldedBy, id, temp_a, 24, 1, weapon, bodypart, 0 );
@@ -579,12 +591,12 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id,"EVADE1", MOD, ename );
+				client_print_utility( id, print_chat, "%L", id,"EVADE1", MOD, ename );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy,"EVADE2", MOD, idname );
+				client_print_utility( enemy, print_chat, "%L", enemy,"EVADE2", MOD, idname );
 			}
 
 			if ( iglow[id][2] < 1 )
@@ -604,6 +616,10 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client( id ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+				}
 				message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 				write_short( 1<<10 ); // fade lasts this long duration
 				write_short( 1<<10 ); // fade lasts this long hold time
@@ -620,7 +636,7 @@ public damage_event( id )
 
 	if ( CVAR_DEBUG_MODE )
 	{
-		client_print( 0, print_console, "[%s DEBUG In damage_event( )] <%s => %s> damage=( %d ) was_evaded?=( %d )", MOD, name2, name1, damage, p_evadethisshot[id] );
+		client_print_utility( 0, print_console, "[%s DEBUG In damage_event( )] <%s => %s> damage=( %d ) was_evaded?=( %d )", MOD, name2, name1, damage, p_evadethisshot[id] );
 	}
 
 	if ( p_skills[enemy][SKILLIDX_CRITSTRIKE] && p_skills[enemy][SKILLIDX_TRUESHOT] )
@@ -640,12 +656,12 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id,"CRIT_STRIKE_BACKFIRE2", MOD, ename );
+				client_print_utility( id, print_chat, "%L", id,"CRIT_STRIKE_BACKFIRE2", MOD, ename );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy,"CRIT_STRIKE_BACKFIRE1", MOD );
+				client_print_utility( enemy, print_chat, "%L", enemy,"CRIT_STRIKE_BACKFIRE1", MOD );
 			}
 
 			if ( iglow[enemy][0] < 1 )
@@ -665,6 +681,10 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client( id ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, enemy);
+				}
 				message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, enemy );
 				write_short( 1<<10 ); // fade lasts this long duration
 				write_short( 1<<10 ); // fade lasts this long hold time
@@ -701,6 +721,10 @@ public damage_event( id )
 			new enemyorigin[3];
 			get_user_origin( id, idorigin );
 			get_user_origin( enemy, enemyorigin );
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+			}
 			message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 			write_byte( TE_SPRITETRAIL );
 			write_coord( enemyorigin[0] );
@@ -726,7 +750,7 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "POISON2", MOD, ename );
+				client_print_utility( id, print_chat, "%L", id, "POISON2", MOD, ename );
 				if ( file_exists( "sound/uwc3x/shadowstrikebirth1.wav" ) == 1 )
 				{
 					emit_sound( id, CHAN_STATIC, "uwc3x/shadowstrikebirth1.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -735,7 +759,7 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "POISON1", MOD, idname );
+				client_print_utility( enemy, print_chat, "%L", enemy, "POISON1", MOD, idname );
 
 				if ( file_exists( "sound/uwc3x/shadowstrikebirth1.wav" ) == 1 )
 				{
@@ -749,6 +773,10 @@ public damage_event( id )
 			ispoisonedss[id] = 1;
 
 			// [ 09-06-04] - Attach poison1.spr to the infected
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d;", MSG_ALL, SVC_TEMPENTITY);
+			}
 			message_begin( MSG_ALL, SVC_TEMPENTITY );
 			write_byte( TE_PLAYERATTACHMENT );
 			write_byte( id );
@@ -769,12 +797,12 @@ public damage_event( id )
 			// If we are here then the resistance is what caused Shadow Strike to fail
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "POISON3", MOD );
+				client_print_utility( id, print_chat, "%L", id, "POISON3", MOD );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "POISON4", MOD );
+				client_print_utility( enemy, print_chat, "%L", enemy, "POISON4", MOD );
 			}
 
 		}
@@ -783,7 +811,7 @@ public damage_event( id )
 	{
 		if ( CVAR_DEBUG_MODE )
 		{
-			client_print( id, print_console, "[%s DEBUG In damage_event( )] Shot evaded, Shadow Strike check skipped", MOD );
+			client_print_utility( id, print_console, "[%s DEBUG In damage_event( )] Shot evaded, Shadow Strike check skipped", MOD );
 		}
 	}
 	// End of Shadow Strike
@@ -813,6 +841,10 @@ public damage_event( id )
 			get_user_origin( id, idorigin );
 			get_user_origin( enemy, enemyorigin );
 
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+			}
 			message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 			write_byte( TE_SPRITETRAIL );
 			write_coord( enemyorigin[0] );
@@ -838,7 +870,7 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "ROT2", MOD, ename );
+				client_print_utility( id, print_center, "%L", id, "ROT2", MOD, ename );
 
 				if ( file_exists( "sound/uwc3x/dohgodoh.wav" ) == 1 )
 					emit_sound( id, CHAN_STATIC, "uwc3x/dohgodoh.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -847,7 +879,7 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", id, "ROT1", MOD, idname );
+				client_print_utility( enemy, print_chat, "%L", id, "ROT1", MOD, idname );
 
 				if ( file_exists( "sound/uwc3x/carrionswarmlaunch1.wav" ) == 1 )
 					emit_sound( enemy, CHAN_STATIC, "uwc3x/carrionswarmlaunch1.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -863,6 +895,10 @@ public damage_event( id )
 			do_damage( id, enemy, damage, 25, 1, weapon, bodypart, 0 );
 
             // Attach ROTspr.spr to the infected
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d;", MSG_ALL, SVC_TEMPENTITY);
+			}
 			message_begin( MSG_ALL, SVC_TEMPENTITY );
 			write_byte( TE_PLAYERATTACHMENT );
 			write_byte( id );
@@ -882,12 +918,12 @@ public damage_event( id )
 			// If we are here then the resistance is what caused Rot to fail
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "ROT3", MOD );
+				client_print_utility( id, print_chat, "%L", id, "ROT3", MOD );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "ROT4", MOD );
+				client_print_utility( enemy, print_chat, "%L", enemy, "ROT4", MOD );
 			}
 
 		}
@@ -919,6 +955,10 @@ public damage_event( id )
 			new enemyorigin[3];
 			get_user_origin( id, idorigin );
 			get_user_origin( enemy, enemyorigin );
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+			}
 			message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 			write_byte( TE_SPRITETRAIL );
 			write_coord( enemyorigin[0] );
@@ -939,7 +979,7 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "DISEASE2", MOD, ename );
+				client_print_utility( id, print_chat, "%L", id, "DISEASE2", MOD, ename );
 
 				if ( file_exists( "sound/uwc3x/carrionswarmdamage1.wav" ) == 1 )
 				{
@@ -949,7 +989,7 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "DISEASE1", MOD, idname );
+				client_print_utility( enemy, print_chat, "%L", enemy, "DISEASE1", MOD, idname );
 
 				if ( file_exists( "sound/uwc3x/carrionswarmlaunch1.wav" ) == 1 )
 				{
@@ -964,6 +1004,10 @@ public damage_event( id )
 			isdiseasedcb[id] = 1;
 
 			// [ 09-02-04] - Attach bm2.spr to the infected
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d;", MSG_ALL, SVC_TEMPENTITY);
+			}
 			message_begin( MSG_ALL, SVC_TEMPENTITY );
 			write_byte( TE_PLAYERATTACHMENT );
 			write_byte( id );
@@ -983,12 +1027,12 @@ public damage_event( id )
 			// If we are here then the resistance is what caused Carrion Beetles to fail
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "DISEASE3", MOD );
+				client_print_utility( id, print_chat, "%L", id, "DISEASE3", MOD );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "DISEASE4", MOD );
+				client_print_utility( enemy, print_chat, "%L", enemy, "DISEASE4", MOD );
 			}
 		}
 	}
@@ -996,7 +1040,7 @@ public damage_event( id )
 	{
 		if ( CVAR_DEBUG_MODE )
 		{
-			client_print( id, print_console, "[%s DEBUG In damage_event( )] Shot evaded, Carrion Beetles check skipped", MOD );
+			client_print_utility( id, print_console, "[%s DEBUG In damage_event( )] Shot evaded, Carrion Beetles check skipped", MOD );
 		}
 
 	}
@@ -1022,12 +1066,12 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "BEGIN_LUCK1", MOD, name2 );
+					client_print_utility( id, print_chat, "%L", id, "BEGIN_LUCK1", MOD, name2 );
 				}
 
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_chat, "%L", enemy, "BEGIN_LUCK2", MOD, name1 );
+					client_print_utility( enemy, print_chat, "%L", enemy, "BEGIN_LUCK2", MOD, name1 );
 				}
 
 			}
@@ -1046,12 +1090,12 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "BEGIN_LUCK4", MOD, name2 );
+					client_print_utility( id, print_chat, "%L", id, "BEGIN_LUCK4", MOD, name2 );
 				}
 
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_chat, "%L", enemy, "BEGIN_LUCK3", MOD, name1 );
+					client_print_utility( enemy, print_chat, "%L", enemy, "BEGIN_LUCK3", MOD, name1 );
 				}
 
 			}
@@ -1073,7 +1117,7 @@ public damage_event( id )
 		//	new idname[32], ename[32];
 		//	get_user_name( id, idname, 31 );
 		//	get_user_name( enemy, ename, 31 );
-		//	client_print( enemy, print_console, "THORNS DEBUG: You attacked %s ( has thorns ) orig_dmg=( %d ) thorns_dmg=( %d ) orig_health=( %d ) after_thorns_health=( %d )", idname, orig_dmg, damage, get_user_health( enemy ), ( get_user_health( enemy )-damage ) );
+		//	client_print_utility( enemy, print_console, "THORNS DEBUG: You attacked %s ( has thorns ) orig_dmg=( %d ) thorns_dmg=( %d ) orig_health=( %d ) after_thorns_health=( %d )", idname, orig_dmg, damage, get_user_health( enemy ), ( get_user_health( enemy )-damage ) );
 		//	log_amx( "[UWC3X] THORNS DEBUG: %s attacked %s ( has thorns ) orig_dmg=( %d ) thorns_dmg=( %d ) orig_health=( %d ) after_thorns_health=( %d )", ename, idname, orig_dmg, damage, get_user_health( enemy ), ( get_user_health( enemy )-damage ) );
 		//}
 
@@ -1092,12 +1136,12 @@ public damage_event( id )
 
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_chat, "%L", id, "THORNS2", MOD, ename );
+			client_print_utility( id, print_chat, "%L", id, "THORNS2", MOD, ename );
 		}
 
 		if( Util_Should_Msg_Client(enemy) )
 		{
-			client_print( enemy, print_chat, "%L", enemy, "THORNS1", MOD, idname );
+			client_print_utility( enemy, print_chat, "%L", enemy, "THORNS1", MOD, idname );
 		}
 
 		iglow[enemy][0] += 3 * damage;
@@ -1112,7 +1156,10 @@ public damage_event( id )
 		{
 
 			// [09-09-04] - Added thorns armor effect - K2mia
-			//message_begin( MSG_ALL, SVC_TEMPENTITY )
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, SVC_TEMPENTITY, enemy);
+			}
 			message_begin( MSG_ONE, SVC_TEMPENTITY, { 0, 0, 0 }, enemy );
 			write_byte( TE_PLAYERATTACHMENT );
 			write_byte( id );
@@ -1121,6 +1168,10 @@ public damage_event( id )
 			write_short( 25 );
 			message_end( );
 
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, enemy);
+			}
 			message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, enemy );
 			write_short( 1<<10 ); // fade lasts this long duration
 			write_short( 1<<10 ); // fade lasts this long hold time
@@ -1152,7 +1203,7 @@ public damage_event( id )
 
 				if ( CVAR_DEBUG_MODE )
 				{
-					client_print( enemy, print_console, "[%s DEBUG] Intellect-Trueshot damage modified=( %f )", MOD, ts_dmg );
+					client_print_utility( enemy, print_console, "[%s DEBUG] Intellect-Trueshot damage modified=( %f )", MOD, ts_dmg );
 				}
 			}
 
@@ -1176,6 +1227,10 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client( id ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+				}
 				message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 				write_short( 1<<10 ); // fade lasts this long duration
 				write_short( 1<<10 ); // fade lasts this long hold time
@@ -1204,12 +1259,12 @@ public damage_event( id )
 
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_chat, "%L", id, "SPIKED2", MOD, ename );
+			client_print_utility( id, print_chat, "%L", id, "SPIKED2", MOD, ename );
 		}
 
 		if( Util_Should_Msg_Client(enemy) )
 		{
-			client_print( enemy, print_chat, "%L", enemy, "SPIKED1", MOD, idname );
+			client_print_utility( enemy, print_chat, "%L", enemy, "SPIKED1", MOD, idname );
 		}
 
 		if( get_user_armor( id )<101 )
@@ -1235,7 +1290,10 @@ public damage_event( id )
 		if( Util_Should_Msg_Client( enemy ) )
 		{
 			// [09-07-04] - Added spiked armor effect - K2mia
-			//message_begin( MSG_ALL, SVC_TEMPENTITY )
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, SVC_TEMPENTITY, enemy);
+			}
 			message_begin( MSG_ONE, SVC_TEMPENTITY, { 0, 0, 0 }, enemy );
 			write_byte( TE_PLAYERATTACHMENT );
 			write_byte( id );
@@ -1244,6 +1302,10 @@ public damage_event( id )
 			write_short( 25 );
 			message_end( );
 
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, enemy);
+			}
 			message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, enemy );
 			write_short( 1<<10 ); // fade lasts this long duration
 			write_short( 1<<10 ); // fade lasts this long hold time
@@ -1284,7 +1346,7 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "IMPALE2", MOD );
+					client_print_utility( id, print_chat, "%L", id, "IMPALE2", MOD );
 
 					if ( file_exists( "sound/uwc3x/impalehit.wav" ) == 1 )
 					{
@@ -1294,11 +1356,15 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_chat, "%L", enemy, "IMPALE1", MOD, idname );
+					client_print_utility( enemy, print_chat, "%L", enemy, "IMPALE1", MOD, idname );
 				}
 
 				if( Util_Should_Msg_Client( id ) )
 				{
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgShake, id);
+					}
 					message_begin( MSG_ONE, gmsgShake, { 0, 0, 0 }, id );
 					write_short( 255<< 14 ); //ammount
 					write_short( 10 << 14 ); //lasts this long
@@ -1341,7 +1407,7 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "HEX1", MOD, ename );
+					client_print_utility( id, print_chat, "%L", id, "HEX1", MOD, ename );
 					if ( file_exists( "sound/uwc3x/hex_infect.wav" ) == 1 )
 					{
 						emit_sound( id, CHAN_STATIC, "uwc3x/hex_infect.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -1350,7 +1416,7 @@ public damage_event( id )
 				
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_chat, "%L", enemy, "HEX2", MOD, idname );
+					client_print_utility( enemy, print_chat, "%L", enemy, "HEX2", MOD, idname );
 				}
 			}
 		}
@@ -1418,16 +1484,20 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "BANISH2", MOD, ename );
+					client_print_utility( id, print_chat, "%L", id, "BANISH2", MOD, ename );
 				}
 
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_chat, "%L", enemy, "BANISH1", MOD, idname );
+					client_print_utility( enemy, print_chat, "%L", enemy, "BANISH1", MOD, idname );
 				}
 
 				if( Util_Should_Msg_Client( id ) )
 				{
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+					}
 					message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 					write_short( 1<<10 ); // fade lasts this long duration
 					write_short( 1<<10 ); // fade lasts this long hold time
@@ -1482,12 +1552,12 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "SYPHON2", MOD, x_ammo, ename );
+				client_print_utility( id, print_chat, "%L", id, "SYPHON2", MOD, x_ammo, ename );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "SYPHON1", MOD, x_ammo, idname );
+				client_print_utility( enemy, print_chat, "%L", enemy, "SYPHON1", MOD, x_ammo, idname );
 			}
 
 			if ( iglow[enemy][1] < 1 )
@@ -1507,6 +1577,10 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client( enemy ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, enemy);
+				}
 				message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, enemy );
 				write_short( 1<<10 ); // fade lasts this long duration
 				write_short( 1<<10 ); // fade lasts this long hold time
@@ -1550,12 +1624,12 @@ public damage_event( id )
 
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_chat, "%L", id, "SYPHON4", MOD, money, ename );
+			client_print_utility( id, print_chat, "%L", id, "SYPHON4", MOD, money, ename );
 		}
 
 		if( Util_Should_Msg_Client(enemy) )
 		{
-			client_print( enemy, print_chat, "%L", enemy, "SYPHON3", MOD, money, idname );
+			client_print_utility( enemy, print_chat, "%L", enemy, "SYPHON3", MOD, money, idname );
 		}
 
 		if ( iglow[enemy][1] < 1 )
@@ -1575,6 +1649,10 @@ public damage_event( id )
 
 		if( Util_Should_Msg_Client( enemy ) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, enemy);
+			}
 			message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, enemy );
 			write_short( 1<<10 ); // fade lasts this long duration
 			write_short( 1<<10 ); // fade lasts this long hold time
@@ -1699,7 +1777,7 @@ public damage_event( id )
 
 			if ( vampiric_hits[enemy] % 5 == 0 && is_user_connected(enemy) && !is_user_bot(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "STEALSKIN", MOD );
+				client_print_utility( enemy, print_chat, "%L", enemy, "STEALSKIN", MOD );
 			}
 
 		}
@@ -1714,12 +1792,12 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "VAMPIRIC2", MOD, ename );
+				client_print_utility( id, print_chat, "%L", id, "VAMPIRIC2", MOD, ename );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", id, "VAMPIRIC1", MOD, idname );
+				client_print_utility( enemy, print_chat, "%L", id, "VAMPIRIC1", MOD, idname );
 			}
 		}
 
@@ -1741,6 +1819,10 @@ public damage_event( id )
 		if( Util_Should_Msg_Client( enemy ) )
 		{
 
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, enemy);
+			}
 			message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, enemy );
 			write_short( 1<<10 ); // fade lasts this long duration
 			write_short( 1<<10 ); // fade lasts this long hold time
@@ -1806,12 +1888,12 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "BASH2", MOD, ename );
+					client_print_utility( id, print_chat, "%L", id, "BASH2", MOD, ename );
 				}
 
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_chat, "%L", enemy, "BASH1", MOD, idname );
+					client_print_utility( enemy, print_chat, "%L", enemy, "BASH1", MOD, idname );
 				}
 
 				if ( iglow[id][3] < 1 )
@@ -1831,6 +1913,10 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client( id ) )
 				{
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+					}
 					message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 					write_short( 1<<10 ); // fade lasts this long duration
 					write_short( 1<<10 ); // fade lasts this long hold time
@@ -1870,12 +1956,12 @@ public damage_event( id )
 				{
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id, print_chat, "%L", id, "CRIT_STRIKE2", MOD );
+						client_print_utility( id, print_chat, "%L", id, "CRIT_STRIKE2", MOD );
 					}
 
 					if( Util_Should_Msg_Client(enemy) )
 					{
-						client_print( enemy, print_chat, "%L", enemy, "CRIT_STRIKE1", MOD );
+						client_print_utility( enemy, print_chat, "%L", enemy, "CRIT_STRIKE1", MOD );
 					}
 
 				}
@@ -1885,12 +1971,12 @@ public damage_event( id )
 
 					if( Util_Should_Msg_Client(id) )
 					{
-						client_print( id, print_chat, "%L", id, "CRIT_STRIKE4", MOD, ename );
+						client_print_utility( id, print_chat, "%L", id, "CRIT_STRIKE4", MOD, ename );
 					}
 
 					if( Util_Should_Msg_Client(enemy) )
 					{
-						client_print( enemy, print_chat, "%L", enemy, "CRIT_STRIKE3", MOD, idname );
+						client_print_utility( enemy, print_chat, "%L", enemy, "CRIT_STRIKE3", MOD, idname );
 					}
 
 				}
@@ -1912,6 +1998,10 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client( id ) )
 				{
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+					}
 					message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 					write_short( 1<<10 ); // fade lasts this long duration
 					write_short( 1<<10 ); // fade lasts this long hold time
@@ -1956,7 +2046,7 @@ public damage_event( id )
 			allow = false;
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "CRIT_GRENADE1", MOD );
+				client_print_utility( id, print_chat, "%L", id, "CRIT_GRENADE1", MOD );
 			}
 		}
 
@@ -1985,6 +2075,10 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client( id ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+				}
 				message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 				write_short( 1<<10 ); // fade lasts this long duration
 				write_short( 1<<10 ); // fade lasts this long hold time
@@ -2043,6 +2137,10 @@ public damage_event( id )
 			}
 
 			// [09-05-04] Attach fireball sprite to player for 1 cycle
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d;", MSG_ALL, SVC_TEMPENTITY);
+			}
 			message_begin( MSG_ALL, SVC_TEMPENTITY );
 			write_byte( TE_PLAYERATTACHMENT );
 			write_byte( id );
@@ -2059,12 +2157,12 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "NAPALM_GRENADE1", MOD, ename );
+				client_print_utility( id, print_chat, "%L", id, "NAPALM_GRENADE1", MOD, ename );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "NAPALM_GRENADE2", MOD, name );
+				client_print_utility( enemy, print_chat, "%L", enemy, "NAPALM_GRENADE2", MOD, name );
 			}
 
 		}
@@ -2118,7 +2216,7 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_chat, "%L", enemy, "HELMET_SHATTERED1", MOD );
+					client_print_utility( enemy, print_chat, "%L", enemy, "HELMET_SHATTERED1", MOD );
 					if ( file_exists ( "sound/uwc3x/helmsplitter.wav" ) ==1 )
 					{
 						emit_sound ( enemy, CHAN_ITEM, "uwc3x/helmsplitter.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -2134,7 +2232,7 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "HELMET_SHATTERED2", MOD, ename );
+					client_print_utility( id, print_chat, "%L", id, "HELMET_SHATTERED2", MOD, ename );
 					if ( file_exists ( "sound/uwc3x/helmsplitter.wav" ) ==1 )
 					{
 						emit_sound ( id, CHAN_STATIC, "uwc3x/helmsplitter.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -2215,7 +2313,7 @@ public damage_event( id )
 				
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print( id, print_chat, "%L", id, "FATAL_STRIKE2", MOD, ename );
+					client_print_utility( id, print_chat, "%L", id, "FATAL_STRIKE2", MOD, ename );
 					if ( file_exists( "sound/uwc3x/critical_hit_02.wav" ) == 1 )
 					{
 						emit_sound( id, CHAN_STATIC, "uwc3x/critical_hit_02.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -2224,7 +2322,7 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client(enemy) )
 				{
-					client_print( enemy, print_chat, "%L", enemy, "FATAL_STRIKE1", MOD, idname );
+					client_print_utility( enemy, print_chat, "%L", enemy, "FATAL_STRIKE1", MOD, idname );
 					if ( file_exists( "sound/uwc3x/critical_hit_02.wav" ) == 1 )
 					{
 						emit_sound( enemy, CHAN_STATIC, "uwc3x/critical_hit_02.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
@@ -2250,6 +2348,10 @@ public damage_event( id )
 
 				if( Util_Should_Msg_Client( id ) )
 				{
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+					}
 					message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 					write_short( 1<<10 ); // fade lasts this long duration
 					write_short( 1<<10 ); // fade lasts this long hold time
@@ -2289,6 +2391,10 @@ public damage_event( id )
 
 		if( Util_Should_Msg_Client( id ) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+			}
 			message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 			write_short( 1<<10 ); // fade lasts this long duration
 			write_short( 1<<10 ); // fade lasts this long hold time
@@ -2358,6 +2464,10 @@ public damage_event( id )
 
 		if( Util_Should_Msg_Client( enemy ) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, enemy);
+			}
 			message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, enemy );
 			write_short( 1<<10 ); // fade lasts this long duration
 			write_short( 1<<10 ); // fade lasts this long hold time
@@ -2409,6 +2519,10 @@ public damage_event( id )
 
 			if( Util_Should_Msg_Client( id ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::damage_event:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+				}
 				message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 				write_short( 1<<10 ); // fade lasts this long duration
 				write_short( 1<<10 ); // fade lasts this long hold time
@@ -2497,7 +2611,11 @@ public death( )
 	if( !deathmessageshown[victim_id] && killer_id != victim_id && !equal( weaponname, "world" ) )
 	{
 		deathmessageshown[victim_id] = true;
-		message_begin( MSG_ALL, gmsgDeathMsg, { 0, 0, 0 }, 0 );
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::death:: dest=%d; msg_type=%d;", MSG_ALL, gmsgDeathMsg);
+		}
+		message_begin( MSG_ALL, gmsgDeathMsg );
 		write_byte( killer_id );
 		write_byte( victim_id );
 		write_byte( headshot );
@@ -2617,7 +2735,7 @@ public death( )
 
 					if( is_user_connected( killer_id ) && !is_user_bot( killer_id ) )
 					{
-						client_print( killer_id, print_center, "[%s] You have been penalized %d XP for killing %s - Jerk!", MOD, xpgiven, name );
+						client_print_utility( killer_id, print_center, "[%s] You have been penalized %d XP for killing %s - Jerk!", MOD, xpgiven, name );
 					}
 
 				}
@@ -2633,7 +2751,7 @@ public death( )
 
 					if( is_user_connected( killer_id ) && !is_user_bot( killer_id ) )
 					{
-						client_print( killer_id, print_chat, "[%s] You are awarded %d XP for killing %s", MOD, xpgiven, name );
+						client_print_utility( killer_id, print_chat, "[%s] You are awarded %d XP for killing %s", MOD, xpgiven, name );
 					}
 
 				}
@@ -2646,7 +2764,7 @@ public death( )
 
 					if( is_user_connected( killer_id ) && !is_user_bot( killer_id ) )
 					{
-						client_print( killer_id, print_chat, "[%s] You are awarded %d XP for killing %s", MOD, xpgiven, name );
+						client_print_utility( killer_id, print_chat, "[%s] You are awarded %d XP for killing %s", MOD, xpgiven, name );
 					}
 				}
 			}
@@ -2657,7 +2775,7 @@ public death( )
 
 				if( is_user_connected( killer_id ) && !is_user_bot( killer_id ) )
 				{
-					client_print( killer_id, print_chat, "[%s] You received %d XP for killing the hostage rescuer", MOD, KILLRESCUEMANXP );
+					client_print_utility( killer_id, print_chat, "[%s] You received %d XP for killing the hostage rescuer", MOD, KILLRESCUEMANXP );
 				}
 			}
 		}
@@ -2710,7 +2828,7 @@ public death( )
 
 				if( is_user_connected( dmg_id ) && !is_user_bot( dmg_id ) )
 				{
-					client_print( dmg_id, print_chat, "[%s] You receive an XP bonus of %d for seriously injuring %s", MOD, dmgxp, name );
+					client_print_utility( dmg_id, print_chat, "[%s] You receive an XP bonus of %d for seriously injuring %s", MOD, dmgxp, name );
 				}
 			}
 		}
@@ -2760,7 +2878,7 @@ public death( )
 
 				if( is_user_connected( victim_id ) && !is_user_bot( victim_id ) )
 				{
-					client_print( victim_id, print_console, "[%s] You lose an Underdog XP penalty of %d for being killed by %s", MOD, udogpenalty, kname );
+					client_print_utility( victim_id, print_console, "[%s] You lose an Underdog XP penalty of %d for being killed by %s", MOD, udogpenalty, kname );
 				}
 
 			}
@@ -2770,7 +2888,7 @@ public death( )
 
 			if( is_user_connected( killer_id ) && !is_user_bot( killer_id ) )
 			{
-				client_print( killer_id, print_console, "[%s] You receive an Underdog XP bonus of %d for killing %s", MOD, udogxp, name );
+				client_print_utility( killer_id, print_console, "[%s] You receive an Underdog XP bonus of %d for killing %s", MOD, udogxp, name );
 			}
 		}
 
@@ -2792,7 +2910,7 @@ public death( )
 
 			if( is_user_connected( killer_id ) && !is_user_bot( killer_id ) )
 			{
-				client_print( killer_id, print_console, "[%s] received %s %d XP for killing the bomb defuser", MOD, killersname, temp );
+				client_print_utility( killer_id, print_console, "[%s] received %s %d XP for killing the bomb defuser", MOD, killersname, temp );
 			}
 		}
 	}
@@ -2810,7 +2928,7 @@ public death( )
 
 			if( is_user_connected( killer_id ) && !is_user_bot( killer_id ) )
 			{
-				client_print( killer_id, print_console, "[%s] received %s %d XP for killing the bomb carrier", MOD, killersname, temp );
+				client_print_utility( killer_id, print_console, "[%s] received %s %d XP for killing the bomb carrier", MOD, killersname, temp );
 			}
 
 		}
@@ -2836,7 +2954,7 @@ public death( )
 		{
 			log_amx( "[UWC3X] DEBUG :: death( ) -> TeamShield -> Reset their Team Shield");
 			//Tell them its done - No need, they are dead
-			client_print ( PlayerShieldedBy, print_chat, "%L", PlayerShieldedBy, "ULTIMATE_SIV_PLAYER_EXPIRED", friend_name);
+			client_print_utility ( PlayerShieldedBy, print_chat, "%L", PlayerShieldedBy, "ULTIMATE_SIV_PLAYER_EXPIRED", friend_name);
 		}
 
 		//Remove teh Shield Check task
@@ -2863,6 +2981,10 @@ public death( )
 
 		if( Util_Should_Msg_Client( victim_id ) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::death:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgStatusIcon, victim_id);
+			}
 			message_begin(MSG_ONE,gmsgStatusIcon,{0,0,0},victim_id);
 			write_byte(0); // status (0=hide, 1=show, 2=flash)
 			write_string("dmg_cold"); // sprite name
@@ -2970,6 +3092,10 @@ public do_rot( args[] )
 
 	if( Util_Should_Msg_Client( id ) )
 	{
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::do_rot:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+		}
 		message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 		write_short( 1<<10 ); // fade lasts this long duration
 		write_short( 1<<10 ); // fade lasts this long hold time
@@ -3023,6 +3149,10 @@ public do_cbdisease( args[] )
 
 	if( Util_Should_Msg_Client( id ) )
 	{
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::do_cbdisease:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+		}
 		message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 		write_short( 1<<10 ); // fade lasts this long duration
 		write_short( 1<<10 ); // fade lasts this long hold time
@@ -3086,14 +3216,14 @@ public do_cripple ( id, enemy, CrippleType )
 
 		if( Util_Should_Msg_Client( id ) )
 		{
-			client_print( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_ENEMY1", MOD, name );
-			client_print( id, print_center, "%L", id, "ULTIMATE_CRIPPLE_ENEMY4", name );
+			client_print_utility( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_ENEMY1", MOD, name );
+			client_print_utility( id, print_center, "%L", id, "ULTIMATE_CRIPPLE_ENEMY4", name );
 		}
 
 		if( Util_Should_Msg_Client( enemy ) )
 		{
-			client_print( enemy, print_chat, "%L", enemy, "ULTIMATE_CRIPPLE_ENEMY6", MOD, idname );
-			client_print( enemy, print_center, "%L", enemy, "ULTIMATE_CRIPPLE_ENEMY8", idname );
+			client_print_utility( enemy, print_chat, "%L", enemy, "ULTIMATE_CRIPPLE_ENEMY6", MOD, idname );
+			client_print_utility( enemy, print_center, "%L", enemy, "ULTIMATE_CRIPPLE_ENEMY8", idname );
 		}
 
 		if(speed > 1.0 && speed != oldSpeed[id])
@@ -3110,13 +3240,13 @@ public do_cripple ( id, enemy, CrippleType )
 	{
 		if( Util_Should_Msg_Client( id ) )
 		{
-			client_print( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_ENEMY2", MOD, name );
-			client_print( id, print_center, "%L", id, "ULTIMATE_CRIPPLE_ENEMY5", name );
+			client_print_utility( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_ENEMY2", MOD, name );
+			client_print_utility( id, print_center, "%L", id, "ULTIMATE_CRIPPLE_ENEMY5", name );
 		}
 		if( Util_Should_Msg_Client( enemy ) )
 		{
-			client_print( enemy, print_chat, "%L", enemy, "ULTIMATE_CRIPPLE_ENEMY7", MOD, idname );
-			client_print( enemy, print_center, "%L", enemy, "ULTIMATE_CRIPPLE_ENEMY9", idname );
+			client_print_utility( enemy, print_chat, "%L", enemy, "ULTIMATE_CRIPPLE_ENEMY7", MOD, idname );
+			client_print_utility( enemy, print_center, "%L", enemy, "ULTIMATE_CRIPPLE_ENEMY9", idname );
 		}
 
 		new Float:speed = get_user_maxspeed( id );
@@ -3169,6 +3299,10 @@ public do_sspoison( args[] )
 
 	if( Util_Should_Msg_Client( id ) )
 	{
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::do_sspoison:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+		}
 		message_begin( MSG_ONE, gmsgFade, { 0, 0, 0 }, id );
 		write_short( 1<<10 ); // fade lasts this long duration
 		write_short( 1<<10 ); // fade lasts this long hold time
@@ -3211,19 +3345,19 @@ public burn_victim_napalm( id, killer, tk )
 
 		new Float:randomnumber = random_float( 0.0, 1.0 );
 
-		//client_print( id, print_console, "DEBUG: fresist=( %d ) chance_to_avoid=( %f ) rnum=( %f )", p_resists[id][RESISTIDX_FIRE], chance_to_avoid, randomnumber );
+		//client_print_utility( id, print_console, "DEBUG: fresist=( %d ) chance_to_avoid=( %f ) rnum=( %f )", p_resists[id][RESISTIDX_FIRE], chance_to_avoid, randomnumber );
 		if ( randomnumber < chance_to_avoid )
 		{
 			do_burn = false;
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "[%s] Your fire resistance protects you from a napalm grenade attack", MOD );
+				client_print_utility( id, print_chat, "[%s] Your fire resistance protects you from a napalm grenade attack", MOD );
 			}
 
 			if( is_user_connected( killer ) && !is_user_bot( killer ) )
 			{
-				client_print( killer, print_chat, "[%s] Your napalm grenade attack is deflected by your target's fire resistance", MOD );
+				client_print_utility( killer, print_chat, "[%s] Your napalm grenade attack is deflected by your target's fire resistance", MOD );
 			}
 
 		}
@@ -3233,7 +3367,7 @@ public burn_victim_napalm( id, killer, tk )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "[%s] Your fire resistance fails to fully protect you from a napalm grenade attack", MOD );
+				client_print_utility( id, print_chat, "[%s] Your fire resistance fails to fully protect you from a napalm grenade attack", MOD );
 			}
 
 		}
@@ -3293,12 +3427,12 @@ public damage_ent ( vid,id )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "JUMPKICK2", name );
+				client_print_utility( id, print_center, "%L", id, "JUMPKICK2", name );
 			}
 
 			if( is_user_connected( vid ) && !is_user_bot( vid ) )
 			{
-				client_print( vid, print_center, "%L", vid, "JUMPKICK1", aname );
+				client_print_utility( vid, print_center, "%L", vid, "JUMPKICK1", aname );
 			}
 
 			//Since they are dead
@@ -3321,12 +3455,12 @@ public damage_ent ( vid,id )
 						if( !BlockPickup[id] )
 						{
 							client_cmd( vid, "drop" );
-							client_print( vid, print_center, "%L", vid, "JUMPKICK_NO_RESIST" );
+							client_print_utility( vid, print_center, "%L", vid, "JUMPKICK_NO_RESIST" );
 						}
 						else
 						{
 							//client_cmd( vid, "drop" );
-							client_print( vid, print_center, "%L", vid, "JUMPKICK_NO_RESIST_DEPOWER" );
+							client_print_utility( vid, print_center, "%L", vid, "JUMPKICK_NO_RESIST_DEPOWER" );
 						}
 
 						if ( file_exists( "sound/uwc3x/ninja.wav" ) == 1 )
@@ -3370,7 +3504,7 @@ public GrabResisted( id, enemy )
 		if ( CVAR_DEBUG_MODE )
 		{
 			log_amx( "[UWC3X] Debug :: GrabResisted -> WisdomCanResist was false for one of two users, return true" );
-			client_print( enemy, print_console, "DEBUG :: GrabResisted -> WisdomCanResist was false for one of two users, return true");
+			client_print_utility( enemy, print_console, "DEBUG :: GrabResisted -> WisdomCanResist was false for one of two users, return true");
 		}
 		return true;
 	}
@@ -3381,7 +3515,7 @@ public GrabResisted( id, enemy )
 		get_user_name ( enemy, name2, 31 );
 		get_user_name ( id, name1, 31 );
 		log_amx( "[UWC3X] Debug :: GrabResisted -> id:%s enemy:%s skill_points=%d", name1, name2, p_skills[enemy][SKILLIDX_GRAB] );
-		client_print( enemy, print_console, "DEBUG :: GrabResisted -> id:%s enemy:%s skill_points=%d", name1, name2, p_skills[enemy][SKILLIDX_GRAB] );
+		client_print_utility( enemy, print_console, "DEBUG :: GrabResisted -> id:%s enemy:%s skill_points=%d", name1, name2, p_skills[enemy][SKILLIDX_GRAB] );
 	}
 
 	//enemy has no skill points, so they should resist just fine :)
@@ -3389,7 +3523,7 @@ public GrabResisted( id, enemy )
 	{
 		if ( CVAR_DEBUG_MODE )
 		{
-			client_print( enemy, print_console, "DEBUG :: GrabResisted -> no skill points, return true");
+			client_print_utility( enemy, print_console, "DEBUG :: GrabResisted -> no skill points, return true");
 			log_amx( "[UWC3X] Debug :: GrabResisted -> no skill points, return true" );
 		}
 		return true;
@@ -3401,7 +3535,7 @@ public GrabResisted( id, enemy )
 		new name1[32], name2[32];
 		get_user_name ( enemy, name2, 31 );
 		get_user_name ( id, name1, 31 );
-		client_print( enemy, print_console, "DEBUG :: GrabResisted 1 -> id:%s enemy:%s grabchance_base=%f", name1, name2, grabchance_base );
+		client_print_utility( enemy, print_console, "DEBUG :: GrabResisted 1 -> id:%s enemy:%s grabchance_base=%f", name1, name2, grabchance_base );
 		log_amx( "[UWC3X] Debug :: GrabResisted 1 -> id:%s enemy:%s grabchance_base=%f", name1, name2, grabchance_base );
 	}
 
@@ -3420,7 +3554,7 @@ public GrabResisted( id, enemy )
 		new name1[32], name2[32];
 		get_user_name ( enemy, name2, 31 );
 		get_user_name ( id, name1, 31 );
-		client_print( enemy, print_console, "DEBUG :: GrabResisted 2 -> id:%s enemy:%s grabchance_base=%f randomnumber=%f", name1, name2, grabchance_base, randomnumber );
+		client_print_utility( enemy, print_console, "DEBUG :: GrabResisted 2 -> id:%s enemy:%s grabchance_base=%f randomnumber=%f", name1, name2, grabchance_base, randomnumber );
 		log_amx( "[UWC3X] Debug :: GrabResisted 2 -> id:%s enemy:%s grabchance_base=%f randomnumber=%f", name1, name2, grabchance_base, randomnumber );
 	}
 
@@ -3430,13 +3564,13 @@ public GrabResisted( id, enemy )
 		{
 			new name[32];
 			get_user_name ( enemy, name, 31 );
-			client_print( id, print_center, "%L", id, "GRAB_RESIST1", name );
-			client_print( id, print_chat, "%L", id, "GRAB_RESIST1", name );
+			client_print_utility( id, print_center, "%L", id, "GRAB_RESIST1", name );
+			client_print_utility( id, print_chat, "%L", id, "GRAB_RESIST1", name );
 		}
 
 		if( Util_Should_Msg_Client(enemy) )
 		{
-			client_print( enemy, print_chat, "%L", enemy, "GRAB_RESIST2" );
+			client_print_utility( enemy, print_chat, "%L", enemy, "GRAB_RESIST2" );
 		}
 
 		if ( CVAR_DEBUG_MODE )
@@ -3444,7 +3578,7 @@ public GrabResisted( id, enemy )
 			new name1[32], name2[32];
 			get_user_name ( enemy, name2, 31 );
 			get_user_name ( id, name1, 31 );
-			client_print( enemy, print_console, "DEBUG :: GrabResisted 3 -> player %s evades grab by enemy:%s", name1, name2 );
+			client_print_utility( enemy, print_console, "DEBUG :: GrabResisted 3 -> player %s evades grab by enemy:%s", name1, name2 );
 			log_amx( "[UWC3X] Debug :: GrabResisted 3 -> player %s evades grab by enemy:%s", name1, name2  );
 		}
 
@@ -3458,7 +3592,7 @@ public GrabResisted( id, enemy )
 			new name1[32], name2[32];
 			get_user_name ( enemy, name2, 31 );
 			get_user_name ( id, name1, 31 );
-			client_print( enemy, print_console, "DEBUG :: GrabResisted 4 -> player %s failed to evade grab by enemy:%s", name1, name2 );
+			client_print_utility( enemy, print_console, "DEBUG :: GrabResisted 4 -> player %s failed to evade grab by enemy:%s", name1, name2 );
 			log_amx( "[UWC3X] Debug :: GrabResisted 4 -> player %s failed to evade grab by enemy:%s", name1, name2  );
 		}
 
@@ -3470,7 +3604,7 @@ public GrabResisted( id, enemy )
 		new name1[32], name2[32];
 		get_user_name ( enemy, name2, 31 );
 		get_user_name ( id, name1, 31 );
-		client_print( enemy, print_console, "DEBUG :: GrabResisted 5 -> hitting default false... thats bad..." );
+		client_print_utility( enemy, print_console, "DEBUG :: GrabResisted 5 -> hitting default false... thats bad..." );
 		log_amx( "[UWC3X] Debug :: GrabResisted 5 -> hitting default false... thats bad..."  );
 	}
 
@@ -3506,13 +3640,13 @@ public JumpkickResisted( id, enemy )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_center, "%L", id, "WISDOM_JUMPKICK_RESIST1" );
-			client_print( id, print_chat, "%L", id, "WISDOM_JUMPKICK_RESIST1" );
+			client_print_utility( id, print_center, "%L", id, "WISDOM_JUMPKICK_RESIST1" );
+			client_print_utility( id, print_chat, "%L", id, "WISDOM_JUMPKICK_RESIST1" );
 		}
 
 		if( Util_Should_Msg_Client(enemy) )
 		{
-			client_print( enemy, print_chat, "%L", enemy, "WISDOM_JUMPKICK_RESIST2" );
+			client_print_utility( enemy, print_chat, "%L", enemy, "WISDOM_JUMPKICK_RESIST2" );
 		}
 
 		return true;
@@ -3547,13 +3681,13 @@ public ImpaleResisted( id, enemy )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "WISDOM_IMPALE_RESIST1" );
-				client_print( id, print_chat, "%L", id, "WISDOM_IMPALE_RESIST1" );
+				client_print_utility( id, print_center, "%L", id, "WISDOM_IMPALE_RESIST1" );
+				client_print_utility( id, print_chat, "%L", id, "WISDOM_IMPALE_RESIST1" );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "WISDOM_IMPALE_RESIST2" );
+				client_print_utility( enemy, print_chat, "%L", enemy, "WISDOM_IMPALE_RESIST2" );
 			}
 
 			return true;
@@ -3593,13 +3727,13 @@ public BanishResisted( id, enemy )
 			//random number was greater then 0.67, so they resisted
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "WISDOM_BANISH_RESIST1" );
-				client_print( id, print_chat, "%L", id, "WISDOM_BANISH_RESIST1" );
+				client_print_utility( id, print_center, "%L", id, "WISDOM_BANISH_RESIST1" );
+				client_print_utility( id, print_chat, "%L", id, "WISDOM_BANISH_RESIST1" );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "WISDOM_BANISH_RESIST2" );
+				client_print_utility( enemy, print_chat, "%L", enemy, "WISDOM_BANISH_RESIST2" );
 			}
 
 			return true;
@@ -3639,13 +3773,13 @@ public BashResisted( id, enemy )
 			//random number was greater then 0.67, so they resisted
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "WISDOM_BASH_RESIST1" );
-				client_print( id, print_chat, "%L", id, "WISDOM_BASH_RESIST1" );
+				client_print_utility( id, print_center, "%L", id, "WISDOM_BASH_RESIST1" );
+				client_print_utility( id, print_chat, "%L", id, "WISDOM_BASH_RESIST1" );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "WISDOM_BASH_RESIST2" );
+				client_print_utility( enemy, print_chat, "%L", enemy, "WISDOM_BASH_RESIST2" );
 			}
 
 			return true;
@@ -3684,13 +3818,13 @@ public HexResisted( id, enemy )
 			//random number was greater then 0.67, so they resisted
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "WISDOM_HEX_RESIST1" );
-				client_print( id, print_chat, "%L", id, "WISDOM_HEX_RESIST1" );
+				client_print_utility( id, print_center, "%L", id, "WISDOM_HEX_RESIST1" );
+				client_print_utility( id, print_chat, "%L", id, "WISDOM_HEX_RESIST1" );
 			}
 
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print( enemy, print_chat, "%L", enemy, "WISDOM_HEX_RESIST2" );
+				client_print_utility( enemy, print_chat, "%L", enemy, "WISDOM_HEX_RESIST2" );
 			}
 
 			return true;

@@ -650,7 +650,7 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "DROPSKILL_WAIT", MOD);
+				client_print_utility(id, print_chat, "%L", id, "DROPSKILL_WAIT", MOD);
 			}
 
 			return PLUGIN_HANDLED;
@@ -662,7 +662,7 @@ public set_skill ( id, key )
 			// Player has no skill pts to spend
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "NO_SKILL_POINTS", MOD);
+				client_print_utility(id, print_chat, "%L", id, "NO_SKILL_POINTS", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -674,7 +674,7 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "ADMIN_ONLY_RESERVED" );
+					client_print_utility(id, print_chat, "%L", id, "ADMIN_ONLY_RESERVED" );
 				}
 
 				return PLUGIN_HANDLED;
@@ -687,7 +687,7 @@ public set_skill ( id, key )
 			// Player is not yet allowed to train this skill
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "SKILL_CANT_LEARN", MOD);
+				client_print_utility(id, print_chat, "%L", id, "SKILL_CANT_LEARN", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -697,7 +697,7 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "SKILL_AT_MAX", MOD);
+				client_print_utility(id, print_chat, "%L", id, "SKILL_AT_MAX", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -709,7 +709,7 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "SKILL_MAX_TRAINED", MOD);
+				client_print_utility(id, print_chat, "%L", id, "SKILL_MAX_TRAINED", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -720,7 +720,7 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "STEAL_SKIN_NOTICE", MOD);
+				client_print_utility(id, print_chat, "%L", id, "STEAL_SKIN_NOTICE", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -732,8 +732,8 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "CRIT_NO_FATAL", MOD);
-					client_print(id, print_center, "%L", id, "CRIT_NO_FATAL", MOD);
+					client_print_utility(id, print_chat, "%L", id, "CRIT_NO_FATAL", MOD);
+					client_print_utility(id, print_center, "%L", id, "CRIT_NO_FATAL", MOD);
 				}
 			}
 			return PLUGIN_HANDLED;
@@ -744,16 +744,16 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "FATAL_NO_CRIT", MOD);
-					client_print(id, print_center, "%L", id, "FATAL_NO_CRIT", MOD);
+					client_print_utility(id, print_chat, "%L", id, "FATAL_NO_CRIT", MOD);
+					client_print_utility(id, print_center, "%L", id, "FATAL_NO_CRIT", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_TRUESHOT] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "FATAL_NO_TRUE", MOD);
-					client_print(id, print_center, "%L", id, "FATAL_NO_TRUE", MOD);
+					client_print_utility(id, print_chat, "%L", id, "FATAL_NO_TRUE", MOD);
+					client_print_utility(id, print_center, "%L", id, "FATAL_NO_TRUE", MOD);
 				}
 			}
 			return PLUGIN_HANDLED;
@@ -764,8 +764,8 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "TRUE_NO_FATAL", MOD);
-					client_print(id, print_center, "%L", id, "TRUE_NO_FATAL", MOD);
+					client_print_utility(id, print_chat, "%L", id, "TRUE_NO_FATAL", MOD);
+					client_print_utility(id, print_center, "%L", id, "TRUE_NO_FATAL", MOD);
 				}
 			}
 			return PLUGIN_HANDLED;
@@ -776,7 +776,7 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "CRIPPLE_NOTICE", MOD);
+				client_print_utility(id, print_chat, "%L", id, "CRIPPLE_NOTICE", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -786,8 +786,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "SYPHON_MANA_NOAMMO", MOD);
-				client_print(id, print_center, "%L", id, "SYPHON_MANA_NOAMMO", MOD);
+				client_print_utility(id, print_chat, "%L", id, "SYPHON_MANA_NOAMMO", MOD);
+				client_print_utility(id, print_center, "%L", id, "SYPHON_MANA_NOAMMO", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -795,8 +795,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "SYPHON_AMMO_NOMANA", MOD);
-				client_print(id, print_center, "%L", id, "SYPHON_AMMO_NOMANA", MOD);
+				client_print_utility(id, print_chat, "%L", id, "SYPHON_AMMO_NOMANA", MOD);
+				client_print_utility(id, print_center, "%L", id, "SYPHON_AMMO_NOMANA", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -806,8 +806,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "CARAPACE_NO_THORNS", MOD);
-				client_print(id, print_center, "%L", id, "CARAPACE_NO_THORNS", MOD);
+				client_print_utility(id, print_chat, "%L", id, "CARAPACE_NO_THORNS", MOD);
+				client_print_utility(id, print_center, "%L", id, "CARAPACE_NO_THORNS", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -815,8 +815,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "THORNS_NO_CARAPACE", MOD);
-				client_print(id, print_center, "%L", id, "THORNS_NO_CARAPACE", MOD);
+				client_print_utility(id, print_chat, "%L", id, "THORNS_NO_CARAPACE", MOD);
+				client_print_utility(id, print_center, "%L", id, "THORNS_NO_CARAPACE", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -828,24 +828,24 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "SHADOW_NO_CARION", MOD);
-					client_print(id, print_center, "%L", id, "SHADOW_NO_CARION", MOD);
+					client_print_utility(id, print_chat, "%L", id, "SHADOW_NO_CARION", MOD);
+					client_print_utility(id, print_center, "%L", id, "SHADOW_NO_CARION", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_ROT] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "CARION_NO_ROT", MOD);
-					client_print(id, print_center, "%L", id, "CARION_NO_ROT", MOD);
+					client_print_utility(id, print_chat, "%L", id, "CARION_NO_ROT", MOD);
+					client_print_utility(id, print_center, "%L", id, "CARION_NO_ROT", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_CRIPPLE] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "NO_CRIPPLE", MOD);
-					client_print(id, print_center, "%L", id, "NO_CRIPPLE", MOD);
+					client_print_utility(id, print_chat, "%L", id, "NO_CRIPPLE", MOD);
+					client_print_utility(id, print_center, "%L", id, "NO_CRIPPLE", MOD);
 				}
 			}
 
@@ -857,24 +857,24 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "CARION_NO_SHADOW", MOD);
-					client_print(id, print_center, "%L", id, "CARION_NO_SHADOW", MOD);
+					client_print_utility(id, print_chat, "%L", id, "CARION_NO_SHADOW", MOD);
+					client_print_utility(id, print_center, "%L", id, "CARION_NO_SHADOW", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_ROT] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "CARION_NO_ROT", MOD);
-					client_print(id, print_center, "%L", id, "CARION_NO_ROT", MOD);
+					client_print_utility(id, print_chat, "%L", id, "CARION_NO_ROT", MOD);
+					client_print_utility(id, print_center, "%L", id, "CARION_NO_ROT", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_CRIPPLE] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "NO_CRIPPLE", MOD);
-					client_print(id, print_center, "%L", id, "NO_CRIPPLE", MOD);
+					client_print_utility(id, print_chat, "%L", id, "NO_CRIPPLE", MOD);
+					client_print_utility(id, print_center, "%L", id, "NO_CRIPPLE", MOD);
 				}
 			}
 			return PLUGIN_HANDLED;
@@ -886,24 +886,24 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "SHADOW_NO_CARION", MOD);
-					client_print(id, print_center, "%L", id, "SHADOW_NO_CARION", MOD);
+					client_print_utility(id, print_chat, "%L", id, "SHADOW_NO_CARION", MOD);
+					client_print_utility(id, print_center, "%L", id, "SHADOW_NO_CARION", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_SSTRIKE] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "CARION_NO_SHADOW", MOD);
-					client_print(id, print_center, "%L", id, "CARION_NO_SHADOW", MOD);
+					client_print_utility(id, print_chat, "%L", id, "CARION_NO_SHADOW", MOD);
+					client_print_utility(id, print_center, "%L", id, "CARION_NO_SHADOW", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_CRIPPLE] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "NO_CRIPPLE", MOD);
-					client_print(id, print_center, "%L", id, "NO_CRIPPLE", MOD);
+					client_print_utility(id, print_chat, "%L", id, "NO_CRIPPLE", MOD);
+					client_print_utility(id, print_center, "%L", id, "NO_CRIPPLE", MOD);
 				}
 			}
 		
@@ -916,24 +916,24 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "SHADOW_NO_CARION", MOD);
-					client_print(id, print_center, "%L", id, "SHADOW_NO_CARION", MOD);
+					client_print_utility(id, print_chat, "%L", id, "SHADOW_NO_CARION", MOD);
+					client_print_utility(id, print_center, "%L", id, "SHADOW_NO_CARION", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_SSTRIKE] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "CARION_NO_SHADOW", MOD);
-					client_print(id, print_center, "%L", id, "CARION_NO_SHADOW", MOD);
+					client_print_utility(id, print_chat, "%L", id, "CARION_NO_SHADOW", MOD);
+					client_print_utility(id, print_center, "%L", id, "CARION_NO_SHADOW", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_ROT] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "CARION_NO_ROT", MOD);
-					client_print(id, print_center, "%L", id, "CARION_NO_ROT", MOD);
+					client_print_utility(id, print_chat, "%L", id, "CARION_NO_ROT", MOD);
+					client_print_utility(id, print_center, "%L", id, "CARION_NO_ROT", MOD);
 				}
 			}
 
@@ -948,16 +948,16 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "ROPE_NO_HOOK", MOD);
-					client_print(id, print_center, "%L", id, "ROPE_NO_HOOK", MOD);
+					client_print_utility(id, print_chat, "%L", id, "ROPE_NO_HOOK", MOD);
+					client_print_utility(id, print_center, "%L", id, "ROPE_NO_HOOK", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_GRAB] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "ROPE_NO_GRAB", MOD);
-					client_print(id, print_center, "%L", id, "ROPE_NO_GRAB", MOD);
+					client_print_utility(id, print_chat, "%L", id, "ROPE_NO_GRAB", MOD);
+					client_print_utility(id, print_center, "%L", id, "ROPE_NO_GRAB", MOD);
 				}
 			}
 
@@ -969,16 +969,16 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "HOOK_NO_ROPE", MOD);
-					client_print(id, print_center, "%L", id, "HOOK_NO_ROPE", MOD);
+					client_print_utility(id, print_chat, "%L", id, "HOOK_NO_ROPE", MOD);
+					client_print_utility(id, print_center, "%L", id, "HOOK_NO_ROPE", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_GRAB] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "HOOK_NO_GRAB", MOD);
-					client_print(id, print_center, "%L", id, "HOOK_NO_GRAB", MOD);
+					client_print_utility(id, print_chat, "%L", id, "HOOK_NO_GRAB", MOD);
+					client_print_utility(id, print_center, "%L", id, "HOOK_NO_GRAB", MOD);
 				}
 			}
 			return PLUGIN_HANDLED;
@@ -989,16 +989,16 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "GRAB_NO_HOOK", MOD);
-					client_print(id, print_center, "%L", id, "GRAB_NO_HOOK", MOD);
+					client_print_utility(id, print_chat, "%L", id, "GRAB_NO_HOOK", MOD);
+					client_print_utility(id, print_center, "%L", id, "GRAB_NO_HOOK", MOD);
 				}
 			}
 			else if( p_skills[id][SKILLIDX_ROPE] )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "GRAB_NO_ROPE", MOD);
-					client_print(id, print_center, "%L", id, "GRAB_NO_ROPE", MOD);
+					client_print_utility(id, print_chat, "%L", id, "GRAB_NO_ROPE", MOD);
+					client_print_utility(id, print_center, "%L", id, "GRAB_NO_ROPE", MOD);
 				}
 			}
 			return PLUGIN_HANDLED;
@@ -1010,8 +1010,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "VENG_NO_SUICIDE", MOD);
-				client_print(id, print_center, "%L", id, "VENG_NO_SUICIDE", MOD);
+				client_print_utility(id, print_chat, "%L", id, "VENG_NO_SUICIDE", MOD);
+				client_print_utility(id, print_center, "%L", id, "VENG_NO_SUICIDE", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1019,8 +1019,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "SUICICDE_NO_VENG", MOD);
-				client_print(id, print_center, "%L", id, "SUICICDE_NO_VENG", MOD);
+				client_print_utility(id, print_chat, "%L", id, "SUICICDE_NO_VENG", MOD);
+				client_print_utility(id, print_center, "%L", id, "SUICICDE_NO_VENG", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1030,8 +1030,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "ICE_NO_NAPALM", MOD);
-				client_print(id, print_center, "%L", id, "ICE_NO_NAPALM", MOD);
+				client_print_utility(id, print_chat, "%L", id, "ICE_NO_NAPALM", MOD);
+				client_print_utility(id, print_center, "%L", id, "ICE_NO_NAPALM", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1039,8 +1039,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "NAPALM_NO_ICE", MOD);
-				client_print(id, print_center, "%L", id, "NAPALM_NO_ICE", MOD);
+				client_print_utility(id, print_chat, "%L", id, "NAPALM_NO_ICE", MOD);
+				client_print_utility(id, print_center, "%L", id, "NAPALM_NO_ICE", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1050,8 +1050,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "CRIT_NO_CLUSTER", MOD);
-				client_print(id, print_center, "%L", id, "CRIT_NO_CLUSTER", MOD);
+				client_print_utility(id, print_chat, "%L", id, "CRIT_NO_CLUSTER", MOD);
+				client_print_utility(id, print_center, "%L", id, "CRIT_NO_CLUSTER", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1059,8 +1059,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "CLUSTER_NO_CRIT", MOD);
-				client_print(id, print_center, "%L", id, "CLUSTER_NO_CRIT", MOD);
+				client_print_utility(id, print_chat, "%L", id, "CLUSTER_NO_CRIT", MOD);
+				client_print_utility(id, print_center, "%L", id, "CLUSTER_NO_CRIT", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1070,8 +1070,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "SUICIDE_NO_FAN", MOD);
-				client_print(id, print_center, "%L", id, "SUICIDE_NO_FAN", MOD);
+				client_print_utility(id, print_chat, "%L", id, "SUICIDE_NO_FAN", MOD);
+				client_print_utility(id, print_center, "%L", id, "SUICIDE_NO_FAN", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1079,8 +1079,8 @@ public set_skill ( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "FAN_NO_SUICIDE", MOD);
-				client_print(id, print_center, "%L", id, "FAN_NO_SUICIDE", MOD);
+				client_print_utility(id, print_chat, "%L", id, "FAN_NO_SUICIDE", MOD);
+				client_print_utility(id, print_center, "%L", id, "FAN_NO_SUICIDE", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}		
@@ -1094,7 +1094,7 @@ public set_skill ( id, key )
 			// Player has trained maximum # of ultimate skills
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "ULTIMATE_MAX_ALLOWED", MOD, p_maxultimates[id]);
+				client_print_utility(id, print_chat, "%L", id, "ULTIMATE_MAX_ALLOWED", MOD, p_maxultimates[id]);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1104,7 +1104,7 @@ public set_skill ( id, key )
 			// Prevent player from blowing a point on a non-existant skill
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "SKILL_NO_SKILL", MOD);
+				client_print_utility(id, print_chat, "%L", id, "SKILL_NO_SKILL", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1115,14 +1115,14 @@ public set_skill ( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(0, print_chat, "%L", 0, "NOTICE_MASTERED", MOD, name, skillname);
+					client_print_utility(0, print_chat, "%L", 0, "NOTICE_MASTERED", MOD, name, skillname);
 				}
 			}
 			else
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "NOTICE_SKILL_TRAINED", MOD, skillname);
+					client_print_utility(id, print_chat, "%L", id, "NOTICE_SKILL_TRAINED", MOD, skillname);
 				}
 			}
 		}
@@ -1136,7 +1136,7 @@ public set_skill ( id, key )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "NOTICE_SKILL_TRAINED2", MOD, skillname, utext);
+				client_print_utility(id, print_chat, "%L", id, "NOTICE_SKILL_TRAINED2", MOD, skillname, utext);
 			}
 		}
 
@@ -1345,7 +1345,7 @@ public unset_skill( id, key )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "DROPSKILL_NOSKILLS", MOD);
+				client_print_utility(id, print_chat, "%L", id, "DROPSKILL_NOSKILLS", MOD);
 			}
 
 			return PLUGIN_HANDLED;
@@ -1358,7 +1358,7 @@ public unset_skill( id, key )
 			// Player has no skill pts to drop
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "DROPSKILL_SPENDFIRST", MOD);
+				client_print_utility(id, print_chat, "%L", id, "DROPSKILL_SPENDFIRST", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1370,7 +1370,7 @@ public unset_skill( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "DROPSKILL_STEALSKIN", MOD);
+				client_print_utility(id, print_chat, "%L", id, "DROPSKILL_STEALSKIN", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1379,7 +1379,7 @@ public unset_skill( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "DROPSKILL_CRIPPLE", MOD);
+				client_print_utility(id, print_chat, "%L", id, "DROPSKILL_CRIPPLE", MOD);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1389,7 +1389,7 @@ public unset_skill( id, key )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print(id, print_chat, "%L", id, "DROPSKILL_NOPOINTS", MOD, skillname);
+				client_print_utility(id, print_chat, "%L", id, "DROPSKILL_NOPOINTS", MOD, skillname);
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1422,6 +1422,10 @@ public unset_skill( id, key )
 				if( Util_Should_Msg_Client( id ) )
 				{
 
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::unset_skill:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgStatusIcon, id);
+					}
 					message_begin(MSG_ONE,gmsgStatusIcon,{0,0,0},id);
 					write_byte(0); // status (0=hide, 1=show, 2=flash)
 					write_string("dmg_cold"); // sprite name
@@ -1440,14 +1444,14 @@ public unset_skill( id, key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "DROPSKILL_UNTRAINED", MOD, skillname) ;
+					client_print_utility(id, print_chat, "%L", id, "DROPSKILL_UNTRAINED", MOD, skillname) ;
 				}
 			}
 			else
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print(id, print_chat, "%L", id, "DROPSKILL_DECREASED", MOD, skillname) ;
+					client_print_utility(id, print_chat, "%L", id, "DROPSKILL_DECREASED", MOD, skillname) ;
 				}
 			}
 
@@ -1512,14 +1516,14 @@ public Skills_Check_SkillSet( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_console, "%L", id, "SKILLSET_BAD" );
+			client_print_utility(id, print_console, "%L", id, "SKILLSET_BAD" );
 		}
 	}
 	else
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_console, "%L", id, "SKILLSET_RESET_NR");
+			client_print_utility(id, print_console, "%L", id, "SKILLSET_RESET_NR");
 		}
 
 		resetskill[id] = true;
@@ -1546,7 +1550,7 @@ public Delete_SkillSet( id, skillsetIDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "SKILLSET_CANT_DEL_LOAD" );
+				client_print_utility( id, print_center, "%L", id, "SKILLSET_CANT_DEL_LOAD" );
 			}
 
 			return PLUGIN_HANDLED;
@@ -1556,7 +1560,7 @@ public Delete_SkillSet( id, skillsetIDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "SKILLSET_CANT_DEL_SAVE" );
+				client_print_utility( id, print_center, "%L", id, "SKILLSET_CANT_DEL_SAVE" );
 			}
 
 			return PLUGIN_HANDLED;
@@ -1564,7 +1568,7 @@ public Delete_SkillSet( id, skillsetIDX )
 
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_center, "%L", id, "DELSKILLSET_ON" );
+			client_print_utility( id, print_center, "%L", id, "DELSKILLSET_ON" );
 		}
 
 		deleteskillset[id] = true;
@@ -1574,7 +1578,7 @@ public Delete_SkillSet( id, skillsetIDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_center, "%L", id, "SAVESKILLSET_OFF");
+			client_print_utility(id, print_center, "%L", id, "SAVESKILLSET_OFF");
 		}
 
 	}
@@ -1592,7 +1596,7 @@ public Save_SkillSet( id, skillsetIDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "SKILLSET_CANT_LOAD_SAVE" );
+				client_print_utility( id, print_center, "%L", id, "SKILLSET_CANT_LOAD_SAVE" );
 			}
 
 			return PLUGIN_HANDLED;
@@ -1600,7 +1604,7 @@ public Save_SkillSet( id, skillsetIDX )
 
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_center, "%L", id, "SAVESKILLSET_ON" );
+			client_print_utility( id, print_center, "%L", id, "SAVESKILLSET_ON" );
 		}
 
 		saveskillset[id] = true;
@@ -1611,7 +1615,7 @@ public Save_SkillSet( id, skillsetIDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_center, "%L", id, "SAVESKILLSET_OFF");
+			client_print_utility(id, print_center, "%L", id, "SAVESKILLSET_OFF");
 		}
 
 	}
@@ -1633,7 +1637,7 @@ public Load_SkillSet( id, skillsetIDX )
 
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "SKILLSET_CANT_SAVE_LOAD" );
+				client_print_utility( id, print_center, "%L", id, "SKILLSET_CANT_SAVE_LOAD" );
 			}
 
 			return PLUGIN_HANDLED;
@@ -1641,7 +1645,7 @@ public Load_SkillSet( id, skillsetIDX )
 
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_center, "%L", id, "LOADSKILLSET_ON" );
+			client_print_utility( id, print_center, "%L", id, "LOADSKILLSET_ON" );
 		}
 
 		loadskillset[id] = true;
@@ -1652,7 +1656,7 @@ public Load_SkillSet( id, skillsetIDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_center, "%L", id, "LOADSKILLSET_OFF");
+			client_print_utility(id, print_center, "%L", id, "LOADSKILLSET_OFF");
 		}
 	}
 
@@ -1674,7 +1678,7 @@ public Reset_Reload ( id, Reset )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_center, "%L", id, "RESETSKILLS_ON" );
+			client_print_utility( id, print_center, "%L", id, "RESETSKILLS_ON" );
 		}
 
 		if( Reset )
@@ -1690,7 +1694,7 @@ public Reset_Reload ( id, Reset )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print(id, print_center, "%L", id, "RESETSKILLS_OFF");
+			client_print_utility(id, print_center, "%L", id, "RESETSKILLS_OFF");
 		}
 
 		if(Reset)
@@ -1716,7 +1720,7 @@ public Skills_AdminLoad( id )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_center, "%L", id, "NO_ACCESS");
+				client_print_utility( id, print_center, "%L", id, "NO_ACCESS");
 			}
 			return PLUGIN_HANDLED;
 		}
@@ -1908,7 +1912,7 @@ public Set_Hook_Count( id )
 	{
 		new debugname[32];
 		get_user_name ( id, debugname, 31 );
-		client_print( id, print_console, "[%s DEBUG] Set_Hook_Count -> Player:%s Points: GRAB:%d HOOK:%d ROPE:%d Available GRAB:%d HOOK:%d ROPE:%d", MOD, debugname,GrabSkills,HookSkills,RopeSkills,GrabsAvail,HooksAvail,RopesAvail );
+		client_print_utility( id, print_console, "[%s DEBUG] Set_Hook_Count -> Player:%s Points: GRAB:%d HOOK:%d ROPE:%d Available GRAB:%d HOOK:%d ROPE:%d", MOD, debugname,GrabSkills,HookSkills,RopeSkills,GrabsAvail,HooksAvail,RopesAvail );
 		log_amx( "[UWC3X] DEBUG :: Set_Hook_Count -> Player:%s Points: GRAB:%d HOOK:%d ROPE:%d Available GRAB:%d HOOK:%d ROPE:%d", debugname,GrabSkills,HookSkills,RopeSkills,GrabsAvail,HooksAvail,RopesAvail );
 	}
 	
@@ -2021,7 +2025,7 @@ public Skills_Cloak_Awarded_Sound( parm[1] )
 			emit_sound ( id, CHAN_ITEM, "uwc3x/bond.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
 		}
 
-		client_print(id, print_chat, "%L", id, "CLOAK_SKILL_AWARDED", MOD) ;
+		client_print_utility(id, print_chat, "%L", id, "CLOAK_SKILL_AWARDED", MOD) ;
 	}
 
 	return PLUGIN_CONTINUE;
@@ -2052,7 +2056,7 @@ public Skills_Award_Cloak ( id )
 			{
 				if( Util_Should_Msg_Client_Alive(id) )
 				{
-					client_print(id, print_chat, "%L", id, "CLOAK_SKILL_HAVE_ITEM", MOD) ;
+					client_print_utility(id, print_chat, "%L", id, "CLOAK_SKILL_HAVE_ITEM", MOD) ;
 				}
 			}
 			else
@@ -2062,8 +2066,8 @@ public Skills_Award_Cloak ( id )
 
 				if( Util_Should_Msg_Client_Alive(id) )
 				{
-					client_print(id, print_chat, "%L", id, "CLOAK_SKILL_AWARDED", MOD) ;
-					client_print(id, print_center, "%L", id, "CLOAK_SKILL_AWARDED2" ) ;
+					client_print_utility(id, print_chat, "%L", id, "CLOAK_SKILL_AWARDED", MOD) ;
+					client_print_utility(id, print_center, "%L", id, "CLOAK_SKILL_AWARDED2" ) ;
 				}
 
 				//Becuase the sound doesnt get played properly at this point, set a task to play it in 2 seconds instead
@@ -2244,6 +2248,10 @@ public Skill_RotUser_Bleed( id )
 
 		for(new j = 0; j < 2; j++)
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::Skill_RotUser_Bleed:: dest=%d; msg_type=%d; player=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+			}
 			message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 			write_byte(TE_BLOODSPRITE);
 			write_coord(origin[0]+(dx*j));
@@ -2262,6 +2270,10 @@ public Skill_RotUser_Bleed( id )
 /* HOOK */
 public HOOK_beamentpoint(id)
 {
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::HOOK_beamentpoint:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte( TE_BEAMENTPOINT );
 	write_short( id );
@@ -2300,6 +2312,10 @@ public HOOK_killbeam(id)
 		log_amx( "[UWC3X] DEBUG :: HOOK_killbeam -> player %s ", debugname );
 	}
 
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::HOOK_killbeam:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte( TE_KILLBEAM );
 	write_short( id );

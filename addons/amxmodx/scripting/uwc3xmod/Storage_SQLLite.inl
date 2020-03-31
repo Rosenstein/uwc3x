@@ -301,7 +301,7 @@ public LoadXPSQLLite ( id )
 			//no data exists
 			if( Util_Should_Msg_Client(id) )
 			{
-				//client_print ( id, print_chat, "%L", id, "LOAD_XP_NO_DATA", MOD );
+				//client_print_utility ( id, print_chat, "%L", id, "LOAD_XP_NO_DATA", MOD );
 				hudchat_show(player_id, "%L", player_id, "LOAD_XP_NO_DATA");
 				hudchat_update(player_id);
 			}
@@ -326,7 +326,7 @@ public LoadXPSQLLite ( id )
 						xp = CVAR_STARTING_XP;
 						if( Util_Should_Msg_Client(id) )
 						{
-							//client_print ( id, print_chat, "[%s] %L", id, MOD, "STARTING_XP_MESSAGE", CVAR_STARTING_XP );
+							//client_print_utility ( id, print_chat, "[%s] %L", id, MOD, "STARTING_XP_MESSAGE", CVAR_STARTING_XP );
 							hudchat_show(player_id, "%L", player_id, "STARTING_XP_MESSAGE", CVAR_STARTING_XP);
 							hudchat_update(player_id);
 						}
@@ -348,7 +348,7 @@ public LoadXPSQLLite ( id )
 							xp = xplevel_lev[CVAR_STARTING_LEVEL];
 							if( Util_Should_Msg_Client(id) )
 							{
-								//client_print ( id, print_chat, "[%s] %L", id, MOD, "STARTING_LEVEL_MESSAGE", xp );
+								//client_print_utility ( id, print_chat, "[%s] %L", id, MOD, "STARTING_LEVEL_MESSAGE", xp );
 								hudchat_show(player_id, "%L", player_id, "STARTING_LEVEL_MESSAGE", xp);
 								hudchat_update(player_id);
 							}
@@ -366,7 +366,7 @@ public LoadXPSQLLite ( id )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					//client_print ( id, print_chat, "[%s] %L", id, MOD, "STARTING_XP_DISABLED" );
+					//client_print_utility ( id, print_chat, "[%s] %L", id, MOD, "STARTING_XP_DISABLED" );
 					hudchat_show(player_id, "%L", player_id, "STARTING_XP_DISABLED");
 					hudchat_update(player_id);
 				}
@@ -430,7 +430,7 @@ public LoadXPSQLLite ( id )
 
 					if( Util_Should_Msg_Client(id) )
 					{
-						//client_print(id, print_chat, "%L", "LOAD_XP_STARTING_XP", MOD, CVAR_STARTING_XP );
+						//client_print_utility(id, print_chat, "%L", "LOAD_XP_STARTING_XP", MOD, CVAR_STARTING_XP );
 						hudchat_show(id, "%L", id, "LOAD_XP_STARTING_XP", CVAR_STARTING_XP);
 						hudchat_update(id);
 					}
@@ -449,7 +449,7 @@ public LoadXPSQLLite ( id )
 					{
 						if( Util_Should_Msg_Client(id) )
 						{
-							//client_print(id, print_chat, "%L", "LOAD_XP_STARTING_LEVEL", MOD, CVAR_STARTING_LEVEL );
+							//client_print_utility(id, print_chat, "%L", "LOAD_XP_STARTING_LEVEL", MOD, CVAR_STARTING_LEVEL );
 							hudchat_show(id, "%L", id, "LOAD_XP_STARTING_LEVEL", CVAR_STARTING_LEVEL);
 							hudchat_update(id);
 						}
@@ -485,7 +485,7 @@ public LoadXPSQLLite ( id )
 			{
 				if (Util_Should_Msg_Client(id))
 				{
-					client_print(id, print_console, "%L", id, "ULTIMATE_RETRIEVED", MOD, skill_ultimates[i][0]);
+					client_print_utility(id, print_console, "%L", id, "ULTIMATE_RETRIEVED", MOD, skill_ultimates[i][0]);
 				}
 			}
 		}
@@ -872,7 +872,7 @@ public LoadSkillSetSQLLite( id, skillsetIDX )
 			//No results, tell them and then exit
 			if( Util_Should_Msg_Client(player_id) )
 			{
-				//client_print(player_id, print_chat, "%L", player_id, "LOADSKILLSET_NODATA", MOD, skills_id);
+				//client_print_utility(player_id, print_chat, "%L", player_id, "LOADSKILLSET_NODATA", MOD, skills_id);
 				hudchat_show(player_id, "%L", player_id, "LOADSKILLSET_NODATA", skills_id);
 				hudchat_update(player_id);
 			}
@@ -909,7 +909,7 @@ public LoadSkillSetSQLLite( id, skillsetIDX )
 				{
 					if (Util_Should_Msg_Client(player_id))
 					{
-						client_print(player_id, print_console, "%L", player_id, "ULTIMATE_RETRIEVED", MOD, skill_ultimates[k][0]);
+						client_print_utility(player_id, print_console, "%L", player_id, "ULTIMATE_RETRIEVED", MOD, skill_ultimates[k][0]);
 					}
 				}
 			}
@@ -922,7 +922,7 @@ public LoadSkillSetSQLLite( id, skillsetIDX )
 
 		if( Util_Should_Msg_Client(player_id) )
 		{
-			//client_print(player_id, print_chat, "%L", player_id, "LOADSKILLSET", MOD, skills_id );
+			//client_print_utility(player_id, print_chat, "%L", player_id, "LOADSKILLSET", MOD, skills_id );
 			hudchat_show(player_id, "%L", player_id, "LOADSKILLSET", skills_id);
 			hudchat_update(player_id);
 		}

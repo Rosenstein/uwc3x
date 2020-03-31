@@ -18,7 +18,7 @@ public Amx_GiveMole( id, level, cid )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility( id, print_console, "%L", id, "NO_ACCESS");
 			}
 		
 			return PLUGIN_HANDLED;
@@ -124,7 +124,7 @@ public mole_T( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_chat, "%L", id, "MOLE_NO_SLOT_T" );
+			client_print_utility( id, print_chat, "%L", id, "MOLE_NO_SLOT_T" );
 		}
 
 	}
@@ -177,7 +177,7 @@ public mole_CT( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_chat, "%L", id, "MOLE_NO_SLOT_CT" );
+			client_print_utility( id, print_chat, "%L", id, "MOLE_NO_SLOT_CT" );
 		}
 	}
 

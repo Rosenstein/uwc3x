@@ -21,6 +21,10 @@ public EVENT_Do_Bolt ( id, targetid, linewidth, damage, caster )
 		set_user_armor_log ( targetid, ( get_user_armor ( targetid )-damage ) ) ;
 	}
 
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::EVENT_Do_Bolt:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte ( TE_BEAMENTS );
 
@@ -68,6 +72,10 @@ public EVENT_Do_Bolt ( id, targetid, linewidth, damage, caster )
 	new origin[3];
 	get_user_origin ( targetid,origin );
 
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::EVENT_Do_Bolt:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte ( TE_ELIGHT );
 
@@ -134,6 +142,10 @@ public EVENT_Suicide_Implosion ( parm[] )
 		return PLUGIN_CONTINUE;
 	}
 
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::EVENT_Suicide_Implosion:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte ( TE_IMPLOSION );
 	write_coord ( parm[2] );
@@ -171,6 +183,10 @@ public EVENT_Suicide_Blast ( parm[] )
 	get_user_origin ( id, origin );
 
 	// blast circles
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::EVENT_Suicide_Blast:: dest=%d; msg_type=%d;", MSG_PAS, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_PAS, SVC_TEMPENTITY, origin );
 	write_byte ( TE_BEAMCYLINDER );
 	write_coord ( origin[0] );
@@ -207,6 +223,10 @@ public EVENT_Suicide_Blast ( parm[] )
 
 	message_end ( );
 
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::EVENT_Suicide_Blast:: dest=%d; msg_type=%d;", MSG_PAS, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_PAS, SVC_TEMPENTITY, origin );
 	write_byte ( TE_BEAMCYLINDER );
 	write_coord ( origin[0] );
@@ -263,6 +283,10 @@ public EVENT_Set_On_Fire ( args[] )
 	get_user_origin ( id, forigin );
 
 	//TE_SPRITE - additive sprite, plays 1 cycle
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::EVENT_Set_On_Fire:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte ( 17 );
 
@@ -282,6 +306,10 @@ public EVENT_Set_On_Fire ( args[] )
 	message_end ( );
 
 	//Smoke
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::EVENT_Set_On_Fire:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte ( 5 );
 
@@ -310,7 +338,7 @@ public EVENT_Set_On_Fire ( args[] )
 
 		if ( CVAR_DEBUG_MODE )
 		{
-			client_print( killer, print_console, "[%s DEBUG] Wisdom modified damage - NEW damage=( %d )", MOD, damage );
+			client_print_utility( killer, print_console, "[%s DEBUG] Wisdom modified damage - NEW damage=( %d )", MOD, damage );
 			log_amx( "[UWC3X] DEBUG :: Wisdom modified damage - NEW damage=( %d )", damage );
 		}
 	}
@@ -420,6 +448,10 @@ public Event_Smite_Lightning( vec1[3],vec2[3] )
 {
 
 	//Lightning
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Event_Smite_Lightning:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin( MSG_BROADCAST,SVC_TEMPENTITY)
 	write_byte( 0 )
 	write_coord(vec1[0]);
@@ -442,6 +474,10 @@ public Event_Smite_Lightning( vec1[3],vec2[3] )
 	message_end();
 
 	//Sparks
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Event_Smite_Lightning:: dest=%d; msg_type=%d;", MSG_PVS, SVC_TEMPENTITY);
+	}
 	message_begin( MSG_PVS, SVC_TEMPENTITY,vec2);
 	write_byte( 9 )
 	write_coord( vec2[0] );
@@ -450,6 +486,10 @@ public Event_Smite_Lightning( vec1[3],vec2[3] )
 	message_end();
 
 	//Smoke
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Event_Smite_Lightning:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin( MSG_BROADCAST,SVC_TEMPENTITY,vec2);
 	write_byte( 5 );
 	write_coord(vec2[0]);

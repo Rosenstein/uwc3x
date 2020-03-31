@@ -187,7 +187,7 @@ public Buy_Item2( id , key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print ( id, print_chat, "%L", id, "GLOVES_ITEM_DISABLED", MOD );
+					client_print_utility ( id, print_chat, "%L", id, "GLOVES_ITEM_DISABLED", MOD );
 					emit_sound( id, CHAN_ITEM, "uwc3x/ultimateerror.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 				}
 			
@@ -231,7 +231,7 @@ public Buy_Item2( id , key )
 			{
 				hudchat_show(id, "%L", id, "RINGS_X5_MORE");
 				hudchat_update(id);
-				//client_print( id , print_center , "%L", id, "RINGS_X5_MORE" );
+				//client_print_utility( id , print_center , "%L", id, "RINGS_X5_MORE" );
 			}
 		
 			return PLUGIN_HANDLED;
@@ -256,7 +256,7 @@ public Buy_Item2( id , key )
 					{
 						hudchat_show(id, "%L", id, "MOLE_DISABLED_ADMIN");
 						hudchat_update(id);
-						//client_print( id , print_center , "%L", id, "MOLE_DISABLED_ADMIN" );
+						//client_print_utility( id , print_center , "%L", id, "MOLE_DISABLED_ADMIN" );
 					}
 					
 					return PLUGIN_HANDLED;
@@ -270,7 +270,7 @@ public Buy_Item2( id , key )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					//client_print( id , print_center , "%L", id, "MOLE_DISABLED_PLAYER" );
+					//client_print_utility( id , print_center , "%L", id, "MOLE_DISABLED_PLAYER" );
 					hudchat_show(id, "%L", id, "MOLE_DISABLED_PLAYER");
 					hudchat_update(id);
 				}

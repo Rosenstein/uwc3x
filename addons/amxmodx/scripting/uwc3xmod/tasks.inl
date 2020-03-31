@@ -42,7 +42,7 @@ public Task_Reset_Immunity ( parm[2] )
 	
 	if( Util_Should_Msg_Client(parm[0]) )
 	{
-		client_print ( parm[0], print_chat, "%L", parm[0], "RESISTANCE_ENDED", MOD, parm[1] );
+		client_print_utility ( parm[0], print_chat, "%L", parm[0], "RESISTANCE_ENDED", MOD, parm[1] );
 	}
 	
 	temp_immunity[ parm[0] ] = false;
@@ -108,8 +108,8 @@ public Task_Award_FrostNades( )
 			
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ICEBOMB_GIVEN1", MOD );
-				client_print ( id, print_center, "%L", id, "ICEBOMB_GIVEN2" );
+				client_print_utility ( id, print_chat, "%L", id, "ICEBOMB_GIVEN1", MOD );
+				client_print_utility ( id, print_center, "%L", id, "ICEBOMB_GIVEN2" );
 			}
 		}
 	}
@@ -143,7 +143,7 @@ public Task_Gate_User_Shopmenu ( parm[6] )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_GATE_COLLAPSE", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_GATE_COLLAPSE", MOD );
 		}
 		
 		return PLUGIN_HANDLED;
@@ -153,6 +153,10 @@ public Task_Gate_User_Shopmenu ( parm[6] )
 	oldLocation[2] += 30;
 	
 	// [09-05-04] - Display gate sprite ( tele ) 1 cycle
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Gate_User_Shopmenu:: dest=%d; msg_type=%d;", MSG_ALL, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_ALL, SVC_TEMPENTITY );
 	write_byte ( TE_SPRITE );
 	write_coord ( origin[0] );
@@ -164,6 +168,10 @@ public Task_Gate_User_Shopmenu ( parm[6] )
 	message_end ( );
 	
 	// blast circles
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Gate_User_Shopmenu:: dest=%d; msg_type=%d;", MSG_PAS, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_PAS, SVC_TEMPENTITY, oldLocation );
 	write_byte ( TE_BEAMCYLINDER );
 	write_coord ( oldLocation[0] );
@@ -190,6 +198,10 @@ public Task_Gate_User_Shopmenu ( parm[6] )
 	
 	if( Util_Should_Msg_Client( id ) )
 	{
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Gate_User_Shopmenu:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgShake, id);
+		}
 		message_begin ( MSG_ONE, gmsgShake, { 0, 0, 0 }, id );
 		write_short ( 255<< 14 ); //ammount
 		write_short ( 10 << 14 ); //lasts this long
@@ -226,7 +238,7 @@ public Task_Gate_User ( parm[6] )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_GATE_COLLAPSE", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_GATE_COLLAPSE", MOD );
 		}
 		return PLUGIN_HANDLED;
 	}
@@ -235,7 +247,7 @@ public Task_Gate_User ( parm[6] )
 	
 	if( Util_Should_Msg_Client(id) )
 	{
-		client_print ( id, print_chat, "%L", id, "ULTIAMTE_GATE", MOD );
+		client_print_utility ( id, print_chat, "%L", id, "ULTIAMTE_GATE", MOD );
 	}
 	
 	ultimateused[id] = true;
@@ -258,6 +270,10 @@ public Task_Gate_User ( parm[6] )
 	}
 	
 	// [09-05-04] - Display gate sprite ( tele ) 1 cycle
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Gate_User:: dest=%d; msg_type=%d; player=%d;", MSG_ALL, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_ALL, SVC_TEMPENTITY );
 	write_byte ( TE_SPRITE );
 	write_coord ( origin[0] );
@@ -269,6 +285,10 @@ public Task_Gate_User ( parm[6] )
 	message_end ( );
 	
 	// blast circles
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Gate_User:: dest=%d; msg_type=%d;", MSG_PAS, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_PAS, SVC_TEMPENTITY, oldLocation );
 	write_byte ( TE_BEAMCYLINDER );
 	write_coord ( oldLocation[0] );
@@ -307,6 +327,10 @@ public Task_Gate_User ( parm[6] )
 	
 	if( Util_Should_Msg_Client( id ) )
 	{
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Gate_User:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgShake, id);
+		}
 		message_begin ( MSG_ONE, gmsgShake, { 0, 0, 0 }, id );
 		write_short ( 255<< 14 ); //ammount
 		write_short ( 10 << 14 ); //lasts this long
@@ -318,7 +342,7 @@ public Task_Gate_User ( parm[6] )
 	{
 		new debugname[32];
 		get_user_name ( id, debugname, 31 );
-		client_print( id, print_console, "[%s DEBUG] Task_Gate_User -> Setting gateused[id] =true for player %s so now there is a 5 second delay", MOD, debugname );
+		client_print_utility( id, print_console, "[%s DEBUG] Task_Gate_User -> Setting gateused[id] =true for player %s so now there is a 5 second delay", MOD, debugname );
 		log_amx( "[UWC3X] DEBUG :: Task_Gate_User -> Setting gateused[id] =true for player %s so now there is a 5 second delay", debugname );
 	}
 	
@@ -467,6 +491,10 @@ public Task_Blink_Controller ( parm[2] )
 				
 				// Sprays white bubbles everywhere
 				get_user_origin ( id,origin );
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Blink_Controller:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+				}
 				message_begin ( MSG_BROADCAST, SVC_TEMPENTITY );
 				write_byte ( TE_SPRITETRAIL );
 				write_coord ( origin[0] );
@@ -490,6 +518,10 @@ public Task_Blink_Controller ( parm[2] )
 					{
 						
 						// This will cause Teleportation Dizziness ( like a flash grenade )
+						if (CVAR_DMESSAGES)
+						{
+							log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Blink_Controller:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+						}
 						message_begin ( MSG_ONE,gmsgFade,{0,0,0},id );
 						write_short ( 1<<15 );
 						write_short ( 1<<10 );
@@ -514,6 +546,10 @@ public Task_Blink_Controller ( parm[2] )
 			{
 				
 				// use the magic #1 for "one client"
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Blink_Controller:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+				}
 				message_begin ( MSG_ONE, gmsgFade, {0,0,0}, id );
 				write_short ( 1<<0 ); // fade lasts this long duration
 				write_short ( 1<<0 ); // fade lasts this long hold time
@@ -540,6 +576,10 @@ public Task_Blink_Controller ( parm[2] )
 			{
 				
 				// use the magic #1 for "one client"
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Blink_Controller:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+				}
 				message_begin ( MSG_ONE, gmsgFade, {0,0,0}, id );
 				write_short ( 1<<12 );// fade lasts this long duration
 				write_short ( 1<<8 ); // fade lasts this long hold time
@@ -721,7 +761,7 @@ public TASK_OOB_Check ( parm[2] )
 		
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_TELEPORT_SLAY", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_TELEPORT_SLAY", MOD );
 		}
 		
 		set_user_health_log ( id, -1 );
@@ -733,6 +773,10 @@ public TASK_OOB_Check ( parm[2] )
 public Task_FlameStrike_Spray ( args[] )
 {
 	//Task_FlameStrike_Spray
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Task_FlameStrike_Spray:: dest=%d; msg_type=%d; player=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_BROADCAST, SVC_TEMPENTITY );
 	
 	// Throws a shower of sprites or models
@@ -805,12 +849,12 @@ public TASK_Burn_Victim ( id, killer, ff )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_FLAME_RESIST", MOD );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_FLAME_RESIST", MOD );
 			}
 			
 			if( Util_Should_Msg_Client( killer ) )
 			{
-				client_print ( killer, print_chat, "%L", killer, "ULTIMATE_FLAME_DEFLECTED",	MOD );
+				client_print_utility ( killer, print_chat, "%L", killer, "ULTIMATE_FLAME_DEFLECTED",	MOD );
 			}
 			
 			return PLUGIN_CONTINUE;
@@ -820,12 +864,12 @@ public TASK_Burn_Victim ( id, killer, ff )
 			
 			if( Util_Should_Msg_Client(player_id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_FLAME_FAILED", MOD );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_FLAME_FAILED", MOD );
 			}
 			
 			if( Util_Should_Msg_Client(killer) )
 			{
-				client_print ( killer, print_chat, "%L", killer, "ULTIMATE_FLAME_FAILED", MOD );
+				client_print_utility ( killer, print_chat, "%L", killer, "ULTIMATE_FLAME_FAILED", MOD );
 			}
 			
 			if (CVAR_DEBUG_MODE)
@@ -949,11 +993,11 @@ public TASK_DEPOWER_Search ( parm[2] )
 			
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", enemy, "ULTIMATE_DEPOWER_ENEMY2", MOD );
+				client_print_utility ( id, print_chat, "%L", enemy, "ULTIMATE_DEPOWER_ENEMY2", MOD );
 			}
 			if( Util_Should_Msg_Client(enemy) )
 			{
-				client_print ( enemy, print_chat, "%L", enemy, "ULTIMATE_DEPOWER_ENEMY2", MOD );
+				client_print_utility ( enemy, print_chat, "%L", enemy, "ULTIMATE_DEPOWER_ENEMY2", MOD );
 			}
 			
 		}
@@ -961,7 +1005,7 @@ public TASK_DEPOWER_Search ( parm[2] )
 		Ult_DEPOWER_REPLACE_GUNS( id );
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_YOU1", MOD, name );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_YOU1", MOD, name );
 			
 			if ( file_exists ( "sound/uwc3x/depowered.wav" ) == 1 )
 			{
@@ -973,7 +1017,7 @@ public TASK_DEPOWER_Search ( parm[2] )
 		Ult_DEPOWER_REPLACE_GUNS( enemy );
 		if( Util_Should_Msg_Client(enemy) )
 		{
-			client_print ( enemy, print_chat, "%L", enemy, "ULTIMATE_DEPOWER_ENEMY1", MOD, name2 );
+			client_print_utility ( enemy, print_chat, "%L", enemy, "ULTIMATE_DEPOWER_ENEMY1", MOD, name2 );
 			
 			if ( file_exists ( "sound/uwc3x/depowered.wav" ) == 1 )
 			{
@@ -1054,7 +1098,7 @@ public TASK_SHIELD_Search( parm[2] )
 		
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_SIV_SHIELDER", name );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_SIV_SHIELDER", name );
 			
 			if ( file_exists ( "sound/uwc3x/divineshield.wav" ) == 1 )
 			{
@@ -1064,7 +1108,7 @@ public TASK_SHIELD_Search( parm[2] )
 		
 		if( Util_Should_Msg_Client( teammate ) )
 		{
-			client_print ( teammate, print_chat, "%L", teammate, "ULTIMATE_SIV_PLAYER", name2 );
+			client_print_utility ( teammate, print_chat, "%L", teammate, "ULTIMATE_SIV_PLAYER", name2 );
 			
 			if ( file_exists ( "sound/uwc3x/divineshield.wav" ) == 1 )
 			{
@@ -1170,11 +1214,11 @@ public TASK_SHIELD_CHECK ( parm[3] )
 		//Tell them its done
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_SIV_SHIELDER_EXPIRED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_SIV_SHIELDER_EXPIRED" );
 		}
 		if( Util_Should_Msg_Client(teammate) )
 		{
-			client_print ( teammate, print_chat, "%L", teammate, "ULTIMATE_SIV_PLAYER_EXPIRED", name2 );
+			client_print_utility ( teammate, print_chat, "%L", teammate, "ULTIMATE_SIV_PLAYER_EXPIRED", name2 );
 		}
 		
 		//REmove teh Shield Check task
@@ -1229,14 +1273,14 @@ public TASK_CHAIN_Search ( parm[2] )
 			{
 				if( Util_Should_Msg_Client(enemyz) )
 				{
-					client_print ( enemyz, print_chat, "%L", enemyz, "ULTIMATE_LGHTNG_RESISTALL", MOD );
+					client_print_utility ( enemyz, print_chat, "%L", enemyz, "ULTIMATE_LGHTNG_RESISTALL", MOD );
 				}
 			}
 			else
 			{
 				if( Util_Should_Msg_Client(enemyz) )
 				{
-					client_print ( enemyz, print_chat, "%L", enemyz, "ULTIMATE_LGHTNG_RESIST", MOD );
+					client_print_utility ( enemyz, print_chat, "%L", enemyz, "ULTIMATE_LGHTNG_RESIST", MOD );
 				}
 			}
 		}
@@ -1342,14 +1386,14 @@ public TASK_CHAIN_Damage ( parm[4] )
 			{
 				if( is_user_connected( closestid ) && !is_user_bot( closestid ) )
 				{
-					client_print ( closestid, print_chat, "%L", closestid, "ULTIMATE_LGHTNG_RESISTALL", MOD );
+					client_print_utility ( closestid, print_chat, "%L", closestid, "ULTIMATE_LGHTNG_RESISTALL", MOD );
 				}
 			}
 			else
 			{
 				if( is_user_connected( closestid ) && !is_user_bot( closestid ) )
 				{
-					client_print ( closestid, print_chat, "%L", closestid, "ULTIMATE_LGHTNG_RESIST", MOD );
+					client_print_utility ( closestid, print_chat, "%L", closestid, "ULTIMATE_LGHTNG_RESIST", MOD );
 				}
 			}
 		}
@@ -1361,7 +1405,7 @@ public TASK_CHAIN_Damage ( parm[4] )
 			
 			if ( CVAR_DEBUG_MODE )
 			{
-				client_print( id, print_console, "[%s DEBUG] Wisdom modified damage - NEW damage=( %d )", MOD, actual_damage );
+				client_print_utility( id, print_console, "[%s DEBUG] Wisdom modified damage - NEW damage=( %d )", MOD, actual_damage );
 			}
 		}
 		
@@ -1402,6 +1446,10 @@ public TASK_Suicide_Explode ( parm[] )
 	get_user_origin ( id, origin );
 	
 	// random explosions
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::TASK_Suicide_Explode:: dest=%d; msg_type=%d; player=%d;", MSG_PVS, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_PVS, SVC_TEMPENTITY, origin );
 	
 	// This just makes a dynamic light now
@@ -1422,6 +1470,10 @@ public TASK_Suicide_Explode ( parm[] )
 	message_end ( );
 	
 	// lots of smoke
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::TASK_Suicide_Explode:: dest=%d; msg_type=%d; player=%d;", MSG_PVS, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_PVS, SVC_TEMPENTITY, origin );
 	
 	write_byte ( TE_SMOKE );
@@ -1459,7 +1511,7 @@ public TASK_Suicide_Explode ( parm[] )
 				
 				if( Util_Should_Msg_Client( targetid ) )
 				{
-					client_print ( targetid, print_chat, "%L", targetid, "ULTIMATE_SUICIDE_RESIST", MOD );
+					client_print_utility ( targetid, print_chat, "%L", targetid, "ULTIMATE_SUICIDE_RESIST", MOD );
 				}
 				
 				new iparm[2];
@@ -1487,6 +1539,10 @@ public TASK_Suicide_Explode ( parm[] )
 		{
 			if( Util_Should_Msg_Client( targetid ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::TASK_Suicide_Explode:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgShake, targetid);
+				}
 				message_begin ( MSG_ONE, gmsgShake, {0, 0, 0}, targetid );
 				write_short ( 1<<14 );// amplitude
 				write_short ( 1<<13 );// duration
@@ -1538,6 +1594,10 @@ public TASK_Cleanup_Decoy ( args[] )
 	new Float:orig[3];
 	
 	entity_get_vector ( ent, EV_VEC_origin, orig );
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::TASK_Cleanup_Decoy:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin ( MSG_BROADCAST,SVC_TEMPENTITY );
 	write_byte ( 11 );
 	write_coord ( floatround ( orig[0] ) );
@@ -1551,7 +1611,7 @@ public TASK_Cleanup_Decoy ( args[] )
 	
 	if( Util_Should_Msg_Client(id) )
 	{
-		client_print ( id, print_chat, "%L", id, "ULTIMATE_DECOY_EXPIRED" );
+		client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DECOY_EXPIRED" );
 	}
 }
 
@@ -1597,7 +1657,7 @@ public TASK_Check_Duck ( )
 				{
 					if ( pIsDucking[i] )
 					{
-						//client_print ( i, print_chat, "Stopped ducking" )
+						//client_print_utility ( i, print_chat, "Stopped ducking" )
 						pIsDucking[i] = false;
 						DoOnce[i] = true;
 					}
@@ -1762,7 +1822,7 @@ public searchtarget(parm[2])
 		temp_immunity[enemy] = true;
 		if ( Util_Should_Msg_Client( enemy ) )
 		{
-			client_print ( enemy, print_chat, "%L", enemy, "ULTIMATE_ENGANGLE_RESISTANT", MOD );
+			client_print_utility ( enemy, print_chat, "%L", enemy, "ULTIMATE_ENGANGLE_RESISTANT", MOD );
 		}
 		
 		new iparm[2];
@@ -1903,6 +1963,10 @@ public con_heal( parm[] )
 	
 	if( playeritem[id] != CLOAK && ( !p_skills[id][SKILLIDX_INVIS] ) )
 	{
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::con_heal:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		}
 		message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 		write_byte( TE_IMPLOSION );
 		write_coord( origin[0] ); // initial position
@@ -2045,13 +2109,13 @@ public Task_Transport2( parm[6] )
 	{
 		if (hasmole[id] && is_user_connected( id ) && !is_user_bot( id ) )
 		{
-			client_print( id, print_chat, "%L", id, "MOLE_NO_SLOT" );
+			client_print_utility( id, print_chat, "%L", id, "MOLE_NO_SLOT" );
 		}
 		else
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print( id, print_chat, "%L", id, "MOLE_SLOT" );
+				client_print_utility( id, print_chat, "%L", id, "MOLE_SLOT" );
 			}
 		}
 		
@@ -2060,7 +2124,7 @@ public Task_Transport2( parm[6] )
 	
 	if( Util_Should_Msg_Client(id) )
 	{
-		client_print( id, print_chat, "%L", id, "MOLE_READY", origin[0], origin[1], origin[2] );
+		client_print_utility( id, print_chat, "%L", id, "MOLE_READY", origin[0], origin[1], origin[2] );
 	}
 	
 	
@@ -2070,8 +2134,12 @@ public Task_Transport2( parm[6] )
 	
 	if( Util_Should_Msg_Client(id) )
 	{
-		client_print( id, print_chat, "%L", id, "MOLE_BLIND", MOD );
+		client_print_utility( id, print_chat, "%L", id, "MOLE_BLIND", MOD );
 		
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Transport2:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gMsgScreenFade, id);
+		}
 		message_begin( MSG_ONE, gMsgScreenFade, { 0, 0, 0 }, id );
 		write_short( 1<<15 );
 		write_short( 1<<10 );
@@ -2082,6 +2150,10 @@ public Task_Transport2( parm[6] )
 		write_byte( 255 );
 		message_end();
 		
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Transport2:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgShake, id);
+		}
 		message_begin(MSG_ONE,gmsgShake,{0,0,0},id);
 		write_short( 255<<14 ); //ammount
 		write_short( 10<<14 ); //lasts this long
@@ -2114,7 +2186,7 @@ public Check_spot( parm[] )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print( id, print_chat, "%L", id, "MOLE_JOIN_TEAM" );
+			client_print_utility( id, print_chat, "%L", id, "MOLE_JOIN_TEAM" );
 		}
 	}
 	
@@ -2199,8 +2271,8 @@ public Task_Reset_Cripple( parm[] )
 	{
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			client_print( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_WORE_OFF1", MOD );
-			client_print( id, print_center, "%L", id, "ULTIMATE_CRIPPLE_WORE_OFF2" );
+			client_print_utility( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_WORE_OFF1", MOD );
+			client_print_utility( id, print_center, "%L", id, "ULTIMATE_CRIPPLE_WORE_OFF2" );
 		}
 		
 		if( Util_Should_Msg_Client_Alive( enemy ) )
@@ -2208,8 +2280,8 @@ public Task_Reset_Cripple( parm[] )
 			new idname[32];
 			get_user_name( id, idname, 31 );
 			
-			client_print( enemy, print_chat, "%L", enemy, "ULTIMATE_CRIPPLE_WORE_OFF3", MOD, idname );
-			client_print( enemy, print_center, "%L", enemy, "ULTIMATE_CRIPPLE_WORE_OFF4", idname );
+			client_print_utility( enemy, print_chat, "%L", enemy, "ULTIMATE_CRIPPLE_WORE_OFF3", MOD, idname );
+			client_print_utility( enemy, print_center, "%L", enemy, "ULTIMATE_CRIPPLE_WORE_OFF4", idname );
 		}
 		
 		//set_user_maxspeed(id,oldSpeed[id]);
@@ -2262,7 +2334,7 @@ public Task_locust_function( id )
 	
 	parm[6] = 0 // Initialize target parameter
 	
-	//client_print(id, print_console, "DEBUG: before-count=(%d) parm6=(%d)", count, parm[6])
+	//client_print_utility(id, print_console, "DEBUG: before-count=(%d) parm6=(%d)", count, parm[6])
 	
 	// Prevents target from being the server
 	while (parm[6] == 0)
@@ -2270,7 +2342,7 @@ public Task_locust_function( id )
 		parm[6] = possibility[random_num(0, count)]
 	}
 	
-	//client_print(id, print_console, "DEBUG: after-count=(%d) parm6=(%d)", count, parm[6])
+	//client_print_utility(id, print_console, "DEBUG: after-count=(%d) parm6=(%d)", count, parm[6])
 	
 	if ( parm[6] > numberofplayers || !Util_Is_Valid_Player( parm[6] ) )
 	{
@@ -2339,7 +2411,7 @@ public Task_locust_drawfunnels(parm[])
 	{
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			client_print( id, print_chat, "[%s] Your magic resistance protects you from a Locust Swarm", MOD);
+			client_print_utility( id, print_chat, "[%s] Your magic resistance protects you from a Locust Swarm", MOD);
 		}
 		
 		if( Util_Should_Msg_Client_Alive( caster )  )
@@ -2368,6 +2440,10 @@ public Task_locust_drawfunnels(parm[])
 	funnel[1]=parm[1];
 	funnel[2]=parm[2];
 	
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::Task_locust_drawfunnels:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
 	write_byte( TE_LARGEFUNNEL );
 	write_coord(funnel[0]);         // origin, x
@@ -2472,12 +2548,12 @@ public Task_Search_Flash( parm[2] )
 		
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			client_print(id, print_chat, "%L", id, "ULTIMATE_BLIND_YOU", MOD, ename);
+			client_print_utility(id, print_chat, "%L", id, "ULTIMATE_BLIND_YOU", MOD, ename);
 		}
 		
 		if( Util_Should_Msg_Client_Alive( enemy ) )
 		{
-			client_print(enemy, print_center, "%L", enemy, "ULTIMATE_BLIND_ENEMY", name);
+			client_print_utility(enemy, print_center, "%L", enemy, "ULTIMATE_BLIND_ENEMY", name);
 			Task_Ult_Do_Flash( enemy );
 		}
 		
@@ -2525,6 +2601,10 @@ public Task_Ult_Do_Flash(id)
 	if( Util_Should_Msg_Client(id) )
 	{
 		
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Ult_Do_Flash:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gMsgScreenFade, id);
+		}
 		message_begin(MSG_ONE,gMsgScreenFade,{0,0,0},id);
 		write_short( 2<<12 );
 		write_short( 2<<12 );
@@ -2585,7 +2665,7 @@ public Task_Switch_UnlimitedAmmoOn( id )
 	{
 		set_hudmessage(178, 14, 41, -1.0, 0.3, 0, 1.0, 5.0, 0.1, 0.2, 5);
 		show_hudmessage(id,"You now have unlimited Ammo for %i seconds!", intTime );
-		client_print(id, print_chat, "%L", id, "ULTIMATE_UAMMO_YOU1", MOD, intTime );
+		client_print_utility(id, print_chat, "%L", id, "ULTIMATE_UAMMO_YOU1", MOD, intTime );
 	}
 	
 	if ( CVAR_DEBUG_MODE )
@@ -2606,7 +2686,7 @@ public Task_Switch_UnlimitedAmmoOff( parm[] )
 	{
 		set_hudmessage(178, 14, 41, -1.0, 0.3, 0, 1.0, 5.0, 0.1, 0.2, 5);
 		show_hudmessage(id,"Your unlimited Ammo is now gone, better reload fast!");
-		client_print(id, print_chat, "%L", id, "ULTIMATE_UAMMO_YOU2", MOD);
+		client_print_utility(id, print_chat, "%L", id, "ULTIMATE_UAMMO_YOU2", MOD);
 	}
 	
 	if ( CVAR_DEBUG_MODE )
@@ -2639,6 +2719,10 @@ public Task_Search_BadAim( parm[] )
 		
 		if( Util_Should_Msg_Client( enemy ) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Search_BadAim:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, 108, enemy);
+			}
 			message_begin ( MSG_ONE, 108, { 0, 0, 0 }, enemy );
 			
 			// Bar ( thanks to bad-at-this )
@@ -2707,7 +2791,7 @@ public Task_Switch_BadAimOn( id, enemy )
 	{
 		set_hudmessage(178, 14, 41, -1.0, 0.3, 0, 1.0, 5.0, 0.1, 0.2, 5);
 		show_hudmessage( enemy,"You have been disoreinted by %s for %d seconds!!!!", idname, intTime );
-		client_print(enemy, print_chat, "%L", enemy, "ULTIMATE_BADAIM_ENEMY1", MOD, idname, intTime );
+		client_print_utility(enemy, print_chat, "%L", enemy, "ULTIMATE_BADAIM_ENEMY1", MOD, idname, intTime );
 		
 		if ( file_exists( "sound/uwc3x/disorient-casted.wav" ) == 1 )
 		{
@@ -2719,7 +2803,7 @@ public Task_Switch_BadAimOn( id, enemy )
 	{
 		set_hudmessage(178, 14, 41, -1.0, 0.3, 0, 1.0, 5.0, 0.1, 0.2, 5);
 		show_hudmessage( id,"%s has been disoriented for %d seconds!!!", ename, intTime );
-		client_print(id, print_chat, "%L", id, "ULTIMATE_BADAIM_YOU1", MOD, ename, intTime );
+		client_print_utility(id, print_chat, "%L", id, "ULTIMATE_BADAIM_YOU1", MOD, ename, intTime );
 	}
 }
 
@@ -2735,14 +2819,14 @@ public Task_Switch_BadAimOff( parm[] )
 	{
 		set_hudmessage(178, 14, 41, -1.0, 0.3, 0, 1.0, 5.0, 0.1, 0.2, 5);
 		show_hudmessage(enemy,"You are no longer disoriented!");
-		client_print(enemy, print_chat, "%L", enemy, "ULTIMATE_BADAIM_YOU3", MOD);
+		client_print_utility(enemy, print_chat, "%L", enemy, "ULTIMATE_BADAIM_YOU3", MOD);
 	}
 	
 	if( Util_Should_Msg_Client_Alive( id )  )
 	{
 		set_hudmessage(178, 14, 41, -1.0, 0.3, 0, 1.0, 5.0, 0.1, 0.2, 5);
 		show_hudmessage(id,"%s is no longer disoriented!", ename);
-		client_print(id, print_chat, "%L", id, "ULTIMATE_BADAIM_ENEMY3", MOD, ename);
+		client_print_utility(id, print_chat, "%L", id, "ULTIMATE_BADAIM_ENEMY3", MOD, ename);
 	}
 	
 	badaim[enemy] = false;
@@ -2774,13 +2858,13 @@ public TASK_Smite_Search( parm[] )
 			
 			if ( CVAR_DEBUG_MODE )
 			{
-				client_print( id, print_console, "[%s DEBUG] Wisdom modified damage - NEW damage=( %d )", MOD, actual_damage );
+				client_print_utility( id, print_console, "[%s DEBUG] Wisdom modified damage - NEW damage=( %d )", MOD, actual_damage );
 			}
 		}
 		
 		if ( CVAR_DEBUG_MODE )
 		{
-			client_print( id, print_console, "[%s DEBUG] Wisdom modified damage - NEW damage=( %d )", MOD, actual_damage );
+			client_print_utility( id, print_console, "[%s DEBUG] Wisdom modified damage - NEW damage=( %d )", MOD, actual_damage );
 		}
 		
 		//Damage - done only once :)
@@ -2902,6 +2986,10 @@ public EarthQuake_DO( parm[] )
 	
 	if( Util_Should_Msg_Client (enemy) )
 	{
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::EarthQuake_DO:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgShake, enemy);
+		}
 		message_begin( MSG_ONE, gmsgShake, { 0, 0, 0 }, enemy );
 		write_short( 255<< 14 ); //ammount
 		write_short( 10 << 14 ); //lasts this long
@@ -2960,15 +3048,15 @@ public EarthQuake_DO( parm[] )
 				{
 					if( Util_Should_Msg_Client_Alive( targetid ) )
 					{
-						client_print ( targetid, print_chat, "%L", targetid, "ULTIMATE_EARTHQUAKE_RESIST1", MOD, idname );
-						client_print ( targetid, print_center, "%L", targetid, "ULTIMATE_EARTHQUAKE_RESIST2", idname );
+						client_print_utility ( targetid, print_chat, "%L", targetid, "ULTIMATE_EARTHQUAKE_RESIST1", MOD, idname );
+						client_print_utility ( targetid, print_center, "%L", targetid, "ULTIMATE_EARTHQUAKE_RESIST2", idname );
 					}
 				}
 				
 				if( Util_Should_Msg_Client_Alive( id ) )
 				{
-					client_print ( id, print_chat, "%L", id, "ULTIMATE_EARTHQUAKE_RESIST3", MOD, ename );
-					client_print ( id, print_center, "%L", id, "ULTIMATE_EARTHQUAKE_RESIST4", ename );
+					client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_EARTHQUAKE_RESIST3", MOD, ename );
+					client_print_utility ( id, print_center, "%L", id, "ULTIMATE_EARTHQUAKE_RESIST4", ename );
 				}
 				
 				new iparm[2];
@@ -2997,15 +3085,15 @@ public EarthQuake_DO( parm[] )
 					{
 						if( Util_Should_Msg_Client_Alive( targetid ) )
 						{
-							client_print ( targetid, print_chat, "%L", targetid, "ULTIMATE_EARTHQUAKE_YOU1", MOD, idname );
-							client_print ( targetid, print_center, "%L", targetid, "ULTIMATE_EARTHQUAKE_YOU2", idname );
+							client_print_utility ( targetid, print_chat, "%L", targetid, "ULTIMATE_EARTHQUAKE_YOU1", MOD, idname );
+							client_print_utility ( targetid, print_center, "%L", targetid, "ULTIMATE_EARTHQUAKE_YOU2", idname );
 						}
 					}
 					
 					if( Util_Should_Msg_Client_Alive( id ) )
 					{
-						client_print ( id, print_chat, "%L", id, "ULTIMATE_EARTHQUAKE_DAMAGE1", MOD, ename );
-						client_print ( id, print_center, "%L", id, "ULTIMATE_EARTHQUAKE_DAMAGE2", ename );
+						client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_EARTHQUAKE_DAMAGE1", MOD, ename );
+						client_print_utility ( id, print_center, "%L", id, "ULTIMATE_EARTHQUAKE_DAMAGE2", ename );
 					}
 					
 					do_damage ( targetid, id, damage, 27, 3, 0, 0, 0 );
@@ -3021,12 +3109,20 @@ public EarthQuake_DO( parm[] )
 		{
 			if( Util_Should_Msg_Client( targetid ) )
 			{
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::EarthQuake_DO:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgShake, targetid);
+				}
 				message_begin( MSG_ONE, gmsgShake, { 0, 0, 0 }, targetid );
 				write_short( 255<< 14 ); //ammount
 				write_short( 10 << 14 ); //lasts this long
 				write_short( 255<< 14 ); //frequency
 				message_end( );
 				
+				if (CVAR_DMESSAGES)
+				{
+					log_amx("[UWC3X]::DEBUG_MESSAGES::EarthQuake_DO:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgShake, targetid);
+				}
 				message_begin( MSG_ONE, gmsgShake, { 0, 0, 0 }, targetid );
 				write_short( 255<< 14 ); //ammount
 				write_short( 10 << 14 ); //lasts this long
@@ -3102,7 +3198,7 @@ public TASK_GRAB_Search( parm[2] )
 			{
 				if ( CVAR_DEBUG_MODE )
 				{
-					client_print( id, print_console, "DEBUG :: TASK_GRAB_Search -> failed to resist" );
+					client_print_utility( id, print_console, "DEBUG :: TASK_GRAB_Search -> failed to resist" );
 					log_amx( "[UWC3X] DEBUG :: TASK_GRAB_Search -> failed to resist" );
 				}
 				
@@ -3112,7 +3208,7 @@ public TASK_GRAB_Search( parm[2] )
 			{
 				if ( CVAR_DEBUG_MODE )
 				{
-					client_print( id, print_console, "DEBUG :: grabem -> resisted" );
+					client_print_utility( id, print_console, "DEBUG :: grabem -> resisted" );
 					log_amx( "[UWC3X] Debug :: grabem -> resisted" );
 				}
 			}

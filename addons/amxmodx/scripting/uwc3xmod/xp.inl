@@ -227,15 +227,15 @@ public XP_ShowTable ( id )
 
 	if( Util_Should_Msg_Client(id) )
 	{
-		client_print ( id, print_console, "%L ^n", id, "UWC3X_XP_TABLE_HEADER" );
-		client_print ( id, print_console, "%L ^n", id, "ENH_COST_TABLE", attrib_pt_cost, resist_pt_cost );
+		client_print_utility ( id, print_console, "%L ^n", id, "UWC3X_XP_TABLE_HEADER" );
+		client_print_utility ( id, print_console, "%L ^n", id, "ENH_COST_TABLE", attrib_pt_cost, resist_pt_cost );
 	}		
 
 	for ( new j=1; j < MAX_LEVEL; j++ )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_console, "%L ^n", id, "UWC3X_XP_TABLE", j, ( xplevel_lev[j] - xplevel_lev[j-1] ), xplevel_lev[j] );
+			client_print_utility ( id, print_console, "%L ^n", id, "UWC3X_XP_TABLE", j, ( xplevel_lev[j] - xplevel_lev[j-1] ), xplevel_lev[j] );
 		}		
 	}
 
@@ -251,7 +251,7 @@ public XP_AdminShowXP ( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}		
 			return PLUGIN_HANDLED;
 		}
@@ -269,7 +269,7 @@ public XP_AdminShowXP ( id, level )
 	get_user_name ( player, name, 31 );
 	if( Util_Should_Msg_Client(id) )
 	{
-		client_print ( id, print_chat, "%L", id, "ADMIN_SHOWXP", name, playerxp[player] );
+		client_print_utility ( id, print_chat, "%L", id, "ADMIN_SHOWXP", name, playerxp[player] );
 	}		
 	return PLUGIN_HANDLED;
 
@@ -305,7 +305,7 @@ public XP_DeleteXP ( id )
 	displaylevel ( id,1 );
 	if( Util_Should_Msg_Client(id) )
 	{
-		//client_print ( id, print_chat, "%L", id, "DELETE_XP", MOD );
+		//client_print_utility ( id, print_chat, "%L", id, "DELETE_XP", MOD );
 		hudchat_show(id, "%L", id, "DELETE_XP");
 		hudchat_update(id);
 	}		
@@ -318,7 +318,7 @@ public XP_Reload ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			//client_print( id, print_center, "%L", id, "RELOAD_XP" );
+			//client_print_utility( id, print_center, "%L", id, "RELOAD_XP" );
 			hudchat_show(id, "%L", id, "RELOAD_XP");
 			hudchat_update(id);
 		}		
@@ -331,7 +331,7 @@ public XP_Reload ( id )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			//client_print( id, print_center, "%L", id, "RELOAD_XP_NO_AUTH" );
+			//client_print_utility( id, print_center, "%L", id, "RELOAD_XP_NO_AUTH" );
 			hudchat_show(id, "%L", id, "RELOAD_XP_NO_AUTH");
 			hudchat_update(id);
 		}		
@@ -346,7 +346,7 @@ public amx_takexp ( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}		
 			return PLUGIN_HANDLED;
 		}
@@ -356,7 +356,7 @@ public amx_takexp ( id, level )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_console, "%L", id, "COMMAND_DISABLED" );
+			client_print_utility ( id, print_console, "%L", id, "COMMAND_DISABLED" );
 		}		
 		return PLUGIN_HANDLED;
 	}
@@ -383,7 +383,7 @@ public amx_takexp ( id, level )
 
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				//client_print ( players[a], print_chat, "%L", players[a], "ADMIN_TAKE_XP", iXP );
+				//client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_TAKE_XP", iXP );
 				hudchat_show(players[a], "%L", players[a], "ADMIN_TAKE_XP", iXP);
 				hudchat_update(players[a]);
 			}		
@@ -417,7 +417,7 @@ public amx_takexp ( id, level )
 
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				//client_print ( players[a], print_chat, "%L", players[a], "ADMIN_TAKE_XP", iXP );
+				//client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_TAKE_XP", iXP );
 				hudchat_show(players[a], "%L", players[a], "ADMIN_TAKE_XP", iXP);
 				hudchat_update(players[a]);
 			}		
@@ -437,7 +437,7 @@ public amx_takexp ( id, level )
 
 		if( Util_Should_Msg_Client(id) )
 		{
-			//client_print ( id, print_chat, "%L", players[a], "ADMIN_TAKE_XP", iXP );
+			//client_print_utility ( id, print_chat, "%L", players[a], "ADMIN_TAKE_XP", iXP );
 			hudchat_show(id, "%L", id, "ADMIN_TAKE_XP", iXP);
 			hudchat_update(id);
 		}		
@@ -456,7 +456,7 @@ public amx_resetresists( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}		
 			return PLUGIN_HANDLED;
 		}
@@ -466,7 +466,7 @@ public amx_resetresists( id, level )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_console, "%L", id, "COMMAND_DISABLED" );
+			client_print_utility ( id, print_console, "%L", id, "COMMAND_DISABLED" );
 		}		
 		return PLUGIN_HANDLED;
 	}
@@ -487,7 +487,7 @@ public amx_resetresists( id, level )
 			Reset_Resists ( players[a] );
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_RESISTS", MOD );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_RESISTS", MOD );
 			}		
 		}
 		return PLUGIN_HANDLED;
@@ -511,7 +511,7 @@ public amx_resetresists( id, level )
 			Reset_Resists ( players[a] );
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_RESISTS", MOD );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_RESISTS", MOD );
 			}		
 		}
 	}
@@ -527,7 +527,7 @@ public amx_resetresists( id, level )
 		Reset_Resists ( player );
 		if( Util_Should_Msg_Client(player) )
 		{
-			client_print ( player, print_chat, "%L", player, "ADMIN_RESET_RESISTS", MOD );
+			client_print_utility ( player, print_chat, "%L", player, "ADMIN_RESET_RESISTS", MOD );
 		}		
 	}
 
@@ -541,7 +541,7 @@ public amx_reseteverything( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}		
 			return PLUGIN_HANDLED;
 		}
@@ -551,7 +551,7 @@ public amx_reseteverything( id, level )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_console, "%L", id, "COMMAND_DISABLED" );
+			client_print_utility ( id, print_console, "%L", id, "COMMAND_DISABLED" );
 		}		
 		return PLUGIN_HANDLED;
 	}
@@ -574,7 +574,7 @@ public amx_reseteverything( id, level )
 			Skills_Reset ( players[a] );
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_ALL", MOD );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_ALL", MOD );
 			}		
 		}
 		return PLUGIN_HANDLED;
@@ -600,7 +600,7 @@ public amx_reseteverything( id, level )
 			Skills_Reset ( players[a] );
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_ALL", MOD );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_ALL", MOD );
 			}		
 		}
 	}
@@ -618,7 +618,7 @@ public amx_reseteverything( id, level )
 		Skills_Reset ( player );
 		if( Util_Should_Msg_Client(player) )
 		{
-			client_print ( player, print_chat, "%L", player, "ADMIN_RESET_ALL", MOD );
+			client_print_utility ( player, print_chat, "%L", player, "ADMIN_RESET_ALL", MOD );
 		}		
 	}
 
@@ -636,7 +636,7 @@ public amx_maxresists( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}		
 			return PLUGIN_HANDLED;
 		}
@@ -665,7 +665,7 @@ public amx_maxresists( id, level )
 
 	if( Util_Should_Msg_Client(player) )
 	{
-		client_print ( player, print_chat, "%L", player, "ADMIN_MAX_RESISTS", MOD );
+		client_print_utility ( player, print_chat, "%L", player, "ADMIN_MAX_RESISTS", MOD );
 	}		
 
 	return PLUGIN_HANDLED;
@@ -679,7 +679,7 @@ public amx_maxattribs( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}		
 			return PLUGIN_HANDLED;
 		}
@@ -708,7 +708,7 @@ public amx_maxattribs( id, level )
 
 	if( Util_Should_Msg_Client(player) )
 	{
-		client_print ( player, print_chat, "%L", player, "ADMIN_MAX_ATTRIBS", MOD );
+		client_print_utility ( player, print_chat, "%L", player, "ADMIN_MAX_ATTRIBS", MOD );
 	}		
 
 	return PLUGIN_HANDLED;
@@ -723,7 +723,7 @@ public amx_resetattribs( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}		
 			return PLUGIN_HANDLED;
 		}
@@ -733,7 +733,7 @@ public amx_resetattribs( id, level )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_console, "%L", id, "COMMAND_DISABLED" );
+			client_print_utility ( id, print_console, "%L", id, "COMMAND_DISABLED" );
 		}		
 		return PLUGIN_HANDLED;
 	}
@@ -754,7 +754,7 @@ public amx_resetattribs( id, level )
 			Reset_Attribs ( players[a] );
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_ATTRIBS", MOD );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_ATTRIBS", MOD );
 			}		
 		}
 		return PLUGIN_HANDLED;
@@ -778,7 +778,7 @@ public amx_resetattribs( id, level )
 			Reset_Attribs ( players[a] );
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_ATTRIBS", MOD );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_ATTRIBS", MOD );
 			}		
 		}
 	}
@@ -794,7 +794,7 @@ public amx_resetattribs( id, level )
 		Reset_Attribs ( player );
 		if( Util_Should_Msg_Client(player) )
 		{
-			client_print ( player, print_chat, "%L", player, "ADMIN_RESET_ATTRIBS", MOD );
+			client_print_utility ( player, print_chat, "%L", player, "ADMIN_RESET_ATTRIBS", MOD );
 		}		
 	}
 
@@ -809,7 +809,7 @@ public amx_resetskills( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}		
 			return PLUGIN_HANDLED;
 		}
@@ -819,7 +819,7 @@ public amx_resetskills( id, level )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_console, "%L", id, "COMMAND_DISABLED" );
+			client_print_utility ( id, print_console, "%L", id, "COMMAND_DISABLED" );
 		}		
 		return PLUGIN_HANDLED;
 	}
@@ -840,7 +840,7 @@ public amx_resetskills( id, level )
 			Skills_Reset( players[a] );
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_SKILLS", MOD );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_SKILLS", MOD );
 			}		
 		}
 		return PLUGIN_HANDLED;
@@ -864,7 +864,7 @@ public amx_resetskills( id, level )
 			Skills_Reset( players[a] );
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_SKILLS", MOD );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_RESET_SKILLS", MOD );
 			}		
 		}
 	}
@@ -880,7 +880,7 @@ public amx_resetskills( id, level )
 		Skills_Reset( player );
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( player, print_chat, "%L", player, "ADMIN_RESET_SKILLS", MOD );
+			client_print_utility ( player, print_chat, "%L", player, "ADMIN_RESET_SKILLS", MOD );
 		}		
 	}
 
@@ -897,7 +897,7 @@ public amx_setlevel ( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}		
 			return PLUGIN_HANDLED;
 		}
@@ -907,7 +907,7 @@ public amx_setlevel ( id, level )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_console, "%L", id, "COMMAND_DISABLED" );
+			client_print_utility ( id, print_console, "%L", id, "COMMAND_DISABLED" );
 		}		
 		return PLUGIN_HANDLED;
 	}
@@ -936,13 +936,13 @@ public amx_setlevel ( id, level )
 			
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_SET_LEVEL", MOD, iLevel );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_SET_LEVEL", MOD, iLevel );
 			}
 			
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
-				client_print ( id, print_console, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
+				client_print_utility ( id, print_chat, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
+				client_print_utility ( id, print_console, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
 			}		
 
 			playerxp[players[a]] = xp_needed;
@@ -975,13 +975,13 @@ public amx_setlevel ( id, level )
 			
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_SET_LEVEL", MOD, iLevel );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_SET_LEVEL", MOD, iLevel );
 			}
 			
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
-				client_print ( id, print_console, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
+				client_print_utility ( id, print_chat, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
+				client_print_utility ( id, print_console, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
 			}	
 			
 			playerxp[players[a]]= xp_needed;
@@ -999,14 +999,14 @@ public amx_setlevel ( id, level )
 
 		if( Util_Should_Msg_Client(player) )
 		{
-			client_print ( player, print_chat, "%L", player, "ADMIN_SET_LEVEL", MOD, iLevel );
+			client_print_utility ( player, print_chat, "%L", player, "ADMIN_SET_LEVEL", MOD, iLevel );
 		}	
 		
 		get_user_name( player, pname, 31 )
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
-			client_print ( id, print_console, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
+			client_print_utility ( id, print_chat, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
+			client_print_utility ( id, print_console, "%L", id, "ADMIN_SET_LEVEL_RESPONSE", pname, iLevel );
 		}	
 		playerxp[player] = xp_needed;
 		displaylevel ( player, 1 );
@@ -1023,7 +1023,7 @@ public amx_givexp ( id, level )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_console, "%L", id, "NO_ACCESS");
+				client_print_utility ( id, print_console, "%L", id, "NO_ACCESS");
 			}	
 			return PLUGIN_HANDLED;
 		}
@@ -1033,7 +1033,7 @@ public amx_givexp ( id, level )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_console, "%L", id, "COMMAND_DISABLED" );
+			client_print_utility ( id, print_console, "%L", id, "COMMAND_DISABLED" );
 		}	
 		return PLUGIN_HANDLED;
 	}
@@ -1060,7 +1060,7 @@ public amx_givexp ( id, level )
 
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_GIVE_XP", MOD, iXP );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_GIVE_XP", MOD, iXP );
 			}	
 				
 			playerxp[players[a]]+= iXP;
@@ -1091,7 +1091,7 @@ public amx_givexp ( id, level )
 
 			if( Util_Should_Msg_Client(players[a]) )
 			{
-				client_print ( players[a], print_chat, "%L", players[a], "ADMIN_GIVE_XP", MOD, iXP );
+				client_print_utility ( players[a], print_chat, "%L", players[a], "ADMIN_GIVE_XP", MOD, iXP );
 			}	
 			playerxp[players[a]]+= iXP;
 			displaylevel ( players[a],1 );
@@ -1108,7 +1108,7 @@ public amx_givexp ( id, level )
 
 		if( Util_Should_Msg_Client(player) )
 		{
-			client_print ( player, print_chat, "%L", player, "ADMIN_GIVE_XP", MOD, iXP );
+			client_print_utility ( player, print_chat, "%L", player, "ADMIN_GIVE_XP", MOD, iXP );
 		}	
 		playerxp[player]+= iXP;
 		displaylevel ( player, 1 );

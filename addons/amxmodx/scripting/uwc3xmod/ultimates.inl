@@ -60,7 +60,7 @@ public cooldown4 ( parm[2] )
 		//Tell them they can use it again
 		if( is_user_alive ( id ) && is_user_connected(id) && !is_user_bot(id))
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_READY", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_READY", MOD );
 		}
 	}
 
@@ -74,8 +74,8 @@ public cooldown4 ( parm[2] )
 			get_user_name ( id, name, 31 );
 
 			//Tell the user they can drop the TMP now :)
-			client_print ( enemy, print_chat, "%L", enemy, "ULTIMATE_DEPOWER_WORE_OFF", MOD, name );
-			client_print ( enemy, print_center, "%L", enemy, "ULTIMATE_DEPOWER_WORE_OFF", MOD, name );
+			client_print_utility ( enemy, print_chat, "%L", enemy, "ULTIMATE_DEPOWER_WORE_OFF", MOD, name );
+			client_print_utility ( enemy, print_center, "%L", enemy, "ULTIMATE_DEPOWER_WORE_OFF", MOD, name );
 		}
 
 		BlockPickup[enemy] = false;
@@ -90,8 +90,8 @@ public cooldown4 ( parm[2] )
 			get_user_name ( id, name, 31 );
 
 			//Tell the user they can drop the TMP now :)
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_WORE_OFF", MOD, name );
-			client_print ( id, print_center, "%L", id, "ULTIMATE_DEPOWER_WORE_OFF", MOD, name );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_WORE_OFF", MOD, name );
+			client_print_utility ( id, print_center, "%L", id, "ULTIMATE_DEPOWER_WORE_OFF", MOD, name );
 		}
 
 		BlockPickup[id] = false;
@@ -124,7 +124,7 @@ public cooldown3 ( parm[1] )
 		//Tell them they can use it again
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_SIV_READY" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_SIV_READY" );
 		}
 
 	}
@@ -166,7 +166,7 @@ public cooldownGate ( parm[1] )
 	{
 		new debugname[32];
 		get_user_name ( id, debugname, 31 );
-		client_print( id, print_console, "[%s DEBUG] cooldownGate -> Setting gateused[id] = FALSE for player %s so now there is NO delay", MOD, debugname );
+		client_print_utility( id, print_console, "[%s DEBUG] cooldownGate -> Setting gateused[id] = FALSE for player %s so now there is NO delay", MOD, debugname );
 		log_amx( "[UWC3X] DEBUG :: cooldownGate -> Setting gateused[id] = FALSE for player %s so now there is NO delay", debugname );
 	}
 
@@ -201,7 +201,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client_Dead(id))
 		{
-			//client_print ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
+			//client_print_utility ( id, print_chat, "%L", id, "SHHH_DEAD_MESSAGE" );
 			hudchat_show(id, "%L", id, "SHHH_DEAD_MESSAGE");
 			hudchat_update(id);
 		}
@@ -272,7 +272,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_FLAME_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_FLAME_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -281,7 +281,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_TELEPORT_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_TELEPORT_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -290,7 +290,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_VOODOO_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_VOODOO_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -299,7 +299,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_GATE_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_GATE_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -308,7 +308,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_LGHTNG_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_LGHTNG_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -317,7 +317,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_DECOY_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DECOY_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -326,7 +326,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_ENTANGLE_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_ENTANGLE_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -335,7 +335,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_TEAMSHIELD_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_TEAMSHIELD_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -344,7 +344,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -353,7 +353,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_LOCUST_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_LOCUST_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -362,7 +362,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_BLIND_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_BLIND_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -371,7 +371,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_DISORIENT_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DISORIENT_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -380,7 +380,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_UAMMO_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_UAMMO_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -389,7 +389,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_EARTHQUAKE_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_EARTHQUAKE_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -398,7 +398,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_SMITE_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_SMITE_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -407,7 +407,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_HOOK_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_HOOK_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -416,7 +416,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_ROPE_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_ROPE_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -425,7 +425,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_GRAB_UNTRAINED" );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_GRAB_UNTRAINED" );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -434,7 +434,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if( Util_Should_Msg_Client(id) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_WCSUICIDE_UNTRAINED", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_WCSUICIDE_UNTRAINED", MOD );
 			emit_sound( id, CHAN_ITEM, "uwc3x/error.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		}
 		return false;
@@ -460,7 +460,7 @@ public Ult_Can_Use ( id , IDX )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print ( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_ENEMY3", MOD );
+					client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_ENEMY3", MOD );
 				}
 				return false;
 			}
@@ -468,7 +468,7 @@ public Ult_Can_Use ( id , IDX )
 			{
 				if( Util_Should_Msg_Client(id) )
 				{
-					client_print ( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_ENEMY3", MOD );
+					client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_CRIPPLE_ENEMY3", MOD );
 				}
 				return false;
 			}
@@ -481,7 +481,7 @@ public Ult_Can_Use ( id , IDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_GATE_NO_MORE", MOD );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_GATE_NO_MORE", MOD );
 			}
 			return false;
 		}
@@ -490,7 +490,7 @@ public Ult_Can_Use ( id , IDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_GATE_COOLDOWN", MOD, CVAR_GATE_COOLDOWN2 );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_GATE_COOLDOWN", MOD, CVAR_GATE_COOLDOWN2 );
 			}
 
 			return false;
@@ -502,7 +502,7 @@ public Ult_Can_Use ( id , IDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_DECOY_ONE", MOD );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DECOY_ONE", MOD );
 			}
 			return false;
 		}
@@ -511,7 +511,7 @@ public Ult_Can_Use ( id , IDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_DECOY_LIMIT", MOD );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DECOY_LIMIT", MOD );
 			}
 			return false;
 		}
@@ -520,7 +520,7 @@ public Ult_Can_Use ( id , IDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_DECOY_HEXED", MOD );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DECOY_HEXED", MOD );
 			}
 			return false;
 		}
@@ -531,7 +531,7 @@ public Ult_Can_Use ( id , IDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_TEAMSHIELD_COOLDOWN", MOD, CVAR_TEAMSHIELD_COOLDOWN );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_TEAMSHIELD_COOLDOWN", MOD, CVAR_TEAMSHIELD_COOLDOWN );
 			}
 			return false;
 		}
@@ -540,7 +540,7 @@ public Ult_Can_Use ( id , IDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_TEAMSHIELD_ACTIVE", MOD );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_TEAMSHIELD_ACTIVE", MOD );
 			}
 			return false;
 		}
@@ -551,7 +551,7 @@ public Ult_Can_Use ( id , IDX )
 		{
 			if( Util_Should_Msg_Client(id) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_COOLDOWN", MOD, CVAR_DEPOWER_COOLDOWN );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_COOLDOWN", MOD, CVAR_DEPOWER_COOLDOWN );
 			}
 			return false;
 		}
@@ -560,7 +560,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if(IsVip[id] && CVAR_HOOK_NOVIP )
 		{
-			client_print ( id, print_chat, "%L", id, "HOOK_NO_VIP", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "HOOK_NO_VIP", MOD );
 			return false;
 		}
 
@@ -568,13 +568,13 @@ public Ult_Can_Use ( id , IDX )
 		{
 			new debugname[32];
 			get_user_name ( id, debugname, 31 );
-			client_print( id, print_console, "[%s DEBUG] Ult_Can_Use - HOOK -> Player:%s Hook Count:%d Skill points:%d allowed hooks:%d ", MOD, debugname, HookCount[id],p_skills[id][SKILLIDX_HOOK], p_hooks[p_skills[id][SKILLIDX_HOOK]] );
+			client_print_utility( id, print_console, "[%s DEBUG] Ult_Can_Use - HOOK -> Player:%s Hook Count:%d Skill points:%d allowed hooks:%d ", MOD, debugname, HookCount[id],p_skills[id][SKILLIDX_HOOK], p_hooks[p_skills[id][SKILLIDX_HOOK]] );
 			log_amx( "[UWC3X] DEBUG :: Ult_Can_Use - HOOK -> Player:%s Hook Count:%d Skill points:%d allowed hooks:%d ", debugname, HookCount[id],p_skills[id][SKILLIDX_HOOK], p_hooks[p_skills[id][SKILLIDX_HOOK]] );
 		}
 
 		if(HookCount[id] == 0 )
 		{
-			client_print( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD )
+			client_print_utility( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD )
 			return false
 		}
 	}
@@ -582,7 +582,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if(IsVip[id] && CVAR_GRAB_NOVIP )
 		{
-			client_print ( id, print_chat, "%L", id, "GRAB_NO_VIP", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "GRAB_NO_VIP", MOD );
 			return false;
 		}
 
@@ -590,13 +590,13 @@ public Ult_Can_Use ( id , IDX )
 		{
 			new debugname[32];
 			get_user_name ( id, debugname, 31 );
-			client_print( id, print_console, "[%s DEBUG] Ult_Can_Use - GRAB -> Player:%s GRAB Count:%d Skill points:%d allowed GRABS:%d ", MOD, debugname, GrabCount[id],p_skills[id][SKILLIDX_GRAB], p_grabs[p_skills[id][SKILLIDX_GRAB]] );
+			client_print_utility( id, print_console, "[%s DEBUG] Ult_Can_Use - GRAB -> Player:%s GRAB Count:%d Skill points:%d allowed GRABS:%d ", MOD, debugname, GrabCount[id],p_skills[id][SKILLIDX_GRAB], p_grabs[p_skills[id][SKILLIDX_GRAB]] );
 			log_amx( "[UWC3X] DEBUG :: Ult_Can_Use - GRAB -> Player:%s GRAB Count:%d Skill points:%d allowed GRABS:%d ", debugname,GrabCount[id],p_skills[id][SKILLIDX_GRAB], p_grabs[p_skills[id][SKILLIDX_GRAB]] );
 		}
 
 		if(GrabCount[id] == 0 )
 		{
-			client_print( id ,print_chat, "%L", id, "GRAB_NONE_LEFT", MOD )
+			client_print_utility( id ,print_chat, "%L", id, "GRAB_NONE_LEFT", MOD )
 			return false
 		}
 	}
@@ -604,7 +604,7 @@ public Ult_Can_Use ( id , IDX )
 	{
 		if(IsVip[id] && CVAR_ROPE_NOVIP )
 		{
-			client_print ( id, print_chat, "%L", id, "ROPE_NO_VIP", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "ROPE_NO_VIP", MOD );
 			return false;
 		}
 
@@ -612,13 +612,13 @@ public Ult_Can_Use ( id , IDX )
 		{
 			new debugname[32];
 			get_user_name ( id, debugname, 31 );
-			client_print( id, print_console, "[%s DEBUG] Ult_Can_Use - ROPE -> Player:%s ROPE Count:%d Skill points:%d allowed ROPES:%d ", MOD, debugname, RopeCount[id],p_skills[id][SKILLIDX_ROPE], p_ropes[p_skills[id][SKILLIDX_ROPE]] );
+			client_print_utility( id, print_console, "[%s DEBUG] Ult_Can_Use - ROPE -> Player:%s ROPE Count:%d Skill points:%d allowed ROPES:%d ", MOD, debugname, RopeCount[id],p_skills[id][SKILLIDX_ROPE], p_ropes[p_skills[id][SKILLIDX_ROPE]] );
 			log_amx( "[UWC3X] DEBUG :: Ult_Can_Use - ROPE -> Player:%s ROPE Count:%d Skill points:%d allowed ROPES:%d ", debugname,RopeCount[id],p_skills[id][SKILLIDX_ROPE], p_ropes[p_skills[id][SKILLIDX_ROPE]] );
 		}
 
 		if(RopeCount[id] == 0 )
 		{
-			client_print( id ,print_chat, "%L", id, "ROPE_NONE_LEFT", MOD )
+			client_print_utility( id ,print_chat, "%L", id, "ROPE_NONE_LEFT", MOD )
 			return false
 		}
 	}
@@ -688,7 +688,7 @@ public Ult_ChainLightning ( id )
 	
 	if ( UWC3X_MapDisableCheck( "lightning.cfg" ) )
 	{
-		client_print ( id, print_chat, "%L", id, "ULTIMATE_LIGHTNING_DISABLED", MOD );
+		client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_LIGHTNING_DISABLED", MOD );
 		emit_sound( id, CHAN_ITEM, "uwc3x/ultimateerror.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		return PLUGIN_HANDLED;
 	}
@@ -790,6 +790,10 @@ public Do_Gate_Shopmenu( id )
 		get_user_origin ( id, idorigin );
 		Remove_Grab( id );	
 
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::Do_Gate_Shopmenu:: dest=%d; msg_type=%d;", MSG_ALL, SVC_TEMPENTITY);
+		}
 		message_begin ( MSG_ALL, SVC_TEMPENTITY );
 		write_byte ( TE_SPRITE );
 		write_coord ( idorigin[0] );
@@ -804,7 +808,7 @@ public Do_Gate_Shopmenu( id )
 	{
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_GATE_FAILED", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_GATE_FAILED", MOD );
 		}
 
 	}
@@ -882,6 +886,10 @@ public Do_Gate ( id )
 		new idorigin[3];
 		get_user_origin ( id, idorigin );
 
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::Do_Gate:: dest=%d; msg_type=%d;", MSG_ALL, SVC_TEMPENTITY);
+		}
 		message_begin ( MSG_ALL, SVC_TEMPENTITY );
 		write_byte ( TE_SPRITE );
 		write_coord ( idorigin[0] );
@@ -896,7 +904,7 @@ public Do_Gate ( id )
 	{
 		if( Util_Should_Msg_Client_Alive( id ) )
 		{
-			client_print ( id, print_chat, "%L", id, "ULTIMATE_GATE_FAILED", MOD );
+			client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_GATE_FAILED", MOD );
 		}
 	}
 
@@ -1056,7 +1064,7 @@ public Ult_Suicide_Bomber ( id )
 	
 	if ( UWC3X_MapDisableCheck( "suicide.cfg" ) )
 	{
-		client_print ( id, print_chat, "%L", id, "ULTIMATE_SUICIDE_DISABLED", MOD );
+		client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_SUICIDE_DISABLED", MOD );
 		emit_sound( id, CHAN_ITEM, "uwc3x/ultimateerror.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		return PLUGIN_HANDLED;
 	}
@@ -1116,7 +1124,7 @@ public Ult_Teleport ( id )
 	
 	if ( UWC3X_MapDisableCheck( "teleport.cfg" ) )
 	{
-		client_print ( id, print_chat, "%L", id, "ULTIMATE_TELEPORT_DISABLED", MOD );
+		client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_TELEPORT_DISABLED", MOD );
 		emit_sound( id, CHAN_ITEM, "uwc3x/ultimateerror.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		return PLUGIN_HANDLED;
 	}
@@ -1137,6 +1145,10 @@ public Ult_Teleport ( id )
 				if( Util_Should_Msg_Client(id) )
 				{
 					// This will cause Teleportation Blueness
+					if (CVAR_DMESSAGES)
+					{
+						log_amx("[UWC3X]::DEBUG_MESSAGES::Ult_Teleport:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, gmsgFade, id);
+					}
 					message_begin ( MSG_ONE, gmsgFade, {0,0,0}, id ); // use the magic #1 for "one client"
 					write_short ( 1<<12 ); // fade lasts this long duration
 					write_short ( 1<<8 ); // fade lasts this long hold time
@@ -1235,6 +1247,10 @@ public Ult_Teleport ( id )
 			}
 
 			// blast circles
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::Ult_Teleport:: dest=%d; msg_type=%d;", MSG_PAS, SVC_TEMPENTITY);
+			}
 			message_begin ( MSG_PAS, SVC_TEMPENTITY, oldLocation );
 			write_byte ( TE_BEAMCYLINDER );
 			write_coord ( oldLocation[0] );
@@ -1276,7 +1292,7 @@ public Ult_Teleport ( id )
 						client_cmd ( id, "kill" );
 						if( Util_Should_Msg_Client_Alive( id ) )
 						{
-							client_print ( id, print_chat, "%L", id, "ULTIMATE_TELEPORT_SLAY", MOD );
+							client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_TELEPORT_SLAY", MOD );
 						}
 						return PLUGIN_HANDLED;
 					}
@@ -1306,6 +1322,10 @@ public Ult_Teleport ( id )
 				emit_sound ( id,CHAN_ITEM, "uwc3x/teleport.wav", 1.0, ATTN_NORM, 0, PITCH_NORM );
 			}
 
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::Ult_Teleport:: dest=%d; msg_type=%d;", MSG_PAS, SVC_TEMPENTITY);
+			}
 			message_begin ( MSG_PAS, SVC_TEMPENTITY, newLocation );
 			write_byte ( TE_BEAMCYLINDER );
 			write_coord ( newLocation[0] );
@@ -1439,6 +1459,10 @@ public Ult_VooDoo ( id )
 
 		if( Util_Should_Msg_Client(id) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::Ult_VooDoo:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, 108, id);
+			}
 			message_begin ( MSG_ONE, 108, { 0, 0, 0 }, id );
 
 			// Bar ( thanks to bad-at-this )
@@ -1541,7 +1565,7 @@ public Ult_Decoy ( id )
 		{
 			if( Util_Should_Msg_Client_Alive( id ) )
 			{
-				client_print ( id, print_chat, "%L", id, "ULTIMATE_DECOY_PLAYER", MOD );
+				client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DECOY_PLAYER", MOD );
 			}
 
 			return PLUGIN_HANDLED;
@@ -1620,7 +1644,7 @@ public Ult_DePower( id )
 	
 	if ( UWC3X_MapDisableCheck( "depower.cfg" ) )
 	{
-		client_print ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_DISABLED", MOD );
+		client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_DEPOWER_DISABLED", MOD );
 		emit_sound( id, CHAN_ITEM, "uwc3x/ultimateerror.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		return PLUGIN_HANDLED;
 	}
@@ -1700,7 +1724,7 @@ public Ult_Smite( id )
 
 	if ( UWC3X_MapDisableCheck( "smite.cfg" ) )
 	{
-		client_print ( id, print_chat, "%L", id, "ULTIMATE_SMITE_DISABLED", MOD );
+		client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_SMITE_DISABLED", MOD );
 		emit_sound( id, CHAN_ITEM, "uwc3x/ultimateerror.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		return PLUGIN_HANDLED;
 	}
@@ -1728,7 +1752,7 @@ public Ult_EarthQuake( id )
 	
 	if ( UWC3X_MapDisableCheck( "earthquake.cfg" ) )
 	{
-		client_print ( id, print_chat, "%L", id, "ULTIMATE_EARTHQUAKE_DISABLED", MOD );
+		client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_EARTHQUAKE_DISABLED", MOD );
 		emit_sound( id, CHAN_ITEM, "uwc3x/ultimateerror.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		return PLUGIN_HANDLED;
 	}
@@ -1756,7 +1780,7 @@ public Ult_Locust(id)
 	
 	if ( UWC3X_MapDisableCheck( "swarm.cfg" ) )
 	{
-		client_print ( id, print_chat, "%L", id, "ULTIMATE_SWARM_DISABLED", MOD );
+		client_print_utility ( id, print_chat, "%L", id, "ULTIMATE_SWARM_DISABLED", MOD );
 		emit_sound( id, CHAN_ITEM, "uwc3x/ultimateerror.wav", 0.8, ATTN_NORM, 0, PITCH_NORM );
 		return PLUGIN_HANDLED;
 	}
@@ -1813,6 +1837,10 @@ public Ult_UnlimitedAmmo( id )
 
 		if( Util_Should_Msg_Client(id) )
 		{
+			if (CVAR_DMESSAGES)
+			{
+				log_amx("[UWC3X]::DEBUG_MESSAGES::Ult_UnlimitedAmmo:: dest=%d; msg_type=%d; player=%d;", MSG_ONE, 108, id);
+			}
 			message_begin ( MSG_ONE, 108, { 0, 0, 0 }, id );
 
 			// Bar ( thanks to bad-at-this )
@@ -1895,6 +1923,10 @@ public Task_Do_FireBall( parm[] )
 		VelocityByAim(id, 400, fl_iNewVelocity);
 		entity_set_vector(fEntity, EV_VEC_velocity, fl_iNewVelocity);
 
+		if (CVAR_DMESSAGES)
+		{
+			log_amx("[UWC3X]::DEBUG_MESSAGES::Task_Do_FireBall:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		}
 		message_begin(MSG_BROADCAST, SVC_TEMPENTITY);
 		write_byte(22);
 		write_short(fEntity);
@@ -1971,7 +2003,7 @@ public rope_on(id)
 
 		if( RopeCount[id] == 0 )
 		{
-			client_print( id ,print_chat, "%L", id, "ROPE_NONE_LEFT", MOD )
+			client_print_utility( id ,print_chat, "%L", id, "ROPE_NONE_LEFT", MOD )
 			return PLUGIN_HANDLED;
 		}
 		else
@@ -1985,11 +2017,11 @@ public rope_on(id)
 
 			if( RopeCount[id] == 0 )
 			{
-				client_print( id ,print_chat, "%L", id, "ROPE_NONE_LEFT", MOD );
+				client_print_utility( id ,print_chat, "%L", id, "ROPE_NONE_LEFT", MOD );
 			}
 			else
 			{
-				client_print(id,print_chat, "%L", id, "ROPE_COUNT", MOD, RopeCount[id]);
+				client_print_utility(id,print_chat, "%L", id, "ROPE_COUNT", MOD, RopeCount[id]);
 			}
 		}
 
@@ -2050,6 +2082,10 @@ public rope_prethink(id)
 	}
 
 	//Create green beam
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::rope_prethink:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(1);		//TE_BEAMENTPOINT
 	write_short(id);		// start entity
@@ -2145,19 +2181,19 @@ public grab_on2(id)
 					{
 						if ( CVAR_DEBUG_MODE )
 						{
-							client_print( id, print_console, "DEBUG :: TASK_GRAB_Search -> failed to resist" );
+							client_print_utility( id, print_console, "DEBUG :: TASK_GRAB_Search -> failed to resist" );
 							log_amx( "[UWC3X] DEBUG :: TASK_GRAB_Search -> failed to resist" );
 						}	
 					
-						client_print(id, print_chat, "%L", id, "GRAB_FOUND", MOD);
-						client_print(id, print_center, "%L", id, "GRAB_FOUND", MOD);
+						client_print_utility(id, print_chat, "%L", id, "GRAB_FOUND", MOD);
+						client_print_utility(id, print_center, "%L", id, "GRAB_FOUND", MOD);
 						grabem(id,target)
 					}
 					else
 					{
 						if ( CVAR_DEBUG_MODE )
 						{
-							client_print( id, print_console, "DEBUG :: grabem -> resisted" );
+							client_print_utility( id, print_console, "DEBUG :: grabem -> resisted" );
 							log_amx( "[UWC3X] Debug :: grabem -> resisted" );
 						}	
 					}
@@ -2165,8 +2201,8 @@ public grab_on2(id)
 			}
 			else if(get_solidity(target)!=4)
 			{
-				client_print(id, print_chat, "%L", id, "GRAB_FOUND", MOD);
-				client_print(id, print_center, "%L", id, "GRAB_FOUND", MOD);
+				client_print_utility(id, print_chat, "%L", id, "GRAB_FOUND", MOD);
+				client_print_utility(id, print_center, "%L", id, "GRAB_FOUND", MOD);
 				grabem(id,target)
 			}
 		}
@@ -2190,7 +2226,7 @@ public grabem(id,target)
 		new name1[32], name2[32];
 		get_user_name ( target, name1, 31 );
 		get_user_name ( id, name2, 31 );
-		client_print(id, print_console, "DEBUG :: grabem -> player %s target:%s", name2, name1 );
+		client_print_utility(id, print_console, "DEBUG :: grabem -> player %s target:%s", name2, name1 );
 		log_amx( "[UWC3X] Debug :: grabem -> player %s target:%s", name2, name1 );
 	}	
 
@@ -2216,7 +2252,7 @@ public grabem(id,target)
 
 	if( GrabCount[id] == 0 )
 	{
-		client_print( id ,print_chat, "%L", id, "GRAB_NONE_LEFT", MOD )
+		client_print_utility( id ,print_chat, "%L", id, "GRAB_NONE_LEFT", MOD )
 		return PLUGIN_HANDLED;
 	}
 	else
@@ -2230,11 +2266,11 @@ public grabem(id,target)
 
 		if( GrabCount[id] == 0 )
 		{
-			client_print( id ,print_chat, "%L", id, "GRAB_NONE_LEFT", MOD );
+			client_print_utility( id ,print_chat, "%L", id, "GRAB_NONE_LEFT", MOD );
 		}
 		else
 		{
-			client_print(id,print_chat, "%L", id, "GRAB_COUNT", MOD, GrabCount[id]);
+			client_print_utility(id,print_chat, "%L", id, "GRAB_COUNT", MOD, GrabCount[id]);
 		}
 	}
 
@@ -2248,14 +2284,14 @@ public grab_off(id)
 	{
 		if(grab[id]==-1)
 		{
-			client_print(id, print_chat, "%L", id, "GRAB_NOTARGETS", MOD);
-			client_print(id, print_center, "%L", id, "GRAB_NOTARGETS", MOD);
+			client_print_utility(id, print_chat, "%L", id, "GRAB_NOTARGETS", MOD);
+			client_print_utility(id, print_center, "%L", id, "GRAB_NOTARGETS", MOD);
 			grab[id]=0;
 		}
 		else if(grab[id])
 		{
-			client_print(id, print_chat, "%L", id, "GRAB_LETGO", MOD);
-			client_print(id, print_center, "%L", id, "GRAB_LETGO", MOD);
+			client_print_utility(id, print_chat, "%L", id, "GRAB_LETGO", MOD);
+			client_print_utility(id, print_center, "%L", id, "GRAB_LETGO", MOD);
 			set_rendering2(grab[id]);
 
 			if( Util_Is_Valid_Player( grab[id] ) && is_user_alive(grab[id]))
@@ -2300,6 +2336,10 @@ public grab_prethink(id)
 	get_user_origin(id,origin3,3);
 
 	//Create red beam
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::grab_prethink:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(1);		//TE_BEAMENTPOINT
 	write_short(id);		// start entity
@@ -2415,7 +2455,7 @@ public hook_on ( id )
 
 	if( HookCount[id] == 0 )
 	{
-		client_print( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD )
+		client_print_utility( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD )
 		return PLUGIN_HANDLED;
 	}
 	else
@@ -2429,11 +2469,11 @@ public hook_on ( id )
 
 		if( HookCount[id] == 0 )
 		{
-			client_print( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD );
+			client_print_utility( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD );
 		}
 		else
 		{
-			client_print(id,print_chat, "%L", id, "HOOK_COUNT", MOD, HookCount[id]);
+			client_print_utility(id,print_chat, "%L", id, "HOOK_COUNT", MOD, HookCount[id]);
 		}
 	}
 
@@ -2483,6 +2523,10 @@ public hook_prethink(id)
 	}
 
 	//Create blue beam
+	if (CVAR_DMESSAGES)
+	{
+		log_amx("[UWC3X]::DEBUG_MESSAGES::hook_prethink:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	}
 	message_begin(MSG_BROADCAST,SVC_TEMPENTITY);
 	write_byte(1);		//TE_BEAMENTPOINT
 	write_short(id);		// start entity
@@ -2556,7 +2600,7 @@ public Ult_Hook( id )
 
 		if( HookCount[id] == 0 )
 		{
-			client_print( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD )
+			client_print_utility( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD )
 			return false
 		}
 		else
@@ -2572,11 +2616,11 @@ public Ult_Hook( id )
 
 			if( HooksLeft == 0 )
 			{
-				client_print( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD )
+				client_print_utility( id ,print_chat, "%L", id, "HOOK_NONE_LEFT", MOD )
 			}
 			else
 			{
-				client_print(id,print_chat, "%L", id, "HOOK_COUNT", MOD, HooksLeft)
+				client_print_utility(id,print_chat, "%L", id, "HOOK_COUNT", MOD, HooksLeft)
 			}
 		}
 	}
