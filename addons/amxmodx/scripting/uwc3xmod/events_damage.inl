@@ -359,7 +359,7 @@ public damage_event( id )
 		return PLUGIN_HANDLED;
 	}
 
-	if ( CVAR_MEDIC_ALERTS && !medicalert[id] )
+	if ( CVAR_MEDIC_ALERTS == 1 && !medicalert[id] )
 	{
 		// Send out medic alert calls to all medics on the team
 		medicalert[id] = true;
