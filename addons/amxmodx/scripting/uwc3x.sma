@@ -154,22 +154,35 @@ public ShowUsername_Message( id )
 	return PLUGIN_CONTINUE;
 }
 
-public client_infochanged(id) {
+public client_infochanged(id)
+{
 	CheckUserName(id);
 }
 
-/* Added support to fix players losing XP to STEAM_ID_PENDING -Marticus 11/15/05 */ 
-public client_authorized ( id )
-{ 
-	if ( CVAR_SAVE_XP ) 
+public client_putinserver(id)
+{
+	if (!uwc3x)
+	{
+		return;
+	}
+	
+	// Check for steam ID pending
+	static szPlayerID[32];
+	get_user_authid( id, szPlayerID, charsmax( szPlayerID ) );
+	
+	// Then the player doesn't have a steam id, lets make them reconnect
+	if ( equal(szPlayerID, "STEAM_ID_PENDING") )
+	{
+		client_cmd( id, "reconnect" );
+	}
+	
+	if (CVAR_SAVE_XP) 
 	{
 		xpreadytoload[id] = 1;
 	}
 	
-	PlayerAuthed[id] = true;
-	CheckUserName(id);
-	return PLUGIN_CONTINUE ;
-} 
+	return;
+}
 
 public plugin_init ( )
 {
@@ -294,8 +307,6 @@ public client_connect ( id )
 		lowres[id] = false;
 	}
 
-	xpreadytoload[id] = 0;
-	PlayerAuthed[id] = false;
 	PrintConnectMessage ( id );
 	return PLUGIN_CONTINUE;
 }
@@ -308,7 +319,6 @@ public client_disconnect ( id )
 	}
 	
 	hudchat_clear(id);
-	PlayerAuthed[id]	= false;	// Reset teh Authorized Steam Setting
 	g_specMode[id]		= false;	// Reset spectator status for player
 	isburning[id]		= 0;		// Reset burning status for player ( flamethrower )
 	isnburning[id]		= 0;		// Reset burning status for player ( napalm burn )

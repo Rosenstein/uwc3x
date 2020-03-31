@@ -314,28 +314,16 @@ public XP_DeleteXP ( id )
 
 public XP_Reload ( id )
 {
-	if( PlayerAuthed[id] ) 
+	if( Util_Should_Msg_Client(id) )
 	{
-		if( Util_Should_Msg_Client(id) )
-		{
-			//client_print_utility( id, print_center, "%L", id, "RELOAD_XP" );
-			hudchat_show(id, "%L", id, "RELOAD_XP");
-			hudchat_update(id);
-		}		
-		xpreadytoload[id] = 1;
-
-		//Forces this to load Async 
-		LoadXPCommand ( id )
-	}
-	else
-	{
-		if( Util_Should_Msg_Client(id) )
-		{
-			//client_print_utility( id, print_center, "%L", id, "RELOAD_XP_NO_AUTH" );
-			hudchat_show(id, "%L", id, "RELOAD_XP_NO_AUTH");
-			hudchat_update(id);
-		}		
-	}
+		//client_print_utility( id, print_center, "%L", id, "RELOAD_XP" );
+		hudchat_show(id, "%L", id, "RELOAD_XP");
+		hudchat_update(id);
+	}		
+	//xpreadytoload[id] = 1;
+	
+	//Forces this to load Async 
+	LoadXPCommand ( id );
 }
 public amx_takexp ( id, level )
 {

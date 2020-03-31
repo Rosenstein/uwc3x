@@ -225,8 +225,6 @@ new cloakstack[10] = {0,5,15,25,35,45,55,65,75};
 
 // Main player variables
 
-	new bool:PlayerAuthed[MAX_PLAYERS]=false;
-
 	// Player level ( indexed by player id )
 	new p_level[MAX_PLAYERS];
 
