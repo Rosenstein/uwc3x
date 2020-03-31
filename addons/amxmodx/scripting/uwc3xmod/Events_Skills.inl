@@ -46,25 +46,25 @@ public Do_Leather_Skin( parm[2] )
 		}
 	}
 
-	new origin[3];
-	get_user_origin( id, origin );
-
-	if( playeritem[id]!=CLOAK && ( !p_skills[id][SKILLIDX_INVIS] ) )
-	{
-		if (CVAR_DMESSAGES)
-		{
-			log_amx("[UWC3X]::DEBUG_MESSAGES::Do_Leather_Skin:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
-		}
-		message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
-		write_byte( TE_IMPLOSION );
-		write_coord(origin[0]); // initial position
-		write_coord(origin[1]); // initial position
-		write_coord(origin[2]); // initial position
-		write_byte(100); // radius
-		write_byte( 8 ); // count
-		write_byte( 1 ); // life
-		message_end();
-	}
+	//new origin[3];
+	//get_user_origin( id, origin );
+	//
+	//if( playeritem[id]!=CLOAK && ( !p_skills[id][SKILLIDX_INVIS] ) )
+	//{
+	//	if (CVAR_DMESSAGES)
+	//	{
+	//		log_amx("[UWC3X]::DEBUG_MESSAGES::Do_Leather_Skin:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+	//	}
+	//	message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
+	//	write_byte( TE_IMPLOSION );
+	//	write_coord(origin[0]); // initial position
+	//	write_coord(origin[1]); // initial position
+	//	write_coord(origin[2]); // initial position
+	//	write_byte(100); // radius
+	//	write_byte( 8 ); // count
+	//	write_byte( 1 ); // life
+	//	message_end();
+	//}
 
 	return PLUGIN_CONTINUE;
 }
@@ -198,35 +198,35 @@ public healingeffect( id, targetid, heal )
 
 	if ( was_healed )
 	{
-		new origin[3];
-		get_user_origin( targetid, origin );
-
-		if( playeritem[targetid] != CLOAK && ( !p_skills[targetid][SKILLIDX_INVIS] ) )
-		{
-			if (CVAR_DMESSAGES)
-			{
-				log_amx("[UWC3X]::DEBUG_MESSAGES::healingeffect:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
-			}
-			message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
-			write_byte( TE_IMPLOSION );
-
-			// initial position
-			write_coord(origin[0]);
-
-			// initial position
-			write_coord(origin[1]);
-
-			// initial position
-			write_coord(origin[2]);
-
-			 // radius
-			write_byte(100);
-			// count
-			write_byte( 8 );
-			// life
-			write_byte( 1 );
-			message_end();
-		}
+		//new origin[3];
+		//get_user_origin( targetid, origin );
+		//
+		//if( playeritem[targetid] != CLOAK && ( !p_skills[targetid][SKILLIDX_INVIS] ) )
+		//{
+		//	if (CVAR_DMESSAGES)
+		//	{
+		//		log_amx("[UWC3X]::DEBUG_MESSAGES::healingeffect:: dest=%d; msg_type=%d;", MSG_BROADCAST, SVC_TEMPENTITY);
+		//	}
+		//	message_begin( MSG_BROADCAST, SVC_TEMPENTITY );
+		//	write_byte( TE_IMPLOSION );
+		//
+		//	// initial position
+		//	write_coord(origin[0]);
+		//
+		//	// initial position
+		//	write_coord(origin[1]);
+		//
+		//	// initial position
+		//	write_coord(origin[2]);
+		//
+		//	 // radius
+		//	write_byte(100);
+		//	// count
+		//	write_byte( 8 );
+		//	// life
+		//	write_byte( 1 );
+		//	message_end();
+		//}
 
 		healingwaves[id] += 1;
 
