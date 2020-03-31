@@ -1,40 +1,40 @@
 
 public PrintConnectMessage ( id )
 {
-	client_cmd ( id, "echo " );
-	client_cmd ( id, "echo ^" *=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=* ^" " );
-	client_cmd ( id, "echo ^" *=-=        The Yaur.com Community thanks you for playing        ^" " );
-	client_cmd ( id, "echo ^" *=-=                                                           ^" " );
-	client_cmd ( id, "echo ^" *=-=             Ultimate Warcraft3 Expansion ( UWC3X )          ^" " );
-	client_cmd ( id, "echo ^" *=-=             Our Website: http://www.Yaur.com/              ^" " );
-	client_cmd ( id, "echo ^" *=-=                                                           ^" " );
-	client_cmd ( id, "echo ^" *=-=      This is a new expanded version of UWC3X brought       ^" " );
-	client_cmd ( id, "echo ^" *=-=      to you by -=[Yaur]=-  We want your feedback on Skills,  ^" " );
-	client_cmd ( id, "echo ^" *=-=      Shopmenu items and any improvements you think we should^" " );
-	client_cmd ( id, "echo ^" *=-=      make.  We also want you to report any problems and bugs^" " );
-	client_cmd ( id, "echo ^" *=-=                                                             ^" " );
-	client_cmd ( id, "echo ^" *=-=            We also welcome donations of any amount         ^" " );
-	client_cmd ( id, "echo ^" *=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=* ^" " );
-	client_cmd ( id, "echo " );
+	//client_cmd ( id, "echo " );
+	//client_cmd ( id, "echo ^" *=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=* ^" " );
+	//client_cmd ( id, "echo ^" *=-=        The Yaur.com Community thanks you for playing        ^" " );
+	//client_cmd ( id, "echo ^" *=-=                                                           ^" " );
+	//client_cmd ( id, "echo ^" *=-=             Ultimate Warcraft3 Expansion ( UWC3X )          ^" " );
+	//client_cmd ( id, "echo ^" *=-=             Our Website: http://www.Yaur.com/              ^" " );
+	//client_cmd ( id, "echo ^" *=-=                                                           ^" " );
+	//client_cmd ( id, "echo ^" *=-=      This is a new expanded version of UWC3X brought       ^" " );
+	//client_cmd ( id, "echo ^" *=-=      to you by -=[Yaur]=-  We want your feedback on Skills,  ^" " );
+	//client_cmd ( id, "echo ^" *=-=      Shopmenu items and any improvements you think we should^" " );
+	//client_cmd ( id, "echo ^" *=-=      make.  We also want you to report any problems and bugs^" " );
+	//client_cmd ( id, "echo ^" *=-=                                                             ^" " );
+	//client_cmd ( id, "echo ^" *=-=            We also welcome donations of any amount         ^" " );
+	//client_cmd ( id, "echo ^" *=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=* ^" " );
+	//client_cmd ( id, "echo " );
 }
 
 public PrintDisconnectMessage ( id )
 {
-	client_cmd ( id, "echo " );
-	client_cmd ( id, "echo ^" *=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=* ^" " );
-	client_cmd ( id, "echo ^" *=-=        The Yaur.com Community thanks you for playing        ^" " );
-	client_cmd ( id, "echo ^" *=-=                                                           ^" " );
-	client_cmd ( id, "echo ^" *=-=             Ultimate Warcraft3 Expansion ( UWC3X )          ^" " );
-	client_cmd ( id, "echo ^" *=-=             Our Website: http://www.Yaur.com/              ^" " );
-	client_cmd ( id, "echo ^" *=-=                                                           ^" " );
-	client_cmd ( id, "echo ^" *=-=      This is a new expanded version of UWC3X brought       ^" " );
-	client_cmd ( id, "echo ^" *=-=      to you by -=[Yaur]=-  We want your feedback on Skills,  ^" " );
-	client_cmd ( id, "echo ^" *=-=      Shopmenu items and any improvements you think we should^" " );
-	client_cmd ( id, "echo ^" *=-=      make.  We also want you to report any problems and bugs^" " );
-	client_cmd ( id, "echo ^" *=-=                                                             ^" " );
-	client_cmd ( id, "echo ^" *=-=            We also welcome donations of any amount         ^" " );
-	client_cmd ( id, "echo ^" *=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=* ^" " );
-	client_cmd ( id, "echo " );
+	//client_cmd ( id, "echo " );
+	//client_cmd ( id, "echo ^" *=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=* ^" " );
+	//client_cmd ( id, "echo ^" *=-=        The Yaur.com Community thanks you for playing        ^" " );
+	//client_cmd ( id, "echo ^" *=-=                                                           ^" " );
+	//client_cmd ( id, "echo ^" *=-=             Ultimate Warcraft3 Expansion ( UWC3X )          ^" " );
+	//client_cmd ( id, "echo ^" *=-=             Our Website: http://www.Yaur.com/              ^" " );
+	//client_cmd ( id, "echo ^" *=-=                                                           ^" " );
+	//client_cmd ( id, "echo ^" *=-=      This is a new expanded version of UWC3X brought       ^" " );
+	//client_cmd ( id, "echo ^" *=-=      to you by -=[Yaur]=-  We want your feedback on Skills,  ^" " );
+	//client_cmd ( id, "echo ^" *=-=      Shopmenu items and any improvements you think we should^" " );
+	//client_cmd ( id, "echo ^" *=-=      make.  We also want you to report any problems and bugs^" " );
+	//client_cmd ( id, "echo ^" *=-=                                                             ^" " );
+	//client_cmd ( id, "echo ^" *=-=            We also welcome donations of any amount         ^" " );
+	//client_cmd ( id, "echo ^" *=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=* ^" " );
+	//client_cmd ( id, "echo " );
 }
 
 public Initialize_CLCMD ( )
