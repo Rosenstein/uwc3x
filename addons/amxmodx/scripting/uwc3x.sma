@@ -174,6 +174,11 @@ public client_putinserver(id)
 	if ( equal(szPlayerID, "STEAM_ID_PENDING") )
 	{
 		client_cmd( id, "reconnect" );
+		if (CVAR_DEBUG_MODE)
+		{
+			log_amx("Send reconnect to player %d because STEAM_ID_PENDING.", szPlayerID);
+		}
+		return;
 	}
 	
 	if (CVAR_SAVE_XP) 
