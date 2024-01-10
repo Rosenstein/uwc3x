@@ -17,7 +17,7 @@
 		$link = GetConnection($host, $username, $pass, $dbname);
 		$query = "SELECT * FROM $tbname WHERE steamid='$SteamID'";
 		$result = GetResult($query);
-		$NumResults = mysql_numrows($result);
+		$NumResults = mysqli_num_rows($result);
 	}
 
 ?>
@@ -44,7 +44,7 @@
 				if( $NumResults != 0 )
 				{
 
-					$Name = mysql_result($result, 0, "name");
+					$Name = mysql_result($result, 0, "name"); //mysql_result deprecated since PHP 7.* , using polyfill
 					$xp = mysql_result($result, 0, "xp");
 					$level = GetPlayerLevel($xp);
 					$xpNextlevel = GetXPForNextLevel($level+1);
@@ -61,34 +61,34 @@
 						</tr>
 						<tr>
 							<td>Name</td>
-							<td><?=$Name;?></td>
+							<td><?php echo $Name;?></td>
 						</tr>
 						<tr>
 							<td>ID</td>
-							<td><?=$SteamID;?></td>
+							<td><?php echo $SteamID;?></td>
 						</tr>
 						<tr>
 							<td>XP</td>
-							<td><?=$xp;?>/<?=$xpNextlevel;?></td>
+							<td><?php echo $xp;?>/<?php echo $xpNextlevel;?></td>
 						</tr>
 						<tr>
 							<td>XP needed to Level</td>
-							<td><?=$xpDiff;?></td>
+							<td><?php echo $xpDiff;?></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center"> <a href="" onClick="openpopup('xptable.php')">View XP Table</a></td>
 						</tr>
 						<tr>
 							<td>Level</td>
-							<td><?=$level;?></td>
+							<td><?php echo $level;?></td>
 						</tr>
 						<tr>
 							<td>Rank</td>
-							<td><?=$rank;?></td>
+							<td><?php echo $rank;?></td>
 						</tr>
 					</table>
 
-					<?
+					<?php
 
 				}
 				else
@@ -112,18 +112,18 @@
     </tr>
     <tr class="row1">
       <td class="text"><p align="center"><strong>
-      	  Strength: <?=mysql_result($result, 0, "att1");?>/18<br>
-          Intellect: <?=mysql_result($result, 0, "att2");?>/18<br>
-          Dexterity: <?=mysql_result($result, 0, "att3");?>/18<br>
-          Agillity: <?=mysql_result($result, 0, "att4");?>/18<br>
-          Constitution: <?=mysql_result($result, 0, "att5");?>/18<br>
-          Wisdom: <?=mysql_result($result, 0, "att6");?>/18</strong></p></td>
-      <td class="text"><p align="center"><strong> Poison: <?=mysql_result($result, 0, "res1");?>/<?=$MaxResists;?><br>
-          Disease: <?=mysql_result($result, 0, "res2");?>/<?=$MaxResists;?><br>
-          Electricity: <?=mysql_result($result, 0, "res3");?>/<?=$MaxResists;?><br>
-          Fire: <?=mysql_result($result, 0, "res4");?>/<?=$MaxResists;?><br>
-          Magic: <?=mysql_result($result, 0, "res5");?>/<?=$MaxResists;?><br>
-          Rot: <?=mysql_result($result, 0, "res6");?>/<?=$MaxResists;?><br>
+      	  Strength: <?php echo mysql_result($result, 0, "att1");?>/18<br>
+          Intellect: <?php echo mysql_result($result, 0, "att2");?>/18<br>
+          Dexterity: <?php echo mysql_result($result, 0, "att3");?>/18<br>
+          Agillity: <?php echo mysql_result($result, 0, "att4");?>/18<br>
+          Constitution: <?php echo mysql_result($result, 0, "att5");?>/18<br>
+          Wisdom: <?php echo mysql_result($result, 0, "att6");?>/18</strong></p></td>
+      <td class="text"><p align="center"><strong> Poison: <?php echo mysql_result($result, 0, "res1");?>/<?php echo $MaxResists;?><br>
+          Disease: <?php echo mysql_result($result, 0, "res2");?>/<?php echo $MaxResists;?><br>
+          Electricity: <?php echo mysql_result($result, 0, "res3");?>/<?php echo $MaxResists;?><br>
+          Fire: <?php echo mysql_result($result, 0, "res4");?>/<?php echo $MaxResists;?><br>
+          Magic: <?php echo mysql_result($result, 0, "res5");?>/<?php echo $MaxResists;?><br>
+          Rot: <?php echo mysql_result($result, 0, "res6");?>/<?php echo $MaxResists;?><br>
           </strong></p></td>
     </tr>
     <tr class="text">
