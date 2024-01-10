@@ -1,6 +1,6 @@
 <?php
 
-	include("include/header.php");
+	include_once("include/header.php");
 
 	$start = $_GET["s"] ;		// first player on the page
 	$ppp = $_GET["per"] ;		// how many players per page if not specified
@@ -100,7 +100,7 @@
 	<tr>
 		<th class="tbl-hdr">#</th>
 		<th class="tbl-hdr">
-			<?
+			<?php
 				if($sortby != 'name')
 				{
 					$newsort = "DESC";
@@ -112,11 +112,11 @@
 				}
 			?>
 
-		<a href="<?=$STATS_PAGE_NAME;?>?sortby=name&order=<?=$newsort;?>"> Name</a>
+		<a href="<?php echo $STATS_PAGE_NAME;?>?sortby=name&order=<?php echo $newsort;?>"> Name</a>
 
 		</th>
 		<th class="tbl-hdr">
-			<?
+			<?php
 				if($sortby != 'steamid')
 				{
 					$newsort = "DESC";
@@ -128,11 +128,11 @@
 				}
 			?>
 
-		<a href="<?=$STATS_PAGE_NAME;?>?sortby=steamid&order=<?=$newsort;?>"> SteamId</a>
+		<a href="<?php echo $STATS_PAGE_NAME;?>?sortby=steamid&order=<?php echo $newsort;?>"> SteamId</a>
 
 		</th>
 		<th class="tbl-hdr">
-			<?
+			<?php
 				if($sortby != 'xp')
 				{
 					$newsort = "DESC";
@@ -144,13 +144,13 @@
 				}
 			?>
 
-		<a href="<?=$STATS_PAGE_NAME;?>?sortby=xp&order=<?=$newsort;?>"> XP</a></th>
+		<a href="<?php echo $STATS_PAGE_NAME;?>?sortby=xp&order=<?php echo $newsort;?>"> XP</a></th>
 		<?php
 			//<th>Rank</th>
 		?>
 		<th class="tbl-hdr">
 
-			<?
+			<?php
 				if($sortby != 'mtime')
 				{
 					$newsort = "DESC";
@@ -161,7 +161,7 @@
 						$newsort = "ASC";
 				}
 			?>
-		<a href="<?=$STATS_PAGE_NAME;?>?sortby=mtime&order=<?=$newsort;?>"> Last Connected</a></th>
+		<a href="<?php echo $STATS_PAGE_NAME;?>?sortby=mtime&order=<?php echo $newsort;?>"> Last Connected</a></th>
 
 		<th class="tbl-hdr">Level</th>
 		<th class="tbl-hdr">#</th>
@@ -280,13 +280,13 @@
 	</tr>
 	<tr>
 		<td align="center" colspan="8">
-			Page <?=$currentPage?>, Showing Players <?=$start +1 ;?> - <?=$_PlayerNum;?>
+			Page <?php echo $currentPage?>, Showing Players <?php echo $start +1 ;?> - <?php echo $_PlayerNum;?>
 		</td>
 	</tr>
 </table>
 
 <?php
 
-include("include/footer.php");
+include_once("include/footer.php");
 
 ?>

@@ -1,19 +1,21 @@
-<?
+<?php
 
-require("./include/config.php");
-require("./include/functions.php");
+require_once("./include/config.php");
+require_once("./include/functions.php");
 
 $STATS_PAGE_NAME = $_SERVER['SCRIPT_NAME'];
 
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title><?=$SiteTitle; ?></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title><?php echo $SiteTitle; ?></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
@@ -25,11 +27,11 @@ $STATS_PAGE_NAME = $_SERVER['SCRIPT_NAME'];
 
 <table width="70%" border="0" align="center" cellpadding="0" cellspacing="0" class="main-canvas">
   <tr>
-    <td class="main-left"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td class="main-left"><img src="./images/spacer.gif" width="1" height="1"></td>
     <td>
       <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="main-bg">
         <tr>
-          <td class="main-top"><img src="../images/spacer.gif" width="1" height="1"></td>
+          <td class="main-top"><img src="./images/spacer.gif" width="1" height="1"></td>
         </tr>
         <tr>
           <td align="left" valign="middle" height="20">
@@ -61,11 +63,11 @@ $STATS_PAGE_NAME = $_SERVER['SCRIPT_NAME'];
        </td>
       </tr>
       <tr>
-       <td class="main-bottom"><img src="../images/spacer.gif" width="1" height="1"></td>
+       <td class="main-bottom"><img src="./images/spacer.gif" width="1" height="1"></td>
       </tr>
     </table>
 <table align="center" width="100%" cellspacing="0" cellpadding="0">
-  	<tr><td colspan="4"><img src="../images/spacer.gif" height="6" width="1" alt="" /></td></tr>
+  	<tr><td colspan="4"><img src="./images/spacer.gif" height="6" width="1" alt="" /></td></tr>
 </table>
 
 <table width="100%" border="0" cellspacing="10" cellpadding="0">

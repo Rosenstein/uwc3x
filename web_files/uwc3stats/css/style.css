@@ -29,7 +29,7 @@ a:hover {
 }
 
 input,textarea, select {
-	background-image: url(../inc/images/bgin.gif); 
+	background-image: url(../images/bgin.gif); 
 	background-color: #575656; 
 	border-bottom: #cccccc 1px outset; 
 	border-left: #000000 1px outset; 
@@ -109,7 +109,7 @@ input,textarea, select {
 }
 
 .main-bg {
-	BACKGROUND-IMAGE: 	url(../inc/images/bgin.gif); 
+	BACKGROUND-IMAGE: 	url(../images/bgin.gif); 
 	background-repeat: 	repeat-x;
 	background-color: 	#575656; 
 	border-bottom: 		#cccccc 1px outset; 
