@@ -2,13 +2,13 @@
 
 	include_once("include/header.php");
 
-	$start = $_GET["s"] ;		// first player on the page
-	$ppp = $_GET["per"] ;		// how many players per page if not specified
-	$sortby = $_GET["sortby"];
-	$order = $_GET["order"];
+	$start = isset($_GET["s"]) ;		// first player on the page
+	$ppp = isset($_GET["per"]) ;		// how many players per page if not specified
+	$sortby = isset($_GET["sortby"]);
+	$order = isset($_GET["order"]);
 
 	if (!$start) $start = 0;
-	if (!ppp) $ppp = $playersPerPage;
+	if (!$ppp) $ppp = $playersPerPage;
 
 	if (!$sortby)
 	{
