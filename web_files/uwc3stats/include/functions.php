@@ -113,7 +113,7 @@
 			die("Not connected to the database, can not run query");
 
 		$query = mysql_prepare($query);
-		$g_result = mysqli_query($query) or die("Query failed : " . mysqli_error());
+		$g_result = mysqli_query($g_link, $query) or die("Query failed : " . mysqli_error());
 
 		return $g_result;
 
@@ -150,11 +150,10 @@
         $g_link = false;
     }
 
-	function mysql_prepare ($query, $phs = array())
+	function mysql_prepare($query, $phs = array())
 	{
 		//$phs = array_map(create_function('$ph', 'return "\'".mysqli_real_escape_string($ph)."\'";'), $phs);
 		$phs = array_map(function($ph) {return "\'" . mysqli_real_escape_string($ph) . "\'"; }, $phs); // What the heck is '$ph' & '$phs' ???
-		print_r($phs); // $phs is empty
 		$curpos = 0;
 		$curph  = count($phs)-1;
 

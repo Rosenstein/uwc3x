@@ -6,7 +6,7 @@ $host = "";
 $username = "";
 $pass = "";
 $dbname = "";
-$tbname = "uwc3";
+$tbname = "uwc3x";
 
 $SiteTitle = 'My UWC3 Server Stats';
 $player_info_page = 'player_info.php';			//this is the default and you should not need to change it, but in case you do...

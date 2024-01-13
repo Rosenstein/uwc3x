@@ -1,8 +1,8 @@
 <?php
 
-	include("./include/header.php");
-
-	$SteamID = $_GET["steamid"];
+	include_once("./include/header.php");
+	
+	$SteamID = $_GET["steamid"] ?? null;
 
 	if($SteamID == NULL )
 		$SteamID = $_POST["steamid"];
@@ -11,7 +11,7 @@
 	$bFoundPlayer = false;
 	$NumResults = 0;
 
-	if(bValid)
+	if($bValid)
 	{
 		// get the mysql
 		$link = GetConnection($host, $username, $pass, $dbname);
@@ -31,7 +31,7 @@
 	  <p align="center"><strong><font size="3">
 		<?php
 
-			if(!bValid)
+			if(!$bValid)
 			{
 				echo 'You have entered or searched for a player using an invalid Steam ID.';
 				echo '<br />Please correct the error and try again.';
@@ -161,6 +161,6 @@
 
 <?
 
-include("include/footer.php");
+include_once("include/footer.php");
 
 ?>

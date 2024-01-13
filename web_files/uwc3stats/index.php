@@ -182,7 +182,7 @@
 		exit;
 	}
 
-	while ($uwc3 = mysqli_fetch_array($result, MYSQL_ASSOC))
+	while ($uwc3 = mysqli_fetch_array($result, MYSQLI_ASSOC))
 	{
 		$_CellColor = getCellColor($player);
 		$SteamID = $uwc3["steamid"];
