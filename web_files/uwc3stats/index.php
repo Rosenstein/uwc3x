@@ -193,8 +193,8 @@
 
 		echo "<tr class=\"$_CellColor\">" ;
 		echo "<td>$_PlayerNum</td>" ;
-		echo "<td><a href=\"$player_info_page?steamid=$SteamID&nset=1\"><b>$Name</b></a></td>";
-		echo "<td><a href=\"$player_info_page?steamid=$SteamID&nset=1\"><b>$SteamID</b></a></td>";
+		echo "<td><a href=\"$player_info_page?steamid=$SteamID\"><b>$Name</b></a></td>";
+		echo "<td><a href=\"$player_info_page?steamid=$SteamID\"><b>$SteamID</b></a></td>";
 		echo "<td>$XP</td>" ;
 		echo "<td>$MTime</td>";
 		echo "<td>$PlayerLevel</td>" ;
