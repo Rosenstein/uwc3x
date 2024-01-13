@@ -87,14 +87,14 @@
         if( $g_link )
             return $g_link;
 
-        $g_link = mysql_connect( $dbhost, $dbuser, $dbpass);
+        $g_link = mysqli_connect( $dbhost, $dbuser, $dbpass);
 
 		if (!$g_link)
 		{
-			die('Could not connect: <br />' . mysql_error() . '<br /><br /> Please make sure that you have properly configured your config.php file');
+			die('Could not connect: <br />' . mysqli_error() . '<br /><br /> Please make sure that you have properly configured your config.php file');
 		}
 
-        mysql_select_db($dbname, $g_link) or die('Could not select database. <br />' . mysql_error());
+        mysqli_select_db($g_link, $dbname) or die('Could not select database. <br />' . mysqli_error());
 
         return $g_link;
     }
@@ -113,7 +113,7 @@
 			die("Not connected to the database, can not run query");
 
 		$query = mysql_prepare($query);
-		$g_result = mysql_query($query) or die("Query failed : " . mysql_error());
+		$g_result = mysqli_query($query) or die("Query failed : " . mysqli_error());
 
 		return $g_result;
 
@@ -125,7 +125,7 @@
 
 		if($g_result)
 		{
-			mysql_free_result($g_result);
+			mysqli_free_result($g_result);
 		}
 
 		$g_result = false;
@@ -144,7 +144,7 @@
 
         if( $g_link )
 		{
-            mysql_close($g_link);
+            mysqli_close($g_link);
 		}
 
         $g_link = false;
@@ -152,7 +152,9 @@
 
 	function mysql_prepare ($query, $phs = array())
 	{
-		$phs = array_map(create_function('$ph', 'return "\'".mysql_real_escape_string($ph)."\'";'), $phs);
+		//$phs = array_map(create_function('$ph', 'return "\'".mysqli_real_escape_string($ph)."\'";'), $phs);
+		$phs = array_map(function($ph) {return "\'" . mysqli_real_escape_string($ph) . "\'"; }, $phs); // What the heck is '$ph' & '$phs' ???
+		print_r($phs); // $phs is empty
 		$curpos = 0;
 		$curph  = count($phs)-1;
 
@@ -359,9 +361,26 @@
 		return true;
 	}
 
-
-
-
-
+	# mysql_result - Get result data
+	# string mysql_result ( resource $result , int $row [,
+	# mixed $field = 0 ] )
+	# no equivalent function exists in mysqli - mysqli_data_seek() in
+	# conjunction with mysqli_field_seek() and mysqli_fetch_field()
+	function mysql_result($result, $row, $field = 0) {
+		# mysql_result = FALSE on failure
+		# try to seek position, returns false on failure
+		# returns NULL on error natively, tested in PHP 5.6.3
+		if (mysqli_data_seek($result, $row) === false) return false;
+		$row = mysqli_fetch_array($result);
+		if ($row === NULL) return $row;
+		if (!array_key_exists($field, $row)) {
+			$row = array_change_key_case($row, CASE_LOWER);
+			$field = strtolower($field);
+			if (!array_key_exists($field, $row)) {
+				return false;
+			}
+		}
+		return $row[$field];
+	}
 
 ?>

@@ -82,7 +82,7 @@
 		exit;
 	}
 
-	$totalPlayers = mysql_numrows($result);
+	$totalPlayers = mysqli_num_rows($result);
 
 	// initialize some variables here for easier editing
 	if (!$start || $start > $totalPlayers) $start = 0;
@@ -182,7 +182,7 @@
 		exit;
 	}
 
-	while ($uwc3 = mysql_fetch_array($result, MYSQL_ASSOC))
+	while ($uwc3 = mysqli_fetch_array($result, MYSQL_ASSOC))
 	{
 		$_CellColor = getCellColor($player);
 		$SteamID = $uwc3["steamid"];
