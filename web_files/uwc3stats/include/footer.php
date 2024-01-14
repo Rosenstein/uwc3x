@@ -18,11 +18,11 @@
 </td></tr></table>	  </td>
         </tr>
         <tr>
-          <td width="100%"><img src="../images/spacer.gif" width="1" height="1"></td>
+          <td width="100%"><img src="./images/spacer.gif" width="1" height="1"></td>
         </tr>
       </table>
 	  </td>
-    <td class="main-right"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td class="main-right"><img src="./images/spacer.gif" width="1" height="1"></td>
   </tr>
 
 </table>
