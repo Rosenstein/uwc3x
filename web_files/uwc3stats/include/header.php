@@ -41,7 +41,7 @@ $STATS_PAGE_NAME = $_SERVER['SCRIPT_NAME'];
 
 <table align="center">
 
-<form name="form" method="POST" action="<?php $player_info_page; ?>">
+<form name="form" method="POST" action="<?php echo $player_info_page; ?>">
 <input type="hidden" value="searchpost" />
   <tr class='row1'>
     <th align='center'>&nbsp;Search for Player by STEAM ID</th>

@@ -5,7 +5,7 @@
 	$SteamID = $_GET["steamid"] ?? null;
 
 	if($SteamID == NULL )
-		$SteamID = $_POST["steamid"];
+		$SteamID = $_POST["steamid"] ?? null;
 
 	$bValid = IsValidSteamID( $SteamID );
 	$bFoundPlayer = false;
@@ -159,7 +159,7 @@
 </div>
 
 
-<?
+<?php
 
 include_once("include/footer.php");
 
