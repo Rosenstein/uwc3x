@@ -123,3 +123,9 @@ input,textarea, select {
 .table {
 	border: thin solid #315984;
 }
+
+text-block {
+  font-family: monospace;
+  margin: 1em 0;
+  color: #FFFFFF
+}

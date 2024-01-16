@@ -21,7 +21,7 @@ $STATS_PAGE_NAME = $_SERVER['SCRIPT_NAME'];
 
 <script type="text/javascript">
 	function openpopup(popurl){
-	var winpops=window.open(popurl,"","width=650,height=400,status,scrollbars,resizable")
+	var winpops=window.open(popurl,"","width=650,height=1000,status,scrollbars,resizable")
 }
 </script>
 

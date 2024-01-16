@@ -73,7 +73,7 @@
 		   }
 
 		   $Levels["xp"][$j] = $xplevel_lev[$j];
-		   //echo '<br />' . "$j.) " . $Levels["xp"][$j];
+		   //echo '<br>' . "$j.) " . $Levels["xp"][$j];
 		   $counter++;
 		  }
 
@@ -91,10 +91,10 @@
 
 		if (!$g_link)
 		{
-			die('Could not connect: <br />' . mysqli_error() . '<br /><br /> Please make sure that you have properly configured your config.php file');
+			die('Could not connect: <br>' . mysqli_error() . '<br><br> Please make sure that you have properly configured your config.php file');
 		}
 
-        mysqli_select_db($g_link, $dbname) or die('Could not select database. <br />' . mysqli_error());
+        mysqli_select_db($g_link, $dbname) or die('Could not select database. <br>' . mysqli_error());
 
         return $g_link;
     }
@@ -267,7 +267,7 @@
 
 		for ($j=1; $j<$MAX_LEVEL; $j++)
 		{
-			echo '[level ' . $j . ']  XP: ' . ( $Levels["xp"][$j] - $Levels["xp"][$j-1] ) . '  Total XP: ' . $Levels["xp"][$j] . '<br />';
+			echo '[level ' . $j . ']  XP: ' . ( $Levels["xp"][$j] - $Levels["xp"][$j-1] ) . '  Total XP: ' . $Levels["xp"][$j] . '<br>';
 		}
 	}
 

@@ -99,7 +99,7 @@
 	$totalPages = floor($totalPlayers / $ppp) + 1;
 
 ?>
-<br />
+<br>
 <p />&nbsp;&nbsp;<table class="table" align="center" width="90%" cellpadding="5" cellspacing="1" border="0">
 	<tr>
 		<th class="tbl-hdr">#</th>

@@ -34,8 +34,8 @@
 			if(!$bValid)
 			{
 				echo 'You have entered or searched for a player using an invalid Steam ID.';
-				echo '<br />Please correct the error and try again.';
-				echo '<br /><a href="index.php">Back</a>';
+				echo '<br>Please correct the error and try again.';
+				echo '<br><a href="index.php">Back</a>';
 				$NumResults = 0;
 			}
 			else
@@ -51,13 +51,13 @@
 					$xpDiff = GetXPDifference($xp, $xpNextlevel);
 					$rank = GetPlayerRank($level);
 
-					echo '<br /><a href="index.php">Back</a><br />';
+					echo '<br><a href="index.php">Back</a><br>';
 
 					?>
 
 					<table cellpadding="5" cellspacing="5" class="table">
 						<tr class="tbl-hdr">
-							<th  class="label" colspan="2" align="center"><a href="#">User Info</a></th>
+							<th  class="label" colspan="2" align="center"><a href="">User Info</a></th>
 						</tr>
 						<tr>
 							<td>Name</td>
@@ -94,7 +94,7 @@
 				else
 				{
 					echo 'Your search for ' . $SteamID . ' did not find any data - Please try again.';
-					echo '<br /><a href="index.php">Back</a>';
+					echo '<br><a href="index.php">Back</a>';
 				}
 			}
 
@@ -153,7 +153,7 @@
 	?>
 
     <tr class="row1">
-      <td colspan="2" align="center"><br /><a href="index.php">Back</a><br /></td>
+      <td colspan="2" align="center"><br><a href="index.php">Back</a><br></td>
     </tr>
   </table>
 </div>
