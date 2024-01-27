@@ -19,17 +19,17 @@
 		$Levels = array( "xp" => array() );
 						
 		$RankTitles = array( "Orc Fodder", "Elf Acolyte", "Human Squire", "Undead Soldier", "Skilled Combatant", "Crypt Lord Zealot", "Arch Lich", "Blood Elf Champion", "Demon Hunter", "Emissary of Death", "Warchief", "World Destroyer", "Skull Breaker" );
-		$XP_PER_LEVEL_BASE_LT = 38400;
-		$XP_PER_LEVEL_LT = 12800;
-		$xplevel_base_LT = array(0,150,300,600,1100,2000,3600,6400,12800,25600,38400);
+		$XP_PER_LEVEL_BASE_LT = 38400; // Base amount, xp from lvl 10 ( Long term XP )
+		$XP_PER_LEVEL_LT = 12800; // Amount to add for levels after 10 ( Long term XP )
+		$xplevel_base_LT = array(0,150,300,600,1100,2000,3600,6400,12800,25600,38400); // Used to define base XP settings for the first 10 levels
 
 		$XPAmount = 0;
 		$XPGiven = 0;
-		$XP_BASE = 60;
-		$XP_ADD_LEVEL = 20;
+		$XP_BASE = 60; // Base XP for xp gaining ( xpgiven )
+		$XP_ADD_LEVEL = 20; // Per level xp gain ( xpgiven )
 
-		$xplevel_lev = array();
-		$xpgiven_lev = array();
+		$xplevel_lev = array(); // Table of XP needed to achieve each level
+		$xpgiven_lev = array(); // Table of XP given at each level
 
 		  $counter = 0;
 
