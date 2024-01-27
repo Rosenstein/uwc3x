@@ -12,7 +12,7 @@ $SiteTitle = 'My UWC3 Server Stats';
 $player_info_page = 'player_info.php';			//this is the default and you should not need to change it, but in case you do...
 
 $UseXPMultiplier = true;
-$XPMultiplier = 0.3;
+$XPMultiplier = 1.5;
 
 $MaxResists = 20;							//This is the maximum amount of points PER resistance, not total
 $playersPerPage = 20;						// default number of players per page
