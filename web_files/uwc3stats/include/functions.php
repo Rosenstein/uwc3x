@@ -1,6 +1,6 @@
 <?php
 		
-		$MAX_LEVEL = 50;
+		$MAX_LEVEL = 51; // Max level a player can achieve ( this-1 )( 0 slot is unused )
 		$g_link = false;
 		$g_result;
 
