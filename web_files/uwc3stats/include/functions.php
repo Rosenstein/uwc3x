@@ -9,12 +9,12 @@
 		"Evasion", "Trueshot Aura", "Steel Skin", "Carrion Beetles", "Shadow Strike", "Entangle Roots", "Flame Strike", "Dispell Hex", 
 		"Critical Grenade", "Serpent Ward", "Thorns Aura", "Invisibility", "Teleport", "Big Bad Voodoo", "Fan of Knives", "Vengeance" , 
 		"Siphon Ammo", "Blink", "Phoenix", "Napalm Grenades", "Gate", "Suicide Bomber", "Chain Lightning", "Decoy", "Jump Kick", "Multi Jump", 
-		"Wind Walker", "Rot", "Syv Shield", "Depower", "Cloak of the chameleon", "Cripple", "Flash of Light", "Locust Swarm", "Disorient", 
-		"Endless Ammo", "Earth Quake", "Smite", "Cluster Bomb", "Ice Bombs", "NEWSKILL9", "NEWSKILL10", "NEWSKILL11", "NEWSKILL12", 
-		"NEWSKILL13", "NEWSKILL14", "NEWSKILL15", "NEWSKILL16"),
+		"Wind Walker", "ROT", "Syv Shield", "Depower", "Cloak of the chameleon", "Cripple", "Total Blindness", "Locust Swarm", "Disorient", 
+		"Endless Ammo", "Earth Quake", "Smite", "Cluster Grenade", "Ice Grenade", "Helm Splitter", "Grab", "Hook Shot", "Ninja Rope", 
+		"Fatal Strike", "Blessing", "Claymore Mines", "NEWSKILL16"),
 		
-		"MaxPoints" =>  array(10,10,10,3,10,3,10,10,10,10,5,1,10,10,10,3,5,10,10,10,10,1,1,1,10,3,10,10,1,1,3,1,3,5,5,1,1,1,1,1,3,
-			3,1,1,5,1,5,1,1,1,1,1,3,1,4,1,1,1,1,1,1,1,1,1));
+		"MaxPoints" =>  array(8,5,6,3,3,3,6,6,6,6,8,1,6,6,6,3,7,8,1,6,6,1,1,1,3,3,8,8,1,1,3,1,3,6,5,1,2,1,1,1,3,
+			3,1,5,5,1,5,1,1,3,1,1,3,1,4,3,1,6,4,4,1,1,1,1));
 		
 		$Levels = array( "xp" => array() );
 						
