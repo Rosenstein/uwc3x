@@ -312,11 +312,14 @@
 		$RANK10_LEVEL = 32;   // Level needed for 10th rank
 		$RANK11_LEVEL = 34;   // Level needed for 11th rank
 		$RANK12_LEVEL = 38;   // Level needed for 12th rank
+		$RANK13_LEVEL = 45;  // Level needed for 13th rank
 
 		$PlayerRank =  $RankTitles[0];
 
 		// Set the player's rank title
-		if ( intval( $Level ) >= $RANK12_LEVEL )
+		if ( intval( $Level ) >= $RANK13_LEVEL )
+			$PlayerRank =  $RankTitles[12];
+		else if ( intval( $Level ) >= $RANK12_LEVEL )
 			$PlayerRank =  $RankTitles[11];
 		else if ( intval( $Level ) >= $RANK11_LEVEL )
 			$PlayerRank =  $RankTitles[10];
