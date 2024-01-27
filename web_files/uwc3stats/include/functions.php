@@ -35,7 +35,7 @@
 
 		  for ($j = 0; $j < $MAX_LEVEL; $j++)
 		  {
-
+			// Sets the amount of xp needed for next level
 		   if ($j <= 10)
 		   {
 			$xplevel_lev[$j] = $xplevel_base_LT[$j];
@@ -44,30 +44,30 @@
 		   {
 			$xplevel_lev[$j] = $XP_PER_LEVEL_BASE_LT + ( ($j - 10) * $XP_PER_LEVEL_LT) + round( (($j/20) * $XP_PER_LEVEL_LT));
 		   }
-
+			// Sets the amount of xp given for each level
 		   $xpgiven_lev[$j] = ( $XP_BASE + ($j * $XP_ADD_LEVEL) ) / 4;
 
 		   if ( $UseXPMultiplier )
 		   {
 			$xplevel_lev[$j] = round( ($xplevel_lev[$j] * $XPMultiplier) );
-
+			//Use additional multipliers for higher levels
 			if ($j >= 30)
 			{
-			 $xplevel_lev[$j] = $xplevel_lev[$j] + round( $xplevel_lev[$j-1] * 1.25 );
+			 $xplevel_lev[$j] += round( $xplevel_lev[$j-1] * 1.25 );
 			}
 			else if ($j >= 20)
 			{
-			 $xplevel_lev[$j] = $xplevel_lev[$j] + round( $xplevel_lev[$j-1] * 1.00 );
+			 $xplevel_lev[$j] += round( $xplevel_lev[$j-1] * 1.00 );
 			}
 			else if ($j >= 10)
 			{
-			 $xplevel_lev[$j] = $xplevel_lev[$j] + round( $xplevel_lev[$j-1] * 0.75 );
+			 $xplevel_lev[$j] += round( $xplevel_lev[$j-1] * 0.75 );
 			}
 			else
 			{
 			 if ($j >= 1)
 			 {
-				 $xplevel_lev[$j] = $xplevel_lev[$j] + round( $xplevel_lev[$j-1] * 0.50 );
+				 $xplevel_lev[$j] += round( $xplevel_lev[$j-1] * 0.50 );
 			 }
 			}
 		   }
