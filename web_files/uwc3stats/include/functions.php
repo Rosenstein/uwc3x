@@ -34,7 +34,7 @@
 
 		  $counter = 0;
 
-		  for ($j = 0; $j < $MAX_LEVEL; $j++)
+		  for ($j = 0; $j < $MAX_LEVEL; $j++) // This logic calculates XP Table for Long Term XP
 		  {
 			// Sets the amount of xp needed for next level
 		   if ($j <= 10)
@@ -43,7 +43,8 @@
 		   }
 		   else
 		   {
-			$xplevel_lev[$j] = $XP_PER_LEVEL_BASE_LT + ( ($j-10) * $XP_PER_LEVEL_LT) + round( ($j/20) * $XP_PER_LEVEL_LT);
+			$xplevel_lev[$j] = $XP_PER_LEVEL_BASE_LT + (($j-10) * $XP_PER_LEVEL_LT) + round(($j/20), 0, PHP_ROUND_HALF_UP * $XP_PER_LEVEL_LT)-1;
+			//$xplevel_lev[$j] = $XP_PER_LEVEL_BASE_LT + ( ($j-10) * $XP_PER_LEVEL_LT) + round( ($j/20) * $XP_PER_LEVEL_LT);
 		   }
 			// Sets the amount of xp given for each level
 		   $xpgiven_lev[$j] = ( $XP_BASE + ($j * $XP_ADD_LEVEL) ) / 4;
@@ -58,19 +59,16 @@
 			}
 			else if ($j >= 20)
 			{
-			 $xplevel_lev[$j] += round( $xplevel_lev[$j-1] * 1.00 );
+			 $xplevel_lev[$j] += round( $xplevel_lev[$j-1] * 1.0274907 ); // Changed from 1, don't ask ;) -- Rosenstein
 			}
 			else if ($j >= 10)
 			{
 			 $xplevel_lev[$j] += round( $xplevel_lev[$j-1] * 0.75 );
 			}
-			else
-			{
-			 if ($j >= 1)
+			else if ($j >= 1)
 			 {
-				 $xplevel_lev[$j] += round( $xplevel_lev[$j-1] * 0.50 );
+			 $xplevel_lev[$j] += round( $xplevel_lev[$j-1] * 0.50 );
 			 }
-			}
 		   }
 
 		   $Levels["xp"][$j] = $xplevel_lev[$j];
