@@ -1,5 +1,3 @@
-
-
 body { 	 
 	background-color: #4A4A4A; 
 	scrollbar-face-color:#3F3F3F; 
@@ -11,16 +9,16 @@ body {
 	scrollbar-darkshadow-color:#111111
 }
 
-
 font,td,th,p { 
-	font-family: Verdana, Arial, Helvetica, sans-serif; color : #FFFFFF; font-size: 10px
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color : #FFFFFF; font-size: 10px
 }
 
 a:link,a:active,a:visited { 
 	text-decoration: underline;
 	color : #FBC300; 
 	font-size: 10px 
-	}
+}
 
 a:hover { 
 	text-decoration: none; 
@@ -98,7 +96,7 @@ input,textarea, select {
 }
 
 .text {
-	color: 			#FFFFFF;
+	color: 			#FFB000; /* <= HL Orange, previous was #FFFFFF*/
 	font-family: 		Verdana, Arial, Helvetica, sans-serif;
 	font-weight: 		normal;
 	font-size: 		10px;
@@ -120,6 +118,7 @@ input,textarea, select {
 	FONT-FAMILY: 		Verdana, Arial, Helvetica, sans-serif; 
 	FONT-SIZE: 		10px
 }
+
 .table {
 	border: thin solid #315984;
 }
@@ -128,4 +127,9 @@ text-block {
   font-family: monospace;
   margin: 1em 0;
   color: #FFFFFF
+}
+
+.attribs, .skills_name, .skills_descr, .skills_max, .skills_min, .admin_check { 
+	font-family: monospace;
+	color : #FFB000; font-size: 11px
 }
